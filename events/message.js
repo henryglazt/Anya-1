@@ -119,6 +119,12 @@ module.exports = class {
 
 		}
 
+                if(message.guild){
+			const customCommand = data.guild.customCommands.find((c) => c.name === args.shift().toLowerCase());
+			if(customCommand){
+				message.channel.send(customCommand.answer);
+		}
+
 		// Gets the prefix
 		const prefix = client.functions.getPrefix(message, data);
 		if(!prefix){
@@ -130,11 +136,6 @@ module.exports = class {
 		const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
         
 		if(!cmd){
-			if(message.guild){
-				const customCommand = data.guild.customCommands.find((c) => c.name === command);
-				if(customCommand){
-					message.channel.send(customCommand.answer);
-				}
 				return;
 			} else {
 				return message.sendT("misc:HELLO_DM", {
