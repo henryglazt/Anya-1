@@ -136,8 +136,9 @@ module.exports = class {
 		const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
         
 		if(!cmd){
-			if(message.guild)
+			if(message.guild){
 				return;
+			}
 			} else {
 				return message.sendT("misc:HELLO_DM", {
 					username: message.author.username
