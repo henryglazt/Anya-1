@@ -119,17 +119,10 @@ module.exports = class {
 
 		}
 
-		const argz = message.content;
-		const commande = argz.shift().toLowerCase();
-		const cmdz = client.commands.get(commande) || client.commands.get(client.aliases.get(commande));
-
-		if(message.guild){
-			const customCommand = data.guild.customCommands.find((c) => c.name === commande);
-			if(customCommand){
-				message.channel.send(customCommand.answer);
+		const npcst = message.content.toLowerCase();
+		if(npcst === data.guild.customCommands.find((c) => c.name === npcst) && message.guild){
+			message.channel.send(customCommand.answer);
 		}
-
-		if(!cmdz){
 
 		// Gets the prefix
 		const prefix = client.functions.getPrefix(message, data);
@@ -143,14 +136,16 @@ module.exports = class {
         
 		if(!cmd){
 			if(message.guild){
+				const customCommand = data.guild.customCommands.find((c) => c.name === command);
+				if(customCommand){
+					message.channel.send(customCommand.answer);
+				}
 				return;
-			}
 			} else {
 				return message.sendT("misc:HELLO_DM", {
 					username: message.author.username
 				});
 			}
-		}
 		}
 
 		if(cmd.conf.guildOnly && !message.guild){
