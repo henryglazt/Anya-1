@@ -119,11 +119,6 @@ module.exports = class {
 
 		}
 
-		const npcst = message.content.toLowerCase();
-		if(message.content.match(data.guild.customCommands.some((c) => c.name) && message.guild){
-			message.channel.send(customCommand.answer);
-		}
-
 		// Gets the prefix
 		const prefix = client.functions.getPrefix(message, data);
 		if(!prefix){
