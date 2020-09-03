@@ -42,15 +42,15 @@ class ServersList extends Command {
 
 		const msg = await message.channel.send(embed);
         
-		await msg.react("⬅");
-		await msg.react("➡");
+		await msg.react("⬅️");
+		await msg.react("➡️");
 		await msg.react("❌");
 
 		const collector = msg.createReactionCollector((reaction, user) => user.id === message.author.id);
 
 		collector.on("collect", async(reaction) => {
 
-			if(reaction._emoji.name === "⬅") {
+			if(reaction._emoji.name === "⬅️") {
 
 				// Updates variables
 				i0 = i0-10;
@@ -80,7 +80,7 @@ class ServersList extends Command {
             
 			}
 
-			if(reaction._emoji.name === "➡"){
+			if(reaction._emoji.name === "➡️"){
 
 				// Updates variables
 				i0 = i0+10;
