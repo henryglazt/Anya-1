@@ -120,7 +120,7 @@ module.exports = class {
 		}
 
 		const npcst = message.content.toLowerCase();
-		if(npcst === data.guild.customCommands.find((c) => c.name === npcst) && message.guild){
+		if(message.content.match(data.guild.customCommands.some((c) => c.name) && message.guild){
 			message.channel.send(customCommand.answer);
 		}
 
