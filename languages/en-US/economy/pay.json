@@ -1,7 +1,7 @@
 {
     "DESCRIPTION": "Send money to someone!",
     "USAGE": "{{prefix}}pay [@member] [amount]",
-    "EXAMPLES": "{{prefix}}pay Androz#2091 100",
+    "EXAMPLES": "{{prefix}}pay DooM™#6932 100",
     "INVALID_MEMBER": "You must mention a valid member!",
     "BOT_USER": "Bots are already rich 💰!",
     "YOURSELF": "You can't pay yourself!",
