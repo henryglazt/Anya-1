@@ -101,9 +101,9 @@ class Userinfo extends Command {
 		.map(role => role.toString())
 		.slice(0, -1);
 			embed.addField("**❯ Member:**", [
-			`**● Nickname:** ${member.nickname ? member.nickname : message.translate("general/userinfo:NO_NICKNAME")}`,
+			`**● Nickname:** ${member.nickname ? member.nickname : \`message.translate("general/userinfo:NO_NICKNAME")\`}`,
 			`**● Highest Role:** ${member.roles.highest ? member.roles.highest : message.translate("general/userinfo:NO_ROLE")}`,
-			`**● Hex Color:** \`${color}\``,
+			`**● Hex Color:** \`${member.displayHexColor}\``,
 			`**● Roles [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? ('Too Many Roles!') : '`None`'}`,
 			`**● Joined Date:** ${message.printDate(member.joinedAt)}`,
 			`**● Acknowledgements:** ${member.guild.owner.id === member.user.id ? ('Server Owner') : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : '`None`'}`,
