@@ -1,7 +1,6 @@
 const { GiveawaysManager } = require("discord-giveaways");
 const { Player } = require("discord-player");
 const { Client, Collection } = require("discord.js");
-const { Client: Joker } = require("blague.xyz");
 
 const util = require("util"),
 	AmeClient = require("amethyste-api"),
@@ -46,12 +45,6 @@ class Atlanta extends Client {
 
 		if(this.config.apiKeys.amethyste){
 			this.AmeAPI = new AmeClient(this.config.apiKeys.amethyste);
-		}
-
-		if(this.config.apiKeys.blagueXYZ){
-			this.joker = new Joker(this.config.apiKeys.blagueXYZ, {
-				defaultLanguage: "en"
-			});
 		}
 
 		this.player = new Player(this, {
