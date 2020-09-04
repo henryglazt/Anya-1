@@ -36,12 +36,6 @@ module.exports = {
 	},
 	/* The API keys that are required for certain commands */
 	apiKeys: {
-		// BLAGUE.XYZ: https://blague.xyz/
-		blagueXYZ: "",
-		// FORTNITE TRN: https://fortnitetracker.com/site-api
-		fortniteTRN: "",
-		// FORTNITE FNBR: https://fnbr.co/api/docs
-		fortniteFNBR: "",
 		// DBL: https://discordbots.org/api/docs#mybots
 		dbl: "",
 		// AMETHYSTE: https://api.amethyste.moe
