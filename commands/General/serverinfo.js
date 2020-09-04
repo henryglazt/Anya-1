@@ -90,11 +90,11 @@ class Serverinfo extends Command {
         "southafrica": ":flag_za:  South Africa"
     };
     
-    const roles = guild.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
+		const roles = guild.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(guild.name, guild.iconURL())
-			.setThumbnail(guild.iconURL())
+			.setAuthor(guild.name, guild.iconURL({ dynamic: true }))
+			.setThumbnail(guild.iconURL({ dynamic: true }))
 			.addField("**❯ General:**", [
 			`**● Name:** ${guild.name}`,
 			`**● ID:** \`${guild.id}\``,
@@ -148,9 +148,9 @@ class Serverinfo extends Command {
 				count: guild.channels.cache.filter(c => c.type === "voice").size
 			})+" | "+message.translate("general/serverinfo:CAT_CHANNELS", {
 				count: guild.channels.cache.filter(c => c.type === "category").size
-			}), true)
+			}), true)*/
 			.setColor(data.config.embed.color)
-			.setFooter(data.config.embed.footer);*/
+			.setFooter(data.config.embed.footer);
 
 		message.channel.send(embed);
 	}
