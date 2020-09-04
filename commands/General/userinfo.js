@@ -68,9 +68,6 @@ class Userinfo extends Command {
 		const status = {'online': '<:online:741196747748933682> Online', 'idle': '<:idle:741197218861678644> Idle', 
 				'dnd': '<:dnd:741196524238667846> DND', 'offline': '<:offline:741197268123648020> Offline'};
 		const badges = user.flags.toArray();
-  
-		let color = member.displayHexColor;
-		if (color === "#000000") color = data.config.embed.color;
 
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(user.tag, user.displayAvatarURL())
@@ -90,7 +87,7 @@ class Userinfo extends Command {
 			.addField(this.client.customEmojis.bot+" "+message.translate("common:ROBOT"), (user.bot ? message.translate("common:YES") : message.translate("common:NO")), true)
 			.addField(this.client.customEmojis.calendar+" "+message.translate("common:CREATION"), message.printDate(user.createdAt), true)
 			.addField(this.client.customEmojis.avatar+" "+message.translate("common:AVATAR"), user.displayAvatarURL())*/
-			.setColor(color)
+			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer);
 
 		/*if(displayPresence){
