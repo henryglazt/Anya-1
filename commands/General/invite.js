@@ -33,9 +33,9 @@ class Invite extends Command {
 			.setDescription(message.translate("general/invite:TIP", {
 				prefix: data.guild.prefix
 			}))
-			.addField(message.translate("general/invite:ADD"), [Invite Me!](inviteLink))
-			.addField(message.translate("general/invite:VOTE"), [Vote Me!](voteURL))
-			.addField(message.translate("general/invite:SUPPORT"), [Click Me!](supportURL))
+			.addField(message.translate("general/invite:ADD"), inviteLink)
+			.addField(message.translate("general/invite:VOTE"), voteURL)
+			.addField(message.translate("general/invite:SUPPORT"), supportURL)
 			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer);
         
