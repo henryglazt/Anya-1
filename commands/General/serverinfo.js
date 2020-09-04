@@ -153,7 +153,7 @@ class Serverinfo extends Command {
 			.setFooter(data.config.embed.footer);
 
 		message.channel.send(embed);
-	}
+	})
 
 }
 
