@@ -24,7 +24,6 @@ class Stats extends Command {
 			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer)
 			.setAuthor(message.translate("common:STATS"))
-			.setDescription(message.translate("general/stats:MADE"))
 			.addField(this.client.customEmojis.stats+" "+message.translate("general/stats:COUNTS_TITLE"), message.translate("general/stats:COUNTS_CONTENT", {
 				servers: this.client.guilds.cache.size,
 				users: this.client.users.cache.size
