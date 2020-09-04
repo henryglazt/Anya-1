@@ -69,11 +69,6 @@ class Userinfo extends Command {
 				'dnd': '<:dnd:741196524238667846> DND', 'offline': '<:offline:741197268123648020> Offline'};
 		const badges = user.flags.toArray();
   
-		const roles = member.roles.cache
-		.sort((a, b) => b.position - a.position)
-		.map(role => role.toString())
-		.slice(0, -1);
-  
 		let color = member.displayHexColor;
 		if (color === "#000000") color = data.config.embed.color;
 
@@ -104,6 +99,10 @@ class Userinfo extends Command {
 		}*/
             
 		if(member){
+		const roles = member.roles.cache
+		.sort((a, b) => b.position - a.position)
+		.map(role => role.toString())
+		.slice(0, -1);
 			embed.addField("**❯ Member:**", [
 			`**● Nickname:** ${member.nickname ? member.nickname : message.translate("general/userinfo:NO_NICKNAME")}`,
 			`**● Highest Role:** ${member.roles.highest ? member.roles.highest : message.translate("general/userinfo:NO_ROLE")}`,
