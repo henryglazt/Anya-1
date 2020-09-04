@@ -108,7 +108,7 @@ class Userinfo extends Command {
 			`**● Nickname:** ${member.nickname ? member.nickname : message.translate("general/userinfo:NO_NICKNAME")}`,
 			`**● Highest Role:** ${member.roles.highest ? member.roles.highest : message.translate("general/userinfo:NO_ROLE")}`,
 			`**● Hex Color:** \`${color}\``,
-			`**● Roles [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(' | ') : roles.length > 15 ? ('Too Many Roles!') : '`None`'}`,
+			`**● Roles [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? ('Too Many Roles!') : '`None`'}`,
 			`**● Joined Date:** ${message.printDate(member.joinedAt)}`,
 			`**● Acknowledgements:** ${member.guild.owner.id === member.user.id ? ('Server Owner') : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : '`None`'}`,
 			`\u200b`
