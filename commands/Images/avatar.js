@@ -19,12 +19,17 @@ class Avatar extends Command {
 
 	async run (message, args) {
 
+                const status = {'online': '<:online:741196747748933682>', 'idle': '<:idle:741197218861678644>', 
+        	   		'dnd': '<:dnd:741196524238667846>', 'offline': '<:offline:741197268123648020>'};
+
 		let user = await this.client.resolveUser(args[0]);
 		if(!user) user = message.author;
-		const avatarURL = user.displayAvatarURL({ size: 512, dynamic: true }).replace(".webp", ".png");
-		if(message.content.includes("-v")) message.channel.send("<"+avatarURL+">");
-		const attachment = new Discord.MessageAttachment(avatarURL, `avatar.${avatarURL.split(".").pop().split("?")[0]}`);
-		message.channel.send(attachment);
+		const embed = new Discord.MessageEmbed()
+   		 .setColor(data.config.embed.color)
+ 		 .addField(`${status[user.presence.status]} ${user.tag}`, `\`ID: ${user.id}\``, true)
+  		 .setImage(user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 }))
+  		 .setFooter(data.config.embed.footer)
+  		message.channel.send(embed);
 
 	}
 
