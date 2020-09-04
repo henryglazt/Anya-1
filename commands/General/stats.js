@@ -23,8 +23,33 @@ class Stats extends Command {
 		const statsEmbed = new Discord.MessageEmbed()
 			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer)
-			.setAuthor(message.translate("common:STATS"))
-			.addField(this.client.customEmojis.stats+" "+message.translate("general/stats:COUNTS_TITLE"), message.translate("general/stats:COUNTS_CONTENT", {
+			.setAuthor(message.translate("common:STATS"), "https://tinyurl.com/y4xs3cje")
+			.addField("**❯ General:**", [
+			`**● Username:** ${client.user.tag}`,
+			`**● ID:** ${client.user.id}`,
+			`**● Commands:** ${this.client.commands.size}`,
+			`**● Servers:** ${this.client.guilds.cache.size.toLocaleString()} `,
+			`**● Users:** ${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`,
+			`**● Channels:** ${this.client.channels.cache.size.toLocaleString()}`,
+			`**● Node.js:** v${process.version}`,
+			`**● Discord.js:** v${djsversion}`,
+			`**● Creation Date:** ${message.printDate(createdAt)}`,
+ 			`\u200b`
+			])
+    
+			.addField("**❯ System**", [
+		  		`**● Platform:** ${process.platform}`,
+	  			`**● Uptime:** ${ms(os.uptime() * 1000, { long: true })}`,
+	  			`**● CPU:**`,
+	  			`> **Cores:** ${os.cpus().length}`,
+  				`> **Model:** ${core.model}`,
+  				`> **Speed:** ${core.speed}MHz`,
+  				`**● Memory:**`,
+  				`> **Heap Total:** ${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)} MB`,
+  				`> **Heap Used:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
+				`\u200b`
+				])
+			/*.addField(this.client.customEmojis.stats+" "+message.translate("general/stats:COUNTS_TITLE"), message.translate("general/stats:COUNTS_CONTENT", {
 				servers: this.client.guilds.cache.size,
 				users: this.client.users.cache.size
 			}), true)
@@ -32,9 +57,9 @@ class Stats extends Command {
 			.addField(this.client.customEmojis.ram+" "+message.translate("general/stats:RAM_TITLE"), `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\``, true)
 			.addField(this.client.customEmojis.status.online+" "+message.translate("general/stats:ONLINE_TITLE"), message.translate("general/stats:ONLINE_CONTENT", {
 				time: message.convertTime(Date.now()+this.client.uptime, "from", true)
-			}))
+			}))*/
 
-		statsEmbed.addField(this.client.customEmojis.link+" "+message.translate("general/stats:LINKS_TITLE"), message.translate("misc:STATS_FOOTER", {
+			.addField(this.client.customEmojis.link+" "+message.translate("general/stats:LINKS_TITLE"), message.translate("misc:STATS_FOOTER", {
 			inviteLink: await this.client.generateInvite("ADMINISTRATOR"),
 			supportLink: "https://discord.gg/gangsebelah"
 		})
