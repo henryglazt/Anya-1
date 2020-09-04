@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "The Atlanta casino",
+    "DESCRIPTION": "NuruAruvi casino",
     "USAGE": "{{prefix}}slots [amount]",
     "EXAMPLES": "{{prefix}}slots\n{{prefix}}slots 10",
     "DEFEAT": "**{{username}}** used {{money}} credit(s) and lost everything.",
