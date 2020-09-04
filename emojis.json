@@ -39,7 +39,7 @@
 	"ip": "〽️",
 	"folder": "📂",
 	"desc2": "📃",
-	"patreon": "<:atlanta_patreon:602163441083351051>",
+	"patreon": "🏧",
 	"server": "🛡️",
 	"boost": "✨",
 	"status": {
@@ -49,14 +49,14 @@
 		"offline": "<:atlanta_offline:616613445487558696>"
 	},
 	"letters": {
-		"a": "<:atlanta_a:616628945059840000>",
-		"w": "<:atlanta_w:616628945269424158>",
-		"r": "<:atlanta_r:616628944732422212>",
-		"d": "<:atlanta_d:616628944942268456>"
+		"a": ":regional_indicator_a:",
+		"w": ":regional_indicator_w:",
+		"r": ":regional_indicator_r:",
+		"d": ":regional_indicator_d:"
 	},
 	"categories": {
 		"administration": "🔐",
-		"economy": "💱",
+		"economy": "💲",
 		"fun": "🤡",
 		"general": "🌐",
 		"images": "🖼️",
