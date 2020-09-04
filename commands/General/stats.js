@@ -1,5 +1,8 @@
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js");
+	const ms = require('ms');
+	const os = require('os');
+	const core = os.cpus()[0];
 
 class Stats extends Command {
 
@@ -25,8 +28,8 @@ class Stats extends Command {
 			.setFooter(data.config.embed.footer)
 			.setAuthor(message.translate("common:STATS"), "https://tinyurl.com/y4xs3cje")
 			.addField("**❯ General:**", [
-			`**● Username:** ${client.user.tag}`,
-			`**● ID:** ${client.user.id}`,
+			`**● Username:** ${this.client.user.tag}`,
+			`**● ID:** ${this.client.user.id}`,
 			`**● Commands:** ${this.client.commands.size}`,
 			`**● Servers:** ${this.client.guilds.cache.size.toLocaleString()} `,
 			`**● Users:** ${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`,
