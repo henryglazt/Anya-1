@@ -43,10 +43,10 @@
 	"server": "🛡️",
 	"boost": "✨",
 	"status": {
-		"dnd": "<:atlanta_dnd:616613445252546570>",
-		"idle": "<:atlanta_idle:616613445290164224>",
-		"online": "<:atlanta_online:616613445424513028>",
-		"offline": "<:atlanta_offline:616613445487558696>"
+		"dnd": "<:dnd:741196524238667846>",
+		"idle": "<idle:741197218861678644>",
+		"online": "<online:741196747748933682>",
+		"offline": "<:offline:741197268123648020>"
 	},
 	"letters": {
 		"a": ":regional_indicator_a:",
