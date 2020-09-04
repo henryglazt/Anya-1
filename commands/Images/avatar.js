@@ -17,7 +17,7 @@ class Avatar extends Command {
 		});
 	}
 
-	async run (message, args) {
+	async run (message, data, args) {
 
                 const status = {'online': '<:online:741196747748933682>', 'idle': '<:idle:741197218861678644>', 
         	   		'dnd': '<:dnd:741196524238667846>', 'offline': '<:offline:741197268123648020>'};
