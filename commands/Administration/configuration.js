@@ -73,11 +73,6 @@ class Configuration extends Command {
 					? `<#${guildData.plugins.modlogs}>`
 					: message.translate("common:NOT_DEFINED")
 			}) + "\n" +
-			message.translate("administration/configuration:FORTNITESHOP", {
-				channel:    guildData.plugins.fortniteshop
-					? `<#${guildData.plugins.fortniteshop}>`
-					: message.translate("common:NOT_DEFINED")
-			}) + "\n" +
 			message.translate("administration/configuration:SUGGESTIONS", {
 				channel:    guildData.plugins.suggestions
 					? `<#${guildData.plugins.suggestions}>`
@@ -119,10 +114,6 @@ class Configuration extends Command {
 				message.translate("administration/configuration:AUTODELETEMOD_ENABLED")
 				:   message.translate("administration/configuration:AUTODELETEMOD_DISABLED")
 		);
-
-		// Dashboard link
-		embed.addField(message.translate("administration/configuration:DASHBOARD_TITLE"), `[${message.translate("administration/configuration:DASHBOARD_CONTENT")}](${this.client.config.supportURL})`);
-
 		message.channel.send(embed);
 	}
 
