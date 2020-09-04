@@ -65,7 +65,7 @@ class Serverinfo extends Command {
     let mark = `🔗 [${guild.name} Banner]`;
     if (banner !== null) banner = `${mark}(${banner})`;
     
-    let vanity = message.guild.vanityURLCode;
+    let vanity = guild.vanityURLCode;
     let url = '🔗 https://discord.gg/';
     if (vanity !== null) vanity = `${url}${vanity}`;
 
