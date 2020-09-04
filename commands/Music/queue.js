@@ -9,7 +9,7 @@ class Queue extends Command {
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
-			aliases: [ "playlist" ],
+			aliases: [ "q" ],
 			memberPermissions: [],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
@@ -34,7 +34,7 @@ class Queue extends Command {
 		const tracks = [ ...[ queue.playing ], ...queue.tracks ];
 		if(tracks.length > 20) tracks.splice(20);
 		const sQueue = tracks.map((track, i) => {
-			return `${i === 0 ? "\nCurrently playing...\n" : ""} **${message.translate("common:TITLE")}**: ${track.name}\n**${message.translate("common:AUTHOR")}**: ${track.author}`;
+			return `${i === 0 ? "\nCurrently playing...\n" : ""} **${message.translate("common:TITLE")}**: ${track.name}\n**${message.translate("common:REQUESTEDBY")}**: ${track.requestedBy}`;
 		});
 
 		// Generate discord embed to display the songs list
