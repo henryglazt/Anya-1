@@ -20,7 +20,7 @@ class Invite extends Command {
 
 	async run (message, args, data) {
 
-		const inviteLink = this.client.config.inviteURL || `https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=2146958847`;
+		const inviteLink = this.client.config.inviteURL || `https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=8`;
 		const voteURL = this.client.config.voteURL || `https://discordbots.org/bot/${this.client.user.id}/vote`;
 		const supportURL = this.client.config.supportURL || await this.client.functions.supportLink(this.client);
 
@@ -33,9 +33,9 @@ class Invite extends Command {
 			.setDescription(message.translate("general/invite:TIP", {
 				prefix: data.guild.prefix
 			}))
-			.addField(message.translate("general/invite:ADD"), inviteLink)
-			.addField(message.translate("general/invite:VOTE"), voteURL)
-			.addField(message.translate("general/invite:SUPPORT"), supportURL)
+			.addField(message.translate("general/invite:ADD"), [Invite Me!](inviteLink))
+			.addField(message.translate("general/invite:VOTE"), [Vote Me!](voteURL))
+			.addField(message.translate("general/invite:SUPPORT"), [Click Me!](supportURL))
 			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer);
         
