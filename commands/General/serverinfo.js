@@ -154,7 +154,7 @@ class Serverinfo extends Command {
 
 		message.channel.send(embed);
 	})
-
+	}
 }
 
 module.exports = Serverinfo;
