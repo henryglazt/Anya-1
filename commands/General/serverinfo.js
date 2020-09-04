@@ -107,7 +107,7 @@ class Serverinfo extends Command {
 			`**● Banner:** ${banner ? banner : '`None`'}`,
 			`**● Vanity URL:** ${vanity ? vanity : '`None`'}`,
 			`**● Partnered | Verified:** ${partnered[guild.partnered]} | ${verified[guild.verified]}`,
-			`**● Creation Date:** message.printDate(guild.createdAt)`,
+			`**● Creation Date:** ${message.printDate(guild.createdAt)}`,
 			`\u200b`
 			])
     
