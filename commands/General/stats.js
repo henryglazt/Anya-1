@@ -36,7 +36,7 @@ class Stats extends Command {
 			`**● Channels:** ${this.client.channels.cache.size.toLocaleString()}`,
 			`**● Node.js:** v${process.versions.node}`,
 			`**● Discord.js:** v${Discord.version}`,
-			`**● Creation Date:** ${message.printDate(createdAt)}`,
+			`**● Creation Date:** ${message.printDate(this.client.user.createdAt)}`,
  			`\u200b`
 			])
     
