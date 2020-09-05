@@ -26,16 +26,17 @@ class Stats extends Command {
 		const statsEmbed = new Discord.MessageEmbed()
 			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer)
+			.setThumbnail(this.client.user.displayAvatarURL({ dynamic: true }))
 			.setAuthor(message.translate("common:STATS"), "https://tinyurl.com/y4xs3cje")
 			.addField("**❯ General:**", [
 			`**● Username:** ${this.client.user.tag}`,
-			`**● ID:** ${this.client.user.id}`,
+			`**● ID:** \`${this.client.user.id}\``,
 			`**● Commands:** ${this.client.commands.size}`,
 			`**● Servers:** ${this.client.guilds.cache.size.toLocaleString()} `,
 			`**● Users:** ${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`,
 			`**● Channels:** ${this.client.channels.cache.size.toLocaleString()}`,
-			`**● Node.js:** v${process.versions.node}`,
-			`**● Discord.js:** v${Discord.version}`,
+			`**● Node.js:** \`v${process.versions.node}\``,
+			`**● Discord.js:** \`v${Discord.version}\``,
 			`**● Creation Date:** ${message.printDate(this.client.user.createdAt)}`,
  			`\u200b`
 			])
@@ -44,12 +45,12 @@ class Stats extends Command {
 		  		`**● Platform:** ${process.platform}`,
 	  			`**● Uptime:** ${ms(os.uptime() * 1000, { long: true })}`,
 	  			`**● CPU:**`,
-	  			`> **Cores:** ${os.cpus().length}`,
-  				`> **Model:** ${core.model}`,
-  				`> **Speed:** ${core.speed}MHz`,
+	  			`> **Cores:** \`${os.cpus().length}\``,
+  				`> **Model:** \`${core.model}\``,
+  				`> **Speed:** \`${core.speed}MHz\``,
   				`**● Memory:**`,
-  				`> **Heap Total:** ${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)} MB`,
-  				`> **Heap Used:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
+  				`> **Heap Total:** \`${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)} MB\``,
+  				`> **Heap Used:** \`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\``,
 				`\u200b`
 				])
 			/*.addField(this.client.customEmojis.stats+" "+message.translate("general/stats:COUNTS_TITLE"), message.translate("general/stats:COUNTS_CONTENT", {
