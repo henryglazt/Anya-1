@@ -34,8 +34,8 @@ class Stats extends Command {
 			`**● Servers:** ${this.client.guilds.cache.size.toLocaleString()} `,
 			`**● Users:** ${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`,
 			`**● Channels:** ${this.client.channels.cache.size.toLocaleString()}`,
-			`**● Node.js:** v${process.version}`,
-			`**● Discord.js:** v${djsversion}`,
+			`**● Node.js:** v${process.versions.node}`,
+			`**● Discord.js:** v${Discord.version}`,
 			`**● Creation Date:** ${message.printDate(createdAt)}`,
  			`\u200b`
 			])
