@@ -69,7 +69,7 @@ class Work extends Command {
 			for(let i = 0; i < award.length; i++){
 				if(data.memberData.workStreak > i){
 					let letter = Discord.Util.parseEmoji(award[i]).name.split("_")[1];
-					award[i] = `:regional_indicator_${letter.toLowerCase()}:`;
+					award[i] = `:regional_indicator_${letter}:`;
 				}
 			}
 			embed.addField(message.translate("economy/work:SALARY"), message.translate("economy/work:SALARY_CONTENT", {
