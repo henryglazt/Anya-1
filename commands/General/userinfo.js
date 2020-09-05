@@ -67,7 +67,8 @@ class Userinfo extends Command {
 
 		const status = {'online': '<:online:741196747748933682> Online', 'idle': '<:idle:741197218861678644> Idle', 
 				'dnd': '<:dnd:741196524238667846> DND', 'offline': '<:offline:741197268123648020> Offline'};
-		const badges = user.flags.toArray();
+		let badges = user.flags.toArray();
+		if(!badges) badges = "`None`";
 
 		const embed = new Discord.MessageEmbed()
 			.setAuthor("USER INFO", "https://tinyurl.com/y4xs3cje")
