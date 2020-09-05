@@ -33,7 +33,7 @@ class Leave extends Command {
 
 		guild = await guild.fetch();
 
-		guild.leave();
+		this.client.guilds.cache.get(args.join(" ")).leave();
 	}
 
 }
