@@ -70,8 +70,8 @@ class Userinfo extends Command {
 		const badges = user.flags.toArray();
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(user.tag, user.displayAvatarURL())
-			.setThumbnail(user.displayAvatarURL())
+			.setAuthor("USER INFO", "https://tinyurl.com/y4xs3cje")
+			.setThumbnail(user.displayAvatarURL({ dynamic: true }))
 			.addField("**❯ User:**", [
 			`**● Username:** ${user.username}`,
 			`**● Discriminator:** \`#${user.discriminator}\``,
