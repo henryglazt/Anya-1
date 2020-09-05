@@ -20,6 +20,22 @@ class Userinfo extends Command {
 	}
 
 	async run (message, args, data) {
+
+  const flags = {
+	DISCORD_EMPLOYEE: '<:discordstaff:744429704630501437>',
+	DISCORD_PARTNER: '<:badgepartner:744430029647118397>',
+	BUGHUNTER_LEVEL_1: '<:BugHunter_1:744448839897055314>',
+	BUGHUNTER_LEVEL_2: '<:BugHunter_2:744448798075387914>',
+	HYPESQUAD_EVENTS: '<:hypesquadevent:744442782378098739>',
+	HOUSE_BRAVERY: '<:bravery:744389663015436298>',
+	HOUSE_BRILLIANCE: '<:brilliance:744389759262130187>',
+	HOUSE_BALANCE: '<:balance:744389799368196237>',
+	EARLY_SUPPORTER: '<:earlysupporter:744384359544520744>',
+	TEAM_USER: '<:Uhh:415271021373816832>',
+	SYSTEM: '<:system:744456285000433775>',
+	VERIFIED_BOT: '<:verifiedbot:744456394295476234>',
+	VERIFIED_DEVELOPER: '<:botdev:744390897143250975>'
+  };
         
 		let displayPresence = true;
 
@@ -49,26 +65,14 @@ class Userinfo extends Command {
 			member = await message.guild.members.fetch(user).catch(() => {});
 		}
 
-  const flags = {
-	DISCORD_EMPLOYEE: '<:discordstaff:744429704630501437>',
-	DISCORD_PARTNER: '<:badgepartner:744430029647118397>',
-	BUGHUNTER_LEVEL_1: '<:BugHunter_1:744448839897055314>',
-	BUGHUNTER_LEVEL_2: '<:BugHunter_2:744448798075387914>',
-	HYPESQUAD_EVENTS: '<:hypesquadevent:744442782378098739>',
-	HOUSE_BRAVERY: '<:bravery:744389663015436298>',
-	HOUSE_BRILLIANCE: '<:brilliance:744389759262130187>',
-	HOUSE_BALANCE: '<:balance:744389799368196237>',
-	EARLY_SUPPORTER: '<:earlysupporter:744384359544520744>',
-	TEAM_USER: '<:Uhh:415271021373816832>',
-	SYSTEM: '<:system:744456285000433775>',
-	VERIFIED_BOT: '<:verifiedbot:744456394295476234>',
-	VERIFIED_DEVELOPER: '<:botdev:744390897143250975>'
-  };
-
 		const status = {'online': '<:online:741196747748933682> Online', 'idle': '<:idle:741197218861678644> Idle', 
 				'dnd': '<:dnd:741196524238667846> DND', 'offline': '<:offline:741197268123648020> Offline'};
-		let badges = user.flags.toArray();
-		if(badges === undefined) badges = "`None`";
+		let badges = user.flags;
+		if(badges){
+		badges = badges.toArray();
+		} else {
+		badges = "`None`";
+		}
 
 		const embed = new Discord.MessageEmbed()
 			.setAuthor("USER INFO", "https://tinyurl.com/y4xs3cje")
