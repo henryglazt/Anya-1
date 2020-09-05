@@ -49,10 +49,10 @@
 		"offline": "<:offline:741197268123648020>"
 	},
 	"letters": {
-		"a": ":regional_indicator_a:",
-		"w": ":regional_indicator_w:",
-		"r": ":regional_indicator_r:",
-		"d": ":regional_indicator_d:"
+		"a": "A",
+		"w": "W",
+		"r": "R",
+		"d": "D"
 	},
 	"categories": {
 		"administration": "🔐",
