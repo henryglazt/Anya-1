@@ -93,7 +93,7 @@ class Serverinfo extends Command {
 		const roles = guild.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(guild.name, guild.iconURL({ dynamic: true }))
+			.setAuthor("SERVER INFO", "https://tinyurl.com/y4xs3cje")
 			.setThumbnail(guild.iconURL({ dynamic: true }))
 			.addField("**❯ General:**", [
 			`**● Name:** ${guild.name}`,
