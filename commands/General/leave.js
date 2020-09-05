@@ -38,4 +38,4 @@ class Serverinfo extends Command {
 
 }
 
-module.exports = Leave;
+module.exports = "Leave";
