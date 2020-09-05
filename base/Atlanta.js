@@ -3,7 +3,6 @@ const { Player } = require("discord-player");
 const { Client, Collection } = require("discord.js");
 
 const util = require("util"),
-	AmeClient = require("amethyste-api"),
 	path = require("path"),
 	moment = require("moment");
 
@@ -42,10 +41,6 @@ class Atlanta extends Client {
 
 		this.databaseCache.usersReminds = new Collection(); // members with active reminds
 		this.databaseCache.mutedUsers = new Collection(); // members who are currently muted
-
-		if(this.config.apiKeys.amethyste){
-			this.AmeAPI = new AmeClient(this.config.apiKeys.amethyste);
-		}
 
 		this.player = new Player(this, {
 			leaveOnEmpty: false
