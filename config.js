@@ -38,8 +38,6 @@ module.exports = {
 	apiKeys: {
 		// DBL: https://discordbots.org/api/docs#mybots
 		dbl: "",
-		// AMETHYSTE: https://api.amethyste.moe
-		amethyste: "",
 		// SENTRY: https://sentry.io (this is not required and not recommended)
 		sentryDSN: ""
 	},
