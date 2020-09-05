@@ -49,13 +49,13 @@ class Work extends Command {
 			.setFooter(message.translate("economy/work:AWARD"), message.author.displayAvatarURL())
 			.setColor(data.config.embed.color);
         
-		const award = {
+		const award = [
 			this.client.customEmojis.letters.a,
 			this.client.customEmojis.letters.w,
 			this.client.customEmojis.letters.a,
 			this.client.customEmojis.letters.r,
 			this.client.customEmojis.letters.d
-		};
+		];
 		let won = 200;
 
 		if(data.memberData.workStreak >= 5){
