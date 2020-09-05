@@ -54,37 +54,6 @@ const checks = [
 	() => {
 		console.log("\n\nAPI keys");
 		return new Promise(async (resolve) => {
-			if(!config.apiKeys.amethyste){
-				ignore("amethyste API is not configured, key should not be checked.");
-			} else {
-				const res = await fetch("https://v1.api.amethyste.moe/generate/blurple", {
-					method: "POST",
-					headers: {
-						Authorization: `Bearer ${config.apiKeys.amethyste}`
-					}
-				});
-				const result = await res.json();
-				if(result.status === 401){
-					error("should be a valid Amethyste API key", "get your key here: https://api.amethyste.moe/");
-				} else {
-					success("should be a valid Amethyste API key");
-				}
-			}
-			if(!config.apiKeys.blagueXYZ){
-				ignore("blague.xyz API is not configured, key should not be checked.");
-			} else {
-				const res = await fetch("https://blague.xyz/api/joke/random", {
-					headers: {
-						Authorization: config.apiKeys.blagueXYZ
-					}
-				});
-				const result = await res.json();
-				if(result.status === 401){
-					error("should be a valid blague.xyz key", "get your key here: https://blague.xyz/");
-				} else {
-					success("should be a valid blague.xyz key");
-				}
-			}
 			if(!config.apiKeys.dbl){
 				ignore("DBL API is not configured, key should not be checked.");
 			} else {
@@ -99,21 +68,6 @@ const checks = [
 					error("should be a valid DBL key", "get your key here: https://top.gg/ OR delete the key from the config if you don't have a key");
 				} else {
 					success("should be a valid DBL key");
-				}
-			}
-			if(!config.apiKeys.fortniteFNBR){
-				ignore("fortniteFNBR API is not configured, key should not be checked.");
-			} else {
-				const res = await fetch("https://fnbr.co/api/stats", {
-					headers: {
-						"x-api-key": config.apiKeys.fortniteFNBR
-					}
-				});
-				const result = await res.json();
-				if(result.status && result.status === 401){
-					error("should be a valid FNBR key", "get your key here: https://fnbr.co/api/docs");
-				} else {
-					success("should be a valid FNBR key");
 				}
 			}
 			if(!config.apiKeys.sentryDSN){
