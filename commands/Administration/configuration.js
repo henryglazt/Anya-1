@@ -23,7 +23,7 @@ class Configuration extends Command {
 		const guildData = data.guild;
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(message.guild.name, message.guild.iconURL())
+			.setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }))
 			.setColor(this.client.config.embed.color)
 			.setFooter(this.client.config.embed.footer);
 
