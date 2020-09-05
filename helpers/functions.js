@@ -39,7 +39,7 @@ module.exports = {
 			const invite = await channel.createInvite({ maxAge: 0 }).catch(() => {});
 			return invite ? invite.url : null;
 		} else {
-			return "https://atlanta-bot.fr";
+			return "discord.gg/gangsebelah";
 		}
 	},
 
