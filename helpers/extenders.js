@@ -51,12 +51,12 @@ Message.prototype.convertTime = function(time, type, noPrefix) {
 };
 
 MessageEmbed.prototype.errorColor = function() {
-	this.setColor("#FF0000");
+	this.setColor("#f44c44");
 	return this;
 };
 
 MessageEmbed.prototype.successColor = function() {
-	this.setColor("#32CD32");
+	this.setColor("#44b484");
 	return this;
 };
 
