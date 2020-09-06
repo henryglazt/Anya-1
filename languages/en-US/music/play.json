@@ -8,6 +8,7 @@
     "RESULTS_FOOTER": "Please select a song by sending a number between 1 and 10.",
     "NO_RESULT": "Cannot be find on Youtube!",
     "NOW_PLAYING": "Now playing {{songName}}",
+    "TIMES_UP": "Time's up, please try again!",
     "CANCELLED": "Selection cancelled",
     "NOT_PLAYING": "No songs are currently playing in this server.",
     "QUEUE_ENDED": "Queue has ended. No more music to play...",
