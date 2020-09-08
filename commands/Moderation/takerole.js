@@ -9,7 +9,7 @@ class Takerole extends Command {
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
-			aliases: [ "rrole" ],
+			aliases: [ "trole" ],
 			memberPermissions: [ "MANAGE_ROLES" ],
 			botPermissions: [ "MANAGE_ROLES", "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
