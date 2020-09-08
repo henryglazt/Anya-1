@@ -72,7 +72,7 @@ class Clear extends Command {
 
 		setTimeout(function(){
 			toDelete.delete();
-		}, 2000);
+		}, 3000);
         
 	}
 
