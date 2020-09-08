@@ -34,7 +34,7 @@ class Takerole extends Command {
     msg => {msg.delete({timeout: 10000})
            });
   
-  const embed = new MessageEmbed()
+  const embed = new Discord.MessageEmbed()
   
   if (!member.roles.cache.has(role.id)) {
       embed.setColor("#ff0000")
