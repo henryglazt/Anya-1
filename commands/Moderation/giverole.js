@@ -45,7 +45,7 @@ class Giverole extends Command {
       embed.setDescription(`<a:ayes:744384533931098184> ${role} role is added to ${member.user}`);
     await member.roles.add(role.id)
     .then(() => message.channel.send(embed))
-    .catch(err => message.channel.send(`<a:ano:744384493376503869> | Something went wrong... ${err} or Probably the ${role.name} role is higher than my role.`));
+    .catch(err => message.error(`<a:ano:744384493376503869> | Something went wrong... ${err} or Probably the ${role.name} role is higher than my role.`));
   }
   } catch(e) {
     return message.error(`<a:ano:744384493376503869> | Something went wrong... ${e}.`);
