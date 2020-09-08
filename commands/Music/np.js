@@ -1,15 +1,15 @@
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js");
 
-class Np extends Command {
+class Nowplaying extends Command {
 
 	constructor (client) {
 		super(client, {
-			name: "np",
+			name: "nowplaying",
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
-			aliases: [ "nowplaying", "now-playing" ],
+			aliases: [ "np" ],
 			memberPermissions: [],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
@@ -56,4 +56,4 @@ class Np extends Command {
 
 }
 
-module.exports = Np;
+module.exports = Nowplaying;
