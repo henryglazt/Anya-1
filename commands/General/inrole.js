@@ -44,11 +44,11 @@ class Inrole extends Command {
         array.slice(0, 10).join("\n");
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(`Showing members in ${role.name} role`, "https://tinyurl.com/y4xs3cje")
+			.setAuthor(`Showing ${array.length} members in ${role.name} role`, "https://tinyurl.com/y4xs3cje")
 			.setColor(data.config.embed.color)
 			.setFooter(this.client.user.username)
 			.setTitle(`${message.translate("common:PAGE")}: ${page}/${Math.ceil(array.length/10)}`)
-			.setDescription(description);
+			.setDescription(array.slice(0, 10).join("\n"));
 
 		const msg = await message.channel.send(embed);
         
@@ -80,7 +80,7 @@ class Inrole extends Command {
 
 				// Update the embed with new informations
 				embed.setTitle(`${message.translate("common:PAGE")}: ${page}/${Math.round(array.length/10)}`)
-					.setDescription(description);
+					.setDescription(array.slice(i0, i1).join("\n"));
             
 				// Edit the message 
 				msg.edit(embed);
@@ -107,7 +107,7 @@ class Inrole extends Command {
 
 				// Update the embed with new informations
 				embed.setTitle(`${message.translate("common:PAGE")}: ${page}/${Math.round(array.length/10)}`)
-					.setDescription(description);
+					.setDescription(array.slice(i0, i1).join("\n"));
             
 				// Edit the message 
 				msg.edit(embed);
