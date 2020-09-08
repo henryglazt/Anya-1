@@ -34,7 +34,7 @@ class Giverole extends Command {
     msg => {msg.delete({timeout: 10000})
            });
   
-  let embed = new Discord.MessageEmbed()
+  const embed = new Discord.MessageEmbed()
   
   if (member.roles.cache.has(role.id)) {
       embed.setColor("#ff0000")
