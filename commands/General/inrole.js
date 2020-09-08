@@ -39,10 +39,6 @@ class Inrole extends Command {
         array.push(member.user.tag);
       });
 
-		let description = 
-        `${message.translate("common:MEMBERS")}: ${array.length}\n\n`+
-        array.slice(0, 10).join("\n");
-
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(`Showing ${array.length} members in ${role.name} role`, "https://tinyurl.com/y4xs3cje")
 			.setColor(data.config.embed.color)
@@ -67,16 +63,13 @@ class Inrole extends Command {
 				i1 = i1-10;
 				page = page-1;
                 
-				// if there is no guild to display, delete the message
+				// if there is no member to display, delete the message
 				if(i0 < 0){
 					return msg.delete();
 				}
 				if(!i0 || !i1){
 					return msg.delete();
 				}
-                
-				description = `${message.translate("common:SERVERS")}: ${array.length}\n\n`+
-				  array.slice(i0, i1).join("\n");
 
 				// Update the embed with new informations
 				embed.setTitle(`${message.translate("common:PAGE")}: ${page}/${Math.round(array.length/10)}`)
@@ -94,16 +87,13 @@ class Inrole extends Command {
 				i1 = i1+10;
 				page = page+1;
 
-				// if there is no guild to display, delete the message
+				// if there is no member to display, delete the message
 				if(i1 > array.length + 10){
 					return msg.delete();
 				}
 				if(!i0 || !i1){
 					return msg.delete();
 				}
-
-				description = `${message.translate("common:SERVERS")}: ${array.length}\n\n`+
-				  array.slice(i0, i1).join("\n");
 
 				// Update the embed with new informations
 				embed.setTitle(`${message.translate("common:PAGE")}: ${page}/${Math.round(array.length/10)}`)
