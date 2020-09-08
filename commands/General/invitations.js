@@ -24,7 +24,7 @@ class Invitations extends Command {
 		if (!member) member = message.member;
 
 		// Gets the invites
-		const invites = await message.guild.fetchInvites().catch(err => message.channel.send("Seems your invite link doesn't exist!"));
+		const invites = await message.guild.fetchInvites().catch(err => message.channel.send("<a:ano:744384493376503869> | Seems your invite link doesn't exist!"));
         
 		const memberInvites = invites.filter((i) => i.inviter && i.inviter.id === member.user.id);
 
