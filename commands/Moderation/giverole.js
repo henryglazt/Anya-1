@@ -21,17 +21,17 @@ class Giverole extends Command {
 
   if (!args[0]) return message.reply("Please specify the user and the role!").then(
     msg => {msg.delete({timeout: 10000})
-           })
+           });
   if (!args.slice(1).join(" ")) return message.channel.send("Please specify the role!").then(
     msg => {msg.delete({timeout: 10000})
-           })
+           });
   try {
   let member = message.mentions.members.first() || await message.guild.members.fetch({user: args[0], force: true});
   let role = message.guild.roles.cache.find((r) => r.name.toLowerCase() === args.slice(1).join(" ").toLowerCase()) || 
              message.guild.roles.cache.find((r) => r.id === args[1]) || message.mentions.roles.last();
   if (!role) return message.channel.send("I couldn't find that role!").then(
     msg => {msg.delete({timeout: 10000})
-           })
+           });
   
   let embed = new MessageEmbed()
   
