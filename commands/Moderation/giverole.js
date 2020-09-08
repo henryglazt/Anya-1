@@ -1,4 +1,5 @@
 const Command = require("../../base/Command.js"),
+	const Discord = require("discord.js");
 
 class Giverole extends Command {
 
@@ -33,7 +34,7 @@ class Giverole extends Command {
     msg => {msg.delete({timeout: 10000})
            });
   
-  let embed = new MessageEmbed()
+  let embed = new Discord.MessageEmbed()
   
   if (member.roles.cache.has(role.id)) {
       embed.setColor("#ff0000")
@@ -47,7 +48,7 @@ class Giverole extends Command {
     .catch(err => message.reply(`Something went wrong... ${err} or Probably the ${role.name} role is higher than my role.`));
   }
   } catch(e) {
-    return message.reply(`Something went wrong... ${e}.`);
+    return message.error(`Something went wrong... ${e}.`);
   }
 }
 
