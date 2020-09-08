@@ -20,7 +20,7 @@ class Giverole extends Command {
 
 	async run (message, args, data) {
 
-  if (!args[0]) return message.reply("<a:ano:744384493376503869> | Please specify the user and the role!").then(
+  if (!args[0]) return message.channel.send("<a:ano:744384493376503869> | Please specify the user and the role!").then(
     msg => {msg.delete({timeout: 10000})
            });
   if (!args.slice(1).join(" ")) return message.channel.send("<a:ano:744384493376503869> | Please specify the role!").then(
@@ -37,15 +37,15 @@ class Giverole extends Command {
   const embed = new Discord.MessageEmbed()
   
   if (member.roles.cache.has(role.id)) {
-      embed.setColor("#ff0000")
+      embed.setColor("#f44c44")
       embed.setDescription(`<a:ano:744384493376503869> ${member.user} already has the ${role} role`);
     message.channel.send(embed)
   } else {
-      embed.setColor("#00ff00")
+      embed.setColor("#44a474")
       embed.setDescription(`<a:ayes:744384533931098184> ${role} role is added to ${member.user}`);
     await member.roles.add(role.id)
     .then(() => message.channel.send(embed))
-    .catch(err => message.reply(`<a:ano:744384493376503869> | Something went wrong... ${err} or Probably the ${role.name} role is higher than my role.`));
+    .catch(err => message.channel.send(`<a:ano:744384493376503869> | Something went wrong... ${err} or Probably the ${role.name} role is higher than my role.`));
   }
   } catch(e) {
     return message.error(`<a:ano:744384493376503869> | Something went wrong... ${e}.`);
