@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-	const Discord = require("discord.js");
+	Discord = require("discord.js");
 
 class Giverole extends Command {
 
