@@ -1,11 +1,11 @@
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js");
 
-class Clear-queue extends Command {
+class Clearqueue extends Command {
 
 	constructor (client) {
 		super(client, {
-			name: "clear-queue",
+			name: "clearqueue",
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
@@ -22,4 +22,4 @@ class Clear-queue extends Command {
 
 
 
-module.exports = Clear-queue;
+module.exports = Clearqueue;
