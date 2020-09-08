@@ -51,5 +51,6 @@ class Giverole extends Command {
     return message.error(`Something went wrong... ${e}.`);
   }
 }
+}
 
 module.exports = Giverole;
