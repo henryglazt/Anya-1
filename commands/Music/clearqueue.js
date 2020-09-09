@@ -20,6 +20,19 @@ class Clearqueue extends Command {
 
 	async run (message, args, data) {
 
+		const voice = message.member.voice.channel;
+		if (!voice){
+			return message.error("music/play:NO_VOICE_CHANNEL");
+		}
+        
+		const queue = this.client.player.getQueue(message.guild.id);
 
+		if(!queue){
+			return message.error("music:play:NOT_PLAYING");
+		}
+
+		await this.client.player.clearQueue(message.guild.id);
+
+		message.sendT("music/clearqueue:SUCCESS");
 
 module.exports = Clearqueue;
