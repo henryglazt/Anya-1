@@ -52,5 +52,6 @@ class Filterlist extends Command {
 
 		message.channel.send(list);
 		}
+	}
 
 module.exports = Filterlist;
