@@ -30,6 +30,10 @@ class Resume extends Command {
 			return message.error("music:play:NOT_PLAYING");
 		}
 
+		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
+
 		// Gets the current song
 		await this.client.player.resume(message.guild.id);
         
