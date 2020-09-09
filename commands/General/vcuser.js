@@ -20,7 +20,7 @@ class Vcuser extends Command {
 
 	async run (message, args, data) {
 
-    const voiceChannels = this.guild.channels.cache.filter(c => c.type === 'voice');
+    const voiceChannels = message.guild.channels.cache.filter(c => c.type === 'voice');
     let count = 0;
   
     for (const [id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
