@@ -36,7 +36,7 @@ class Stop extends Command {
 		}
 
 		if (this.client.player.getQueue(message.guild.id).repeatMode) {
-			this.client.playersetRepeatMode(message.guild.id, false);
+			this.client.player.setRepeatMode(message.guild.id, false);
 		}
 
 		const members = voice.members.filter((m) => !m.user.bot);
