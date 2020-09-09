@@ -24,7 +24,7 @@ class Remove extends Command {
 
 		let queue = this.client.player.getQueue(message.guild.id);
 		if(queue.length < args[0]) return message.error("music/remove:INVALID");
-		if(queue.requestedBy !== message.author.id) return message.error("music/remove:NOT_REQUESTER");
+		if(queue.requestedBy !== message.member.user) return message.error("music/remove:NOT_REQUESTER");
 
 		const voice = message.member.voice.channel;
 		if (!voice){
