@@ -36,6 +36,7 @@ class Shuffle extends Command {
 		this.client.player.shuffle(message.guild.id);
 
 		message.sendT("music/shuffle:SUCCESS");
-
+		}
+	}
 
 module.exports = Shuffle;
