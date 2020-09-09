@@ -34,5 +34,6 @@ class Clearqueue extends Command {
 		this.client.player.clearQueue(message.guild.id);
 
 		message.sendT("music/clearqueue:SUCCESS");
+		}
 
 module.exports = Clearqueue;
