@@ -31,6 +31,10 @@ class Clearqueue extends Command {
 			return message.error("music:play:NOT_PLAYING");
 		}
 
+		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
+
 		this.client.player.clearQueue(message.guild.id);
 
 		message.sendT("music/clearqueue:SUCCESS");
