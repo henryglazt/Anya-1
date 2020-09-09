@@ -1,7 +1,7 @@
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js");
 
-class Removeg extends Command {
+class Remove extends Command {
 
 	constructor (client) {
 		super(client, {
@@ -20,9 +20,11 @@ class Removeg extends Command {
 
 	async run (message, args, data) {
 
-		let removeable = this.client.player.getQueue(message.guild.id);
-
 		if(!args[0]) return message.error("music/remove:INVALID");
+
+		let queue = this.client.player.getQueue(message.guild.id);
+		if(queue.length < args[0]) return message.error("music/remove:INVALID");
+		if(queue.requestedBy !== message.author.id) return message.error("music/remove:NOT_REQUESTER");
 
 		const voice = message.member.voice.channel;
 		if (!voice){
