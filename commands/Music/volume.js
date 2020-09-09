@@ -20,15 +20,19 @@ class Volume extends Command {
 
 	async run (message, args, data) {
 
+		if(!args[0] && isNaN) return message.error("music/volume:INVALID");
+
 		const voice = message.member.voice.channel;
 		if (!voice){
 			return message.error("music/play:NO_VOICE_CHANNEL");
 		}
         
-		const queue = this.client.player.getQueue(message.guild.id);
+		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
 
-		if(!queue){
-			return message.error("music:play:NOT_PLAYING");
+		if(!client.player.isPlaying(message.guild.id))
+			return message.error("music/play:NOT_PLAYING");
 		}
 
 		await this.client.player.setVolume(message.guild.id, parseInt(args[0]));
