@@ -30,7 +30,7 @@ class Filter extends Command {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
 
-		if(!this.client.player.isPlaying(message.guild.id))
+		if(!this.client.player.isPlaying(message.guild.id)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
@@ -56,5 +56,6 @@ class Filter extends Command {
 
 		message.channel.send(`I'm disabling the filter on the music, please wait... Note : the longer the music is playing, the longer the wait will be`);
 		}
+	}
 
 module.exports = Filter;
