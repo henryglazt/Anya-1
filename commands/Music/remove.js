@@ -20,7 +20,9 @@ class Removeg extends Command {
 
 	async run (message, args, data) {
 
-		if(!args[0]) return message.error("music/remove
+		let removeable = this.client.player.getQueue(message.guild.id);
+
+		if(!args[0]) return message.error("music/remove:INVALID");
 
 		const voice = message.member.voice.channel;
 		if (!voice){
