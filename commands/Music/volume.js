@@ -20,6 +20,6 @@ class Volume extends Command {
 
 	async run (message, args, data) {
 
-
+		
 
 module.exports = Volume;
