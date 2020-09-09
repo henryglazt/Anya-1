@@ -31,6 +31,14 @@ class Stop extends Command {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
+		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
+
+		if (this.client.player.getQueue(message.guild.id).repeatMode) {
+			this.client.playersetRepeatMode(message.guild.id, false);
+		}
+
 		const members = voice.members.filter((m) => !m.user.bot);
 
 		const embed = new Discord.MessageEmbed()
