@@ -35,5 +35,6 @@ class Clearqueue extends Command {
 
 		message.sendT("music/clearqueue:SUCCESS");
 		}
+	}
 
 module.exports = Clearqueue;
