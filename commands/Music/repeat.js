@@ -44,5 +44,6 @@ class Repeat extends Command {
   
 		this.client.player.nowPlaying(message.guild.id);
 		}
+	}
 
 module.exports = Repeat;
