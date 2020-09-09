@@ -23,9 +23,9 @@ class Volume extends Command {
 		let vol = this.client.player.getQueue(message.guild.id).volume;
 
 		if(!args[0]) return message.sendT(`music/volume:CURRENT_VOL \`${vol}%\``);
-		if(isNaN(args[0])) return message.channel.send(`Please enter a valid number ${emotes.error}`);
-		if(250 < args[0])  return message.channel.send(`Please enter a valid number ${emotes.error}`)
-		if(args[0] <=0) return message.channel.send(`Please enter a valid number ${emotes.error}`)
+		if(isNaN(args[0])) return message.channel.send(`Please enter a valid number`);
+		if(250 < args[0])  return message.channel.send(`Please enter a valid number`)
+		if(args[0] <=0) return message.channel.send(`Please enter a valid number`)
 
 
 		const voice = message.member.voice.channel;
