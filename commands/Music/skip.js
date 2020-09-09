@@ -35,6 +35,10 @@ class Skip extends Command {
 			return message.error("music/skip:NO_NEXT_SONG");
 		}
 
+		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
+
 		const members = voice.members.filter((m) => !m.user.bot);
 
 		const embed = new Discord.MessageEmbed()
