@@ -48,7 +48,7 @@ class Filterlist extends Command {
 		    .setDescription(`List of all filters enabled or disabled.\nTo add a filter to a \`${data.guild.prefix}filter\` music.`)
 		    .addField("**Filters**", filtersStatuses[0].join('\n'), true)
 		    .addField("** **", filtersStatuses[1].join('\n'), true)
-		    .setColor("ORANGE");
+		    .setColor("data.client.config.color");
 
 		message.channel.send(list);
 		}
