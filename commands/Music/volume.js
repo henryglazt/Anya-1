@@ -38,6 +38,6 @@ class Volume extends Command {
 		await this.client.player.setVolume(message.guild.id, parseInt(args[0]));
 
 		message.sendT("music/volume:SUCCESS");
-
+		}
 
 module.exports = Volume;
