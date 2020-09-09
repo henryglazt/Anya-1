@@ -35,7 +35,7 @@ class Volume extends Command {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
-		await this.client.player.setVolume(message.guild.id, parseInt(args[0]));
+		this.client.player.setVolume(message.guild.id, parseInt(args[0]));
 
 		message.sendT("music/volume:SUCCESS");
 		}
