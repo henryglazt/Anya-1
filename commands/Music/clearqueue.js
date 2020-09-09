@@ -31,7 +31,7 @@ class Clearqueue extends Command {
 			return message.error("music:play:NOT_PLAYING");
 		}
 
-		await this.client.player.clearQueue(message.guild.id);
+		this.client.player.clearQueue(message.guild.id);
 
 		message.sendT("music/clearqueue:SUCCESS");
 
