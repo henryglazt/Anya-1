@@ -20,7 +20,13 @@ class Volume extends Command {
 
 	async run (message, args, data) {
 
-		if(!args[0] && isNaN) return message.error("music/volume:INVALID");
+		let vol = this.client.player.getQueue(message.guild.id).volume;
+
+		if(!args[0]) return message.sendT(`music/volume:CURRENT_VOL \`${vol}%\``);
+		if(isNaN(args[0])) return message.channel.send(`Please enter a valid number ${emotes.error}`);
+		if(250 < args[0])  return message.channel.send(`Please enter a valid number ${emotes.error}`)
+		if(args[0] <=0) return message.channel.send(`Please enter a valid number ${emotes.error}`)
+
 
 		const voice = message.member.voice.channel;
 		if (!voice){
