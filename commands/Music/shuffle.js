@@ -29,7 +29,7 @@ class Shuffle extends Command {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
 
-		if(!this.client.player.isPlaying(message.guild.id))
+		if(!this.client.player.isPlaying(message.guild.id)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
