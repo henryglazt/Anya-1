@@ -57,5 +57,6 @@ class Filter extends Command {
 		message.channel.send(`I'm disabling the filter on the music, please wait... Note : the longer the music is playing, the longer the wait will be`);
 		}
 	}
+}
 
 module.exports = Filter;
