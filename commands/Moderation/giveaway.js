@@ -27,7 +27,7 @@ class Giveaway extends Command {
 
 		if(status === "create"){
 			const currentGiveaways = this.client.giveawaysManager.giveaways.filter((g) => g.guildID === message.guild.id && !g.ended).length;
-			if(currentGiveaways > 3){
+			if(currentGiveaways > 10){
 				return message.error("moderation/giveaway:MAX_COUNT");
 			}
 			const time = args[1];
@@ -48,10 +48,10 @@ class Giveaway extends Command {
 					prefix: data.guild.prefix
 				});
 			}
-			if(isNaN(winnersCount) || winnersCount > 10 || winnersCount < 1){
+			if(isNaN(winnersCount) || winnersCount > 20 || winnersCount < 1){
 				return message.error("misc:INVALID_NUMBER_RANGE", {
 					min: 1,
-					max: 10
+					max: 20
 				});
 			}
 			const prize = args.slice(3).join(" ");
@@ -63,7 +63,8 @@ class Giveaway extends Command {
 			this.client.giveawaysManager.start(message.channel, {
 				time: ms(time),
 				prize: prize,
-				winnerCount: parseInt(winnersCount, 10),
+				winnerCount: parseInt(winnersCount),
+        hostedBy: message.author,
 				messages: {
 					giveaway: message.translate("moderation/giveaway:TITLE"),
 					giveawayEnded: message.translate("moderation/giveaway:ENDED"),
@@ -72,6 +73,7 @@ class Giveaway extends Command {
 					winMessage: message.translate("moderation/giveaway:WIN_MESSAGE"),
 					embedFooter: message.translate("moderation/giveaway:FOOTER"),
 					noWinner: message.translate("moderation/giveaway:NO_WINNER"),
+          hostedBy: message.translate("moderation/giveaway:HOSTED_BY"),
 					winners: message.translate("moderation/giveaway:WINNERS"),
 					endedAt: message.translate("moderation/giveaway:END_AT"),
 					units: {
@@ -79,7 +81,7 @@ class Giveaway extends Command {
 						minutes: message.translate("time:MINUTES", { amount: "" }).trim(),
 						hours: message.translate("time:HOURS", { amount: "" }).trim(),
 						days: message.translate("time:DAYS", { amount: "" }).trim()
-					}	
+					}
 				}
 			}).then(() => {
 				message.success("moderation/giveaway:GIVEAWAY_CREATED");
