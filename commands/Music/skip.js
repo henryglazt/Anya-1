@@ -87,8 +87,18 @@ class Skip extends Command {
 			});
 		} else {
 			this.client.distube.skip(message);
-			embed.setDescription(message.translate("music/skip:SUCCESS"));
-			m.edit(embed);
+			message.channel.send({
+				embed: {
+					color: data.config.embed.color,
+					footer: {
+						text: data.config.embed.footer
+					},
+					thumbnail: {
+						url: queue.songs[0].thumbnail
+					},
+					description: message.translate("music/skip:SUCCESS")
+				}
+			});
 		}
 	}
 }
