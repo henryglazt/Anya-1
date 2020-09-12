@@ -18,12 +18,7 @@ class Play extends Command {
 		});
 	}
 
-	async run (message, args, data) {
-
-		const string = args.join(" ");
-		if(!string){
-			return message.error("music/play:MISSING_SONG_NAME");
-		} 
+	async run (message, args, data) { 
 
 		const voice = message.member.voice.channel;
 		if(!voice){
@@ -32,6 +27,11 @@ class Play extends Command {
 
 		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
 			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
+
+		const string = args.join(" ");
+		if(!string){
+			return message.error("music/play:MISSING_SONG_NAME");
 		}
     
 		const perms = voice.permissionsFor(this.client.user);
