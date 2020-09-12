@@ -29,20 +29,25 @@ class Repeat extends Command {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
 
-		if(!this.client.player.isPlaying(message.guild.id)) {
+		if(!this.client.distube.isPlaying(message.guild.id)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
-		const repeatModeEnabled = this.client.player.getQueue(message.guild.id).repeatMode;
-		if (repeatModeEnabled) {
-		this.client.player.setRepeatMode(message.guild.id, false);
-		message.sendT("music/repeat:DISABLED");
-		} else {
-		this.client.player.setRepeatMode(message.guild.id, true);
-		message.sendT("music/repeat:ENABLED");
+		let mode = null;
+		switch (args[0]) {
+		case "off":
+		mode = 0
+		break
+		case "song":
+		mode = 1
+		break
+		case "queue":
+		mode = 2
+		break
 		}
-  
-		this.client.player.nowPlaying(message.guild.id);
+		mode = this.client.distube.setRepeatMode(message, mode);
+		mode = mode ? mode == 2 ? "Repeat queue" : "Repeat song" : "Off";
+		message.success("music/shuffle:MODE);
 		}
 	}
 
