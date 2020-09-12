@@ -23,7 +23,20 @@ class Volume extends Command {
 		const embed = new Discord.MessageEmbed()
 		.setColor(data.config.embed.color)
 		.setFooter(data.config.embed.footer)
-    
+
+		const voice = message.member.voice.channel;
+		if (!voice){
+			return message.error("music/play:NO_VOICE_CHANNEL");
+		}
+        
+		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
+
+		if(!this.client.distube.isPlaying(message)) {
+			return message.error("music/play:NOT_PLAYING");
+		}
+
 		let volume = parseInt(args[0])
 
 		if(!args[0]){
@@ -41,19 +54,6 @@ class Volume extends Command {
 		if(volume <=0){
 			embed.setDescription(message.translate("music/vol:INVALID"));
 			return message.channel.send(embed);
-		}
-
-		const voice = message.member.voice.channel;
-		if (!voice){
-			return message.error("music/play:NO_VOICE_CHANNEL");
-		}
-        
-		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-			return message.error("music/play:MY_VOICE_CHANNEL");
-		}
-
-		if(!this.client.distube.isPlaying(message)) {
-			return message.error("music/play:NOT_PLAYING");
 		}
 
 		this.client.distube.setVolume(message, volume);
