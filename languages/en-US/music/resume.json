@@ -2,5 +2,6 @@
     "DESCRIPTION": "Resume the current song!",
     "USAGE": "{{prefix}}resume",
     "EXAMPLES": "{{prefix}}resume",
-    "SUCCESS": "▶️ Music resumed!"
+    "SUCCESS": "▶️ Music resumed!",
+    "NOT_PAUSED": "The player is not paused."
 }
