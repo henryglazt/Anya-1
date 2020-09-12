@@ -51,7 +51,7 @@ class Stop extends Command {
 				const haveVoted = reaction.count - 1;
 				if(haveVoted >= mustVote) {
 					this.client.distube.stop(message);
-					message.channel.send({
+					m.edit({
 						embed: {
 							color: data.config.embed.color,
 							footer: {
@@ -74,7 +74,7 @@ class Stop extends Command {
 			});
 		} else {
 			this.client.distube.stop(message);
-			message.channel.send({
+			m.edit({
 				embed: {
 					color: data.config.embed.color,
 					footer: {
