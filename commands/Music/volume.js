@@ -19,14 +19,29 @@ class Volume extends Command {
 	}
 
 	async run (message, args, data) {
+
+		const embed = new Discord.MessageEmbed()
+		.setColor(data.config.embed.color)
+		.setFooter(data.config.embed.footer)
     
 		let volume = parseInt(args[0])
 
-		if(!args[0]) return message.sendT("music/vol:EXAMPLES");
-		if(isNaN(volume)) return message.error("music/vol:INVALID");
-		if(200 < volume)  return message.error("music/vol:INVALID");
-		if(volume <=0) return message.error("music/vol:INVALID");
-
+		if(!args[0]){
+			embed.setDescription(message.translate("music/vol:EXAMPLES"));
+			return message.channel.send(embed);
+		}
+		if(isNaN(volume)){
+			embed.setDescription(message.translate("music/vol:INVALID");
+			return message.channel.send(embed);
+		}
+		if(200 < volume){
+			embed.setDescription(message.translate("music/vol:INVALID");
+			return message.channel.send(embed);
+		}
+		if(volume <=0){
+			embed.setDescription(message.translate("music/vol:INVALID");
+			return message.channel.send(embed);
+		}
 
 		const voice = message.member.voice.channel;
 		if (!voice){
@@ -43,8 +58,15 @@ class Volume extends Command {
 
 		this.client.distube.setVolume(message, volume);
 
-		message.sendT("music/volume:SUCCESS");
-		}
+		message.channel.send({
+			embed: {
+				color: data.config.embed.color,
+				footer: {
+					text: data.config.embed.footer
+				},
+				description: message.translate("music/shuffle:SUCCESS")
+			}
+		});
 	}
-
+}
 module.exports = Volume;
