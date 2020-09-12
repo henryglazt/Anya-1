@@ -16,7 +16,7 @@ class Play extends Command {
 			ownerOnly: false,
 			cooldown: 5000
 		});
-  }
+	}
 
 	async run (message, args, data) {
 
@@ -34,17 +34,17 @@ class Play extends Command {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
     
-    const perms = voice.permissionsFor(this.client.user);
+		const perms = voice.permissionsFor(this.client.user);
 		if(!perms.has("CONNECT") || !perms.has("SPEAK")){
 			return message.error("music/play:VOICE_CHANNEL_CONNECT");
 		}
     
-    try {
-    this.client.distube.play(message, string)
-    } catch (e) {
-        message.error(`Error: \`${e}\``)
-    }
-  }
+		try {
+		this.client.distube.play(message, string)
+		} catch (e) {
+		message.error(`Error: \`${e}\``)
+		}
+	}
 }
 
 module.exports = Play;
