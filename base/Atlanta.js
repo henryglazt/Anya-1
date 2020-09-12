@@ -1,7 +1,6 @@
-const { GiveawaysManager } = require("discord-giveaways");
-const { Player } = require("discord-player");
+const Distube = require("distube");
 const { Client, Collection } = require("discord.js");
-
+const { GiveawaysManager } = require("discord-giveaways");
 const util = require("util"),
 	path = require("path"),
 	moment = require("moment");
@@ -13,8 +12,7 @@ moment.relativeTimeThreshold("h", 60);
 moment.relativeTimeThreshold("d", 24);
 moment.relativeTimeThreshold("M", 12);
 
-// Creates Atlanta class
-class Atlanta extends Client {
+class NuruAruvi extends Client {
 
 	constructor (options) {
 		super(options);
@@ -42,21 +40,22 @@ class Atlanta extends Client {
 		this.databaseCache.usersReminds = new Collection(); // members with active reminds
 		this.databaseCache.mutedUsers = new Collection(); // members who are currently muted
 
-		this.player = new Player(this, {
-			leaveOnEmpty: false
+		this.distube = new Distube(this, {
+			searchSongs: true,
+			emitNewSongOnly: true
 		});
-
+    
 		this.giveawaysManager = new GiveawaysManager(this, {
 			storage: "./giveaways.json",
 			updateCountdownEvery: 10000,
 			default: {
 				botsCanWin: false,
 				exemptPermissions: [ "MANAGE_MESSAGES", "ADMINISTRATOR" ],
-				embedColor: "#FF0000",
+				embedColor: "#8300ff",
 				reaction: "🎉"
-			}
-		});
-	}
+				}
+			});
+		}
 
 	get defaultLanguage(){
 		return this.config.languages.find((language) => language.default).name;
@@ -242,4 +241,4 @@ class Atlanta extends Client {
 
 }
 
-module.exports = Atlanta;
+module.exports = NuruAruvi;
