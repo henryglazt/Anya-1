@@ -2,5 +2,6 @@
     "DESCRIPTION": "Shuffle the queue!",
     "USAGE": "{{prefix}}shuffle",
     "EXAMPLES": "{{prefix}}shuffle",
-    "SUCCESS": "🔀 Music shuffled!"
+    "SUCCESS": "🔀 Music shuffled!",
+    "NO_QUEUE": "There's no queue to shuffle."
 }
