@@ -20,23 +20,17 @@ class Skip extends Command {
 
 	async run (message, args, data) {
         
-		const queue = this.client.player.getQueue(message.guild.id);
-
 		const voice = message.member.voice.channel;
 		if (!voice){
 			return message.error("music/play:NO_VOICE_CHANNEL");
 		}
-
-		if(!queue){
-			return message.error("music/play:NOT_PLAYING");
-		}
-
-		if(!queue.tracks[0]){
-			return message.error("music/skip:NO_NEXT_SONG");
-		}
-
+        
 		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
 			return message.error("music/play:MY_VOICE_CHANNEL");
+		}
+
+		if(!this.client.distube.isPlaying(message)) {
+			return message.error("music/play:NOT_PLAYING");
 		}
 
 		const members = voice.members.filter((m) => !m.user.bot);
@@ -77,7 +71,7 @@ class Skip extends Command {
 			collector.on("collect", (reaction) => {
 				const haveVoted = reaction.count-1;
 				if(haveVoted >= mustVote){
-					this.client.player.skip(message.guild.id);
+					this.client.distube.skip(message);
 					embed.setDescription(message.translate("music/skip:SUCCESS"));
 					m.edit(embed);
 					collector.stop(true);
@@ -98,7 +92,7 @@ class Skip extends Command {
 			});
 
 		} else {
-			this.client.player.skip(message.guild.id);
+			this.client.distube.skip(message);
 			embed.setDescription(message.translate("music/skip:SUCCESS"));
 			m.edit(embed);
 		}
