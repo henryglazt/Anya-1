@@ -74,8 +74,15 @@ class Stop extends Command {
 			});
 		} else {
 			this.client.distube.stop(message);
-			embed.setDescription(message.translate("music/stop:SUCCESS"));
-			m.edit(embed);
+			message.channel.send({
+				embed: {
+					color: data.config.embed.color,
+					footer: {
+						text: data.config.embed.footer
+					},
+					description: message.translate("music/stop:SUCCESS")
+				}
+			});
 		}
 	}
 }
