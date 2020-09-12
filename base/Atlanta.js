@@ -47,7 +47,7 @@ class Atlanta extends Client {
 		});
 
 		this.giveawaysManager = new GiveawaysManager(this, {
-			storage: "../giveaways.json",
+			storage: "./giveaways.json",
 			updateCountdownEvery: 10000,
 			default: {
 				botsCanWin: false,
