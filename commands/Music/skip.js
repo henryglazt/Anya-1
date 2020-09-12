@@ -19,7 +19,9 @@ class Skip extends Command {
 	}
 
 	async run (message, args, data) {
-        
+
+		const queue = this.client.player.getQueue(message.guild.id);
+
 		const voice = message.member.voice.channel;
 		if (!voice){
 			return message.error("music/play:NO_VOICE_CHANNEL");
