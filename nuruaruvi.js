@@ -12,7 +12,7 @@ if(config.apiKeys.sentryDSN){
 }
 
 const NuruAruvi = require("./base/NuruAruvi"),
-	client = new Atlanta();
+	client = new NuruAruvi();
 
 const init = async () => {
 
