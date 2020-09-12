@@ -31,15 +31,15 @@ class Volume extends Command {
 			return message.channel.send(embed);
 		}
 		if(isNaN(volume)){
-			embed.setDescription(message.translate("music/vol:INVALID");
+			embed.setDescription(message.translate("music/vol:INVALID"));
 			return message.channel.send(embed);
 		}
 		if(200 < volume){
-			embed.setDescription(message.translate("music/vol:INVALID");
+			embed.setDescription(message.translate("music/vol:INVALID"));
 			return message.channel.send(embed);
 		}
 		if(volume <=0){
-			embed.setDescription(message.translate("music/vol:INVALID");
+			embed.setDescription(message.translate("music/vol:INVALID"));
 			return message.channel.send(embed);
 		}
 
