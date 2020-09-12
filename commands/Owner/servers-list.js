@@ -27,7 +27,7 @@ class ServersList extends Command {
 		let page = 1;
 
 		let description = 
-        `${message.translate("common:SERVERS")}: ${this.client.guilds.cache.size}\n\n`+
+		`${message.translate("common:SERVERS")}: ${this.client.guilds.cache.size}\n\n`+
 		this.client.guilds.cache.sort((a,b) => b.memberCount-a.memberCount).map((r) => r)
 			.map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} ${message.translate("common:MEMBERS").toLowerCase()}`)
 			.slice(0, 10)
