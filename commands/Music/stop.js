@@ -20,23 +20,17 @@ class Stop extends Command {
 
 	async run (message, args, data) {
 
-		const queue = await this.client.player.getQueue(message.guild.id);
-
 		const voice = message.member.voice.channel;
-		if(!voice){
+		if (!voice){
 			return message.error("music/play:NO_VOICE_CHANNEL");
 		}
-
-		if(!queue){
-			return message.error("music/play:NOT_PLAYING");
-		}
-
+        
 		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
 
-		if (this.client.player.getQueue(message.guild.id).repeatMode) {
-			this.client.player.setRepeatMode(message.guild.id, false);
+		if(!this.client.distube.isPlaying(message)) {
+			return message.error("music/play:NOT_PLAYING");
 		}
 
 		const members = voice.members.filter((m) => !m.user.bot);
@@ -95,7 +89,7 @@ class Stop extends Command {
 			});
 
 		} else {
-			this.client.player.stop(message.guild.id);
+			this.client.distube.stop(message);
 			embed.setDescription(message.translate("music/stop:SUCCESS"));
 			m.edit(embed);
 		}
