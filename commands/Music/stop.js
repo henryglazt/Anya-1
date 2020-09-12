@@ -9,7 +9,7 @@ class Stop extends Command {
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
-			aliases: [ "leave" ],
+			aliases: [ "dc", "leave", "disconnect" ],
 			memberPermissions: [],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
@@ -44,7 +44,7 @@ class Stop extends Command {
 
 		if(members.size > 1){
             
-			m.react("👍");
+			m.react("⏹️");
 
 			const mustVote = Math.floor(members.size/2+1);
 
@@ -70,8 +70,10 @@ class Stop extends Command {
 				const haveVoted = reaction.count-1;
 				if(haveVoted >= mustVote){
 					this.client.distube.stop(message);
-					embed.setDescription(message.translate("music/stop:SUCCESS"));
-					m.edit(embed);
+					message.channel.send({embed: {
+            color: data.config.embed.color, footer: {text: data.config.embed.footer},
+            description: message.translate("music/stop:SUCCESS")
+          }});
 					collector.stop(true);
 				} else {
 					embed.setDescription(message.translate("music/stop:VOTE_CONTENT", {
@@ -83,19 +85,10 @@ class Stop extends Command {
 			});
 
 			collector.on("end", (collected, isDone) => {
-				if(!isDone){
-					return message.error("misc:TIMES_UP");
-				}
+        return m.delete(embed);
 			});
-
-		} else {
-			this.client.distube.stop(message);
-			embed.setDescription(message.translate("music/stop:SUCCESS"));
-			m.edit(embed);
-		}
-        
+    }
 	}
-
 }
 
 module.exports = Stop;
