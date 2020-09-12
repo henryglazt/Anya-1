@@ -20,7 +20,7 @@ class Volume extends Command {
 
 	async run (message, args, data) {
     
-    let volume = parseInt(args[0])
+		let volume = parseInt(args[0])
 
 		if(!args[0]) return message.sendT("music/vol:EXAMPLES");
 		if(isNaN(volume)) return message.error("music/vol:INVALID");
