@@ -20,7 +20,7 @@ class Skip extends Command {
 
 	async run (message, args, data) {
 
-		const queue = this.client.player.getQueue(message.guild.id);
+		const queue = this.client.distube.getQueue(message);
 
 		const voice = message.member.voice.channel;
 		if (!voice){
@@ -34,12 +34,16 @@ class Skip extends Command {
 		if(!this.client.distube.isPlaying(message)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
+    
+    if(!queue.songs[1]){
+      return message.error("music/skip:NO_NEXT_SONG");
+    }
 
 		const members = voice.members.filter((m) => !m.user.bot);
 
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(message.translate("music/skip:DESCRIPTION"))
-			.setThumbnail(queue.tracks[0].thumbnail)
+			.setThumbnail(queue.songs[1].thumbnail)
 			.setFooter(data.config.embed.footer)
 			.setColor(data.config.embed.color);
 
@@ -47,12 +51,14 @@ class Skip extends Command {
 
 		if(members.size > 1){
             
-			m.react("👍");
+			m.react("⏭️");
 
 			const mustVote = Math.floor(members.size/2+1);
 
 			embed.setDescription(message.translate("music/skip:VOTE_CONTENT", {
-				songName: queue.tracks[0].name,
+				songName: queue.songs[1].name,
+        songURL: queue.songs[1].url,
+        songDuration: queue.songs[1].formattedDuration,
 				voteCount: 0,
 				requiredCount: mustVote
 			}));
@@ -74,12 +80,17 @@ class Skip extends Command {
 				const haveVoted = reaction.count-1;
 				if(haveVoted >= mustVote){
 					this.client.distube.skip(message);
-					embed.setDescription(message.translate("music/skip:SUCCESS"));
-					m.edit(embed);
+					message.channel.send({embed: {
+            color: data.config.embed.color, footer: {text: data.config.embed.footer},
+            thumbnail: {url: queue.songs[0].thumbnail},
+            description: message.translate("music/skip:SUCCESS")
+          }});
 					collector.stop(true);
 				} else {
 					embed.setDescription(message.translate("music/skip:VOTE_CONTENT", {
-						songName: queue.tracks[0].title,
+						songName: queue.songs[1].name,
+            songURL: queue.songs[1].url,
+            songDuration: queue.songs[1].formattedDuration,
 						voteCount: haveVoted,
 						requiredCount: mustVote
 					}));
@@ -87,20 +98,11 @@ class Skip extends Command {
 				}
 			});
 
-			collector.on("end", (collected, isDone) => {
-				if(!isDone){
-					return message.error("misc:TIMES_UP");
-				}
+			collector.on("end", (collected) => {
+        return m.delete(embed);
 			});
-
-		} else {
-			this.client.distube.skip(message);
-			embed.setDescription(message.translate("music/skip:SUCCESS"));
-			m.edit(embed);
-		}
-        
-	}
-
+    }
+  }
 }
 
 module.exports = Skip;
