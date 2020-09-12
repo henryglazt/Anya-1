@@ -29,7 +29,7 @@ class Repeat extends Command {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
 
-		if(!this.client.distube.isPlaying(message.guild.id)) {
+		if(!this.client.distube.isPlaying(message)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
@@ -47,7 +47,7 @@ class Repeat extends Command {
 		}
 		mode = this.client.distube.setRepeatMode(message, mode);
 		mode = mode ? mode == 2 ? "Repeat queue" : "Repeat song" : "Off";
-		message.success("music/shuffle:MODE);
+		message.success("music/shuffle:MODE");
 		}
 	}
 
