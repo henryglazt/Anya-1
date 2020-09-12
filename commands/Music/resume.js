@@ -32,6 +32,10 @@ class Resume extends Command {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
+		if(!this.client.distube.isPaused(message)) {
+			return message.error("music/resume:NOT_PAUSED");
+		}
+
 		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
