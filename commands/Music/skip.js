@@ -58,7 +58,7 @@ class Skip extends Command {
 				const haveVoted = reaction.count - 1;
 				if(haveVoted >= mustVote) {
 					this.client.distube.skip(message);
-					message.channel.send({
+					m.edit({
 						embed: {
 							color: data.config.embed.color,
 							footer: {
@@ -87,7 +87,7 @@ class Skip extends Command {
 			});
 		} else {
 			this.client.distube.skip(message);
-			message.channel.send({
+			m.edit({
 				embed: {
 					color: data.config.embed.color,
 					footer: {
