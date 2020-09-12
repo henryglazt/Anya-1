@@ -11,8 +11,7 @@ if(config.apiKeys.sentryDSN){
 	Sentry.init({ dsn: config.apiKeys.sentryDSN });
 }
 
-// Load Atlanta class
-const Atlanta = require("./base/Atlanta"),
+const NuruAruvi = require("./base/NuruAruvi"),
 	client = new Atlanta();
 
 const init = async () => {
