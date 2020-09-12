@@ -1,42 +1,41 @@
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js");
-
 class Shuffle extends Command {
-
-	constructor (client) {
+	constructor(client) {
 		super(client, {
 			name: "shuffle",
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
-			aliases: [ "acak" ],
+			aliases: ["acak"],
 			memberPermissions: [],
-			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
+			botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
 			nsfw: false,
 			ownerOnly: false,
 			cooldown: 5000
 		});
 	}
-
-	async run (message, args, data) {
-
+	async run(message, args, data) {
 		const voice = message.member.voice.channel;
-		if (!voice){
+		if(!voice) {
 			return message.error("music/play:NO_VOICE_CHANNEL");
 		}
-        
-		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+		if(message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
-
 		if(!this.client.distube.isPlaying(message)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
-
 		this.client.distube.shuffle(message);
-
-		message.sendT("music/shuffle:SUCCESS");
-		}
+		message.channel.send({
+			embed: {
+				color: data.config.embed.color,
+				footer: {
+					text: data.config.embed.footer
+				},
+				description: message.translate("music/shuffle:SUCCESS")
+			}
+		});
 	}
-
+}
 module.exports = Shuffle;
