@@ -42,9 +42,15 @@ class Pause extends Command {
 
 		this.client.distube.pause(message);
 
-		message.sendT("music/pause:SUCCESS");
+		message.channel.send({
+			embed: {
+				color: data.config.embed.color,
+				footer: {
+					text: data.config.embed.footer
+				},
+				description: message.translate("music/resume:SUCCESS")
+			}
+		});
 	}
-
 }
-
 module.exports = Pause;
