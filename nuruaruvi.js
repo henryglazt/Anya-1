@@ -81,7 +81,7 @@ const init = async () => {
           }).then(m => {m.delete({ timeout: 60000 })});
     })
     .on("searchCancel", (message) => {message.channel.send(
-      {embed: {color: config.embed.color, footer: {text: config.embed.color},
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer},
                description: emojis.error+" | "+`${message.translate("music/play:CANCELLED")}`}})
     })
     .on("noRelated", message => {message.channel.send(
