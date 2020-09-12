@@ -20,12 +20,12 @@ class Volume extends Command {
 
 	async run (message, args, data) {
 
-		let vol = this.client.player.getQueue(message.guild.id).volume;
+		let vol = this.client.distube.getQueue(message).volume;
 
 		if(!args[0]) return message.sendT(`music/volume:CURRENT_VOL \`${vol}%\``);
-		if(isNaN(args[0])) return message.error(`Please enter a valid number`);
-		if(250 < args[0])  return message.error(`Please enter a valid number`)
-		if(args[0] <=0) return message.error(`Please enter a valid number`)
+		if(isNaN(args[0])) return message.error("music/vol:INVALID");
+		if(200 < args[0])  return message.error("music/vol:INVALID")
+		if(args[0] <=0) return message.error("music/vol:INVALID")
 
 
 		const voice = message.member.voice.channel;
@@ -41,7 +41,7 @@ class Volume extends Command {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
-		this.client.player.setVolume(message.guild.id, parseInt(args[0]));
+		this.client.distube.setVolume(message, vol);
 
 		message.sendT("music/volume:SUCCESS");
 		}
