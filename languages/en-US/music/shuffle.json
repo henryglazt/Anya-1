@@ -1,0 +1,6 @@
+{
+    "DESCRIPTION": "Shuffle the queue!",
+    "USAGE": "{{prefix}}shuffle",
+    "EXAMPLES": "{{prefix}}shuffle",
+    "SUCCESS": "🔀 Music shuffled!"
+}
