@@ -29,11 +29,11 @@ class Shuffle extends Command {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
 
-		if(!this.client.player.isPlaying(message.guild.id)) {
+		if(!this.client.distube.isPlaying(message)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
 
-		this.client.player.shuffle(message.guild.id);
+		this.client.distube.shuffle(message);
 
 		message.sendT("music/shuffle:SUCCESS");
 		}
