@@ -69,7 +69,7 @@ class Stop extends Command {
 			collector.on("collect", (reaction) => {
 				const haveVoted = reaction.count-1;
 				if(haveVoted >= mustVote){
-					this.client.player.stop(message.guild.id);
+					this.client.distube.stop(message);
 					embed.setDescription(message.translate("music/stop:SUCCESS"));
 					m.edit(embed);
 					collector.stop(true);
