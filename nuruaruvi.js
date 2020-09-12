@@ -40,6 +40,67 @@ const init = async () => {
 		client.on(eventName, (...args) => event.run(...args));
 		delete require.cache[require.resolve(`./events/${file}`)];
 	});
+  
+  const Discord = require("discord.js");
+    const emojis = client.customEmojis;
+    
+    client.distube
+    .on("playSong", (message, queue, song) => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer}, thumbnail: {url: song.thumbnail},
+               description: emojis.categories.music+" | "+`${message.translate("music/play:NOW_PLAYING", {
+                 songName: song.name, songURL: song.url, songDuration: song.formattedDuration})}`}})
+    })
+    .on("addSong", (message, queue, song) => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer}, thumbnail: {url: song.thumbnail},
+               description: emojis.success+" | "+`${message.translate("music/play:ADDED", {
+                 songName: song.name, songURL: song.url, songDuration: song.formattedDuration})}`}})
+    })
+    .on("playList", (message, queue, playlist, song) => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.foote}, thumbnail: {url: playlist.thumbnail},
+               description: emojis.categories.music+" | "+`${message.translate("music/play:ADDED_PL", {
+                 items: playlist.total_items, plTitle: playlist.title, plURL: playlist.url, plDuration: playlist.formattedDuration})}`+"\n\n"+
+               `${message.translate("music/play:NOW_PLAYING", {
+                 songName: song.name, songURL: song.url, songDuration: song.formattedDuration})}`}})
+    })
+    .on("addList", (message, queue, playlist) => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer}, thumbnail: {url: playlist.thumbnail},
+               description: emojis.success+" | "+`${message.translate("music/play:ADDED_PL", {
+                 items: playlist.total_items, plTitle: playlist.title, plURL: playlist.url, plDuration: playlist.formattedDuration})}`}})
+    })
+    .on("initQueue", queue => {
+      queue.autoplay = false;
+      queue.volume = 100;
+    })
+    .on("searchResult", (message, result) => {
+        let i = 0;
+        message.channel.send(
+          {embed: {color: config.embed.color,
+                   description: message.translate("music/play:RESULTS_HEADER")+"\n\n"+
+                   result.map(song => `**${++i}**. [${song.name}](${song.url}) - \`${song.formattedDuration}\``).join("\n"),
+                   footer: {text: message.translate("music/play:RESULTS_FOOTER")}}
+          }).then(m => {m.delete({ timeout: 60000 })});
+    })
+    .on("searchCancel", (message) => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.color},
+               description: emojis.error+" | "+`${message.translate("music/play:CANCELLED")}`}})
+    })
+    .on("noRelated", message => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer},
+               description: emojis.error+" | "+`${message.translate("music/play:NO_RESULT")}`}})
+    })
+    .on("finish", message => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer},
+               description: emojis.error+" | "+`${message.translate("music/play:QUEUE_ENDED")}`}})
+    })
+    .on("empty", message => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer},
+               description: emojis.error+" | "+`${message.translate("music/play:EMPTY")}`}})
+    })
+    .on("error", (message, err) => {message.channel.send(
+      {embed: {color: config.embed.color, footer: {text: config.embed.footer},
+               description: emojis.error+" | "+`${message.translate("music/play:ERROR", {
+                 error: err})}`}})
+    })
     
 	client.login(process.env.TOKEN); // Log in to the discord api
 
