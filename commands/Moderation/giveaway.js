@@ -64,7 +64,7 @@ class Giveaway extends Command {
 				time: ms(time),
 				prize: prize,
 				winnerCount: parseInt(winnersCount),
-				hostedBy: message.author,
+        hostedBy: message.author,
 				messages: {
 					giveaway: message.translate("moderation/giveaway:TITLE"),
 					giveawayEnded: message.translate("moderation/giveaway:ENDED"),
@@ -73,7 +73,7 @@ class Giveaway extends Command {
 					winMessage: message.translate("moderation/giveaway:WIN_MESSAGE"),
 					embedFooter: message.translate("moderation/giveaway:FOOTER"),
 					noWinner: message.translate("moderation/giveaway:NO_WINNER"),
-					hostedBy: message.translate("moderation/giveaway:HOSTED_BY"),
+          hostedBy: message.translate("moderation/giveaway:HOSTED_BY"),
 					winners: message.translate("moderation/giveaway:WINNERS"),
 					endedAt: message.translate("moderation/giveaway:END_AT"),
 					units: {
