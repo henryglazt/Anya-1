@@ -16,10 +16,6 @@ class Play extends Command {
 		});
 	}
 	async run(message, args, data) {
-		const string = args.join(" ");
-		if(!string) {
-			return message.error("music/play:MISSING_SONG_NAME");
-		}
 		const voice = message.member.voice.channel;
 		if(!voice) {
 			return message.error("music/play:NO_VOICE_CHANNEL");
@@ -30,6 +26,10 @@ class Play extends Command {
 		const perms = voice.permissionsFor(this.client.user);
 		if(!perms.has("CONNECT") || !perms.has("SPEAK")) {
 			return message.error("music/play:VOICE_CHANNEL_CONNECT");
+		}
+		const string = args.join(" ");
+		if(!string) {
+			return message.error("music/play:MISSING_SONG_NAME");
 		}
 		try {
 			voice.join().then(connection => {
