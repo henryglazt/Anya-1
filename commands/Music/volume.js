@@ -40,7 +40,7 @@ class Volume extends Command {
 		let volume = parseInt(args[0])
 
 		if(!args[0]){
-			embed.setDescription(message.translate("music/volume:NO_VALUE"));
+			embed.setDescription(message.translate("music/volume:VALUE"));
 			return message.channel.send(embed);
 		}
 		if(isNaN(volume)){
@@ -48,11 +48,11 @@ class Volume extends Command {
 			return message.channel.send(embed);
 		}
 		if(200 < volume){
-			embed.setDescription(message.translate("music/volume:LIMIT"));
+			embed.setDescription(message.translate("music/volume:VALUE"));
 			return message.channel.send(embed);
 		}
 		if(volume <=0){
-			embed.setDescription(message.translate("music/volume:LIMIT"));
+			embed.setDescription(message.translate("music/volume:VALUE"));
 			return message.channel.send(embed);
 		}
 
