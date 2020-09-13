@@ -26,6 +26,7 @@ class Join extends Command {
 		}
 		voice.join().then(connection => {
 			connection.voice.setSelfDeaf(true);
+			message.success("music/play:JOIN");
 		});
 	}
 }
