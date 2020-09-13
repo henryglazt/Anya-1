@@ -33,7 +33,8 @@ class Autoplay extends Command {
                 footer: {
                     text: data.config.embed.footer
                 },
-                description: this.client.customEmojis.success + message.translate("music/autoplay:MODE") + (mode ? message.translate("music/autoplay:ON") : message.translate("music/autoplay:OFF"))
+                description: this.client.customEmojis.success + message.translate("music/autoplay:MODE") + (
+                mode ? message.translate("music/autoplay:ON") : message.translate("music/autoplay:OFF"))
             }
         })
     }
