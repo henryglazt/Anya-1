@@ -26,6 +26,10 @@ class Shuffle extends Command {
 		if(!this.client.distube.isPlaying(message)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
+		const queue = this.client.distube.getQueue(message);
+		if(!queue) {
+			return message.error("music/shuffle:NO_QUEUE");
+		}
 		this.client.distube.shuffle(message);
 		message.channel.send({
 			embed: {
