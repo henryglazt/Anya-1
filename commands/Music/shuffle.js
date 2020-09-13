@@ -27,7 +27,7 @@ class Shuffle extends Command {
 			return message.error("music/play:NOT_PLAYING");
 		}
 		const queue = this.client.distube.getQueue(message);
-		if(queue.size < 3) {
+		if(!queue.songs[2]) {
 			return message.error("music/shuffle:MIN_QUEUE");
 		}
 		this.client.distube.shuffle(message);
