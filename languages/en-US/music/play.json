@@ -14,7 +14,7 @@
     "EMPTY": "Channel is empty. Leaving the channel...",
     "ERROR": "An error {{error}}",
     "NOT_PLAYING": "No songs are currently playing in this server.",
-    "QUEUE_ENDED": "Queue has ended. No more music to play...",
+    "QUEUE_ENDED": "Queue has ended. Add more music to play...",
     "ADDED": "[{{songName}}]({{songURL}}) - `{{songDuration}}` added to the queue.",
     "ADDED_PL": "{{items}} songs from [{{plTitle}}]({{plURL}}) added to the queue. `{{plDuration}}`"
 }
