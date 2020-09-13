@@ -134,7 +134,7 @@ const init = async() => {
             message.channel.send({
                     embed: {
                         color: config.embed.color,
-                        description: emojis.musicfolder + " | " + message.translate("music/play:RESULTS_HEADER") + "\n\n" +
+                        description: message.translate("music/play:RESULTS_HEADER") + "\n\n" +
                             result.map(song => `**${++i}**. [${song.name}](${song.url}) - \`${song.formattedDuration}\``)
                             .join("\n"),
                         footer: {
