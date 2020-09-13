@@ -1,0 +1,8 @@
+{
+    "DESCRIPTION": "Toggle the autoplay mode!",
+    "USAGE": "{{prefix}}autoplay",
+    "EXAMPLES": "{{prefix}}autoplay",
+    "MODE": "Set the autoplay to:",
+    "ON": "On",
+    "OFF": "Off"
+}
