@@ -20,6 +20,9 @@ class Join extends Command {
 		if(!voice) {
 			return message.error("music/play:NO_VOICE_CHANNEL");
 		}
+		if(message.guild.me.voice.channel && message.member.voice.channel.id === message.guild.me.voice.channel.id) {
+			return message.error("music/play:JOINED");
+		}
 		const perms = voice.permissionsFor(this.client.user);
 		if(!perms.has("CONNECT") || !perms.has("SPEAK")) {
 			return message.error("music/play:VOICE_CHANNEL_CONNECT");
