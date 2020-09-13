@@ -36,10 +36,6 @@ class Pause extends Command {
 			return message.error("music/pause:PAUSED");
 		}
 
-		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-			return message.error("music/play:MY_VOICE_CHANNEL");
-		}
-
 		this.client.distube.pause(message);
 
 		message.channel.send({
@@ -48,7 +44,7 @@ class Pause extends Command {
 				footer: {
 					text: data.config.embed.footer
 				},
-				description: message.translate("music/resume:SUCCESS")
+				description: message.translate("music/pause:SUCCESS")
 			}
 		});
 	}
