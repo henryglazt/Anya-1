@@ -64,7 +64,7 @@ class Volume extends Command {
 				footer: {
 					text: data.config.embed.footer
 				},
-				description: message.translate("music/shuffle:SUCCESS")
+				description: message.translate("music/volume:SUCCESS")
 			}
 		});
 	}
