@@ -64,7 +64,7 @@ class Volume extends Command {
 				footer: {
 					text: data.config.embed.footer
 				},
-				description: message.translate("music/volume:SUCCESS", {volume: volume})
+				description: this.client.customEmojis.success+" | "+message.translate("music/volume:SUCCESS", {volume: volume})
 			}
 		});
 	}
