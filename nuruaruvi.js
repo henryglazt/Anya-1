@@ -16,7 +16,6 @@ const NuruAruvi = require("./base/NuruAruvi"),
 
 const init = async () => {
 
-	// Search for all commands
 	const directories = await readdir("./commands/");
 	client.logger.log(`Loading a total of ${directories.length} categories.`, "log");
 	directories.forEach(async (dir) => {
@@ -29,7 +28,6 @@ const init = async () => {
 		});
 	});
 
-	// Then we load events, which will include our message and ready event.
 	const evtFiles = await readdir("./events/");
 	client.logger.log(`Loading a total of ${evtFiles.length} events.`, "log");
 	evtFiles.forEach((file) => {
@@ -81,7 +79,7 @@ const init = async () => {
     })
     .on("searchCancel", (message) => {message.channel.send(
       {embed: {color: config.embed.color, footer: {text: config.embed.footer},
-               description: emojis.error+" | "+`${message.translate("music/play:CANCELLED")}`}})
+               description: emojis.success+" | "+`${message.translate("music/play:CANCELLED")}`}})
     })
     .on("noRelated", message => {message.channel.send(
       {embed: {color: config.embed.color, footer: {text: config.embed.footer},
@@ -89,7 +87,7 @@ const init = async () => {
     })
     .on("finish", message => {message.channel.send(
       {embed: {color: config.embed.color, footer: {text: config.embed.footer},
-               description: emojis.error+" | "+`${message.translate("music/play:QUEUE_ENDED")}`}})
+               description: emojis.success+" | "+`${message.translate("music/play:QUEUE_ENDED")}`}})
     })
     .on("empty", message => {message.channel.send(
       {embed: {color: config.embed.color, footer: {text: config.embed.footer},
@@ -103,7 +101,6 @@ const init = async () => {
     
 	client.login(process.env.TOKEN); // Log in to the discord api
 
-	// connect to mongoose database
 	mongoose.connect(client.config.mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 		client.logger.log("Connected to the Mongodb database.", "log");
 	}).catch((err) => {
@@ -117,13 +114,11 @@ const init = async () => {
 
 init();
 
-// if there are errors, log them
 client.on("disconnect", () => client.logger.log("Bot is disconnecting...", "warn"))
 	.on("reconnecting", () => client.logger.log("Bot reconnecting...", "log"))
 	.on("error", (e) => client.logger.log(e, "error"))
 	.on("warn", (info) => client.logger.log(info, "warn"));
 
-// if there is an unhandledRejection, log them
 process.on("unhandledRejection", (err) => {
 	console.error(err);
 });
