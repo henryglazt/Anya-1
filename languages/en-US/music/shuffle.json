@@ -3,5 +3,5 @@
     "USAGE": "{{prefix}}shuffle",
     "EXAMPLES": "{{prefix}}shuffle",
     "SUCCESS": "🔀 Music shuffled!",
-    "NO_QUEUE": "There's no queue to shuffle."
+    "MIN_QUEUE": "3 songs in queue is required to shuffle the queue."
 }
