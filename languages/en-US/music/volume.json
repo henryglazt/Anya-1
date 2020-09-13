@@ -1,0 +1,6 @@
+{
+    "DESCRIPTION": "Turn it up or down!",
+    "USAGE": "{{prefix}}volume",
+    "EXAMPLES": "{{prefix}}volume 70",
+    "SUCCESS": "Volume set to **{{volume}}%**"
+}
