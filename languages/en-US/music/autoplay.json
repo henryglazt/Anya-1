@@ -3,6 +3,6 @@
     "USAGE": "{{prefix}}autoplay",
     "EXAMPLES": "{{prefix}}autoplay",
     "MODE": "Set the autoplay to:",
-    "ON": "On",
-    "OFF": "Off"
+    "ON": "**On**",
+    "OFF": "**Off**"
 }
