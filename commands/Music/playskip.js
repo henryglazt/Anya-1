@@ -26,4 +26,15 @@ class Playskip extends Command {
 		if(!this.client.distube.isPlaying(message)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
+		const string = args.join(" ");
+		if(!string) {
+			return message.error("music/play:MISSING_SONG_NAME");
+		}
+		try {
+			this.client.distube.playSkip(message, string)
+		} catch(e) {
+			message.error(`Error: \`${e}\``)
+		}
+	}
+}
 module.exports = Playskip;
