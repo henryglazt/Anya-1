@@ -28,8 +28,16 @@ class Join extends Command {
 			return message.error("music/play:VOICE_CHANNEL_CONNECT");
 		}
 		voice.join().then(connection => {
-			connection.voice.setSelfDeaf(true);
-			message.success("music/play:JOIN");
+			connection.voice.setSelfDeaf(true)
+			message.channel.send({
+				embed: {
+					color: data.config.embed.color,
+					footer: {
+						text: data.config.embed.footer
+					},
+					description: this.client.customEmojis.success + " | " + message.translate("music/play:JOIN")
+				}
+			})
 		});
 	}
 }
