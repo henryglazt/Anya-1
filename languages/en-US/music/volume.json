@@ -2,6 +2,6 @@
     "DESCRIPTION": "Turn it up or down!",
     "USAGE": "{{prefix}}volume",
     "EXAMPLES": "{{prefix}}volume 70",
-    "SUCCESS": "<a:giphy_3:744676992141623399> Volume set to **{{volume}}%**",
+    "SUCCESS": "<a:giphy_3:744676992141623399> Volume set to: **{{volume}}%**",
     "VALUE": "Please enter a new volume value between 1 and 200"
 }
