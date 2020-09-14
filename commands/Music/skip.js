@@ -83,7 +83,7 @@ class Skip extends Command {
 				}
 			});
 			collector.on("end", (collected) => {
-				return m.delete(embed);
+				return m.reactions.removeAll();
 			});
 		} else {
 			this.client.distube.skip(message);
