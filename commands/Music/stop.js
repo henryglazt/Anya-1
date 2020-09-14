@@ -86,7 +86,7 @@ class Stop extends Command {
                     m.edit(embed);
                 }
             });
-            collector.on("end", (collected, isDone) => {
+            collector.on("end", (collected) => {
                 return m.reactions.removeAll();
             });
         } else {
