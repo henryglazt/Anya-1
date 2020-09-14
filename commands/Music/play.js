@@ -32,10 +32,11 @@ class Play extends Command {
             return message.error("music/play:MISSING_SONG_NAME");
         }
         try {
-            this.client.distube.play(message, string)
+            voice.join()
                 .then(connection => {
                     connection.voice.setSelfDeaf(true)
                 });
+            this.client.distube.play(message, string);
         } catch (e) {
             message.error(`Error: \`${e}\``)
         }
