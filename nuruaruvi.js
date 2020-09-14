@@ -155,7 +155,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + " | " + message.translate("music/play:CANCELLED")
+                    description: emojis.success + " | " + message.translate("music/play:CANCELLED")
                 }
             })
         })
@@ -177,7 +177,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + " | " + message.translate("music/play:QUEUE_ENDED")
+                    description: emojis.success + " | " + message.translate("music/play:QUEUE_ENDED")
                 }
             })
         })
