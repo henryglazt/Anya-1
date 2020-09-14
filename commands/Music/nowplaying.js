@@ -36,7 +36,7 @@ class Nowplaying extends Command {
         const left = song.duration - seek;
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("music/np:NOW_PLAYING"), "https://cdn.discordapp.com/emojis/750364941449691206.gif")
+            .setAuthor(message.translate("music/np:NOW_PLAYING"), "https://cdn.discordapp.com/emojis/755209257959555153.gif")
             .setThumbnail(queue.songs[0].thumbnail)
             .addField(message.translate("music/np:TITLE"), "[" + queue.songs[0].name + "](" + queue.songs[0].url + ")")
             .addField(
