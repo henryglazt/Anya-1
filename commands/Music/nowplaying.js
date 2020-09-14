@@ -43,8 +43,8 @@ class Nowplaying extends Command {
                 message.translate("music/np:ELAPSED"),
                 "`" + new Date(seek * 1000)
                 .toISOString()
-                .substr(11, 8) + "`" + "\n" +
-                createBar(song.duration == 0 ? seek : song.duration, seek, 19)[0] + "\n" + (song.duration == 0 ? " ◉ LIVE" : "`" + new Date(song.duration * 1000)
+                .substr(11, 8) + "\n" +
+                createBar(song.duration == 0 ? seek : song.duration, seek, 19)[0] + "\n" + (song.duration == 0 ? " ◉ LIVE" : new Date(song.duration * 1000)
                     .toISOString()
                     .substr(11, 8)) + "`"
             )
