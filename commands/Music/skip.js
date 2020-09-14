@@ -43,7 +43,7 @@ class Skip extends Command {
             embed.setDescription(message.translate("music/skip:VOTE_CONTENT", {
                 songName: queue.songs[1].name,
                 songURL: queue.songs[1].url,
-                songDuration: queue.songs[1].formattedDuration,
+                songDuration: queue.songs[1].duration == 0 ? "◉ LIVE" : queue.songs[songs].formattedDuration,
                 voteCount: 0,
                 requiredCount: mustVote
             }));
@@ -79,7 +79,7 @@ class Skip extends Command {
                     embed.setDescription(message.translate("music/skip:VOTE_CONTENT", {
                         songName: queue.songs[1].name,
                         songURL: queue.songs[1].url,
-                        songDuration: queue.songs[1].formattedDuration,
+                        songDuration: queue.songs[1].duration == 0 ? "◉ LIVE" : queue.songs[songs].formattedDuration,
                         voteCount: haveVoted,
                         requiredCount: mustVote
                     }));
