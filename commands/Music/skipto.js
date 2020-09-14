@@ -121,7 +121,7 @@ class Skipto extends Command {
             });
         } else {
             this.client.distube.jump(message, songs);
-            m.edit({
+            m({
                 embed: {
                     color: data.config.embed.color,
                     footer: {
