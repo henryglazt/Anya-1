@@ -70,7 +70,7 @@ class Stop extends Command {
 				}
 			});
 			collector.on("end", (collected, isDone) => {
-				return m.delete(embed);
+				return m.reactions.removeAll();
 			});
 		} else {
 			this.client.distube.stop(message);
