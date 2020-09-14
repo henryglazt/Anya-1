@@ -9,7 +9,7 @@
     "VOICE_CHANNEL_CONNECT": "I can't connect to your voice channel!",
     "MY_VOICE_CHANNEL": "You're not connected in my voice channel!",
     "MISSING_SONG_NAME": "Please specify a song name or a link!",
-    "RESULTS_HEADER": "<:5890_Music_Folder:754588156434579497>__**Choose one of the options below**__",
+    "RESULTS_HEADER": "<:5890_Music_Folder:754588156434579497>__ **Choose one of the options below**__",
     "RESULTS_FOOTER": "Enter anything else or wait 60 seconds to cancel!",
     "NO_RESULT": "Can't find related song to play.",
     "CANCELLED": "Selection cancelled.",
