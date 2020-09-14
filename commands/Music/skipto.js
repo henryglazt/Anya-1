@@ -69,7 +69,7 @@ class Skipto extends Command {
             embed.setDescription(message.translate("music/skipto:VOTE_CONTENT", {
                 songName: queue.songs[songs].name,
                 songURL: queue.songs[songs].url,
-                songDuration: queue.songs[songs].formattedDuration,
+                songDuration: queue.songs[songs].duration == 0 ? "◉ LIVE" : queue.songs[songs].formattedDuration,
                 voteCount: 0,
                 requiredCount: mustVote,
                 totalSongs: songs
@@ -108,7 +108,7 @@ class Skipto extends Command {
                     embed.setDescription(message.translate("music/skipto:VOTE_CONTENT", {
                         songName: queue.songs[songs].name,
                         songURL: queue.songs[songs].url,
-                        songDuration: queue.songs[songs].formattedDuration,
+                        songDuration: queue.songs[songs].duration == 0 ? "◉ LIVE" : queue.songs[songs].formattedDuration,
                         voteCount: haveVoted,
                         requiredCount: mustVote,
                         totalSongs: songs
