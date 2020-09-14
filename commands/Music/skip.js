@@ -91,7 +91,7 @@ class Skip extends Command {
             });
         } else {
             this.client.distube.skip(message);
-            m({
+            m.edit({
                 embed: {
                     color: data.config.embed.color,
                     footer: {
