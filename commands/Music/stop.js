@@ -74,7 +74,7 @@ class Stop extends Command {
                             footer: {
                                 text: data.config.embed.footer
                             },
-                            description: message.translate("music/stop:SUCCESS") + "<a:ablobwave:754574913209368687>
+                            description: message.translate("music/stop:SUCCESS") + "<a:ablobwave:754574913209368687>"
                         }
                     });
                     collector.stop(true);
