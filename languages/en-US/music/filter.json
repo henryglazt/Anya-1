@@ -1,0 +1,8 @@
+{
+    "DESCRIPTION": "Set a different queue filter!",
+    "USAGE": "{{prefix}}filter [filter_name]",
+    "EXAMPLES": "{{prefix}}filter bassboost",
+    "NO_FILTER": "No filter named: **{{named}}**!",
+    "MODE": "Set the queue filter to: ",
+    "OFF": "Off"
+}
