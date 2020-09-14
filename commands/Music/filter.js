@@ -1,10 +1,7 @@
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js");
-const filters = require("../../filters.json");
-
 class Filter extends Command {
-
-	constructor (client) {
+	constructor(client) {
 		super(client, {
 			name: "filter",
 			dirname: __dirname,
@@ -12,32 +9,43 @@ class Filter extends Command {
 			guildOnly: true,
 			aliases: [],
 			memberPermissions: [],
-			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
+			botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
 			nsfw: false,
 			ownerOnly: false,
 			cooldown: 5000
 		});
 	}
-
-	async run (message, args, data) {
-
+	async run(message, args, data) {
 		const voice = message.member.voice.channel;
-		if (!voice){
+		if(!voice) {
 			return message.error("music/play:NO_VOICE_CHANNEL");
 		}
-        
-		if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+		if(message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
-
-		if(!this.client.player.isPlaying(message.guild.id)) {
+		if(!this.client.distube.isPlaying(message)) {
 			return message.error("music/play:NOT_PLAYING");
 		}
-
-		if ([`3d`, `bassboost`, `echo`, `flanger`, `gate`, `haas`, `karaoke`, `nightcore`, `reverse`, `vaporwave`].includes(args[0])) {
-		let filter = client.distube.setFilter(message, args[0]);
-		message.channel.send("Current queue filter: " + (filter || "Off"));
+		if(!args[0]) {
+			return message.error("music/filter:EXAMPLES");
 		}
+		const filters = [`3d`, `bassboost`, `echo`, `flanger`, `gate`, `haas`, `karaoke`, `nightcore`, `reverse`, `vaporwave`]
+		if(filters.includes(args[0])) {
+			let filter = this.client.distube.setFilter(message, args[0]);
+			message.channel.send({
+				embed: {
+					color: data.config.embed.color,
+					footer: {
+						text: data.config.embed.footer
+					},
+					description: message.translate("music/filter:MODE") + "**" + (filter || message.translate("music/filter:OFF")) + "**"
+				}
+			})
+		} else {
+			return message.error("music/filter:NO_FILTER", {
+				named: args[0]
+			})
+		}
+	}
 }
-
 module.exports = Filter;
