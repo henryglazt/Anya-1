@@ -91,7 +91,7 @@ class Stop extends Command {
             });
         } else {
             this.client.distube.stop(message);
-            message.channel.send({
+            m.edit({
                 embed: {
                     color: data.config.embed.color,
                     footer: {
