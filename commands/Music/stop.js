@@ -35,7 +35,7 @@ class Stop extends Command {
                     footer: {
                         text: data.config.embed.footer
                     },
-                    description: "<a:ablobwave:754574913209368687>" + message.translate("music/stop:LEAVE")
+                    description: message.translate("music/stop:LEAVE") + "<a:ablobwave:754574913209368687>"
                 }
             });
         }
@@ -74,7 +74,7 @@ class Stop extends Command {
                             footer: {
                                 text: data.config.embed.footer
                             },
-                            description: message.translate("music/stop:SUCCESS")
+                            description: message.translate("music/stop:SUCCESS") + <a:ablobwave:754574913209368687>
                         }
                     });
                     collector.stop(true);
@@ -97,7 +97,7 @@ class Stop extends Command {
                     footer: {
                         text: data.config.embed.footer
                     },
-                    description: message.translate("music/stop:SUCCESS")
+                    description: message.translate("music/stop:SUCCESS") + "<a:ablobwave:754574913209368687>"
                 }
             });
         }
