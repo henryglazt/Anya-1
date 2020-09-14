@@ -20,7 +20,7 @@ class Nowplaying extends Command {
 
 	async run (message, args, data) {
 
-		const queue = this.client.player.getQueue(message.guild.id);
+		const queue = this.client.distube.getQueue(message);
 
 		const voice = message.member.voice.channel;
 		if (!voice){
@@ -32,7 +32,7 @@ class Nowplaying extends Command {
 		}
 
 		// Gets the current song
-		const track = await this.client.player.nowPlaying(message.guild.id);
+		const track = await this.client.distube.isPlaying(message);
 
 		// Generate discord embed to display song informations
 		const embed = new Discord.MessageEmbed()
@@ -40,11 +40,7 @@ class Nowplaying extends Command {
 			.setThumbnail(track.thumbnail)
 			.addField(message.translate("music/np:T_TITLE"), track.name, true)
 			.addField(message.translate("music/np:T_CHANNEL"), track.author, true)
-			.addField(message.translate("music/np:T_DURATION"), message.convertTime(Date.now()+track.durationMS, "to", true), true)
-			.addField(message.translate("music/np:T_DESCRIPTION"),
-				track.description ?
-					(track.description.substring(0, 150)+"\n"+(message.translate("common:AND_MORE").toLowerCase())) : message.translate("music/np:NO_DESCRIPTION"), true)
-			.addField("\u200B", this.client.player.createProgressBar(message.guild.id))
+			.addField(message.translate("music/np:T_DURATION"), message.convertTime(Date.now()+track.duration, "to", true), true)
 			.setTimestamp()
 			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer);
