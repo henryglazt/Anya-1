@@ -41,12 +41,12 @@ class Nowplaying extends Command {
             .addField(message.translate("music/np:TITLE"), "[" + queue.songs[0].name + "](" + queue.songs[0].url + ")")
             .addField(
                 message.translate("music/np:ELAPSED"),
-                new Date(seek * 1000)
+                "`" + new Date(seek * 1000)
                 .toISOString()
-                .substr(11, 8) + "\n" +
-                "`" + createBar(song.duration == 0 ? seek : song.duration, seek, 16)[0] + "`" + "\n" + (song.duration == 0 ? " ◉ LIVE" : new Date(song.duration * 1000)
+                .substr(11, 8) + "`" + "\n" +
+                "`" + createBar(song.duration == 0 ? seek : song.duration, seek, 19)[0] + "`" + "\n" + (song.duration == 0 ? " ◉ LIVE" : "`" + new Date(song.duration * 1000)
                     .toISOString()
-                    .substr(11, 8))
+                    .substr(11, 8)) + "`"
             )
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer);
