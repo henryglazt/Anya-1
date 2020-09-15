@@ -23,19 +23,12 @@ class Resume extends Command {
         if (!voice) {
             return message.error("music/play:NO_VOICE_CHANNEL");
         }
-
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
             return message.error("music/play:MY_VOICE_CHANNEL");
         }
-
         if (!this.client.distube.isPlaying(message)) {
             return message.error("music/play:NOT_PLAYING");
         }
-
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            return message.error("music/play:MY_VOICE_CHANNEL");
-        }
-
         const queue = this.client.distube.getQueue(message);
         if (!queue.dispatcher.paused) {
             message.channel.send({
