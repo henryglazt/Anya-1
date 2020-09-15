@@ -38,7 +38,7 @@ class Filter extends Command {
                     footer: {
                         text: data.config.embed.footer
                     },
-                    description: message.translate("music/filter:MODE") + "**" + (filter || message.translate("music/filter:OFF")) + "**"
+                    description: message.translate("music/filter:MODE") + (filter || message.translate("music/filter:OFF")))
                 }
             })
         } else {
