@@ -59,9 +59,7 @@ class Lyrics extends Command {
 
         let lyricsEmbed = new Discord.MessageEmbed()
             .setAuthor(message.translate("music/lyrics:LYRICS_OF"), "https://cdn.discordapp.com/emojis/755359026862227486.png")
-            .setTitle(message.translate("music/lyrics:TITLE", {
-                songName: song.name
-            }))
+            .setTitle(song.name)
             .setURL(song.url)
             .setDescription(lyrics)
             .setColor(data.config.embed.color)
