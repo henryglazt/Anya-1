@@ -17,7 +17,7 @@ class Resume extends Command {
         });
     }
 
-    async run(message) {
+    async run(message, args, data) {
 
         const voice = message.member.voice.channel;
         if (!voice) {
@@ -38,10 +38,26 @@ class Resume extends Command {
 
         const queue = this.client.distube.getQueue(message);
         if (!queue.dispatcher.paused) {
-            message.error("music/resume:NOT_PAUSED")
+            message.channel.send({
+                embed: {
+                    color: data.config.embed.color,
+                    footer: {
+                        text: data.config.embed.footer
+                    },
+                    description: message.translate("music/resume:NOT_PAUSED")
+                }
+            })
         } else {
             queue.dispatcher.resume();
-            message.sendT("music/resume:SUCCESS");
+            message.channel.send({
+                embed: {
+                    color: data.config.embed.color,
+                    footer: {
+                        text: data.config.embed.footer
+                    },
+                    description: message.translate("music/resume:SUCCESS")
+                }
+            })
         }
     }
 }
