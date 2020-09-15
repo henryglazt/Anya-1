@@ -22,11 +22,6 @@ class Nowplaying extends Command {
     async run(message, args, data) {
 
         const queue = this.client.distube.getQueue(message);
-        const voice = message.member.voice.channel;
-        if (!voice) {
-            return message.error("music/play:NO_VOICE_CHANNEL");
-        }
-
         if (!queue) {
             return message.error("music/play:NOT_PLAYING");
         }
