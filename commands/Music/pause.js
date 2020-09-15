@@ -48,7 +48,7 @@ class Pause extends Command {
                     footer: {
                         text: data.config.embed.footer
                     },
-                    description: message.trasnlate("music/pause:SUCCESS")
+                    description: message.translate("music/pause:SUCCESS")
                 }
             })
         }
