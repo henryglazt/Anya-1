@@ -1,7 +1,8 @@
 {
-    "DESCRIPTION": "Skip to a specified song number in the queue.",
+    "DESCRIPTION": "Skip to specified number of song",
     "USAGE": "{{prefix}}skipto [number]",
     "EXAMPLES": "{{prefix}}skipto 5",
+    "ONLY_ONE": "Theres only one song in the queue, you can only enter 1!",
     "VALUE": "Please enter a valid queue number between 1 and {{totalSongs}}",
     "VOTE_CONTENT": "Next song: [{{songName}}]({{songURL}}) - `{{songDuration}}`\nReact with ⏭️ to skip **{{totalSongs}}** song(s)!\n**{{requiredCount}}** more votes are required.",
     "SUCCESS": "⏭️ **{{totalSongs}}** song(s) skipped!"
