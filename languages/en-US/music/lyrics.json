@@ -4,5 +4,5 @@
     "EXAMPLES": "{{prefix}}lyrics",
     "ERROR": "An error encountered: `{{error}}`",
     "LYRICS_OF": "Lyrics",
-    "NO_LYRICS_FOUND": "<a:ano:744384493376503869> No lyrics found for [{{songName}}]({{songURL}})!"
+    "NO_LYRICS_FOUND": "<a:ano:744384493376503869> No lyrics found for: [{{songName}}]({{songURL}})!"
 }
