@@ -4,5 +4,5 @@
     "EXAMPLES": "{{prefix}}loop",
     "SUCCESS_SONG": "🔂 I will now loop the current song",
     "SUCCESS_QUEUE": "🔁 I will now loop the queue",
-    "OFF": "❌ I'm Turning off the loop mode..."
+    "OFF": "<:toggleOff:755319233201831949> I'm Turning off the loop mode..."
 }
