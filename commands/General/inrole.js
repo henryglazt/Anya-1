@@ -46,7 +46,7 @@ class Inrole extends Command {
         inRole.forEach((member) => {
             array.push(member.user.tag);
         });
-
+        if (!array.length) return message.error("general/inrole:NO_MEMBERS");
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("general/inrole:ROLE", {
                 roleName: role.name
