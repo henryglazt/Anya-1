@@ -3,5 +3,5 @@
     "USAGE": "{{prefix}}pause",
     "EXAMPLES": "{{prefix}}pause",
     "SUCCESS": "⏸️ Music paused.",
-    "PAUSED": "The player is already paused."
+    "PAUSED": "<a:ano:744384493376503869> The player is already paused."
 }
