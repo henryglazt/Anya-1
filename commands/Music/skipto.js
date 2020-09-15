@@ -34,16 +34,16 @@ class Skipto extends Command {
         if (!this.client.distube.isPlaying(message)) {
             return message.error("music/play:NOT_PLAYING");
         }
+        if (!args[0]) {
+            xembed.setDescription(message.translate("music/skipto:VALUE"));
+            return message.channel.send(xembed);
+        }
         if (!queue.songs[1]) {
             return message.error("music/skip:NO_NEXT_SONG");
         }
 
         let songs = parseInt(args[0])
 
-        if (!args[0]) {
-            xembed.setDescription(message.translate("music/skipto:EXAMPLES"));
-            return message.channel.send(xembed);
-        }
         if (isNaN(songs)) {
             xembed.setDescription(message.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
