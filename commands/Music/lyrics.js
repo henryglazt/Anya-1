@@ -54,7 +54,7 @@ class Lyrics extends Command {
             }
 
         } catch (error) {
-            return message.error("music/lyrics:ERROR")
+            return message.error("music/lyrics:ERROR", {error: error})
         }
 
         let lyricsEmbed = new Discord.MessageEmbed()
