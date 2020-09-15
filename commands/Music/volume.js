@@ -31,7 +31,7 @@ class Volume extends Command {
 			return message.error("music/play:MY_VOICE_CHANNEL");
 		}
 		if (!this.client.distube.isPlaying(message)) {
-		return message.error("music/play:NOT_PLAYING");
+			return message.error("music/play:NOT_PLAYING");
 		}
 		let volume = parseInt(args[0])
 		if(!args[0]){
