@@ -27,14 +27,14 @@ class Inrole extends Command {
         let page = 1;
 
         if (!args.slice()
-            .length >= 1) return message.channel.send("Please provide the <role name | role id | role mention>");
+            .length >= 1) return messsage.error("general/inrole:NO_ARGS");
 
         const role = message.guild.roles.cache.find((r) => r.name.toLowerCase() === args.slice()
                 .join(' ')
                 .toLowerCase()) ||
             message.guild.roles.cache.find((r) => r.id === args.slice()
                 .join(' ')) || message.mentions.roles.first();
-        if (!role) return message.channel.send("I couldn't find that role!")
+        if (!role) return message.error("general/inrole:NOT_FOUND")
             .then(
                 msg => {
                     msg.delete({
@@ -48,11 +48,11 @@ class Inrole extends Command {
         });
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("common:ROLE", {
+            .setAuthor(message.translate("general/inrole:ROLE", {
                 roleName: role.name
             }), "https://tinyurl.com/y4xs3cje")
             .setColor(data.config.embed.color)
-            .setTitle(message.translate("common:MEMBERS", {
+            .setTitle(message.translate("general/inrole:MEMBERS", {
                 members: array.length
             }))
             .setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.ceil(array.length/10)}`)
