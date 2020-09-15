@@ -7,7 +7,7 @@
     "NOW_PLAYING": "Now Playing [{{songName}}]({{songURL}}) - `{{songDuration}}`",
     "NO_VOICE_CHANNEL": "You must be connected to a voice channel!",
     "VOICE_CHANNEL_CONNECT": "I can't connect to your voice channel!",
-    "MY_VOICE_CHANNEL": "You're not connected in my voice channel!",
+    "MY_VOICE_CHANNEL": "I'm already being used in a different channel!",
     "MISSING_SONG_NAME": "Please specify a song name or a link!",
     "RESULTS_HEADER": "<:5890_Music_Folder:754588156434579497>__ **Choose one of the options below**__",
     "RESULTS_FOOTER": "Enter anything else or wait 60 seconds to cancel!",
