@@ -44,7 +44,7 @@ class Queue extends Command {
             .setTitle(message.translate("music/np:NOW_PLAYING"))
             .setColor(data.config.embed.color)
             .setThumbnail(current.thumbnail)
-            .setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.ceil(queue.songs.length/10)}`)
+            .setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.ceil(queue.songs.length/10)} | ${message.translate("music/queue:SONGS", {totalSongs: queue.songs.length})} | ${queue.formattedDuration}`)
             .setDescription(description);
 
         const msg = await message.channel.send(embed);
@@ -77,7 +77,7 @@ class Queue extends Command {
                     .join("\n");
 
                 // Update the embed with new informations
-                embed.setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.round(queue.songs.length/10)}`)
+                embed.setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.ceil(queue.songs.length/10)} | ${message.translate("music/queue:SONGS", {totalSongs: queue.songs.length})} | ${queue.formattedDuration}`)
                     .setDescription(description);
 
                 // Edit the message 
@@ -105,7 +105,7 @@ class Queue extends Command {
                     .join("\n");
 
                 // Update the embed with new informations
-                embed.setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.round(queue.songs.length/10)}`)
+                embed.setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.ceil(queue.songs.length/10)} | ${message.translate("music/queue:SONGS", {totalSongs: queue.songs.length})} | ${queue.formattedDuration}`)
                     .setDescription(description);
 
                 // Edit the message 
