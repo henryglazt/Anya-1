@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "Skip to specified number of song",
+    "DESCRIPTION": "Skip to a specified song number in the queue.",
     "USAGE": "{{prefix}}skipto [number]",
     "EXAMPLES": "{{prefix}}skipto 5",
     "VALUE": "Please enter a valid queue number between 1 and {{totalSongs}}",
