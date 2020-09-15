@@ -31,18 +31,11 @@ class Remove extends Command {
         if (!queue.songs[1]) {
             return message.error("music/skip:NO_NEXT_SONG");
         }
-        if (queue.songs.length === 2) {
-            return message.error("music/skipto:ONLY_ONE");
-        }
         if (!number) {
-            return message.error("music/skipto:VALUE", {
-                totalSongs: queue.songs.length - 1
-            });
+            return message.error("music/remove:VALUE")
         }
         if (isNaN(number)) {
-            return message.error("music/skipto:VALUE", {
-                totalSongs: queue.songs.length - 1
-            });
+            return message.error("music/remove:VALUE")
         }
         const song = queue.songs[number];
         message.channel.send({
@@ -57,7 +50,7 @@ class Remove extends Command {
                 })
             }
         })
-        return queue.songs.splice(number - 1, 1);
+        return queue.songs.splice(number, 1);
     }
 }
 module.exports = Remove;
