@@ -34,6 +34,9 @@ class Remove extends Command {
         if (!number) {
             return message.error("music/remove:VALUE")
         }
+        if (number <= 0) {
+            return message.error("music/remove:VALUE")
+        }
         if (isNaN(number)) {
             return message.error("music/remove:VALUE")
         }
