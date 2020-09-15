@@ -21,7 +21,6 @@ class Skipto extends Command {
             .setFooter(data.config.embed.footer)
 
         const queue = this.client.distube.getQueue(message);
-        console.log(queue.songs.length)
         const voice = message.member.voice.channel;
         if (!voice) {
             return message.error("music/play:NO_VOICE_CHANNEL");
