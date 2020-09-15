@@ -2,5 +2,6 @@
     "DESCRIPTION": "Remove a specified song number in the queue",
     "USAGE": "{{prefix}}remove [number]",
     "EXAMPLES": "{{prefix}}remove 5",
+    "VALUE": "Please enter a valid song number in the queue!",
     "SUCCESS": "🗑️ [{{songName}}]({{songURL}}) has been removed from the queue!"
 }
