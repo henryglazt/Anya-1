@@ -6,5 +6,5 @@
     "MEMBERS": "Members: {{members}}",
     "NO_ARGS": "Please provide the role!",
     "NOT_FOUND": "I couldn't find that role!",
-    "NO_MEMBERS": "No members with that role!
+    "NO_MEMBERS": "No members with that role!"
 }
