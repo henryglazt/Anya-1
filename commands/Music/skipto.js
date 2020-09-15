@@ -21,6 +21,7 @@ class Skipto extends Command {
             .setFooter(data.config.embed.footer)
 
         const queue = this.client.distube.getQueue(message);
+        console.log(queue.songs.length)
         const voice = message.member.voice.channel;
         if (!voice) {
             return message.error("music/play:NO_VOICE_CHANNEL");
@@ -33,17 +34,21 @@ class Skipto extends Command {
         if (!this.client.distube.isPlaying(message)) {
             return message.error("music/play:NOT_PLAYING");
         }
-        if (!args[0]) {
-            xembed.setDescription(message.translate("music/skipto:VALUE"));
-            return message.channel.send(xembed);
-        }
         if (!queue.songs[1]) {
             return message.error("music/skip:NO_NEXT_SONG");
         }
 
         let songs = parseInt(args[0])
 
+        if (!args[0]) {
+            xembed.setDescription(message.translate("music/skipto:EXAMPLES"));
+            return message.channel.send(xembed);
+        }
         if (isNaN(songs)) {
+            xembed.setDescription(message.translate("music/skipto:VALUE"));
+            return message.channel.send(xembed);
+        }
+        if (queue.songs.length <= songs) {
             xembed.setDescription(message.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
         }
@@ -57,6 +62,7 @@ class Skipto extends Command {
             .setThumbnail(queue.songs[songs - 1].thumbnail)
             .setFooter(data.config.embed.footer)
             .setColor(data.config.embed.color);
+
         const m = await message.channel.send(embed);
         if (members.size > 1) {
             m.react("⏭️");
