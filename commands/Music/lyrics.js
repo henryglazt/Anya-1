@@ -1,76 +1,77 @@
 const Command = require("../../base/Command.js"),
-	Discord = require("discord.js"),
-	cheerio = require("cheerio"),
-	fetch = require("node-fetch");
+    Discord = require("discord.js"),
+    lyricsFinder = require("lyrics-finder");
 
 class Lyrics extends Command {
 
-	constructor (client) {
-		super(client, {
-			name: "lyrics",
-			dirname: __dirname,
-			enabled: true,
-			guildOnly: false,
-			aliases: [ "paroles" ],
-			memberPermissions: [],
-			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
-			nsfw: false,
-			ownerOnly: false,
-			cooldown: 5000
-		});
-	}
+    constructor(client) {
+        super(client, {
+            name: "lyrics",
+            dirname: __dirname,
+            enabled: true,
+            guildOnly: false,
+            aliases: ["lyric", "lirik", "ly"],
+            memberPermissions: [],
+            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            nsfw: false,
+            ownerOnly: false,
+            cooldown: 5000
+        });
+    }
 
-	async run (message, args, data) {
-        
-		const songName = args.join(" ");
-		if(!songName){
-			return message.error("music/lyrics:MISSING_SONG_NAME");
-		}
-        
-		const embed = new Discord.MessageEmbed()
-			.setAuthor(message.translate("music/lyrics:LYRICS_OF", {
-				songName
-			}))
-			.setColor(data.config.embed.color)
-			.setFooter(data.config.embed.footer);
+    async run(message, args, data) {
 
-		try {
+        const queue = this.client.distube.getQueue(message);
+        const voice = message.member.voice.channel;
+        if (!voice) {
+            return message.error("music/play:NO_VOICE_CHANNEL");
+        }
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+            return message.error("music/play:MY_VOICE_CHANNEL");
+        }
+        if (!this.client.distube.isPlaying(message)) {
+            return message.error("music/play:NOT_PLAYING");
+        }
 
-			const songNameFormated = songName
-				.toLowerCase()
-				.replace(/\(lyrics|lyric|official music video|audio|official|official video|official video hd|clip officiel|clip|extended|hq\)/g, "")
-				.split(" ").join("%20");
+        let song = queue.songs[0];
+        let lyrics = null;
 
-			let res = await fetch(`https://www.musixmatch.com/search/${songNameFormated}`);
-			res = await res.text();
-			let $ = await cheerio.load(res);
-			const songLink = `https://musixmatch.com${$("h2[class=\"media-card-title\"]").find("a").attr("href")}`;
+        try {
+            lyrics = await lyricsFinder(song.name, "");
+            if (!lyrics) {
+                return message.channel.send({
+                    embed: {
+                        color: data.config.embed.color,
+                        footer: {
+                            text: data.config.embed.footer
+                        },
+                        description: message.translate("music/lyrics:NO_LYRICS_FOUND", {
+                            songName: song.name,
+                            songURL: song.url
+                        })
+                    }
+                })
+            }
 
-			res = await fetch(songLink);
-			res = await res.text();
-			$ = await cheerio.load(res);
+        } catch (error) {
+            return message.error("music/lyrics:ERROR")
+        }
 
-			let lyrics = await $("p[class=\"mxm-lyrics__content \"]").text();
+        let lyricsEmbed = new Discord.MessageEmbed()
+            .setAuthor(message.translate("music/lyrics:LYRICS_OF"), "https://cdn.discordapp.com/emojis/755359026862227486.png")
+            .setTitle(message.translate("music/lyrics:TITLE", {
+                songName: song.name
+            }))
+            .setURL(song.url)
+            .setDescription(lyrics)
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer);
 
-			if(lyrics.length > 2048) {
-				lyrics = lyrics.substr(0, 2031) + message.translate("music/lyrics:AND_MORE") + " ["+message.translate("music/lyrics:CLICK_HERE")+"]"+`https://www.musixmatch.com/search/${songName}`;
-			} else if(!lyrics.length) {
-				return message.error("music/lyrics:NO_LYRICS_FOUND", {
-					songName
-				});
-			}
+        if (lyricsEmbed.description.length >= 2048)
+            lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;
+        return message.channel.send(lyricsEmbed)
+            .catch(console.error);
 
-			embed.setDescription(lyrics);
-			message.channel.send(embed);
-
-		} catch(e){
-			message.error("music/lyrics:NO_LYRICS_FOUND", {
-				songName
-			});
-		}
-
-	}
-
+    }
 }
-
 module.exports = Lyrics;
