@@ -17,7 +17,7 @@ class Pause extends Command {
         });
     }
 
-    async run(message) {
+    async run(message, args, data) {
 
         const voice = message.member.voice.channel;
         if (!voice) {
@@ -42,10 +42,26 @@ class Pause extends Command {
 
         const queue = this.client.distube.getQueue(message);
         if (queue.dispatcher.paused) {
-            message.error("music/pause:PAUSED");
+            message.channel.send({
+                embed: {
+                    color: data.config.embed.color,
+                    footer: {
+                        text: data.config.embed.footer
+                    },
+                    description: message.translate("music/pause:PAUSED")
+                }
+            })
         } else {
             queue.dispatcher.pause();
-            message.sendT("music/pause:SUCCESS");
+            message.channel.send({
+                embed: {
+                    color: data.config.embed.color,
+                    footer: {
+                        text: data.config.embed.footer
+                    },
+                    description: message.trasnlate("music/pause:SUCCESS")
+                }
+            })
         }
     }
 }
