@@ -2,7 +2,7 @@
     "DESCRIPTION": "Toggle the autoplay mode!",
     "USAGE": "{{prefix}}autoplay",
     "EXAMPLES": "{{prefix}}autoplay",
-    "MODE": "<a:MusicNotes:755209257959555153> Set the autoplay to: ",
+    "MODE": "<a:MusicNotes:755209257959555153> Autoplay: ",
     "ON": "**On**",
     "OFF": "**Off**"
 }
