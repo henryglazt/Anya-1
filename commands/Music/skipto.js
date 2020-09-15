@@ -47,10 +47,6 @@ class Skipto extends Command {
             xembed.setDescription(message.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
         }
-        if (queue.songs.length <= songs) {
-            xembed.setDescription(message.translate("music/skipto:VALUE"));
-            return message.channel.send(xembed);
-        }
         if (songs <= 0) {
             xembed.setDescription(message.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
