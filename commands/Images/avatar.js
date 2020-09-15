@@ -8,7 +8,7 @@ class Avatar extends Command {
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: false,
-			aliases: [],
+			aliases: ["av"],
 			memberPermissions: [],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS", "ATTACH_FILES" ],
 			nsfw: false,
@@ -17,7 +17,7 @@ class Avatar extends Command {
 		});
 	}
 
-	async run (message, args) {
+	async run (message, args, data) {
 
                 const status = {'online': '<:online:741196747748933682>', 'idle': '<:idle:741197218861678644>', 
         	   		'dnd': '<:dnd:741196524238667846>', 'offline': '<:offline:741197268123648020>'};
@@ -25,10 +25,10 @@ class Avatar extends Command {
 		let user = await this.client.resolveUser(args[0]);
 		if(!user) user = message.author;
 		const embed = new Discord.MessageEmbed()
-   		 .setColor("#8300ff")
+   		 .setColor(data.config.embed.color)
  		 .addField(`${status[user.presence.status]} ${user.tag}`, `\`ID: ${user.id}\``, true)
   		 .setImage(user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 }))
-  		 .setFooter("NuruAruvi")
+  		 .setFooter(data.config.embed.footer)
   		message.channel.send(embed);
 
 	}
