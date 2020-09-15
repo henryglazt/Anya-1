@@ -21,7 +21,6 @@ class Skipto extends Command {
             .setFooter(data.config.embed.footer)
 
         const queue = this.client.distube.getQueue(message);
-        console.log(queue.songs.length)
         const voice = message.member.voice.channel;
         if (!voice) {
             return message.error("music/play:NO_VOICE_CHANNEL");
@@ -41,14 +40,10 @@ class Skipto extends Command {
         let songs = parseInt(args[0])
 
         if (!args[0]) {
-            xembed.setDescription(message.translate("music/skipto:EXAMPLES"));
-            return message.channel.send(xembed);
-        }
-        if (isNaN(songs)) {
             xembed.setDescription(message.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
         }
-        if (queue.songs.length <= songs) {
+        if (isNaN(songs)) {
             xembed.setDescription(message.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
         }
