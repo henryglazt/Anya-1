@@ -13,6 +13,7 @@ if (config.apiKeys.sentryDSN) {
     });
 }
 
+const Discord = require("discord.js");
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
 
@@ -42,9 +43,6 @@ const init = async() => {
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 
-    const Discord = require("discord.js");
-    const emojis = client.customEmojis;
-
     client.distube
         .on("playSong", (message, queue, song) => {
             message.channel.send({
@@ -56,10 +54,10 @@ const init = async() => {
                     thumbnail: {
                         url: song.thumbnail
                     },
-                    description: emojis.categories.music + message.translate("music/play:NOW_PLAYING", {
+                    description: message.translate("music/play:NOW_PLAYING", {
                         songName: song.name,
                         songURL: song.url,
-                        songDuration: song.formattedDuration
+                        songDuration: song.duration == 0 ? "◉ LIVE" : song.formattedDuration
                     })
                 }
             })
@@ -74,10 +72,10 @@ const init = async() => {
                     thumbnail: {
                         url: song.thumbnail
                     },
-                    description: emojis.success + message.translate("music/play:ADDED", {
+                    description: message.translate("music/play:ADDED", {
                         songName: song.name,
                         songURL: song.url,
-                        songDuration: song.formattedDuration
+                        songDuration: song.duration == 0 ? "◉ LIVE" : song.formattedDuration
                     })
                 }
             })
@@ -92,7 +90,7 @@ const init = async() => {
                     thumbnail: {
                         url: playlist.thumbnail
                     },
-                    description: emojis.categories.music + message.translate("music/play:ADDED_PL", {
+                    description: message.translate("music/play:ADDED_PL", {
                             items: playlist.total_items,
                             plTitle: playlist.title,
                             plURL: playlist.url,
@@ -101,7 +99,7 @@ const init = async() => {
                         message.translate("music/play:NOW_PLAYING", {
                             songName: song.name,
                             songURL: song.url,
-                            songDuration: song.formattedDuration
+                            songDuration: song.duration == 0 ? "◉ LIVE" : song.formattedDuration
                         })
                 }
             })
@@ -116,7 +114,7 @@ const init = async() => {
                     thumbnail: {
                         url: playlist.thumbnail
                     },
-                    description: emojis.success + message.translate("music/play:ADDED_PL", {
+                    description: message.translate("music/play:ADDED_PL", {
                         items: playlist.total_items,
                         plTitle: playlist.title,
                         plURL: playlist.url,
@@ -155,7 +153,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + message.translate("music/play:CANCELLED")
+                    description: message.translate("music/play:CANCELLED")
                 }
             })
         })
@@ -166,7 +164,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + message.translate("music/play:NO_RESULT")
+                    description: message.translate("music/play:NO_RESULT")
                 }
             })
         })
@@ -177,7 +175,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + message.translate("music/play:QUEUE_ENDED")
+                    description: message.translate("music/play:QUEUE_ENDED")
                 }
             })
         })
@@ -188,7 +186,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + message.translate("music/play:EMPTY")
+                    description: message.translate("music/play:EMPTY")
                 }
             })
         })
@@ -199,7 +197,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + message.translate("music/play:ERROR", {
+                    description: message.translate("music/play:ERROR", {
                         error: err
                     })
                 }
