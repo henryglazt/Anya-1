@@ -21,21 +21,21 @@ class Stop extends Command {
             .setFooter(data.config.embed.footer)
         const voice = message.member.voice.channel;
         if (!voice) {
-            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(xembed);
         }
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(xembed);
         }
         const isPlaying = this.client.distube.isPlaying(message)
         if (!isPlaying && !message.guild.me.voice.channel) {
-            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(xembed);
         }
         if (!isPlaying && voice) {
             voice.leave();
-            embed.setDescription(message.translate("music/stop:LEAVE") + "<a:ablobwave:754574913209368687>");
+            xembed.setDescription(message.translate("music/stop:LEAVE") + "<a:ablobwave:754574913209368687>");
             return message.channel.send(xembed);
         }
 
