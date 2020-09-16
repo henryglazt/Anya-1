@@ -1,5 +1,5 @@
-const Command = require("../../base/Command.js");
-
+const Command = require("../../base/Command.js"),
+    Discord = require("discord.js");
 class Pause extends Command {
 
     constructor(client) {
@@ -16,7 +16,6 @@ class Pause extends Command {
             cooldown: 5000
         });
     }
-
     async run(message, args, data) {
         const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
