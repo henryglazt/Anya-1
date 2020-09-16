@@ -27,7 +27,7 @@ class Inrole extends Command {
         let page = 1;
 
         if (!args.slice()
-            .length >= 1) return messsage.error("general/inrole:NO_ARGS");
+            .length >= 1) return message.error("general/inrole:NO_ARGS");
 
         const role = message.guild.roles.cache.find((r) => r.name.toLowerCase() === args.slice()
                 .join(' ')
