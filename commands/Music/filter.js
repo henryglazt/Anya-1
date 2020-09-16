@@ -34,7 +34,7 @@ class Filter extends Command {
         }
         const filters = [`3d`, `bassboost`, `echo`, `flanger`, `gate`, `haas`, `karaoke`, `nightcore`, `reverse`, `vaporwave`]
         if (!args[0]) {
-            xembed.setDescription(message.translate("music/filter:NO_ARGS") + "\n\n**" + filters.join("\n") + "**\n");
+            xembed.setDescription(message.translate("music/filter:NO_ARGS") + "\n\n**" + filters.join("\n") + "**\n\n");
             return message.channel.send(xembed);
         }
         if (filters.includes(args[0])) {
