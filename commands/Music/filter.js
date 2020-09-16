@@ -27,7 +27,7 @@ class Filter extends Command {
             return message.error("music/play:NOT_PLAYING");
         }
         if (!args[0]) {
-            return message.error("music/filter:EXAMPLES");
+            return message.error("music/filter:NO_ARGS");
         }
         const filters = [`3d`, `bassboost`, `echo`, `flanger`, `gate`, `haas`, `karaoke`, `nightcore`, `reverse`, `vaporwave`]
         if (filters.includes(args[0])) {
