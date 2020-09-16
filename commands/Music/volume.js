@@ -34,7 +34,7 @@ class Volume extends Command {
         }
         let volume = parseInt(args[0])
         if (!args[0]) {
-            embed.setDescription(message.translate("music/volume:EXAMPLES"));
+            embed.setDescription(message.translate("music/volume:VALUE"));
             return message.channel.send(embed);
         }
         if (isNaN(volume)) {
