@@ -16,20 +16,27 @@ class Play extends Command {
         });
     }
     async run(message, args, data) {
+        const embed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
         const voice = message.member.voice.channel;
         if (!voice) {
-            return message.error("music/play:NO_VOICE_CHANNEL");
+            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            return message.error("music/play:MY_VOICE_CHANNEL");
+            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
         const perms = voice.permissionsFor(this.client.user);
         if (!perms.has("CONNECT") || !perms.has("SPEAK")) {
-            return message.error("music/play:VOICE_CHANNEL_CONNECT");
+            embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
+            return message.channel.send(embed);
         }
         const string = args.join(" ");
         if (!string) {
-            return message.error("music/play:MISSING_SONG_NAME");
+            embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
+            return message.channel.send(embed);
         }
         try {
             voice.join()
