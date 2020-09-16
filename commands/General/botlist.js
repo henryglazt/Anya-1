@@ -8,7 +8,7 @@ class BotsList extends Command {
             name: "bots-list",
             dirname: __dirname,
             enabled: true,
-            guildOnly: false,
+            guildOnly: true,
             aliases: ["blist"],
             memberPermissions: [],
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
@@ -27,7 +27,7 @@ class BotsList extends Command {
         const bots = message.guild.members.cache.filter(member => member.user.bot);
         const botsname = bots.array();
 
-        let description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}`)
+        let description = botsname.map((b, i) => `**${i + 1}.** ${b.user.username}#${b.user.discriminator}`)
             .slice(0, 10)
             .join("\n");
 
@@ -63,8 +63,8 @@ class BotsList extends Command {
                     return msg.delete();
                 }
 
-                description = botsname.map((b, i) => `**${i0 + i1}** - ${b.user.username}`)
-                    .slice(0, 10)
+                description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}`)
+                    .slice(i0, i1)
                     .join("\n");
 
                 // Update the embed with new informations
@@ -91,8 +91,8 @@ class BotsList extends Command {
                     return msg.delete();
                 }
 
-                description = botsname.map((b, i) => `**${i0 + i1}** - ${b.user.username}`)
-                    .slice(0, 10)
+                description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}`)
+                    .slice(i0, i1)
                     .join("\n");
 
                 // Update the embed with new informations
