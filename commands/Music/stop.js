@@ -35,7 +35,7 @@ class Stop extends Command {
         }
         if (!isPlaying && voice) {
             voice.leave();
-            xembed.setDescription(message.translate("music/stop:LEAVE") + "<a:ablobwave:754574913209368687>");
+            xembed.setDescription(message.translate("music/stop:LEAVE"));
             return message.channel.send(xembed);
         }
 
@@ -73,7 +73,7 @@ class Stop extends Command {
                             footer: {
                                 text: data.config.embed.footer
                             },
-                            description: message.translate("music/stop:SUCCESS") + "<a:ablobwave:754574913209368687>"
+                            description: message.translate("music/stop:SUCCESS")
                         }
                     });
                     collector.stop(true);
@@ -96,7 +96,7 @@ class Stop extends Command {
                     footer: {
                         text: data.config.embed.footer
                     },
-                    description: message.translate("music/stop:SUCCESS") + "<a:ablobwave:754574913209368687>"
+                    description: message.translate("music/stop:SUCCESS")
                 }
             });
         }
