@@ -4,5 +4,5 @@
     "EXAMPLES": "{{prefix}}stop",
     "VOTE_CONTENT": "React with ⏹️ to stop the music! {{requiredCount}} more votes are required.",
     "SUCCESS": "⏹️ Music stopped! Leaving the channel...",
-    "LEAVE": "<a:ablobwave:754574913209368687>" I'm leaving the channel..."
+    "LEAVE": "<a:ablobwave:754574913209368687> I'm leaving the channel..."
 }
