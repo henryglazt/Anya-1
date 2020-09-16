@@ -20,10 +20,15 @@ class Queue extends Command {
 
     async run(message, args, data) {
 
+        const xembed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
+
         const queue = this.client.distube.getQueue(message.guild.id);
 
         if (!queue) {
-            return message.error("music/play:NOT_PLAYING");
+            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(xembed);
         }
         const q = queue.songs.slice(1)
             .map((song, i) => {
@@ -124,5 +129,4 @@ class Queue extends Command {
     }
 
 }
-
 module.exports = Queue;
