@@ -16,28 +16,27 @@ class Stop extends Command {
         });
     }
     async run(message, args, data) {
+        const xembed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
         const voice = message.member.voice.channel;
         if (!voice) {
-            return message.error("music/play:NO_VOICE_CHANNEL");
+            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
         }
-        if (message.guild.me.voice.channel && voice.id !== message.guild.me.voice.channel.id) {
-            return message.error("music/play:MY_VOICE_CHANNEL");
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
         }
         const isPlaying = this.client.distube.isPlaying(message)
         if (!isPlaying && !message.guild.me.voice.channel) {
-            return message.error("music/play:NOT_PLAYING");
+            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(xembed);
         }
         if (!isPlaying && voice) {
             voice.leave();
-            return message.channel.send({
-                embed: {
-                    color: data.config.embed.color,
-                    footer: {
-                        text: data.config.embed.footer
-                    },
-                    description: message.translate("music/stop:LEAVE") + "<a:ablobwave:754574913209368687>"
-                }
-            });
+            embed.setDescription(message.translate("music/stop:LEAVE") + "<a:ablobwave:754574913209368687>");
+            return message.channel.send(xembed);
         }
 
         const members = voice.members.filter((m) => !m.user.bot);
