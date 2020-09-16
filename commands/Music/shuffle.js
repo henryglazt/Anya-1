@@ -16,30 +16,31 @@ class Shuffle extends Command {
 		});
 	}
 	async run(message, args, data) {
-		const voice = message.member.voice.channel;
-		if(!voice) {
-			return message.error("music/play:NO_VOICE_CHANNEL");
-		}
-		if(message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-			return message.error("music/play:MY_VOICE_CHANNEL");
-		}
-		if(!this.client.distube.isPlaying(message)) {
-			return message.error("music/play:NOT_PLAYING");
-		}
-		const queue = this.client.distube.getQueue(message);
-		if(!queue.songs[2]) {
-			return message.error("music/shuffle:MIN_QUEUE");
-		}
-		this.client.distube.shuffle(message);
-		message.channel.send({
-			embed: {
-				color: data.config.embed.color,
-				footer: {
-					text: data.config.embed.footer
-				},
-				description: message.translate("music/shuffle:SUCCESS")
-			}
-		});
+        const xembed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
+
+        const queue = this.client.distube.getQueue(message);
+        const voice = message.member.voice.channel;
+        if (!voice) {
+            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
+        }
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
+        }
+        if (!this.client.distube.isPlaying(message)) {
+            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(xembed);
+        }
+        if (!queue.songs[2]) {
+            xembed.setDescription(message.translate("music/shuffle:MIN_QUEUE"));
+            return message.channel.send(xembed);
+        }
+	this.client.distube.shuffle(message);
+	xembed.setDescription(message.translate("music/shuffle:SUCCESS"));
+	return message.channel.send(xembed);
 	}
 }
 module.exports = Shuffle;
