@@ -24,7 +24,7 @@ class Nowplaying extends Command {
         const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-        const queue = this.client.distube.getQueue(message);
+        const queue = this.client.distube.getQueue(message.guild.id);
         if (!queue) {
             xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(xembed);
