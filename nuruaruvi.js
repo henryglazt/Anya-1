@@ -133,7 +133,7 @@ const init = async() => {
                     embed: {
                         color: config.embed.color,
                         description: message.translate("music/play:RESULTS_HEADER") + "\n\n" +
-                            result.map(song => `**${++i}**. [${song.name}](${song.url}) - \`${song.formattedDuration}\``)
+                            result.map(song => `**${++i}**. [${song.name}](${song.url}) - \`${song.duration == 0 ? "◉ LIVE" : song.formattedDuration}\``)
                             .join("\n"),
                         footer: {
                             text: message.translate("music/play:RESULTS_FOOTER")
