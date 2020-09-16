@@ -16,43 +16,43 @@ class Remove extends Command {
         });
     }
     async run(message, args, data) {
-        const voice = message.member.voice.channel;
-        if (!voice) {
-            return message.error("music/play:NO_VOICE_CHANNEL");
-        }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            return message.error("music/play:MY_VOICE_CHANNEL");
-        }
-        if (!this.client.distube.isPlaying(message)) {
-            return message.error("music/play:NOT_PLAYING");
-        }
+        const embed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
         const number = args[0];
         const queue = this.client.distube.getQueue(message);
+        const voice = message.member.voice.channel;
+        if (!voice) {
+            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (!this.client.distube.isPlaying(message)) {
+            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
+        }
         if (!queue.songs[1]) {
-            return message.error("music/skip:NO_NEXT_SONG");
+            embed.setDescription(message.translate("music/skip:NO_NEXT_SONG"));
+            return message.channel.send(embed);
         }
         if (!number) {
-            return message.error("music/remove:VALUE")
+            embed.setDescription(message.error("music/remove:VALUE"));
+            return message.channel.send(embed);
         }
         if (number <= 0) {
-            return message.error("music/remove:VALUE")
+            embed.setDescription(message.error("music/remove:VALUE"));
+            return message.channel.send(embed);
         }
         if (isNaN(number)) {
-            return message.error("music/remove:VALUE")
+            embed.setDescription(message.error("music/remove:VALUE"));
+            return message.channel.send(embed);
         }
         const song = queue.songs[number];
-        message.channel.send({
-            embed: {
-                color: data.config.embed.color,
-                footer: {
-                    text: data.config.embed.footer
-                },
-                description: message.translate("music/remove:SUCCESS", {
-                    songName: song.name,
-                    songURL: song.url
-                })
-            }
-        })
+        embed.setDescription(message.translate("music/remove:SUCCESS", {songName: song.name, songURL: song.url}));
+        message.channel.send(embed);
         return queue.songs.splice(number, 1);
     }
 }
