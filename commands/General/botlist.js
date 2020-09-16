@@ -32,7 +32,7 @@ class BotsList extends Command {
             .join("\n");
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("common:BOTS_LIST"))
+            .setAuthor(message.translate("common:BOTS_LIST"),  "https://tinyurl.com/y4xs3cje")
             .setColor(data.config.embed.color)
             .setTitle(`${message.translate("common:BOTS")}: ${bots.size}`)
             .setFooter(`${message.translate("common:PAGE")}: ${page}/${Math.ceil(bots.size/10)}`)
