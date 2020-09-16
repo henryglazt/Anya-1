@@ -9,7 +9,7 @@
     "VOICE_CHANNEL_CONNECT": "<a:ano:744384493376503869> I can't connect to your voice channel!",
     "MY_VOICE_CHANNEL": "<a:ano:744384493376503869> I'm already being used in a different channel!",
     "MISSING_SONG_NAME": "<a:ano:744384493376503869> Please specify a song name or a link!",
-    "RESULTS_HEADER": "<:5890_Music_Folder:754588156434579497> __**Choose one of the options below**__",
+    "RESULTS_HEADER": "<:5890_Music_Folder:754588156434579497> __**Choose one of the options below:**__",
     "RESULTS_FOOTER": "Enter anything else or wait 60 seconds to cancel!",
     "NO_RESULT": "<a:ano:744384493376503869> Can't find related song to play.",
     "CANCELLED": "<a:ano:744384493376503869> Selection cancelled.",
