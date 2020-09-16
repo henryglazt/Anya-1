@@ -16,6 +16,9 @@ class Loop extends Command {
         });
     }
     async run(message, args, data) {
+        const xembed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
         const voice = message.member.voice.channel;
         if (!voice) {
             xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
