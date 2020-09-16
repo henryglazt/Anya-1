@@ -16,19 +16,27 @@ class Skip extends Command {
         });
     }
     async run(message, args, data) {
+        const xembed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
+
         const queue = this.client.distube.getQueue(message);
         const voice = message.member.voice.channel;
         if (!voice) {
-            return message.error("music/play:NO_VOICE_CHANNEL");
+            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
         }
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            return message.error("music/play:MY_VOICE_CHANNEL");
+            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
         }
         if (!this.client.distube.isPlaying(message)) {
-            return message.error("music/play:NOT_PLAYING");
+            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(xembed);
         }
         if (!queue.songs[1]) {
-            return message.error("music/skip:NO_NEXT_SONG");
+            xembed.setDescription(message.translate("music/skip:NO_NEXT_SONG"));
+            return message.channel.send(xembed);
         }
         const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
