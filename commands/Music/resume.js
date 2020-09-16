@@ -1,5 +1,5 @@
-const Command = require("../../base/Command.js");
-
+const Command = require("../../base/Command.js"),
+    Discord = require("discord.js");
 class Resume extends Command {
 
     constructor(client) {
@@ -16,13 +16,10 @@ class Resume extends Command {
             cooldown: 5000
         });
     }
-
     async run(message, args, data) {
         const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-
-        const queue = this.client.distube.getQueue(message);
         const voice = message.member.voice.channel;
         if (!voice) {
             xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
