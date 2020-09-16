@@ -5,7 +5,7 @@ class BotsList extends Command {
 
     constructor(client) {
         super(client, {
-            name: "bots-list",
+            name: "botslist",
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
@@ -13,7 +13,7 @@ class BotsList extends Command {
             memberPermissions: [],
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             nsfw: false,
-            ownerOnly: true,
+            ownerOnly: false,
             cooldown: 5000
         });
     }
@@ -63,7 +63,7 @@ class BotsList extends Command {
                     return msg.delete();
                 }
 
-                description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}`)
+                description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}#${b.user.discriminator}`)
                     .slice(i0, i1)
                     .join("\n");
 
@@ -91,7 +91,7 @@ class BotsList extends Command {
                     return msg.delete();
                 }
 
-                description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}`)
+                description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}#${b.user.discriminator}`)
                     .slice(i0, i1)
                     .join("\n");
 
