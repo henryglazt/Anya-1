@@ -56,7 +56,7 @@ const init = async() => {
                     thumbnail: {
                         url: song.thumbnail
                     },
-                    description: emojis.categories.music + " | " + message.translate("music/play:NOW_PLAYING", {
+                    description: emojis.categories.music + message.translate("music/play:NOW_PLAYING", {
                         songName: song.name,
                         songURL: song.url,
                         songDuration: song.formattedDuration
@@ -74,7 +74,7 @@ const init = async() => {
                     thumbnail: {
                         url: song.thumbnail
                     },
-                    description: emojis.success + " | " + message.translate("music/play:ADDED", {
+                    description: emojis.success + message.translate("music/play:ADDED", {
                         songName: song.name,
                         songURL: song.url,
                         songDuration: song.formattedDuration
@@ -92,7 +92,7 @@ const init = async() => {
                     thumbnail: {
                         url: playlist.thumbnail
                     },
-                    description: emojis.categories.music + " | " + message.translate("music/play:ADDED_PL", {
+                    description: emojis.categories.music + message.translate("music/play:ADDED_PL", {
                             items: playlist.total_items,
                             plTitle: playlist.title,
                             plURL: playlist.url,
@@ -116,7 +116,7 @@ const init = async() => {
                     thumbnail: {
                         url: playlist.thumbnail
                     },
-                    description: emojis.success + " | " + message.translate("music/play:ADDED_PL", {
+                    description: emojis.success + message.translate("music/play:ADDED_PL", {
                         items: playlist.total_items,
                         plTitle: playlist.title,
                         plURL: playlist.url,
@@ -155,7 +155,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.success + " | " + message.translate("music/play:CANCELLED")
+                    description: emojis.error + message.translate("music/play:CANCELLED")
                 }
             })
         })
@@ -166,7 +166,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + " | " + message.translate("music/play:NO_RESULT")
+                    description: emojis.error + message.translate("music/play:NO_RESULT")
                 }
             })
         })
@@ -177,7 +177,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.success + " | " + message.translate("music/play:QUEUE_ENDED")
+                    description: emojis.error + message.translate("music/play:QUEUE_ENDED")
                 }
             })
         })
@@ -188,7 +188,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + " | " + message.translate("music/play:EMPTY")
+                    description: emojis.error + message.translate("music/play:EMPTY")
                 }
             })
         })
@@ -199,7 +199,7 @@ const init = async() => {
                     footer: {
                         text: config.embed.footer
                     },
-                    description: emojis.error + " | " + message.translate("music/play:ERROR", {
+                    description: emojis.error + message.translate("music/play:ERROR", {
                         error: err
                     })
                 }
