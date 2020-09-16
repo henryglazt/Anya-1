@@ -21,11 +21,14 @@ class Nowplaying extends Command {
 
     async run(message, args, data) {
 
+        const xembed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
         const queue = this.client.distube.getQueue(message);
         if (!queue) {
-            return message.error("music/play:NOT_PLAYING");
+            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(xembed);
         }
-
         const song = queue.songs[0];
         const seek = (queue.dispatcher.streamTime - queue.dispatcher.pausedTime) / 1000;
         const left = song.duration - seek;
@@ -46,8 +49,6 @@ class Nowplaying extends Command {
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer);
         message.channel.send(embed);
-
     }
 }
-
 module.exports = Nowplaying;
