@@ -2,7 +2,7 @@
     "DESCRIPTION": "Set a different queue filter!",
     "USAGE": "{{prefix}}filter [filter_name]",
     "EXAMPLES": "{{prefix}}filter bassboost",
-    "NO_ARGS": "Please enter the filter name! Send `{{prefix}}filters` to see all the filters names!",
+    "NO_ARGS": "__**Please include one of these filters!**__",
     "NO_FILTER": "<a:ano:744384493376503869> No filter named: **{{named}}**!",
     "MODE": "<:toggleOn:755319218475368548> Set the queue filter to: **{{filter}}**",
     "OFF": "<:toggleOff:755319233201831949> Set the queue filter to: **Off**"
