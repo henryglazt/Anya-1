@@ -16,27 +16,25 @@ class Autoplay extends Command {
         });
     }
     async run(message, args, data) {
+        const xembed = new Discord.MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
         const voice = message.member.voice.channel;
         if (!voice) {
-            return message.error("music/play:NO_VOICE_CHANNEL");
+            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
         }
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            return message.error("music/play:MY_VOICE_CHANNEL");
+            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(xembed);
         }
         if (!this.client.distube.isPlaying(message)) {
-            return message.error("music/play:NOT_PLAYING");
+            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(xembed);
         }
         let mode = this.client.distube.toggleAutoplay(message);
-        message.channel.send({
-            embed: {
-                color: data.config.embed.color,
-                footer: {
-                    text: data.config.embed.footer
-                },
-                description: (mode ? message.translate("music/autoplay:ON") : message.translate("music/autoplay:OFF"))
-            }
-        })
+        xembed.setDescription(mode ? message.translate("music/autoplay:ON") : message.translate("music/autoplay:OFF"));
+        return message.channel.send(xembed);
     }
 }
-
 module.exports = Autoplay;
