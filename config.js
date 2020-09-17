@@ -25,8 +25,8 @@ module.exports = {
 	},
 	/* Bot's owner informations */
 	owner: {
-		id: "300944075983421451", // The ID of the bot's owner
-		name: "DooM™#6932" // And the name of the bot's owner
+		id: "339612673811415041", // The ID of the bot's owner
+		name: "DooM™#9139" // And the name of the bot's owner
 	},
 	/* DBL votes webhook (optional) */
 	votes: {
