@@ -60,8 +60,8 @@ module.exports = class {
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 						// Draw username
 						ctx.fillStyle = "#ffffff";
-						ctx.font = applyText(canvas, member.user.username, 48);
-						ctx.fillText(member.user.username, canvas.width - 260, canvas.height - 248);
+						ctx.font = applyText(canvas, member.user.username, 68);
+						ctx.fillText(member.user.username, canvas.width - 210, canvas.height - 248);
 						// Draw server name
 						/*ctx.font = applyText(canvas, member.guild.translate("administration/welcome:IMG_WELCOME", {
 							server: member.guild.name
@@ -71,7 +71,7 @@ module.exports = class {
 						}), canvas.width - 690, canvas.height - 65);*/
 						// Draw discriminator
 						ctx.font = "40px Bold";
-						ctx.fillText(member.user.discriminator, canvas.width - 223, canvas.height - 178);
+						ctx.fillText(member.user.discriminator, canvas.width - 173, canvas.height - 178);
 						// Draw number
 						ctx.font = "22px Bold";
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
@@ -80,17 +80,17 @@ module.exports = class {
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.font = "75px SketchMatch";
-						ctx.fillText("#", canvas.width - 290, canvas.height - 165);
+						ctx.fillText("#", canvas.width - 240, canvas.height - 165);
 						// Draw Title with gradient
 						ctx.font = "90px Bold";
 						ctx.strokeStyle = "#1d2124";
 						ctx.lineWidth = 15;
-						ctx.strokeText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 520, canvas.height - 330);
-						var gradient = ctx.createLinearGradient(canvas.width - 680, 0, canvas.width - 30, 0);
+						ctx.strokeText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 470, canvas.height - 330);
+						var gradient = ctx.createLinearGradient(canvas.width - 630, 0, canvas.width - 30, 0);
 						gradient.addColorStop(0, "#e15500");
 						gradient.addColorStop(1, "#e7b121");
 						ctx.fillStyle = gradient;
-						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 520, canvas.height - 330);
+						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 470, canvas.height - 330);
                 
 						// Pick up the pen
 						ctx.beginPath();
