@@ -61,7 +61,7 @@ module.exports = class {
 						// Draw username
 						ctx.fillStyle = "#ffffff";
 						ctx.font = applyText(canvas, member.user.username, 70);
-						ctx.fillText(member.user.username, canvas.width - 250, canvas.height - 248);
+						ctx.fillText(member.user.username, canvas.width - 240, canvas.height - 248);
 						// Draw server name
 						/*ctx.font = applyText(canvas, member.guild.translate("administration/welcome:IMG_WELCOME", {
 							server: member.guild.name
@@ -73,7 +73,7 @@ module.exports = class {
 						ctx.font = "40px Bold";
 						ctx.fillText(member.user.discriminator, canvas.width - 123, canvas.height - 178);
 						// Draw number
-						ctx.font = "22px Bold";
+						ctx.font = "26px Bold";
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
 							memberCount: member.guild.memberCount
 						}), 40, canvas.height - 30);
