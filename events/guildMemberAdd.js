@@ -61,7 +61,7 @@ module.exports = class {
 						// Draw username
 						ctx.fillStyle = "#ffffff";
 						ctx.font = applyText(canvas, member.user.username, 85);
-						ctx.fillText(member.user.username, canvas.width - 2000, canvas.height - 248);
+						ctx.fillText(member.user.username, canvas.width - 200, canvas.height - 248);
 						// Draw server name
 						/*ctx.font = applyText(canvas, member.guild.translate("administration/welcome:IMG_WELCOME", {
 							server: member.guild.name
@@ -76,7 +76,7 @@ module.exports = class {
 						ctx.font = "22px Bold";
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
 							memberCount: member.guild.memberCount
-						}), 40, canvas.height - 50);
+						}), 40, canvas.height - 30);
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.font = "75px SketchMatch";
@@ -85,12 +85,12 @@ module.exports = class {
 						ctx.font = "90px Bold";
 						ctx.strokeStyle = "#1d2124";
 						ctx.lineWidth = 15;
-						ctx.strokeText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 450, canvas.height - 330);
-						var gradient = ctx.createLinearGradient(canvas.width - 610, 0, canvas.width - 30, 0);
+						ctx.strokeText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 435, canvas.height - 330);
+						var gradient = ctx.createLinearGradient(canvas.width - 595, 0, canvas.width - 30, 0);
 						gradient.addColorStop(0, "#e15500");
 						gradient.addColorStop(1, "#e7b121");
 						ctx.fillStyle = gradient;
-						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 450, canvas.height - 330);
+						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 435, canvas.height - 330);
                 
 						// Pick up the pen
 						ctx.beginPath();
