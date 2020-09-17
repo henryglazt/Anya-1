@@ -60,8 +60,8 @@ module.exports = class {
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 						// Draw username
 						ctx.fillStyle = "#ffffff";
-						ctx.font = applyText(canvas, member.user.username, 85);
-						ctx.fillText(member.user.username, canvas.width - 200, canvas.height - 248);
+						ctx.font = applyText(canvas, member.user.username, 75);
+						ctx.fillText(member.user.username, canvas.width - 210, canvas.height - 248);
 						// Draw server name
 						/*ctx.font = applyText(canvas, member.guild.translate("administration/welcome:IMG_WELCOME", {
 							server: member.guild.name
