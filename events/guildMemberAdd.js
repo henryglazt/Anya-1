@@ -55,7 +55,7 @@ module.exports = class {
 							ctx = canvas.getContext("2d");
                     
 						// Background language
-						const background = await Canvas.loadImage("./assets/img/greetings_background.png");
+						const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/751090435707109376/754353770716201102/bye_1.png");
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 						// Draw username
