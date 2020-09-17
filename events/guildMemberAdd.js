@@ -67,9 +67,11 @@ module.exports = class {
 						}), canvas.width - 690, canvas.height - 65);*/
 						// Draw discriminator
 						ctx.font = "40px Bold";
+						ctx.fillStyle = "BLACK";
 						ctx.fillText(member.user.discriminator, canvas.width - 123, canvas.height - 178);
 						// Draw number
 						ctx.font = "26px Bold";
+						ctx.fillStyle = "BLACK";
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
 							memberCount: member.guild.memberCount
 						}), 40, canvas.height - 30);
@@ -88,7 +90,7 @@ module.exports = class {
 						ctx.fillStyle = gradient;
 						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 330);
 						// Draw username
-						ctx.fillStyle = "#ffffff";
+						ctx.fillStyle = "WHITE";
 						ctx.textAlign = "right";
 						ctx.font = applyText(canvas, member.user.username, 70);
 						ctx.fillText(member.user.username, canvas.width - 100, canvas.height - 248);
@@ -98,7 +100,7 @@ module.exports = class {
 						//Define Stroke Line
 						ctx.lineWidth = 10;
 						//Define Stroke Style
-						ctx.strokeStyle = "#03A9F4";
+						ctx.strokeStyle = "BLACK";
 						// Start the arc to form a circle
 						ctx.arc(180, 225, 135, 0, Math.PI * 2, true);
 						// Draw Stroke
