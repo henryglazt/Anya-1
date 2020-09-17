@@ -68,7 +68,7 @@ module.exports = class {
 						// Draw discriminator
 						ctx.font = "40px Bold";
 						ctx.fillStyle = "WHITE";
-						ctx.fillText(member.user.discriminator, canvas.width - 123, canvas.height - 178);
+						ctx.fillText(member.user.discriminator, canvas.width - 123, canvas.height - 158);
 						// Draw number
 						ctx.font = "26px Bold";
 						ctx.fillStyle = "WHITE";
@@ -78,7 +78,7 @@ module.exports = class {
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.font = "75px SketchMatch";
-						ctx.fillText("#", canvas.width - 190, canvas.height - 165);
+						ctx.fillText("#", canvas.width - 190, canvas.height - 145);
 						// Draw Title with gradient
 						ctx.font = "90px Bold";
 						ctx.strokeStyle = "#1d2124";
@@ -93,7 +93,7 @@ module.exports = class {
 						ctx.fillStyle = "WHITE";
 						ctx.textAlign = "right";
 						ctx.font = applyText(canvas, member.user.username, 70);
-						ctx.fillText(member.user.username, canvas.width - 100, canvas.height - 248);
+						ctx.fillText(member.user.username, canvas.width - 30, canvas.height - 228);
                 
 						// Pick up the pen
 						ctx.beginPath();
