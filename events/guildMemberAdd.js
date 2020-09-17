@@ -58,10 +58,6 @@ module.exports = class {
 						const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/751090435707109376/754353770716201102/bye_1.png");
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-						// Draw username
-						ctx.fillStyle = "#ffffff";
-						ctx.font = applyText(canvas, member.user.username, 70);
-						ctx.fillText(member.user.username, canvas.width - 240, canvas.height - 248);
 						// Draw server name
 						/*ctx.font = applyText(canvas, member.guild.translate("administration/welcome:IMG_WELCOME", {
 							server: member.guild.name
@@ -91,6 +87,11 @@ module.exports = class {
 						gradient.addColorStop(1, "#e7b121");
 						ctx.fillStyle = gradient;
 						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 330);
+						// Draw username
+						ctx.fillStyle = "#ffffff";
+						ctx.textAlign = "right";
+						ctx.font = applyText(canvas, member.user.username, 70);
+						ctx.fillText(member.user.username, canvas.width - 100, canvas.height - 248);
                 
 						// Pick up the pen
 						ctx.beginPath();
