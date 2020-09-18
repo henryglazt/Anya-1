@@ -102,7 +102,7 @@ module.exports = class {
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = 10;
 						ctx.textAlign = "right";
-						ctx.font = applyText(canvas, member.user.username, 60);
+						ctx.font = applyText(canvas, member.user.username, 70);
 						ctx.fillText(member.user.username, canvas.width - 20, canvas.height - 218);
 						// Draw discriminator
 						ctx.font = "40px Bold";
