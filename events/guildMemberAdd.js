@@ -74,13 +74,17 @@ module.exports = class {
 						// Draw number
 						ctx.font = "26px Bold";
 						ctx.fillStyle = "WHITE";
+						ctx.shadowColor = "BLACK";
+						ctx.shadowBlur = "5";
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
 							memberCount: member.guild.memberCount
 						}), 40, canvas.height - 30);
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
+						ctx.shadowColor = "BLACK";
+						ctx.shadowBlur = "5";
 						ctx.font = "75px SketchMatch";
-						ctx.fillText("#", canvas.width - 170, canvas.height - 135);
+						ctx.fillText("#", canvas.width - 170, canvas.height - 138);
 						// Draw Title with gradient
 						ctx.font = "90px Bold";
 						ctx.strokeStyle = "#1d2124";
@@ -90,6 +94,8 @@ module.exports = class {
 						gradient.addColorStop(0, "#e15500");
 						gradient.addColorStop(1, "#e7b121");
 						ctx.fillStyle = gradient;
+						ctx.shadowColor = "BLACK";
+						ctx.shadowBlur = "5";
 						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 330);
 						// Draw username
 						ctx.fillStyle = "WHITE";
