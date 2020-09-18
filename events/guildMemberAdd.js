@@ -96,14 +96,14 @@ module.exports = class {
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = "10";
 						ctx.textAlign = "left";
-						ctx.font = applyText(canvas, member.user.username, 60-=10);
-						ctx.fillText(member.user.username, canvas.width - 400, canvas.height - 228);
+						ctx.font = applyText(canvas, member.user.username, 50);
+						ctx.fillText(member.user.username, canvas.width - 400, canvas.height - 218);
 						// Draw discriminator
 						ctx.font = "40px Bold";
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = "10";
-						ctx.fillText(member.user.discriminator, canvas.width - 400, canvas.height - 158);
+						ctx.fillText(member.user.discriminator, canvas.width - 400, canvas.height - 148);
 
                 
 						// Pick up the pen
