@@ -57,7 +57,7 @@ module.exports = class {
 						var images = guildData.welcomeImage;
 						let background;
 						if(images.length <=0){
-							background = await Canvas.loadImage("./assets/img/greetings_background.png");
+							background = await Canvas.loadImage("./assets/img/greetings.jpeg");
 						} else {
 							var imx = Math.floor(Math.random() * images.length);
 							background = await Canvas.loadImage(images[imx]);
