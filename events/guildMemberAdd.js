@@ -88,7 +88,7 @@ module.exports = class {
 						// Draw username
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = "10;
+						ctx.shadowBlur = "10";
 						ctx.textAlign = "right";
 						ctx.font = applyText(canvas, member.user.username, 70);
 						ctx.fillText(member.user.username, canvas.width - 30, canvas.height - 228);
