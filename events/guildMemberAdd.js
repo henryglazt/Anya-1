@@ -55,8 +55,13 @@ module.exports = class {
 							ctx = canvas.getContext("2d");
 
 						var images = guildData.welcomeImage;
-						var imx = Math.floor(Math.random() * images.length);
-                    
+						let background;
+						if(images.length <=0){
+							background = await Canvas.loadImage("./assets/img/greetings_background.png");
+						} else {
+							var imx = Math.floor(Math.random() * images.length);
+							background = await Canvas.loadImage(images[imx]);
+						}
 						// Background language
 						const background = await Canvas.loadImage(images[imx]);
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
