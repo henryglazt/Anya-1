@@ -27,7 +27,8 @@ class Welcomeimage extends Command {
         if (!args[0]) {
             return message.error("misc:NO_ARGS");
         }
-        const url = args[0].match(regex)[0];
+        let url = args[0].match(regex);
+        url = url[0];
         if (!url) {
             return message.error("misc:INVALID_URL");
 
