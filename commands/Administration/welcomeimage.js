@@ -27,13 +27,12 @@ class Welcomeimage extends Command {
         if (!args[0]) {
             return message.error("misc:NO_ARGS");
         }
-        let url = args[0].match(regex);
-        url = url[0];
-        if (!url) {
+        const url = args[0].match(regex);
+        if (url === null ) {
             return message.error("misc:INVALID_URL");
 
         } else {
-            data.guild.welcomeImage.push(url);
+            data.guild.welcomeImage.push(url[0]);
             data.guild.save();
             return message.success("administration/welcomeimage:IMAGE", {
                 image: url
