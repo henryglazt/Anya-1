@@ -53,9 +53,12 @@ module.exports = class {
 					if(guildData.plugins.welcome.withImage){
 						const canvas = Canvas.createCanvas(1024, 450),
 							ctx = canvas.getContext("2d");
+
+						var images = guildData.welcomeImage;
+						var imx = Math.floor(Math.random() * images.length);
                     
 						// Background language
-						const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/751090435707109376/754353770716201102/bye_1.png");
+						const background = await Canvas.loadImage(images[imx]);
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 						// Draw server name
