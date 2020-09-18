@@ -75,14 +75,14 @@ module.exports = class {
 						ctx.font = "26px Bold";
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = "5";
+						ctx.shadowBlur = 5;
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
 							memberCount: member.guild.memberCount
 						}), 40, canvas.height - 30);
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = "5";
+						ctx.shadowBlur = 5;
 						ctx.font = "75px SketchMatch";
 						ctx.fillText("#", canvas.width - 170, canvas.height - 138);
 						// Draw Title with gradient
@@ -95,12 +95,12 @@ module.exports = class {
 						gradient.addColorStop(1, "#e7b121");
 						ctx.fillStyle = gradient;
 						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = "5";
+						ctx.shadowBlur = 5;
 						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 330);
 						// Draw username
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = "10";
+						ctx.shadowBlur = 10;
 						ctx.textAlign = "right";
 						ctx.font = applyText(canvas, member.user.username, 60);
 						ctx.fillText(member.user.username, canvas.width - 20, canvas.height - 218);
@@ -108,7 +108,7 @@ module.exports = class {
 						ctx.font = "40px Bold";
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = "10";
+						ctx.shadowBlur = 10;
 						ctx.fillText(member.user.discriminator, canvas.width - 20, canvas.height - 150);
 
                 
