@@ -94,8 +94,6 @@ module.exports = class {
 						gradient.addColorStop(0, "#e15500");
 						gradient.addColorStop(1, "#e7b121");
 						ctx.fillStyle = gradient;
-						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = 5;
 						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 330);
 						// Draw username
 						ctx.fillStyle = "WHITE";
