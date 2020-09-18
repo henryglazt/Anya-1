@@ -96,7 +96,6 @@ module.exports = class {
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = "10";
-						ctx.textAlign = "left";
 						ctx.fillText(member.user.discriminator, canvas.width - 400, canvas.height - 148);
 						// Draw username
 						ctx.fillStyle = "WHITE";
