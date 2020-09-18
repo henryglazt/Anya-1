@@ -62,8 +62,6 @@ module.exports = class {
 							var imx = Math.floor(Math.random() * images.length);
 							background = await Canvas.loadImage(images[imx]);
 						}
-						// Background language
-						const background = await Canvas.loadImage(images[imx]);
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 						// Draw server name
