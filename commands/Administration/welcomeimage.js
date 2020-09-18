@@ -19,7 +19,7 @@ class Welcomeimage extends Command {
 
     async run(message, args, data) {
 
-        const images = data.guild.welcomeimage;
+        const images = data.guild.welcomeImage;
         const regex = (/https?:\/\/.*\.(?:png|jpg)/g);
         const url = args[0].match(regex)[0];
         if (images.length === 4) {
