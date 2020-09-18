@@ -130,7 +130,7 @@ module.exports = class {
 						const options = { format: "png", size: 512 },
 							avatar = await Canvas.loadImage(member.user.displayAvatarURL(options));
 						// Move the image downwards vertically and constrain its height to 200, so it"s a square
-						ctx.drawImage(avatar, 45, 90, 270, 270);
+						ctx.drawImage(avatar, 512, 90, 270, 270);
 
 						const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
 						channel.send(message, attachment);
