@@ -96,7 +96,7 @@ module.exports = class {
 						ctx.font = "40px Bold";
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = "10;
+						ctx.shadowBlur = "10";
 						ctx.fillText(member.user.discriminator, canvas.width - 30, canvas.height - 158);
 
                 
