@@ -21,13 +21,13 @@ class Welcomeimage extends Command {
 
         const images = data.guild.welcomeImage;
         const regex = (/https?:\/\/.*\.(?:png|jpg)/g);
-        const url = args[0].match(regex)[0];
         if (images.length === 4) {
             return message.error("misc:MAX");
         }
         if (!args[0]) {
             return message.error("misc:NO_ARGS");
         }
+        const url = args[0].match(regex)[0];
         if (!url) {
             return message.error("misc:INVALID_URL");
 
