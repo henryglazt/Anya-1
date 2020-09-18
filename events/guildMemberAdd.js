@@ -9,7 +9,7 @@ const applyText = (canvas, text, defaultFontSize) => {
 	const ctx = canvas.getContext("2d");
 	do {
 		ctx.font = `${defaultFontSize -= 10}px Bold`;
-	} while (ctx.measureText(text).width > 450);
+	} while (ctx.measureText(text).width > 430);
 	return ctx.font;
 };
 
@@ -80,7 +80,7 @@ module.exports = class {
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.font = "75px SketchMatch";
-						ctx.fillText("#", canvas.width - 170, canvas.height - 145);
+						ctx.fillText("#", canvas.width - 170, canvas.height - 135);
 						// Draw Title with gradient
 						ctx.font = "90px Bold";
 						ctx.strokeStyle = "#1d2124";
@@ -97,13 +97,13 @@ module.exports = class {
 						ctx.shadowBlur = "10";
 						ctx.textAlign = "right";
 						ctx.font = applyText(canvas, member.user.username, 60);
-						ctx.fillText(member.user.username, canvas.width - 30, canvas.height - 218);
+						ctx.fillText(member.user.username, canvas.width - 20, canvas.height - 218);
 						// Draw discriminator
 						ctx.font = "40px Bold";
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = "10";
-						ctx.fillText(member.user.discriminator, canvas.width - 30, canvas.height - 150);
+						ctx.fillText(member.user.discriminator, canvas.width - 20, canvas.height - 150);
 
                 
 						// Pick up the pen
