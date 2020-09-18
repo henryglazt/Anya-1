@@ -119,7 +119,7 @@ module.exports = class {
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = 10;
 						// Start the arc to form a circle
-						ctx.arc(180, 225, 135, 0, Math.PI * 2, true);
+						ctx.arc(512, 225, 135, 0, Math.PI * 2, true);
 						// Draw Stroke
 						ctx.stroke();
 						// Put the pen down
