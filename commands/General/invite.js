@@ -26,7 +26,7 @@ class Invite extends Command {
 		}
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(message.translate("general/invite:LINKS"))
-			.setDescription(message.translate("general/invite:TIP"))
+			.setDescription(message.translate("general/invite:TIP_DM"))
 			.addField(message.translate("general/invite:ADD"), inviteLink)
 			.addField(message.translate("general/invite:VOTE"), voteURL)
 			.addField(message.translate("general/invite:SUPPORT"), supportURL)
