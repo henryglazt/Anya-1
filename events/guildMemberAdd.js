@@ -8,7 +8,7 @@ Canvas.registerFont(resolve("./assets/fonts/SketchMatch.ttf"), { family: "Sketch
 const applyText = (canvas, text, defaultFontSize) => {
 	const ctx = canvas.getContext("2d");
 	do {
-		ctx.font = `${defaultFontSize -= 60}px Bold`;
+		ctx.font = `${defaultFontSize -= 10}px Bold`;
 	} while (ctx.measureText(text).width > 600);
 	return ctx.font;
 };
@@ -96,7 +96,7 @@ module.exports = class {
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = "10";
 						ctx.textAlign = "left";
-						ctx.font = applyText(canvas, member.user.username);
+						ctx.font = applyText(canvas, member.user.username, 60-=10);
 						ctx.fillText(member.user.username, canvas.width - 400, canvas.height - 228);
 						// Draw discriminator
 						ctx.font = "40px Bold";
