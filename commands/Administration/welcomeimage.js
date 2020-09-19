@@ -30,7 +30,7 @@ class Welcomeimage extends Command {
         if (args[0] === "reset" && data.guild.welcomeImage.length > 0) {
             data.guild.welcomeImage.splice(0, 4);
             data.guild.save();
-            return message.succes("administrator/welcomeimage:RESET");
+            return message.success("administrator/welcomeimage:RESET");
         }
         const url = args[0].match(regex);
         if (url === null ) {
