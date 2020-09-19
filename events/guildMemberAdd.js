@@ -71,14 +71,6 @@ module.exports = class {
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_WELCOME", {
 							server: member.guild.name
 						}), canvas.width - 690, canvas.height - 65);*/
-						// Draw number
-						ctx.font = "26px Bold";
-						ctx.fillStyle = "WHITE";
-						ctx.shadowColor = "BLACK";
-						ctx.shadowBlur = 5;
-						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
-							memberCount: member.guild.memberCount
-						}), 40, canvas.height - 30);
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.shadowColor = "BLACK";
@@ -108,7 +100,14 @@ module.exports = class {
 						ctx.shadowColor = "BLACK";
 						ctx.shadowBlur = 10;
 						ctx.fillText(member.user.discriminator, canvas.width - 20, canvas.height - 150);
-
+						// Draw number
+						ctx.font = "26px Bold";
+						ctx.fillStyle = "WHITE";
+						ctx.shadowColor = "BLACK";
+						ctx.shadowBlur = 5;
+						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
+							memberCount: member.guild.memberCount
+						}), 40, canvas.height - 30);
                 
 						// Pick up the pen
 						ctx.beginPath();
