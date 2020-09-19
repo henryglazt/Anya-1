@@ -133,6 +133,25 @@ module.exports = class {
 
 						const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
 						channel.send(message, attachment);
+
+						const wembc = member.guild.channels.cache.get("718691608425398345");
+						const wembed = new Discord.MessageEmbed()
+							.setAuthor(
+								`Selamat Datang di ${member.guild.name}, ${member.displayName}!`,
+								`${member.user.displayAvatarURL({ dynamic: true })}`
+								)
+							.setThumbnail(member.user.displayAvatarURL({ dynamic: true))
+							.setDescription([
+								`**Baca tata krama di :** <#719482949011243048>`,
+								`**Ambil role di :** <#719483981355024404>`,
+								`**Dan jangan lupa isi data diri lu di :** <#719484046174060555>\n`,
+								`**Enjoy your stay and Have fun guys! Cheers...** <a:tenor:746856902708822118>`
+								])
+							.setImage(member.guild.bannerURL({ format: "png", size: 512 })
+								.setColor(guildData.config.embed.color)
+								.setFooter(`Member Saat ini : ${member.guild.memberCount}`)
+								.setTimestamp();
+						wembc.send(`Welcome ${member}`, wembed)
 					} else {
 						channel.send(message);
 					}
