@@ -81,12 +81,12 @@ module.exports = class {
 						ctx.font = "90px Bold";
 						ctx.strokeStyle = "#1d2124";
 						ctx.lineWidth = 15;
-						ctx.strokeText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 330);
+						ctx.strokeText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 320);
 						var gradient = ctx.createLinearGradient(canvas.width - 590, 0, canvas.width - 30, 0);
 						gradient.addColorStop(0, "#e15500");
 						gradient.addColorStop(1, "#e7b121");
 						ctx.fillStyle = gradient;
-						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 330);
+						ctx.fillText(member.guild.translate("administration/welcome:TITLE"), canvas.width - 430, canvas.height - 320);
 						// Draw username
 						ctx.fillStyle = "WHITE";
 						ctx.shadowColor = "BLACK";
