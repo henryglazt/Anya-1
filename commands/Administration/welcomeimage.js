@@ -33,7 +33,7 @@ class Welcomeimage extends Command {
             return message.error("misc:NO_ARGS");
         }
 
-        const url = (args[0] !== "reset" && args[0].match(regex);
+        const url = (args[0] !== "reset" && args[0].match(regex));
         if (url === null) {
             return message.error("misc:INVALID_URL");
 
