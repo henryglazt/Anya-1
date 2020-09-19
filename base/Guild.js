@@ -60,6 +60,7 @@ module.exports = mongoose.model("Guild", new Schema({
 	}},
 	casesCount: { type: Number, default: 0 },
 	welcomeImage: { type: Array, default: [] },
+	leaveImage: { type: Array, default: [] },
 	ignoredChannels: { type: Array, default: [] }, // Channels ignored by the bot
 	customCommands: { type: Array, default: [] }, // Custom commands of the guild
 	commands: { type: Array, default: [] }, // Commands logs
