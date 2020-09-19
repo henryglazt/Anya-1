@@ -22,19 +22,19 @@ class Goodbyeimage extends Command {
         const images = data.guild.goodbyeImage;
         const regex = (/https?:\/\/.*\.(?:png|jpg)/g);
         if (images.length === 1) {
-            return message.error("administrator/goodbyeimage:MAX");
+            return message.error("administration/goodbyeimage:MAX");
         }
         if (args[0] === "reset" && images.length > 0) {
             images.splice(0, 1);
             data.guild.save();
-            return message.success("administrator/goodbyeimage:RESET");
+            return message.success("administration/goodbyeimage:RESET");
         }
         if (!args[0] || !args[0].match(regex)) {
-            return message.error("administrator/goodbyeimage:NO_ARGS");
+            return message.error("administration/goodbyeimage:NO_ARGS");
         } else {
             images.push(args[0]);
             data.guild.save();
-            return message.success("administrator/goodbyeimage:SUCCESS", {
+            return message.success("administration/goodbyeimage:SUCCESS", {
                 image: args[0]
             });
         }
