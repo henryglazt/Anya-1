@@ -32,16 +32,13 @@ class Welcomeimage extends Command {
         if (!args[0]) {
             return message.error("misc:NO_ARGS");
         }
-
-        const url = (args[0] !== "reset" && args[0].match(regex));
-        if (url === null) {
+        if (!args[0].match(regex)) {
             return message.error("misc:INVALID_URL");
-
         } else {
-            data.guild.welcomeImage.push(url[0]);
+            data.guild.welcomeImage.push(args[0]);
             data.guild.save();
             return message.success("administration/welcomeimage:IMAGE", {
-                image: url
+                image: args[0]
             });
         }
     }
