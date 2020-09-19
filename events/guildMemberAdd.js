@@ -147,7 +147,7 @@ module.exports = class {
 								`**Dan jangan lupa isi data diri lu di :** <#719484046174060555>\n`,
 								`**Enjoy your stay and Have fun guys! Cheers...** <a:tenor:746856902708822118>`
 								])
-							.setImage(member.guild.bannerURL({ format: "png", size: 512 })
+							.setImage(member.guild.bannerURL({ format: "png", size: 512 }))
 								.setColor(guildData.config.embed.color)
 								.setFooter(`Member Saat ini : ${member.guild.memberCount}`)
 								.setTimestamp();
