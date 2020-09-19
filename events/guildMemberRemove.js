@@ -38,8 +38,14 @@ module.exports = class {
 						const canvas = Canvas.createCanvas(1024, 450),
 							ctx = canvas.getContext("2d");
                     
-						// Background language"
-						const background = await Canvas.loadImage("./assets/img/greetings.jpeg");
+						var images = guildData.goodbyeImage;
+						let background;
+						if(images.length <=0){
+							background = await Canvas.loadImage("./assets/img/greetings.jpeg");
+						} else {
+							var imx = Math.floor(Math.random() * images.length);
+							background = await Canvas.loadImage(images[imx]);
+						}
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 						// Draw # for discriminator
