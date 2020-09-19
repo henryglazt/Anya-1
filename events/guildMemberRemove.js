@@ -78,7 +78,7 @@ module.exports = class {
 						ctx.shadowBlur = 5;
 						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
 							memberCount: member.guild.memberCount
-						}), - 20, canvas.height - 30);
+						}), canvas.width - 20, canvas.height - 30);
                 
 						// Pick up the pen
 						ctx.beginPath();
