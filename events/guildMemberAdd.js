@@ -140,7 +140,7 @@ module.exports = class {
 								`Selamat Datang di ${member.guild.name}, ${member.displayName}!`,
 								`${member.user.displayAvatarURL({ dynamic: true })}`
 								)
-							.setThumbnail(member.user.displayAvatarURL({ dynamic: true))
+							.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 							.setDescription([
 								`**Baca tata krama di :** <#719482949011243048>`,
 								`**Ambil role di :** <#719483981355024404>`,
