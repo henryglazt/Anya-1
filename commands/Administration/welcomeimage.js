@@ -22,22 +22,19 @@ class Welcomeimage extends Command {
         const images = data.guild.welcomeImage;
         const regex = (/https?:\/\/.*\.(?:png|jpg)/g);
         if (images.length === 3) {
-            return message.error("misc:MAX");
+            return message.error("administration/welcomeimage:MAX");
         }
         if (args[0] === "reset" && images.length > 0) {
             images.splice(0, 3);
             data.guild.save();
-            return message.success("administrator/welcomeimage:RESET");
+            return message.success("administration/welcomeimage:RESET");
         }
-        if (!args[0]) {
-            return message.error("misc:NO_ARGS");
-        }
-        if (!args[0].match(regex)) {
-            return message.error("misc:INVALID_URL");
+        if (!args[0] || !args[0].match(regex)) {
+            return message.error("administration/welcomeimage:NO_ARGS");
         } else {
             images.push(args[0]);
             data.guild.save();
-            return message.success("administration/welcomeimage:IMAGE", {
+            return message.success("administration/welcomeimage:SUCCESS", {
                 image: args[0]
             });
         }
