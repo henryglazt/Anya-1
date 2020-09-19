@@ -1,0 +1,9 @@
+{
+    "DESCRIPTION": "Set a custom welcome image.",
+    "USAGE": "{{prefix}}welcomeimage [image_url]",
+    "EXAMPLES": "{{prefix}}welcomeimage https://cdn.discordapp.com/myimage.png",
+    "MAX": "You can only set 3 custom welcome image!",
+    "RESET": "Welcome image have been reset to default!",
+    "NO_ARGS": "Please provide a valid image url/link!",
+    "SUCCESS": "Welcome image have been set to `{{image}}`"
+}
