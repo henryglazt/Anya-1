@@ -8,7 +8,7 @@ class Welcomeimage extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: [],
+            aliases: ["wimg"],
             memberPermissions: ["MANAGE_GUILD"],
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             nsfw: false,
@@ -21,11 +21,11 @@ class Welcomeimage extends Command {
 
         const images = data.guild.welcomeImage;
         const regex = (/https?:\/\/.*\.(?:png|jpg)/g);
-        if (images.length === 4) {
+        if (images.length === 3) {
             return message.error("misc:MAX");
         }
-        if (args[0] === "reset" && data.guild.welcomeImage.length > 0) {
-            data.guild.welcomeImage.splice(0, 4);
+        if (args[0] === "reset" && images.length > 0) {
+            images.splice(0, 3);
             data.guild.save();
             return message.success("administrator/welcomeimage:RESET");
         }
@@ -35,7 +35,7 @@ class Welcomeimage extends Command {
         if (!args[0].match(regex)) {
             return message.error("misc:INVALID_URL");
         } else {
-            data.guild.welcomeImage.push(args[0]);
+            images.push(args[0]);
             data.guild.save();
             return message.success("administration/welcomeimage:IMAGE", {
                 image: args[0]
