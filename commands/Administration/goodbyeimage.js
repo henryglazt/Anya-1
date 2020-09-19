@@ -21,23 +21,20 @@ class Goodbyeimage extends Command {
 
         const images = data.guild.goodbyeImage;
         const regex = (/https?:\/\/.*\.(?:png|jpg)/g);
-        if (images.length === 4) {
-            return message.error("misc:MAX");
+        if (images.length === 1) {
+            return message.error("administrator/goodbyeimage:MAX");
         }
         if (args[0] === "reset" && images.length > 0) {
-            images.splice(0, 4);
+            images.splice(0, 1);
             data.guild.save();
             return message.success("administrator/goodbyeimage:RESET");
         }
-        if (!args[0]) {
-            return message.error("misc:NO_ARGS");
-        }
-        if (!args[0].match(regex)) {
-            return message.error("misc:INVALID_URL");
+        if (!args[0] || !args[0].match(regex)) {
+            return message.error("administrator/goodbyeimage:NO_ARGS");
         } else {
             images.push(args[0]);
             data.guild.save();
-            return message.success("administration/goodbyeimage:IMAGE", {
+            return message.success("administrator/goodbyeimage:SUCCESS", {
                 image: args[0]
             });
         }
