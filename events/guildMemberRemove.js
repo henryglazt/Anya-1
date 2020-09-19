@@ -42,8 +42,6 @@ module.exports = class {
 						const background = await Canvas.loadImage("./assets/img/greetings.jpeg");
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-							server: member.guild.name
-						}), canvas.width - 690, canvas.height - 65);*/
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.shadowColor = "BLACK";
