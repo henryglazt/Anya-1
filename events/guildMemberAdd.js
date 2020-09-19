@@ -135,6 +135,7 @@ module.exports = class {
 						channel.send(message, attachment);
 
 						const wembc = member.guild.channels.cache.get("718691608425398345");
+						if (!wembc) return;
 						const wembed = new Discord.MessageEmbed()
 							.setAuthor(
 								`Selamat Datang di ${member.guild.name}, ${member.displayName}!`,
