@@ -134,7 +134,7 @@ module.exports = class {
 						const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
 						channel.send(message, attachment);
 
-						const wembc = message.guild.channels.cache.get("718691608425398345");
+						const wembc = this.client.guild.channels.cache.get("718691608425398345");
 						if (!wembc) return;
 						const wembed = new Discord.MessageEmbed()
 							.setAuthor(
