@@ -50,7 +50,7 @@ class NuruAruvi extends Client {
 			updateCountdownEvery: 10000,
 			default: {
 				botsCanWin: false,
-				exemptPermissions: [ "MANAGE_MESSAGES", "ADMINISTRATOR" ],
+				exemptPermissions: [],
 				embedColor: this.config.embed.color,
 				reaction: "🎉"
 				}
