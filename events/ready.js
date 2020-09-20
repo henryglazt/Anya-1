@@ -46,7 +46,7 @@ module.exports = class {
 			]
         let i = 0;
         setInterval(function () {
-            const toDisplay = status[parseInt(i, 10)].name.replace("{serversCount}", client.guilds.cache.size) + " | v" + version;
+            const toDisplay = status[parseInt(i, 10)].name.replace("{serversCount}", client.guilds.cache.size);
             client.user.setActivity(toDisplay, {
                 type: status[parseInt(i, 10)].type
             });
