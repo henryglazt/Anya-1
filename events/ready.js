@@ -36,10 +36,14 @@ module.exports = class {
 			type: "LISTENING"
 			},
 			{
+			name: `with ${client.users.cache.size} members,
+			type: "PLAYING"
+			},
+			{
 			name: "at discord.gg/gangsebelah",
 			type: "PLAYING"
 			}
-			],
+			]
 		let i = 0;
 		setInterval(function(){
 			const toDisplay = status[parseInt(i, 10)].name.replace("{serversCount}", client.guilds.cache.size)";
