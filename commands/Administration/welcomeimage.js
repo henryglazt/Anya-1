@@ -21,13 +21,13 @@ class Welcomeimage extends Command {
 
         const images = data.guild.welcomeImage;
         const regex = (/https?:\/\/.*\.(?:png|jpg)/g);
-        if (images.length === 3) {
-            return message.error("administration/welcomeimage:MAX");
-        }
         if (args[0] === "reset" && images.length > 0) {
             images.splice(0, 3);
             data.guild.save();
             return message.success("administration/welcomeimage:RESET");
+        }
+        if (images.length === 3) {
+            return message.error("administration/welcomeimage:MAX");
         }
         if (!args[0] || !args[0].match(regex)) {
             return message.error("administration/welcomeimage:NO_ARGS");
