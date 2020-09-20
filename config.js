@@ -46,17 +46,6 @@ module.exports = {
 		github: "", // Founder's github account
 		donate: "" // Donate link
 	},
-	/* The Bot status */
-	status: [
-		{
-			name: "@mention to ??help",
-			type: "LISTENING"
-		},
-		{
-			name: "at discord.gg/gangsebelah",
-			type: "PLAYING"
-		}
-	],
 	/* Language configuration */
 	languages: [
 		{
