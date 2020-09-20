@@ -51,7 +51,7 @@ class NuruAruvi extends Client {
 			default: {
 				botsCanWin: false,
 				exemptPermissions: [ "MANAGE_MESSAGES", "ADMINISTRATOR" ],
-				embedColor: "#8300ff",
+				embedColor: this.config.embed.color,
 				reaction: "🎉"
 				}
 			});
