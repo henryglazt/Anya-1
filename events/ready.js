@@ -30,11 +30,19 @@ module.exports = class {
 		}
 
 		// Update the game every 20s
-		const status = require("../config.js").status,
-			version = require("../package.json").version;
+		status: [
+			{
+			name: "@mention to ??help",
+			type: "LISTENING"
+			},
+			{
+			name: "at discord.gg/gangsebelah",
+			type: "PLAYING"
+			}
+			],
 		let i = 0;
 		setInterval(function(){
-			const toDisplay = status[parseInt(i, 10)].name.replace("{serversCount}", client.guilds.cache.size)+" | v"+version;
+			const toDisplay = status[parseInt(i, 10)].name.replace("{serversCount}", client.guilds.cache.size)";
 			client.user.setActivity(toDisplay, {type: status[parseInt(i, 10)].type});
 			if(status[parseInt(i+1, 10)]) i++;
 			else i = 0;
