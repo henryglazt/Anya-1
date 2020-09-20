@@ -134,7 +134,7 @@ module.exports = class {
 						const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
 						channel.send(message, attachment);
 
-						const wembc = this.client.guild.channels.cache.get("718691608425398345");
+						const wembc = member.guild.channels.cache.get("718691608425398345");
 						if (!wembc) return;
 						const wembed = new Discord.MessageEmbed()
 							.setAuthor(
@@ -149,7 +149,7 @@ module.exports = class {
 								`**Enjoy your stay and Have fun guys! Cheers...** <a:tenor:746856902708822118>`
 								])
 							.setImage(member.guild.bannerURL({ format: "png", size: 512 }))
-								.setColor(guildData.config.embed.color)
+								.setColor(#7289da)
 								.setFooter(`Member Saat ini : ${member.guild.memberCount}`)
 								.setTimestamp();
 						wembc.send(`Welcome ${member}`, wembed)
