@@ -28,7 +28,7 @@ class Giveaway extends Command {
         if (status === "create") {
             const currentGiveaways = this.client.giveawaysManager.giveaways.filter((g) => g.guildID === message.guild.id && !g.ended)
                 .length;
-            if (currentGiveaways > 10) {
+            if (currentGiveaways > 20) {
                 return message.error("moderation/giveaway:MAX_COUNT");
             }
             const time = args[1];
