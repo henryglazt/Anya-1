@@ -149,7 +149,7 @@ module.exports = class {
 								`**Enjoy your stay and Have fun guys! Cheers...** <a:tenor:746856902708822118>`
 								])
 							.setImage(member.guild.bannerURL({ format: "png", size: 512 }))
-								.setColor(#7289da)
+								.setColor("#7289da")
 								.setFooter(`Member Saat ini : ${member.guild.memberCount}`)
 								.setTimestamp();
 						wembc.send(`Welcome ${member}`, wembed)
