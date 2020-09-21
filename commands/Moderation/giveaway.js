@@ -20,6 +20,8 @@ class Giveaway extends Command {
 
     async run(message, args, data) {
 
+        await message.delete();
+
         const status = args[0];
         if (!status) {
             return message.error("moderation/giveaway:MISSING_STATUS");
