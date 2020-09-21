@@ -4,7 +4,7 @@ module.exports = {
 	/* For the support server */
 	support: {
 		id: "718691607888789547", // The ID of the support server
-		logs: "732821616530030734", // And the ID of the logs channel of your server (new servers for example)
+		logs: "", // And the ID of the logs channel of your server (new servers for example)
 	},
 	/* Dashboard configuration */
 	dashboard: {
