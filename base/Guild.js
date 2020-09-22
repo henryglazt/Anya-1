@@ -52,7 +52,7 @@ module.exports = mongoose.model("Guild", new Schema({
 		suggestions: false, // the channel in which the suggestions will be sent
 		modlogs: false, // the channel in which the moderation logs (mute, kick, ban, etc...) will be sent
 		reports: false, // the channel in which the reports will be sent
-		logs: false // the channel in which the logs (message deleted, etc...) will be sent
+		logs: "757664339141329087" // the channel in which the logs (message deleted, etc...) will be sent
 	}},
 	slowmode: { type: Object, default: { // Servers slowmode
 		users: [],
