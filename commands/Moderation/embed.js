@@ -29,18 +29,12 @@ class Embed extends Command {
         if (!imgurl && msg.attachments && msg.attachments[0]) imgurl = msg.attachments[0].proxy_url;
         if (!imgurl) imgurl;
 
-        msg.channel.send({
-            embed: {
-                description: args,
-                color: data.config.embed.color,
-            },
-            thumbnail: {
-                url: imgurl ? imgurl : null,
-            },
-            footer: {
-                text: data.config.embed.footer
-            },
-        });
+        const embed = new Discord.MessageEmbed()
+            .setDescription(args)
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
+            .setThumbnail(imgurl ? imgurl : null);
+        message.channel.send(embed);
     }
 }
 
