@@ -204,7 +204,7 @@ const init = async() => {
             })
         })
 
-    client.system.ini();
+    client.system.init();
 
     client.login(process.env.TOKEN);
 
