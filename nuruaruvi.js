@@ -204,6 +204,8 @@ const init = async() => {
             })
         })
 
+    client.system.ini();
+
     client.login(process.env.TOKEN);
 
     mongoose.connect(client.config.mongoDB, {
