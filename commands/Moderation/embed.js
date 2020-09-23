@@ -34,7 +34,7 @@ class Embed extends Command {
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
             .setThumbnail(imgurl ? imgurl : null);
-        message.channel.send(embed);
+        msg.channel.send(embed);
     }
 }
 
