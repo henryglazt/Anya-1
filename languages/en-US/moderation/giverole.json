@@ -2,5 +2,5 @@
 {
     "DESCRIPTION": "Give a role to member.",
     "USAGE": "{{prefix}}takerole (@member) [role_id/role_name/@role]",
-    "EXAMPLES": "{{prefix}}takerole @DooM™#6932 myrole"
+    "EXAMPLES": "{{prefix}}takerole @DooM™#9139 myrole"
 }
