@@ -23,12 +23,6 @@ module.exports = class {
 		if(!userData.achievements.invite.achieved){
 			userData.achievements.invite.progress.now += 1;
 			userData.achievements.invite.achieved = true;
-			messageOptions.files = [
-				{
-					name: "unlocked.png",
-					attachment: "./assets/img/achievements/achievement_unlocked7.png"
-				}
-			];
 			userData.markModified("achievements.invite");
 			await userData.save();
 		}
