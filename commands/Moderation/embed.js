@@ -20,6 +20,10 @@ class Embed extends Command {
 
     async run(msg, args, data) {
 
+        await msg.delete();
+
+        if (!args) return msg.error("moderation/embed:NO_ARGS");
+
         let imgurl;
         args = args.join(" ");
         // URL checker
