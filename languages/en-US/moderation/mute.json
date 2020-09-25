@@ -5,5 +5,7 @@
     "MISSING_MEMBER": "Please specify a valid member to mute!",
     "MUTED_DM": "Hello {{username}},\nYou've just been muted on **{{server}}** by **{{moderator}}** for **{{time}}** because of **{{reason}}**!",
     "MUTED": "**{{username}}** is now muted for **{{time}}** because of **{{reason}}**!",
-    "CASE": "Mute | Case #{{count}}"
+    "CASE": "Mute | Case #{{count}}",
+    "ALREADY_MUTED": "{{user}} is already muted for **{{time}}** with reason **{{reason}}**!",
+    "NO_MUTED_ROLE": "<a:GS_Loading:759107625039167611> Theres no mute role named "Anya Mute", creating a new one..."
 }
