@@ -85,13 +85,13 @@ class Mute extends Command {
         await member.roles.remove(roles);
         await member.roles.add(muted);
 
-        member.send(message.translate("moderation/mute:MUTED_DM", {
+        /*member.send(message.translate("moderation/mute:MUTED_DM", {
             username: member.user.username,
             server: message.guild.name,
             moderator: message.author.tag,
             time,
             reason
-        }));
+        }));*/
 
         message.success("moderation/mute:MUTED", {
             username: member.user.tag,
