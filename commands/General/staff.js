@@ -9,7 +9,7 @@ class Staff extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["stafflist"],
+            aliases: [ "stafflist" ],
             memberPermissions: [],
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             nsfw: false,
@@ -27,9 +27,9 @@ class Staff extends Command {
                 guild: message.guild.name
             }))
             .setDescription([message.translate("general/staff:ADMINS") + "\n" + (administrators.size > 0 ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${a.user.tag}`)
-                    .join("\n") : message.translate("general/staff:NO_ADMINS")),
+                    .join("\n") + "\n" : message.translate("general/staff:NO_ADMINS") + "\n"),
                 message.translate("general/staff:MODS") + "\n" + (moderators.size > 0 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${m.user.tag}`)
-                    .join("\n") : message.translate("general/staff:NO_MODS"))
+                    .join("\n") : message.translate("general/staff:NO_MODS") + "\n")
             ])
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer);
