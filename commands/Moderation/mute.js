@@ -74,7 +74,6 @@ class Mute extends Command {
             muted = await muted;
             message.guild.channels.cache.forEach((channel) => {
                 channel.updateOverwrite(muted.id, {
-                        VIEW_CHANNEL: true,
                         SEND_MESSAGES: false,
                         ADD_REACTIONS: false,
                         CONNECT: false
