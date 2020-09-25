@@ -244,5 +244,19 @@
                 ]
             }
         ]
+    },
+    {
+        "messageID": "759027764392230992",
+        "channelID": "758516347113046046",
+        "limit": true,
+        "restrictions": null,
+        "reactions": [
+            {
+                "emoji": "sianjing:733116154113163285",
+                "roles": [
+                    "758930005244772352"
+                ]
+            }
+        ]
     }
 ]
