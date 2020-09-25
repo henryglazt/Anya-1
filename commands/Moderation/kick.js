@@ -47,7 +47,7 @@ class Kick extends Command {
 			return message.error("moderation/kick:MISSING_PERM");
 		}
 
-		if(reason !== message.translate("misc:NO_REASON_PROVIDED")){
+		if (reason !== message.translate("misc:NO_REASON_PROVIDED")) {
 		await member.send(message.translate("moderation/kick:KICKED_DM", {
 			username: member.user.tag,
 			server: message.guild.name,
