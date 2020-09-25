@@ -57,7 +57,7 @@ class Ban extends Command {
 			}
 		}
 
-		if(reason !== message.translate("misc:NO_REASON_PROVIDED"){
+		if (reason !== message.translate("misc:NO_REASON_PROVIDED")) {
 		await user.send(message.translate("moderation/ban:BANNED_DM", {
 			username: user.tag,
 			server: message.guild.name,
