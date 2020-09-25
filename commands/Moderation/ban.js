@@ -56,13 +56,15 @@ class Ban extends Command {
 				return message.error("moderation/ban:MISSING_PERM");
 			}
 		}
-        
+
+		if(reason !== message.translate("misc:NO_REASON_PROVIDED"){
 		await user.send(message.translate("moderation/ban:BANNED_DM", {
 			username: user.tag,
 			server: message.guild.name,
 			moderation: message.author.tag,
 			reason
 		})).catch(() => {});
+		}
 
 		// Ban the user
 		message.guild.members.ban(user, { reason } ).then(() => {
