@@ -42,6 +42,7 @@ class Mute extends Command {
         });
         if (memberData.mute.muted) {
             return message.error("moderation/mute:ALREADY_MUTED", {
+                user: member,
                 time: memberData.sanctions.time,
                 reason: memberData.sanctions.reason
             });
@@ -64,7 +65,7 @@ class Mute extends Command {
         roles = await member.roles.cache.map((r) => r.id)
         muted = await message.guild.roles.cache.find((r) => r.name === "Anya Mute")
         if (!muted) {
-            message.sendT("moderation/mute:NO_MUTE_ROLE");
+            message.sendT("moderation/mute:NO_MUTE_ROLE").then(m => {m.delete({timeout: 3000})});
             muted = await message.guild.roles.create({
                 data: {
                     name: "Anya Mute"
