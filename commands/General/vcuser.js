@@ -20,17 +20,23 @@ class Vcuser extends Command {
 
 	async run (message, args, data) {
 
-    const voiceChannels = message.guild.channels.cache.filter(c => c.type === 'voice');
+    const voiceChannels = message.guild.channels.cache.filter(c => c.type === "voice");
     let count = 0;
+    let user = 0;
+    let bot = 0;
   
     for (const [id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
+    for (const [id, voiceChannel] of voiceChannels) user += voiceChannel.members.filter(m => !m.user.bot).size;
+    for (const [id, voiceChannel] of voiceChannels) bot += voiceChannel.members.filter(m => m.user.bot).size;
 
     const vcmbd = new Discord.MessageEmbed()
     .setColor(data.config.embed.color)
-    .addField(`Total member in voice channels:`, `<a:giphy_3:744676992141623399> ${count}`)
-    .setFooter(this.client.user.username)
+    .setAuthor(message.guild.name + "Members in voice channels")
+    .addField("User:", `<a:giphy_3:744676992141623399> ${user}`)
+    .addField("Bot:", `<a:giphy_3:744676992141623399> ${bot}`)
+    .addField("Total:", `<a:giphy_3:744676992141623399> ${count}`)
+    .setFooter(data.config.embed.footer)
     message.channel.send(vcmbd);
    }
 }
-
 module.exports = Vcuser;
