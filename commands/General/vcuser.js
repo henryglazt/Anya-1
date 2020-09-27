@@ -31,7 +31,7 @@ class Vcuser extends Command {
 
     const vcmbd = new Discord.MessageEmbed()
     .setColor(data.config.embed.color)
-    .setAuthor(message.guild.name + "Members in voice channels")
+    .setAuthor(message.guild.name + " Members in voice channels")
     .addField("User:", `<a:giphy_3:744676992141623399> ${user}`)
     .addField("Bot:", `<a:giphy_3:744676992141623399> ${bot}`)
     .addField("Total:", `<a:giphy_3:744676992141623399> ${count}`)
