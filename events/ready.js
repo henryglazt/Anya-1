@@ -102,8 +102,8 @@ module.exports = class {
             array.push(`${key}${" ".repeat(20 - key.length)}::   ${value}`);
         });
 
-        let guild = client.guilds.cache.get("736362962566250508");
-        let channel = guild.channels.cache.get("736362963006390284");
+        let guild = client.guilds.cache.get("718691607888789547");
+        let channel = guild.channels.cache.get("719472387485335572");
 
         var job = new CronJob(
             "0 * * * * *",
