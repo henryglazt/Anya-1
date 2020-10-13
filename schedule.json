@@ -1,9 +1,9 @@
 {
-  "timezone": "America/Los_Angeles",
+  "timezone": "Indonesia/Jakarta",
   "rules": [
     {
       "channelIds": [
-        "258167954913361930"
+        "738826287124185088"
       ],
       "sendPolicy": "all",
       "cronExpression": "0 0 0/1 ? * * *",
