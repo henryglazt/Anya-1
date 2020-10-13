@@ -1,8 +1,9 @@
+const CronJob = require("cron").CronJob;
+
 module.exports = class {
 
-    constructor(client, rule) {
+    constructor(client) {
         this.client = client;
-        this.rule = rule;
     }
 
     async run() {
@@ -53,7 +54,68 @@ module.exports = class {
             });
             if (status[parseInt(i + 1, 10)]) i++;
             else i = 0;
-        }, 20000); // Every 20 seconds
+        }, 20000);
+
+        const cmds = {
+            "Groovy 1": "-play",
+            "Groovy 2": "--play",
+            "Groovy 3": "---play",
+            "Rythm 1": "rplay",
+            "Rythm 2": "rrplay",
+            "Rythm 3": "rrrplay",
+            "Jockie 1": "j.play",
+            "Jockie 2": "j.play",
+            "Jockie 3": "j.play",
+            "Jockie 4": "j.play",
+            "GSMusic1": "gs1.play",
+            "GSMusic2": "gs2.play",
+            "GSMusic3": "gs3.play",
+            "GSMusic4": "gs4.play",
+            "Anya": "??play",
+            "Awkarin": "aw.play",
+            "Octave 1": "o.play",
+            "Octave 2": "oc.play",
+            "Unbelievaboat": "un.play",
+            "MEE6": "!meplay",
+            "Pancake": "p!play",
+            "Tony": "%play",
+            "Bongo": "b.play",
+            "Probot": "p.play",
+            "Chip": "ch!play",
+            "Fredboat": ";;play",
+            "Mantaro": "~>play",
+            "ESG Play": "=play",
+            "ZeroDay": "!!play",
+            "Momo": "//play",
+            "Izumi": "iz.play",
+            "Candy": "ca!play",
+            "Cassette": "c!play",
+            "Icarus": "ic!play",
+            "Ear": "earplay",
+            "Purity": "pur!",
+            "Botify": "bo.play",
+            "Manuvera": "÷play"
+        }
+
+        const array = [];
+        Object.entries(cmds).forEach(([key, value]) => {
+            array.push(`${key}${" ".repeat(20 - key.length)}::   ${value}`);
+        });
+
+        let guild = client.guilds.cache.get("736362962566250508");
+        let channel = guild.channels.cache.get("736362963006390284");
+
+        var job = new CronJob(
+            "0 * * * * *",
+            function () {
+                channel.send(`= GANG SEBELAH MUSIC BOTS COMMANDS =\n\n${array.join("\n")}`, {
+                    code: "asciidoc"
+                });
+            },
+            null,
+            true,
+            "Asia/Jakarta"
+        );
 
     }
 };
