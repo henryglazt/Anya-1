@@ -106,7 +106,7 @@ module.exports = class {
         let channel = guild.channels.cache.get("719472387485335572");
 
         var job = new CronJob(
-            "0 * * * * *",
+            "0 0 * * * *",
             function () {
                 channel.send(`= GANG SEBELAH MUSIC BOTS COMMANDS =\n\n${array.join("\n")}`, {
                     code: "asciidoc"
