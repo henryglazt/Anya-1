@@ -10,10 +10,16 @@ module.exports = class {
 
 		const data = {};
 
-		// If the messagr author is a bot
 		if(message.author.bot){
 			return;
 		}
+
+let scheduledMessage = new cron.CronJob('0/5 0 0 ? * * *', () => {
+  let schch = message.guild.channels.get('id');
+  schch.send('Test');
+});
+
+scheduledMessage.start()
 
 		const gid = "718691607888789547";
 		const trg = message.content.toLowerCase();
