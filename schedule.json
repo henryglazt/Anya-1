@@ -1,0 +1,14 @@
+{
+  "timezone": "America/Los_Angeles",
+  "rules": [
+    {
+      "channelIds": [
+        "258167954913361930"
+      ],
+      "sendPolicy": "all",
+      "cronExpression": "0 0 0/1 ? * * *",
+      "content": "TEST",
+      "embeds": []
+    }
+  ]
+}
