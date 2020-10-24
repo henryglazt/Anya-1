@@ -23,20 +23,20 @@ class Vclimit extends Command {
 
         const limit = args[0];
 
-        if (!message.member.voice.channel) return message.sendT("You're not in voice channel.")
+        if (!message.member.voice.channel) return message.error("voice/main:ERROR")
             .then(m => {
                 m.delete({
                     timeout: 5000
                 })
             });
-        if (isNaN(args[0]) || !args[0] || args[0] > 99) return message.sendT("Please provide a valid number between 1 and 99 to limit your voice channel or 0 to unlimit")
+        if (isNaN(args[0]) || !args[0] || args[0] > 99) return message.error("voice/main:ENUM")
             .then(m => {
                 m.delete({
                     timeout: 5000
                 })
             });
         message.member.voice.channel.setUserLimit(limit);
-        message.reply("Done!")
+        message.success("voice/main:SUCCESS")
             .then(m => {
                 m.delete({
                     timeout: 5000
