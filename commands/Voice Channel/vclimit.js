@@ -45,6 +45,4 @@ class Vclimit extends Command {
     }
 }
 
-}
-
 module.exports = Vclimit;
