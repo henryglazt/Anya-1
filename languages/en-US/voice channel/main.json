@@ -1,1 +1,6 @@
-a
+{
+    "SUCCESS": "Done!",
+    "ERROR": "You're not in the voice channel.",
+    "ENUM": "Please provide a valid number between 1 and 99 to limit your voice channel or 0 to unlimit!",
+    "ENAME": "Please provide a new channel name!"
+}
