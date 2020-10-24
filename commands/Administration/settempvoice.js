@@ -19,6 +19,7 @@ class Settempvoice extends Command {
 
     async run(message, args, data) {
 
+        if (!message.member.voice.channel) return message.error("administration/settempvoice:ERROR");
         const options = {
             childCategory: message.member.voice.channel.parentID,
             childAutoDelete: true,
@@ -32,7 +33,7 @@ class Settempvoice extends Command {
             options: options
         };
         data.guild.save();
-        message.success("administration/settmpvc:SUCCESS");
+        message.success("administration/settempvoice:SUCCESS");
     }
 }
 
