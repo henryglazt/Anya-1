@@ -25,7 +25,7 @@ class Settempvoice extends Command {
             childAutoDelete: true,
             childAutoDeleteIfOwnerLeaves: false,
             childBitrate: 8000,
-            childFormat: (member) => `${member.user.username}`
+            childFormat: (member) => `${member.nickname}`
         };
         this.client.tempChannels.registerChannel(message.member.voice.channel.id, options);
         data.guild.tmpch = {
