@@ -45,6 +45,4 @@ class Vcname extends Command {
     }
 }
 
-}
-
 module.exports = Vcname;
