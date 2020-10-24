@@ -1,0 +1,7 @@
+{
+    "DESCRIPTION": "Set a main temp voice channel!",
+    "USAGE": "{{prefix}}settempvoice",
+    "EXAMPLES": "{{prefix}}settempvoice",
+    "SUCCESS": "Your voice channel is now main voice channel",
+    "ERROR": "You must be in a voice channel!"
+}
