@@ -1,5 +1,0 @@
-{
-    "DESCRIPTION": "Change your voice channel user limit",
-    "USAGE": "{{prefix}}vclimit [number]",
-    "EXAMPLES": "{{prefix}}vclimit 3"
-}
