@@ -1,6 +1,7 @@
 const Distube = require("distube");
 const { Client, Collection } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
+const { ReactionRoleManager } = require("discord.js-collector");
 const TempChannels = require("discord-temp-channels");
 const ReactionRole = require("reaction-role");
 const util = require("util"),
@@ -41,6 +42,11 @@ class NuruAruvi extends Client {
 
 		this.databaseCache.usersReminds = new Collection(); // members with active reminds
 		this.databaseCache.mutedUsers = new Collection(); // members who are currently muted
+
+		this.reactionRoleManager = new ReactionRoleManager(this, {
+			storage: true, // Enable reaction role store in a Json file
+			mongoDbLink: this.config.mongoDB // See here to see how setup mongoose: https://github.com/IDjinn/Discord.js-Collector/tree/dev/examples/reaction-role-manager/Note.md
+		});
 
 		this.distube = new Distube(this, {
 			searchSongs: true,
