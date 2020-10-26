@@ -10,7 +10,7 @@ class Vcuser extends Command {
 			enabled: true,
 			guildOnly: true,
 			aliases: [],
-			memberPermissions: [],
+			memberPermissions: [ "MANAGE_MESSAGES" ],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
 			ownerOnly: false,
