@@ -1,7 +1,6 @@
 const Distube = require("distube");
 const { Client, Collection } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
-const TempChannels = require("discord-temp-channels");
 const ReactionRole = require("reaction-role");
 const util = require("util"),
 	path = require("path"),
@@ -46,8 +45,6 @@ class NuruAruvi extends Client {
 			searchSongs: true,
 			emitNewSongOnly: true
 		});
-
-		this.tempChannels = new TempChannels(this);
 
 		this.system = new ReactionRole(process.env.TOKEN, this.config.mongoDB);
     
