@@ -1,4 +1,5 @@
 const Command = require("../../base/Command.js");
+const db = require("quick.db");
 
 class Settempvoice extends Command {
 
@@ -28,11 +29,10 @@ class Settempvoice extends Command {
             childFormat: (member) => `${member.nickname ? member.nickname : member.user.username}`
         };
         this.client.tempChannels.registerChannel(message.member.voice.channel.id, options);
-        data.guild.tmpch = {
+        db.push("temp-channels", {
             channelID: message.member.voice.channel.id,
             options: options
-        };
-        data.guild.save();
+        });
         message.success("administration/settempvoice:SUCCESS");
     }
 }
