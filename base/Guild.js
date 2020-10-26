@@ -58,16 +58,6 @@ module.exports = mongoose.model("Guild", new Schema({
 		users: [],
 		channels: []
 	}},
-	tmpch: { type: Object, default: {
-	channelID: null,
-	options: {
-		childCategory: (message) => message.member.voice.channel.parentID,
-		childAutoDelete: true,
-		childAutoDeleteIfOwnerLeaves: false,
-		childBitrate: 8000,
-		childFormat: (member) => `${member.nickname ? member.nickname : member.user.username}`
-		}
-	}},
 	casesCount: { type: Number, default: 0 },
 	welcomeImage: { type: Array, default: [] },
 	goodbyeImage: { type: Array, default: [] },
