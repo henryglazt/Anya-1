@@ -61,11 +61,11 @@ module.exports = mongoose.model("Guild", new Schema({
 	tmpch: { type: Object, default: {
 	channelID: null,
 	options: {
-		childCategory: null,
+		childCategory: (message) => message.member.voice.channel.parentID,
 		childAutoDelete: true,
 		childAutoDeleteIfOwnerLeaves: false,
 		childBitrate: 8000,
-		childFormat: (member) => `${member.user.username}`
+		childFormat: (member) => `${member.nickname ? member.nickname : member.user.username}`
 		}
 	}},
 	casesCount: { type: Number, default: 0 },
