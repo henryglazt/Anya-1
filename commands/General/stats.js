@@ -52,15 +52,6 @@ class Stats extends Command {
   				`> **Heap Used:** \`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\``,
 				`\u200b`
 				])
-			/*.addField(this.client.customEmojis.stats+" "+message.translate("general/stats:COUNTS_TITLE"), message.translate("general/stats:COUNTS_CONTENT", {
-				servers: this.client.guilds.cache.size,
-				users: this.client.users.cache.size
-			}), true)
-			.addField(this.client.customEmojis.version+" "+message.translate("general/stats:VERSIONS_TITLE"), `\`Discord.js : v${Discord.version}\`\n\`Nodejs : v${process.versions.node}\``, true)
-			.addField(this.client.customEmojis.ram+" "+message.translate("general/stats:RAM_TITLE"), `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\``, true)
-			.addField(this.client.customEmojis.status.online+" "+message.translate("general/stats:ONLINE_TITLE"), message.translate("general/stats:ONLINE_CONTENT", {
-				time: message.convertTime(Date.now()+this.client.uptime, "from", true)
-			}))*/
 
 			.addField(this.client.customEmojis.link+" "+message.translate("general/stats:LINKS_TITLE"), message.translate("misc:STATS_FOOTER", {
 			inviteLink: await this.client.generateInvite("ADMINISTRATOR"),
@@ -68,9 +59,7 @@ class Stats extends Command {
 		})
 		);
 		message.channel.send(statsEmbed);
-
 	}
-
 }
 
 module.exports = Stats;
