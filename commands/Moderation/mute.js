@@ -30,7 +30,7 @@ class Mute extends Command {
             return message.error("moderation/ban:YOURSELF");
         }
 
-        const botPosition = message.guild.roles.cache.find((r) => r.name === "Anya Geraldine").highest.position;
+        const botPosition = message.guild.roles.cache.find((r) => r.name.toLowerCase() === "anya geraldine").highest.position;
         const memberPosition = member.roles.highest.position;
         const moderationPosition = message.member.roles.highest.position;
         if (message.member.ownerID !== message.author.id && !(moderationPosition > memberPosition)) {
@@ -67,7 +67,7 @@ class Mute extends Command {
         let muted;
 
         roles = await member.roles.cache.filter((r) => r.managed !== true).map((r) => r.id)
-        muted = await message.guild.roles.cache.find((r) => r.name === "MUTED")
+        muted = await message.guild.roles.cache.find((r) => r.name.toLowerCase() === "muted")
         if (!muted) {
             message.sendT("moderation/mute:NO_MUTE_ROLE").then(m => {m.delete({timeout: 3000})});
             muted = await message.guild.roles.create({
