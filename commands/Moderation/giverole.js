@@ -20,17 +20,17 @@ class Giverole extends Command {
 
 	async run (message, args, data) {
 
-  if (!args[0]) return message.channel.send("<a:ano:744384493376503869> | Please specify the user and the role!").then(
+  if (!args[0]) return message.error("Please specify the user and the role!").then(
     msg => {msg.delete({timeout: 10000})
            });
-  if (!args.slice(1).join(" ")) return message.channel.send("<a:ano:744384493376503869> | Please specify the role!").then(
+  if (!args.slice(1).join(" ")) return message.error("Please specify the role!").then(
     msg => {msg.delete({timeout: 10000})
            });
   try {
   let member = message.mentions.members.first() || await message.guild.members.fetch({user: args[0], force: true});
   let role = message.guild.roles.cache.find((r) => r.name.toLowerCase() === args.slice(1).join(" ").toLowerCase()) || 
              message.guild.roles.cache.find((r) => r.id === args[1]) || message.mentions.roles.last();
-  if (!role) return message.channel.send("<a:ano:744384493376503869> | I couldn't find that role!").then(
+  if (!role) return message.error("I couldn't find that role!").then(
     msg => {msg.delete({timeout: 10000})
            });
   
@@ -45,10 +45,10 @@ class Giverole extends Command {
       embed.setDescription(`<a:ayes:744384533931098184> ${role} role is added to ${member.user}`);
     await member.roles.add(role.id)
     .then(() => message.channel.send(embed))
-    .catch(err => message.error(`<a:ano:744384493376503869> | Something went wrong... ${err} or Probably the ${role.name} role is higher than my role.`));
+    .catch(err => message.error(`Something went wrong... ${err} or Probably the ${role.name} role is higher than my role.`));
   }
   } catch(e) {
-    return message.error(`<a:ano:744384493376503869> | Something went wrong... ${e}.`);
+    return message.error(`Something went wrong... ${e}.`);
   }
 }
 }
