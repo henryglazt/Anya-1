@@ -204,6 +204,9 @@ const init = async() => {
             })
         })
 
+    client.system.importConfig(require("./rr.json"));
+    client.system.init();
+
     client.login(process.env.TOKEN);
 
     mongoose.connect(client.config.mongoDB, {

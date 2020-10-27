@@ -21,7 +21,7 @@ class Unmute extends Command {
 
 		const member = await this.client.resolveMember(args[0], message.guild);
 		if(!member){
-			return message.success("moderation/unmute:MISSING_MEMBER");
+			return message.error("moderation/unmute:MISSING_MEMBER");
 		}
 
 		const memberPosition = member.roles.highest.position;

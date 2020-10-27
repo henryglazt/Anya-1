@@ -10,9 +10,29 @@ module.exports = class {
 
 		const data = {};
 
-		// If the messagr author is a bot
 		if(message.author.bot){
 			return;
+		}
+
+		const gid = "718691607888789547";
+		const trg = message.content.toLowerCase();
+
+		const ar = [
+			"welkam",
+			"welcome"
+		];
+
+		if (trg === ar[0]) {
+			if (message.guild.id !== gid) return;
+			message.channel.send(
+			"<a:welcomeimage_1:727887823537176638><a:welcomeimage_2:727887823268610089>"
+			);
+		}
+		if (trg === ar[1]) {
+			if (message.guild.id !== gid) return;
+			message.channel.send(
+			"<a:wlcm1:741733944130797608><a:wlcm2:741734096710926357>"
+			);
 		}
 
 		// If the member on a guild is invisible or not cached, fetch them.

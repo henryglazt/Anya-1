@@ -27,7 +27,8 @@ module.exports = mongoose.model("Member", new mongoose.Schema({
 	mute: { type: Object, default: { // The member mute infos
 		muted: false,
 		case: null,
-		endDate: null
+		endDate: null,
+		roles: []
 	}},
     
 }));

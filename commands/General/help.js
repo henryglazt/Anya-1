@@ -121,7 +121,7 @@ class Help extends Command {
 		}
         
 		embed.addField("\u200B", message.translate("misc:STATS_FOOTER", {
-			inviteLink: await this.client.generateInvite("ADMINISTRATOR"),
+			inviteLink: await this.client.generateInvite({permissions: "ADMINISTRATOR"}),
 			supportLink: "https://discord.gg/gangsebelah"
 		}));
 		embed.setAuthor(message.translate("general/help:TITLE", {
