@@ -21,6 +21,7 @@ class Mute extends Command {
 
     async run(message, args, data) {
 
+        try {
         const member = await this.client.resolveMember(args[0], message.guild);
         if (!member) {
             return message.error("moderation/mute:MISSING_MEMBER");
@@ -30,13 +31,9 @@ class Mute extends Command {
             return message.error("moderation/ban:YOURSELF");
         }
 
-        const botPosition = message.guild.roles.cache.find((r) => r.name.toLowerCase() === "anya geraldine").highest.position;
         const memberPosition = member.roles.highest.position;
         const moderationPosition = message.member.roles.highest.position;
         if (message.member.ownerID !== message.author.id && !(moderationPosition > memberPosition)) {
-            return message.error("moderation/ban:SUPERIOR");
-        }
-        if (message.member.ownerID !== message.author.id && !(memberPosition > botPosition)) {
             return message.error("moderation/ban:SUPERIOR");
         }
 
@@ -149,8 +146,10 @@ class Mute extends Command {
             channel.send(embed);
         }
 
+    } catch(e) {
+      message.error(`Something went wrong.... ${e}.`);
     }
-
+  }
 }
 
 module.exports = Mute;
