@@ -1,6 +1,6 @@
 
 {
     "DESCRIPTION": "Give a role to member.",
-    "USAGE": "{{prefix}}takerole (@member) [role_id/role_name/@role]",
-    "EXAMPLES": "{{prefix}}takerole @DooM™#9139 myrole"
+    "USAGE": "{{prefix}}giverole (@member) [role_id/role_name/@role]",
+    "EXAMPLES": "{{prefix}}giverole @DooM™#9139 myrole"
 }
