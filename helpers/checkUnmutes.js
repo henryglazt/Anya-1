@@ -39,7 +39,7 @@ module.exports = {
                         id: guild.id
                     });
                     let roles = await memberData.mute.roles;
-                    let muted = await member.roles.cache;
+                    let muted = await member.roles.cache.filter((r) => r.managed !== true);
                     guild.data = guildData;
                     if (member) {
                         await member.roles.remove(muted);
