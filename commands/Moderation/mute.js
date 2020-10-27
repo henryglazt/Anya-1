@@ -62,8 +62,8 @@ class Mute extends Command {
         let roles;
         let muted;
 
-        roles = await member.roles.cache.map((r) => r.id)
-        muted = await message.guild.roles.cache.find((r) => r.name === "MUTED")
+        roles = await member.roles.cache.filter((r) => r.managed !== true).map((r) => r.id);
+        muted = await message.guild.roles.cache.find((r) => r.name === "MUTED");
         if (!muted) {
             message.sendT("moderation/mute:NO_MUTE_ROLE").then(m => {m.delete({timeout: 3000})});
             muted = await message.guild.roles.create({
