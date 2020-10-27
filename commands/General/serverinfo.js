@@ -31,8 +31,8 @@ class Serverinfo extends Command {
 			}
 		}
 
-		guild = await guild.fetch();
-		member = await guild.members.fetch();
+		guild = guild.fetch();
+		member = guild.members.fetch();
 
   const features = {"ANIMATED_ICON": "Animated Icon",
                     "BANNER": "Banner",
