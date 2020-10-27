@@ -28,6 +28,7 @@ class Lovecalc extends Command {
 				.filter(m => m.id !== firstMember.id)
 				.filter(m => m.id !== message.author.id)
 				.first() || message.member;
+
 		if (!secondMember)
 			return message.error("fun/lovecalc:MISSING");
 
@@ -47,7 +48,7 @@ class Lovecalc extends Command {
 		const embed = new Discord.MessageEmbed()
 			.setAuthor("❤️ LoveCalc")
 			.setDescription(
-				message.translate("fun/lovecalc:CONTENT", {
+				message.translate("fun/lovecalcTENT", {
 					percent,
 					firstUsername: firstMember.user.username,
 					secondUsername: secondMember.user.username

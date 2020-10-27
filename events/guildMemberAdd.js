@@ -9,7 +9,7 @@ const applyText = (canvas, text, defaultFontSize) => {
 	const ctx = canvas.getContext("2d");
 	do {
 		ctx.font = `${defaultFontSize -= 10}px Bold`;
-	} while (ctx.measureText(text).width > 350);
+	} while (ctx.measureText(text).width > 315);
 	return ctx.font;
 };
 
