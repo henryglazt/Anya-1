@@ -7,9 +7,7 @@ Canvas.registerFont(resolve("./assets/fonts/SketchMatch.ttf"), { family: "Sketch
 
 const applyText = (canvas, text, defaultFontSize) => {
 	const ctx = canvas.getContext("2d");
-	do {
-		ctx.font = `${defaultFontSize -= 10}px Bold`;
-
+	do {ctx.font = `${defaultFontSize -= 10}px Bold`;
 	} while (ctx.measureText(text).width > 350);
 	return ctx.font;
 };
