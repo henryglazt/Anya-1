@@ -30,7 +30,7 @@ class Mute extends Command {
             return message.error("moderation/ban:YOURSELF");
         }
 
-        const botPosition = member.guild.me.roles.highest.position;
+        const botPosition = message.guild.roles.cache.find((r) => r.name === "Anya Geraldine").highest.position;
         const memberPosition = member.roles.highest.position;
         const moderationPosition = message.member.roles.highest.position;
         if (message.member.ownerID !== message.author.id && !(moderationPosition > memberPosition)) {
