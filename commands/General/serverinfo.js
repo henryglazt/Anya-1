@@ -50,7 +50,7 @@ class Serverinfo extends Command {
   
   const feature = guild.features;
   
-  message.guild.members.fetch().then(fetchedMembers => {
+  guild.members.fetch().then(fetchedMembers => {
     const totalOnline = fetchedMembers.filter(member => member.presence.status === 'online').size;
     const totalIdle = fetchedMembers.filter(member => member.presence.status === 'idle').size;
     const totalDND = fetchedMembers.filter(member => member.presence.status === 'dnd').size;
