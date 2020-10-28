@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+        Resolvers = require("../../helpers/resolvers");
 
 class Inrole extends Command {
 
@@ -9,9 +10,9 @@ class Inrole extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["irole"],
+            aliases: [ "ir" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 3000
