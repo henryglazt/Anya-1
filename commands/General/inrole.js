@@ -30,11 +30,11 @@ class Inrole extends Command {
         if (!args.slice()
             .length >= 1) return message.error("general/inrole:NO_ARGS");
 
-        const role = message.guild.roles.cache.find((r) => r.name.toLowerCase() === args.slice()
-                .join(' ')
-                .toLowerCase()) ||
-            message.guild.roles.cache.find((r) => r.id === args.slice()
-                .join(' ')) || message.mentions.roles.first();
+        const role = await Resolvers.resolveRole({
+            message,
+            search: args.slice().join(" ");
+        });
+
         if (!role) return message.error("general/inrole:NOT_FOUND")
             .then(
                 msg => {
