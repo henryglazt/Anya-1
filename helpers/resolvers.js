@@ -17,11 +17,11 @@ const resolveChannel = async ({ message, search, channelType }) => {
 	// Try with name with #
 	if (
 		message.guild.channels.cache.some(
-			channel => `#${channel.name}` === search || channel.name === search
+			channel => `#${channel.name}` === search || channel.name.toLowerCase() === search.toLowerCase()
 		)
 	) {
 		const channelFound = message.guild.channels.cache.find(
-			channel => `#${channel.name}` === search || channel.name === search
+			channel => `#${channel.name}` === search || channel.name.toLowerCase() === search.toLowerCase()
 		);
 		if (channelFound && channelType && channelFound.type === channelType)
 			return channelFound;
@@ -51,11 +51,11 @@ const resolveMember = async ({ message, search, useMessageContent = true }) => {
 	});
 	if (
 		message.guild.members.cache.some(
-			member => member.user.tag === search || member.user.username === search
+			member => member.user.tag === search || member.user.username.toLowerCase() === search.toLowerCase()
 		)
 	) {
 		const memberFound = message.guild.members.cache.find(
-			member => member.user.tag === search || member.user.username === search
+			member => member.user.tag === search || member.user.username.toLowerCase() === search.toLowerCase()
 		);
 		if (memberFound)
 			return memberFound;
@@ -82,11 +82,11 @@ const resolveRole = async ({ message, search }) => {
 	// Try with name with @
 	if (
 		message.guild.roles.cache.some(
-			role => `@${role.name}` === search || role.name === search
+			role => `@${role.name}` === search || role.name.toLowerCase() === search.toLowerCase()
 		)
 	) {
 		const roleFound = message.guild.roles.cache.find(
-			role => `@${role.name}` === search || role.name === search
+			role => `@${role.name}` === search || role.name.toLowerCase() === search.toLowerCase()
 		);
 		if (roleFound)
 			return roleFound;
