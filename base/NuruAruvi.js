@@ -1,6 +1,7 @@
 const Distube = require("distube");
 const { Client, Collection } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
+const { ReactionRoleManager } = require("discord.js-collector");
 const ReactionRole = require("reaction-role");
 const util = require("util"),
 	path = require("path"),
@@ -40,6 +41,11 @@ class NuruAruvi extends Client {
 
 		this.databaseCache.usersReminds = new Collection(); // members with active reminds
 		this.databaseCache.mutedUsers = new Collection(); // members who are currently muted
+
+		this.reactionRoleManager = new ReactionRoleManager(this, {
+			storage: true,
+			mongoDbLink: this.config.mongoDB
+		});
 
 		this.distube = new Distube(this, {
 			searchSongs: true,
