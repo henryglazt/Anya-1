@@ -38,7 +38,7 @@ class Play extends Command {
             embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
             return message.channel.send(embed);
         }
-        try {
+        /*try {
             voice.join()
                 .then(connection => {
                     connection.voice.setSelfDeaf(true)
@@ -46,7 +46,41 @@ class Play extends Command {
             this.client.distube.play(message, string);
         } catch (e) {
             message.error(`Error: \`${e}\``)
-        }
+        }*/
+      const client = this.client;
+      
+      const res = await client.manager.search(
+      args,
+      message.author
+    );
+
+    // Create a new player. This will return the player if it already exists.
+    const player = client.manager.create({
+      guild: message.guild.id,
+      voiceChannel: message.member.voice.channel.id,
+      textChannel: message.channel.id,
+    });
+
+    // Connect to the voice channel.
+    player.connect();
+
+    // Adds the first track to the queue.
+    player.queue.add(res.tracks[0]);
+    message.channel.send(`Enqueuing track ${res.tracks[0].title}.`);
+
+    // Plays the player (plays the first track in the queue).
+    // The if statement is needed else it will play the current track again
+    if (!player.playing && !player.paused && !player.queue.length)
+      player.play();
+
+    // For playlists you'll have to use slightly different if statement
+    if (
+      !player.playing &&
+      !player.paused &&
+      player.queue.size === res.tracks.length
+    )
+      player.play();
+      
     }
 }
 module.exports = Play;
