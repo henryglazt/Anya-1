@@ -1,4 +1,3 @@
-const Distube = require("distube");
 const { Client, Collection } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
 const { ReactionRoleManager } = require("discord.js-collector");
@@ -47,12 +46,7 @@ class NuruAruvi extends Client {
 			mongoDbLink: this.config.mongoDB
 		});
 
-		this.distube = new Distube(this, {
-			searchSongs: true,
-			emitNewSongOnly: true
-		});
-
-		this.system = new ReactionRole(process.env.TOKEN, this.config.mongoDB);
+		this.system = new ReactionRole(this.config.token, this.config.mongoDB);
     
 		this.giveawaysManager = new GiveawaysManager(this, {
 			storage: "./giveaways.json",
