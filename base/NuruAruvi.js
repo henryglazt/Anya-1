@@ -41,12 +41,12 @@ class NuruAruvi extends Client {
 		this.databaseCache.usersReminds = new Collection(); // members with active reminds
 		this.databaseCache.mutedUsers = new Collection(); // members who are currently muted
 
-		this.reactionRoleManager = new ReactionRoleManager(this, {
+		/*this.reactionRoleManager = new ReactionRoleManager(this, {
 			storage: true,
 			mongoDbLink: this.config.mongoDB
-		});
+		});*/
 
-		this.system = new ReactionRole(process.env.TOKEN, this.config.mongoDB);
+		//this.system = new ReactionRole(process.env.TOKEN, this.config.mongoDB);
     
 		this.giveawaysManager = new GiveawaysManager(this, {
 			storage: "./giveaways.json",
