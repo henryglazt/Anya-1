@@ -10,6 +10,8 @@ module.exports = class {
 
         const client = this.client;
 
+        client.manager.init(client.user.id);
+
         // Logs some informations using the logger file
         client.logger.log(`Loading a total of ${client.commands.size} command(s).`, "log");
         client.logger.log(`${client.user.tag}, ready to serve ${client.users.cache.size} users in ${client.guilds.cache.size} servers.`, "ready");
