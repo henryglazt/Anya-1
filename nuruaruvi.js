@@ -107,7 +107,7 @@ const init = async() => {
 
     client.system.init()
 
-    client.login(client.login.token);
+    client.login(client.config.token);
 
     mongoose.connect(client.config.mongoDB, {
             useNewUrlParser: true,
