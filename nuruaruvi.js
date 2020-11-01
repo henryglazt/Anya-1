@@ -13,9 +13,69 @@ if (config.apiKeys.sentryDSN) {
     });
 }
 
-const Discord = require("discord.js");
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
+const Discord = require("discord.js");
+const { Manager } = require("erela.js");
+const Spotify = require("erela.js-spotify"),
+    clientID = client.config.spotify.id,
+    clientSecret = client.config.spotify.secret;
+
+require("./helpers/player")
+const nodes = require("./helpers/nodes")
+client.manager = new Manager({
+        nodes,
+        plugins: [new Spotify({
+                clientID, clientSecret
+            })],
+            autoPlay: true,
+            send: (id, payload) => {
+                const guild = client.guilds.cache.get(id);
+                if (guild) guild.shard.send(payload);
+            }
+    })
+    .on("nodeConnect", () => console.log(`[NODE] - conectado`))
+    .on("nodeError", (node, error) => console.log(`[NODE] - encontrou um erro: ${error.message}.`))
+    .on("trackStart", (player, track) => {
+        const channel = client.channels.cache.get(player.textChannel);
+        let embed = new Discord.MessageEmbed()
+        embed.setDescription(`**some** \`${track.title}\``)
+        embed.setTimestamp()
+        embed.setColor(config.color)
+        embed.setFooter(`some ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
+        channel.send(embed).then(msg => player.set("message", msg));
+    })
+    .on("socketClosed", (player, payload) => {
+        if (payload.byRemote == true) {
+            player.destroy()
+        }
+    })
+    .on("trackEnd", player => {
+        if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
+    })
+    .on("trackStuck", (player, track, payload) => {
+        const channel = client.channels.cache.get(player.textChannel)
+        if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
+        channel.send("error")
+    })
+    .on("trackError", (player, track, payload) => {
+        const channel = client.channels.cache.get(player.textChannel)
+        if (!player.get("message")) {
+            return
+        }
+        if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
+        channel.send("erro")
+    })
+    .on("playerMove", (player, currentChannel, newChannel) => {
+        player.voiceChannel = client.channels.cache.get(newChannel);
+    })
+    .on("queueEnd", player => {
+        const channel = client.channels.cache.get(player.textChannel);
+        channel.send("end");
+        player.destroy()
+    });
+
+client.on("raw", d => client.manager.updateVoiceState(d));
 
 const init = async() => {
 
@@ -43,10 +103,11 @@ const init = async() => {
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 
-    client.system.importConfig(require("./rr.json"));
-    client.system.init();
+    client.system.importConfig(require("./rr.json"))
 
-    client.login(client.config.token);
+    client.system.init()
+
+    client.login(client.login.token);
 
     mongoose.connect(client.config.mongoDB, {
             useNewUrlParser: true,
