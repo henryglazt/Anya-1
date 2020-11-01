@@ -25,8 +25,8 @@ module.exports = {
 	},
 	/* Bot's owner informations */
 	owner: {
-		id: "339612673811415041", // The ID of the bot's owner
-		name: "DooM™#9139" // And the name of the bot's owner
+		id: ["339612673811415041", "622047554359656473"], // The ID of the bot's owner
+		name: ["DooM™#1998", "Dimas#6969"] // And the name of the bot's owner
 	},
 	/* DBL votes webhook (optional) */
 	votes: {
@@ -60,68 +60,6 @@ module.exports = {
 				"en-us",
 				"en_us",
 				"en_US"
-			]
-		},
-		{
-			name: "fr-FR",
-			nativeName: "Français",
-			defaultMomentFormat: "Do MMMM YYYY",
-			moment: "fr",
-			default: false,
-			aliases: [
-				"French",
-				"français",
-				"francais",
-				"fr",
-				"fr_fr"
-			]
-		},
-		{
-			name: "es-ES",
-			nativeName: "Español",
-			defaultMomentFormat: "MMM Do, YYYY",
-			moment: "es",
-			default: false,
-			aliases: [
-				"Spanish",
-				"es",
-				"es_es"
-			]
-		},
-		{
-			name: "it-IT",
-			nativeName: "Italiano",
-			defaultMomentFormat: "Do MMMM YYYY",
-			moment: "it",
-			default: false,
-			aliases: [
-				"Italian",
-				"it",
-				"it_it"
-			]
-		},
-		{
-			name: "nl-NL",
-			nativeName: "Nederlands",
-			defaultMomentFormat: "Do MMMM YYYY",
-			moment: "nl",
-			default: false,
-			aliases: [
-				"Dutch",
-				"nl",
-				"nl_nl"
-			]
-		},
-		{
-			name: "pt-PT",
-			nativeName: "Português",
-			defaultMomentFormat: "Do MMMM YYYY",
-			moment: "pt",
-			default: false,
-			aliases: [
-				"Portuguese",
-				"pt",
-				"pt_pt"
 			]
 		}
 	]
