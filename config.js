@@ -20,8 +20,8 @@ module.exports = {
 		footer: "Anya Geraldine ~ Gang Sebelah © 2020" // And the default footer for the embeds
 	},
 	owner: {
-		id: ["339612673811415041", "622047554359656473"], // The ID of the bot's owner
-		name: ["DooM™#1998", "Dimas#6969"] // And the name of the bot's owner
+		id: "339612673811415041", // The ID of the bot's owner
+		name: "DooM™#1998" // And the name of the bot's owner
 	},
 	votes: {
 		port: 5000, // The port for the server
