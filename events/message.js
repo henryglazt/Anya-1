@@ -139,8 +139,8 @@ module.exports = class {
 
 		}
 
-		const customCommand = data.guild.customCommands.find((c) => c.name === message.content.shift().toLowerCase());
-		if(message.guild && message.content.shift().toLowerCase() === customCommand){
+		const customCommand = data.guild.customCommands.find((c) => c.name === message.content.toLowerCase());
+		if(message.guild && message.content.toLowerCase() === customCommand){
 			message.channel.send(customCommand.answer);
 		}
 
