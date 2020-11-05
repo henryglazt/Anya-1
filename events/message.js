@@ -14,7 +14,7 @@ module.exports = class {
 			return;
 		}
 
-		const gid = "718691607888789547";
+		const gid = "773707418482769982";
 		const trg = message.content.toLowerCase();
 
 		const ar = [
@@ -138,14 +138,6 @@ module.exports = class {
 			});
 
 		}
-const agx = message.content.slice().trim().split(/ +/g);
-const cmx = agx.shift().toLowerCase();
-		if(message.guild){
-			const customCommand = data.guild.customCommands.find((c) => c.name === message.content);
-			if(customCommand){
-				message.channel.send("customCommand.answer");
-			} return;
-		}
 
 		// Gets the prefix
 		const prefix = client.functions.getPrefix(message, data);
@@ -156,6 +148,20 @@ const cmx = agx.shift().toLowerCase();
 		const args = message.content.slice((typeof prefix === "string" ? prefix.length : 0)).trim().split(/ +/g);
 		const command = args.shift().toLowerCase();
 		const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+
+		if(!cmd){
+			if(message.guild){
+				const customCommand = data.guild.customCommands.find((c) => c.name === command);
+				if(customCommand){
+					message.channel.send(customCommand.answer);
+				}
+				return;
+			} else {
+				return message.sendT("misc:HELLO_DM", {
+					username: message.author.username
+				});
+			}
+		}
 
 		if(cmd.conf.guildOnly && !message.guild){
 			return message.error("misc:GUILD_ONLY");
