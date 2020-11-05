@@ -144,7 +144,7 @@ module.exports = class {
 			//if(customCommand){
 				message.channel.send(customCommand.answer);
 				return;
-			}
+			//}
 		}
 
 		// Gets the prefix
