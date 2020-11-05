@@ -26,7 +26,7 @@ module.exports = class {
 			const guildData = await this.client.findOrCreateGuild({ id: guild.id });
 			member.guild.data = guildData;
 
-			/*const memberData = await this.client.findOrCreateMember({ id: member.id, guildID: guild.id });
+			const memberData = await this.client.findOrCreateMember({ id: member.id, guildID: guild.id });
 			if(memberData.mute.muted && memberData.mute.endDate > Date.now()){
 				 let roles = await memberData.mute.roles;
                                  let muted = await member.roles.cache.filter((r) => r.managed !== true);
@@ -35,7 +35,7 @@ module.exports = class {
                                      await member.roles.remove(muted);
                                      await member.roles.add(roles);
                                  }
-			}*/
+			}
 
 			// Check if the autorole is enabled
 			if(guildData.plugins.autorole.enabled){
