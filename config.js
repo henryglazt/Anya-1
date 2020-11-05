@@ -1,8 +1,8 @@
 module.exports = {
 	token: "",
 	support: {
-		id: "718691607888789547", // The ID of the support server
-		logs: "757664339141329087", // And the ID of the logs channel of your server (new servers for example)
+		id: "773707418482769982", // The ID of the support server
+		logs: "773774472150646785", // And the ID of the logs channel of your server (new servers for example)
 	},
 	dashboard: {
 		enabled: false, // whether the dashboard is enabled or not
