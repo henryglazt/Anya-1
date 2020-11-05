@@ -32,7 +32,7 @@ class Inrole extends Command {
 
         const role = await Resolvers.resolveRole({
             message,
-            search: args.slice().join(" ");
+            search: args.slice().join(" ")
         });
 
         if (!role) return message.error("general/inrole:NOT_FOUND")
