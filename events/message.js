@@ -139,9 +139,12 @@ module.exports = class {
 
 		}
 
-		const customCommand = data.guild.customCommands.find((c) => c.name === message.content.toLowerCase());
-		if(message.guild && customCommand){
-			message.channel.send(customCommand.answer);
+		if(message.guild){
+			const customCommand = data.guild.customCommands.find((c) => c.name === message.content.toLowerCase());
+			if(customCommand){
+				message.channel.send(customCommand.answer);
+				return;
+			}
 		}
 
 		// Gets the prefix
