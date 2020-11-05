@@ -49,18 +49,6 @@ module.exports = class {
 			message.guild.data = data.guild = guild;
 		}
 
-		if(message.guild){
-			const customCommand = data.guild.customCommands.find((c) => c.name === command);
-			if(customCommand){
-				message.channel.send(customCommand.answer);
-			}
-			return;
-		} else {
-			return message.sendT("misc:HELLO_DM", {
-					username: message.author.username
-			});
-		}
-
 		// Check if the bot was mentionned
 		if(message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))){
 			if(message.guild){
@@ -149,6 +137,11 @@ module.exports = class {
 				}
 			});
 
+		}
+
+		const customCommand = data.guild.customCommands.find((c) => c.name === command);
+		if(message.guild && message.content === customCommand){
+			message.channel.send(customCommand.answer);
 		}
 
 		// Gets the prefix
