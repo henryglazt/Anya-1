@@ -143,13 +143,13 @@ module.exports = class {
 								)
 							.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 							.setDescription([
-								`**Baca tata krama di :** <#719482949011243048>`,
-								`**Ambil role di :** <#758516347113046046>`,
-								`**Dan jangan lupa isi data diri lu di :** <#719484046174060555>\n`,
+								`**Baca tata krama di :** <#773711420533112883>`,
+								`**Ambil role di :** <#773711707314716693>`,
+								`**Dan jangan lupa isi data diri lu di :** <#773709399511400448>\n`,
 								`**Enjoy your stay and Have fun guys! Cheers...** <a:tenor:746856902708822118>`
 								])
 							.setImage(member.guild.bannerURL({ format: "png", size: 512 }))
-								.setColor("#7289da")
+								.setColor(this.client.config.embed.color)
 								.setFooter(`Member Saat ini : ${member.guild.memberCount}`)
 								.setTimestamp();
 						wembc.send(`Welcome ${member}`, wembed)
