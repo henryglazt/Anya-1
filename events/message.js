@@ -143,7 +143,7 @@ module.exports = class {
 		const cmx = agx.shift().toLowerCase();
 		if(message.guild){
 			const customCommand = data.guild.customCommands.find((c) => c.name === cmx);
-			if(customCommand){
+			if(cmx === customCommand){
 				message.channel.send(customCommand.answer);
 				return;
 			}
