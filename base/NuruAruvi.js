@@ -46,7 +46,7 @@ class NuruAruvi extends Client {
 			mongoDbLink: this.config.mongoDB
 		});*/
 
-		this.system = new ReactionRole(process.env.TOKEN, this.config.mongoDB);
+		this.system = new ReactionRole(this.config.token, this.config.mongoDB);
     
 		this.giveawaysManager = new GiveawaysManager(this, {
 			storage: "./giveaways.json",
