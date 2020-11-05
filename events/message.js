@@ -141,11 +141,10 @@ module.exports = class {
 const agx = message.content.slice().trim().split(/ +/g);
 const cmx = agx.shift().toLowerCase();
 		if(message.guild){
-			const customCommand = data.guild.customCommands.find((c) => c.name === cmx);
+			const customCommand = data.guild.customCommands.find((c) => c.name === message.content);
 			if(customCommand){
-				message.channel.send(customCommand.answer);
-				return;
-			}
+				message.channel.send("customCommand.answer");
+			} return;
 		}
 
 		// Gets the prefix
