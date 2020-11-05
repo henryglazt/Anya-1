@@ -25,9 +25,7 @@ require("./helpers/player")
 const nodes = require("./helpers/nodes")
 client.manager = new Manager({
         nodes,
-        plugins: [new Spotify({
-                clientID, clientSecret
-            })],
+        plugins: [ new Spotify({ clientID, clientSecret })],
             autoPlay: true,
             send: (id, payload) => {
                 const guild = client.guilds.cache.get(id);
@@ -103,11 +101,11 @@ const init = async() => {
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 
-    /*client.system.importConfig(require("./rr.json"))
+    client.system.importConfig(require("./rr.json"))
 
-    client.system.init()*/
+    client.system.init()
 
-    client.login(process.env.TOKEN);
+    client.login(client.config.token);
 
     mongoose.connect(client.config.mongoDB, {
             useNewUrlParser: true,
