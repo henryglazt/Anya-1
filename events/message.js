@@ -139,11 +139,9 @@ module.exports = class {
 
 		}
 
-		const agx = message.content.split(/ +/g);
-		const cmx = agx.shift().toLowerCase();
 		if(message.guild){
-			const customCommand = data.guild.customCommands.find((c) => c.name === cmx);
-			if(cmx === customCommand){
+			const customCommand = data.guild.customCommands.find((c) => c.name === "welkam");
+			if(customCommand){
 				message.channel.send(customCommand.answer);
 				return;
 			}
