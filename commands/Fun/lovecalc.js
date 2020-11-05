@@ -48,7 +48,7 @@ class Lovecalc extends Command {
 		const embed = new Discord.MessageEmbed()
 			.setAuthor("❤️ LoveCalc")
 			.setDescription(
-				message.translate("fun/lovecalcTENT", {
+				message.translate("fun/lovecalc:CONTENT", {
 					percent,
 					firstUsername: firstMember.user.username,
 					secondUsername: secondMember.user.username
