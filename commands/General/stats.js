@@ -54,8 +54,8 @@ class Stats extends Command {
 				])
 
 			.addField(this.client.customEmojis.link+" "+message.translate("general/stats:LINKS_TITLE"), message.translate("misc:STATS_FOOTER", {
-			inviteLink: await this.client.generateInvite("ADMINISTRATOR"),
-			supportLink: "https://discord.gg/gangsebelah"
+			inviteLink: await this.client.generateInvite({permissions: "ADMINISTRATOR"}),
+			supportLink: this.client.config.support.link
 		})
 		);
 		message.channel.send(statsEmbed);
