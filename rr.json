@@ -284,6 +284,20 @@
         ]
     },
     {
+        "messageID": "773714295883694121",
+        "channelID": "773710240864534548",
+        "limit": true,
+        "restrictions": null,
+        "reactions": [
+            {
+                "emoji": "gsverify:774001216828342333",
+                "roles": [
+                    "773714356013367316"
+                ]
+            }
+        ]
+    },
+    {
         "messageID": "773887633448370176",
         "channelID": "773711707314716693",
         "limit": 21,
