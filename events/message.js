@@ -19,7 +19,8 @@ module.exports = class {
 
 		const ar = [
 			"welkam",
-			"welcome"
+			"welcome",
+			"<@!612578634548379658>"
 		];
 
 		if (trg === ar[0]) {
@@ -32,6 +33,12 @@ module.exports = class {
 			if (message.guild.id !== gid) return;
 			message.channel.send(
 			"<a:wlcm1:741733944130797608><a:wlcm2:741734096710926357>"
+			);
+		}
+		if (trg === ar[2]) {
+			if (message.guild.id !== gid) return;
+			message.reply(
+			"kenapa?"
 			);
 		}
 
