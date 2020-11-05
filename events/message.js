@@ -49,6 +49,18 @@ module.exports = class {
 			message.guild.data = data.guild = guild;
 		}
 
+		if(message.guild){
+			const customCommand = data.guild.customCommands.find((c) => c.name === command);
+			if(customCommand){
+				message.channel.send(customCommand.answer);
+			}
+			return;
+		} else {
+			return message.sendT("misc:HELLO_DM", {
+					username: message.author.username
+			});
+		}
+
 		// Check if the bot was mentionned
 		if(message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))){
 			if(message.guild){
@@ -148,20 +160,6 @@ module.exports = class {
 		const args = message.content.slice((typeof prefix === "string" ? prefix.length : 0)).trim().split(/ +/g);
 		const command = args.shift().toLowerCase();
 		const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
-        
-		if(!cmd){
-			if(message.guild){
-				const customCommand = data.guild.customCommands.find((c) => c.name === command);
-				if(customCommand){
-					message.channel.send(customCommand.answer);
-				}
-				return;
-			} else {
-				return message.sendT("misc:HELLO_DM", {
-					username: message.author.username
-				});
-			}
-		}
 
 		if(cmd.conf.guildOnly && !message.guild){
 			return message.error("misc:GUILD_ONLY");
