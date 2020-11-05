@@ -286,7 +286,7 @@
     {
         "messageID": "773887633448370176",
         "channelID": "773711707314716693",
-        "limit": true,
+        "limit": 21,
         "restrictions": null,
         "reactions": [
             {
