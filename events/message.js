@@ -20,7 +20,7 @@ module.exports = class {
 		const ar = [
 			"welkam",
 			"welcome",
-			"<@!612578634548379658>"
+			"<@612578634548379658>"
 		];
 
 		if (trg === ar[0]) {
