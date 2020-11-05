@@ -46,7 +46,8 @@ class Addcommand extends Command {
 		data.guild.save();
 
 		message.success("administration/addcommand:SUCCESS", {
-			commandName: name
+			commandName: name,
+			prefix: data.guild.prefix
 		});
 	}
     
