@@ -284,6 +284,20 @@
         ]
     },
     {
+        "messageID": "774017835382472705",
+        "channelID": "773709991453392916",
+        "limit": true,
+        "restrictions": null,
+        "reactions": [
+            {
+                "emoji": "redfire:773737368855248896",
+                "roles": [
+                    "774004620074025000"
+                ]
+            }
+        ]
+    },
+    {
         "messageID": "773887633448370176",
         "channelID": "773711707314716693",
         "limit": 21,
