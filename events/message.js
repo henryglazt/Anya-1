@@ -25,7 +25,7 @@ module.exports = class {
 		if (trg === ar[0]) {
 			if (message.guild.id !== gid) return;
 			message.channel.send(
-			"<a:welcomeimage_1:727887823537176638><a:welcomeimage_2:727887823268610089>"
+			"<a:welcomeimage1:773738605696516119><a:welcomeimage2:773738564403200012>"
 			);
 		}
 		if (trg === ar[1]) {
