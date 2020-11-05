@@ -139,9 +139,9 @@ module.exports = class {
 
 		}
 
-		if(message.guild){
-			const customCommand = data.guild.customCommands.find((c) => c.name === "welkam");
-			if(customCommand){
+		if(message.content === data.guild.customCommands.find((c) => c.name === "welkam") && message.guild){
+			//const customCommand = data.guild.customCommands.find((c) => c.name === "welkam");
+			//if(customCommand){
 				message.channel.send(customCommand.answer);
 				return;
 			}
