@@ -28,13 +28,13 @@ module.exports = class {
 
 			const memberData = await this.client.findOrCreateMember({ id: member.id, guildID: guild.id });
 			if(memberData.mute.muted && memberData.mute.endDate > Date.now()){
-				guild.channels.cache.forEach((channel) => {
-					channel.updateOverwrite(member.id, {
-						SEND_MESSAGES: false,
-						ADD_REACTIONS: false,
-						CONNECT: false
-					}).catch(() => {});
-				});
+				 let roles = await memberData.mute.roles;
+                                 let muted = await member.roles.cache.filter((r) => r.managed !== true);
+                                 guild.data = guildData;
+                                 if (member) {
+                                     await member.roles.remove(muted);
+                                     await member.roles.add(roles);
+                                 }
 			}
 
 			// Check if the autorole is enabled
