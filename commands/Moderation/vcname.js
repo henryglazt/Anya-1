@@ -21,7 +21,7 @@ class Vcname extends Command {
 
         if (message.deletable) message.delete();
 
-        const name = args[0];
+        const name = args.join(" ");
 
         if (!message.member.voice.channel) return message.sendT("voice/main:ERROR")
             .then(m => {
