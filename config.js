@@ -1,9 +1,9 @@
 module.exports = {
 	token: "",
+	supportURL: "https://discord.gg/gangsenggol",
 	support: {
 		id: "773707418482769982", // The ID of the support server
 		logs: "773774472150646785", // And the ID of the logs channel of your server (new servers for example)
-		link: "https://discord.gg/gangsenggol",
 	},
 	dashboard: {
 		enabled: false, // whether the dashboard is enabled or not
