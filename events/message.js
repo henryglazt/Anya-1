@@ -138,13 +138,14 @@ module.exports = class {
 			});
 
 		}
-
-		if(message.content === data.guild.customCommands.find((c) => c.name === "welkam") && message.guild){
-			//const customCommand = data.guild.customCommands.find((c) => c.name === "welkam");
-			//if(customCommand){
+const agx = message.content.slice().trim().split(/ +/g);
+const cmx = agx.shift().toLowerCase();
+		if(message.guild){
+			const customCommand = data.guild.customCommands.find((c) => c.name === cmx);
+			if(customCommand){
 				message.channel.send(customCommand.answer);
 				return;
-			//}
+			}
 		}
 
 		// Gets the prefix
