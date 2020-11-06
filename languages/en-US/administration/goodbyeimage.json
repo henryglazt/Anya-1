@@ -5,5 +5,5 @@
     "MAX": "You can only set 1 custom goodbye image!",
     "RESET": "Goodbye image have been reset to default!",
     "NO_ARGS": "Please provide a valid image url/link!",
-    "SUCCESS": "Goodbye image have been set to `{{image}}`"
+    "SUCCESS": "Goodbye image have been set to `{{image}}`\n\nType `??goodbyeimage reset` to reset it to default."
 }
