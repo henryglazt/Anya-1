@@ -110,7 +110,7 @@ module.exports = class {
             "0 0 * * * *",
             function () {
                 channel.send(`= GANG SEBELAH MUSIC BOTS COMMANDS =\n\n${array.join("\n")}`, {
-                    code: "asciidoc"
+                    code: "yaml"
                 });
             },
             null,
