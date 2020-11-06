@@ -2,6 +2,7 @@
     "DESCRIPTION": "Toggle goodbye messages!",
     "USAGE": "{{prefix}}goodbye",
     "EXAMPLES": "{{prefix}}goodbye",
+    "MISSING_STATUS": "You must specify an action between `edit` and `off`",
     "DEFAULT_MESSAGE": "Goodbye {user}! We're now {membercount} without you... :'(",
     "TEST_SUCCESS": "Test executed!",
     "FORM_1": "**In which channel will goodbye messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*",
