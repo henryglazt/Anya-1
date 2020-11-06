@@ -5,5 +5,5 @@
     "MISSING_REASON": "Please specify the reason for your AFK status!",
     "SUCCESS": "You're now AFK (reason: {{reason}})",
     "DELETED": "**{{username}}**, your AFK status has just been deleted!",
-    "IS_AFK": "**{{user}}** is currently AFK, reason:\n```{{reason}}```"
+    "IS_AFK": "**{{username}}** is currently AFK, reason:\n```{{reason}}```"
 }
