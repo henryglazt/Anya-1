@@ -5,5 +5,5 @@
     "MAX": "You can only set 3 custom welcome image!",
     "RESET": "Welcome image have been reset to default!",
     "NO_ARGS": "Please provide a valid image url/link!",
-    "SUCCESS": "Welcome image have been set to `{{image}}`"
+    "SUCCESS": "Welcome image have been set to `{{image}}`\n\nType `??welcomeimage reset` to reset it to default."
 }
