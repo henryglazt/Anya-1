@@ -1,8 +1,8 @@
 const nodes = [
     {
-        host: "doomlavalk.herokuapp.com", 
-        port: 80,
-        password: "youshallnotpass"
+        host: "localhost", 
+        port: 2333,
+        password: "password"
     }
 ]
 
