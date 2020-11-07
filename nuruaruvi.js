@@ -32,15 +32,15 @@ client.manager = new Manager({
                 if (guild) guild.shard.send(payload);
             }
     })
-    .on("nodeConnect", () => console.log(`[NODE] - conectado`))
-    .on("nodeError", (node, error) => console.log(`[NODE] - encontrou um erro: ${error.message}.`))
+    .on("nodeConnect", () => console.log(`[NODE] - connected`))
+    .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
     .on("trackStart", (player, track) => {
         const channel = client.channels.cache.get(player.textChannel);
         let embed = new Discord.MessageEmbed()
-        embed.setDescription(`**some** \`${track.title}\``)
+        embed.setDescription(`**Now playing:** \`${track.title}\``)
         embed.setTimestamp()
         embed.setColor(config.color)
-        embed.setFooter(`some ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
+        embed.setFooter(`**Requested by:** ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("socketClosed", (player, payload) => {
@@ -62,14 +62,14 @@ client.manager = new Manager({
             return
         }
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send("erro")
+        channel.send("error")
     })
     .on("playerMove", (player, currentChannel, newChannel) => {
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
         const channel = client.channels.cache.get(player.textChannel);
-        channel.send("end");
+        channel.send("Queue ended");
         player.destroy()
     });
 
