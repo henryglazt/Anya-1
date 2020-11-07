@@ -39,7 +39,7 @@ class Play extends Command {
             return message.channel.send(embed);
         }
       
-        const player = this.client.manager.players.get(message.guild.id)
+        const player = message.client.manager.players.get(message.guild.id)
 
   if(!player) {
     const player = message.client.manager.create({
