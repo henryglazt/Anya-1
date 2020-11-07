@@ -16,9 +16,11 @@ class Play extends Command {
         });
     }
     async run(message, args, data) {
+const color = data.config.embed.color;
+const footer = data.config.embed.color;
         const embed = new Discord.MessageEmbed()
-            .setColor(data.config.embed.color)
-            .setFooter(data.config.embed.footer)
+            .setColor(color)
+            .setFooter(footer)
         const { channel } = message.member.voice;
         if (!channel) {
             embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
@@ -74,7 +76,7 @@ const player = message.client.manager.players.get(message.guild.id);
       if (!player.playing && !player.paused && !player.queue.length) player.play();
       let embed = new Discord.MessageEmbed()
       embed.setTimestamp()
-      embed.setColor(this.config.embed.color)
+      embed.setColor(color)
       embed.setDescription(`**Added to the queue** \`${res.tracks[0].title}\`\n**Duration:**`)
       embed.setFooter("Requested by" + res.tracks[0].requester.tag, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
       return message.channel.send(embed)
@@ -85,7 +87,7 @@ const player = message.client.manager.players.get(message.guild.id);
       if (!player.playing && !player.paused && player.queue.size === res.tracks.length) player.play();
       let embed2 = new Discord.MessageEmbed()
       embed2.setTimestamp()
-      embed2.setColor(this.config.embed.color)
+      embed2.setColor(color)
       embed2.setDescription(`**Added the playlist** \`${res.playlist.name}\` **with** \`${res.tracks.length}\``)
       return message.channel.send(embed2);
 
@@ -99,7 +101,7 @@ const player = message.client.manager.players.get(message.guild.id);
       .join('\n');
 
       let embed3 = new Discord.MessageEmbed()
-      embed3.setColor(this.config.embed.color)
+      embed3.setColor(color)
       embed3.setTimestamp()
       embed3.addFields({ name: "Cancel", value: "Type `cancel` to cancel" })
       embed3.setDescription(results)
@@ -126,7 +128,7 @@ const player = message.client.manager.players.get(message.guild.id);
       await player.queue.add(track);
 
       let embed4 = new Discord.MessageEmbed()
-      embed4.setColor(this.config.embed.color)
+      embed4.setColor(color)
       embed4.setFooter(`**Requested by** ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
       embed4.setDescription(`**Added to the queue** \`${track.title}\``)
       if(!player.playing && !player.paused && !player.queue.length) player.play();
