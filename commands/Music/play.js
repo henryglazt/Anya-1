@@ -39,9 +39,9 @@ class Play extends Command {
             return message.channel.send(embed);
         }
       
-        const player = message.client.manager.players.get(message.guild.id)
+        const play = message.client.manager.players.get(message.guild.id);
 
-  if(!player) {
+  if(!play) {
     const player = message.client.manager.create({
       guild: message.guild.id,
       voiceChannel: channel.id,
@@ -51,6 +51,7 @@ class Play extends Command {
     player.connect();
   }
 
+const player = message.client.manager.players.get(message.guild.id);
   let res;
 
   try {
