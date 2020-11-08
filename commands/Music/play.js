@@ -69,7 +69,7 @@ class Play extends Command {
     case 'PLAYLIST_LOADED':
       await player.queue.add(res.tracks);
 
-      if (!player.playing && !player.paused && !player.queue.size === res.tracks.length) player.play();
+      if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
       let embed2 = new Discord.MessageEmbed()
       embed2.setTimestamp()
       embed2.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${API.time2(res.playlist.duration)}`)
