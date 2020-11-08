@@ -7,9 +7,9 @@ class Stop extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["dc", "leave", "disconnect"],
+            aliases: [ "dc", "leave", "disconnect" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 5000
