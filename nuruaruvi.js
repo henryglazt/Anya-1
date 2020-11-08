@@ -40,7 +40,7 @@ client.manager = new Manager({
         embed.setDescription(`**Now playing:** \`${track.title}\``)
         embed.setTimestamp()
         embed.setColor(config.color)
-        embed.setFooter(`**Requested by:** ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
+        embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("socketClosed", (player, payload) => {
