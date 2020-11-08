@@ -29,7 +29,7 @@ class Play extends Command {
             embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!channel.joinable)) {
+        if (!channel.joinable) {
             embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
             return message.channel.send(embed);
         }
