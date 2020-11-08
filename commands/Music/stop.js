@@ -19,7 +19,7 @@ class Stop extends Command {
         const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-        const voice = message.member.voice;
+        const voice = message.member.voice.channel;
         if (!voice) {
             xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(xembed);
