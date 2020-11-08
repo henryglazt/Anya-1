@@ -131,7 +131,7 @@ class Queue extends Command {
     if (!player) return message.reply("I have not joined a channel because I have nothing to play. Use the play command to play the song.");
 
     const queue = player.queue;
-    const embed = new MessageEmbed().setAuthor(`Queue for ${message.guild.name}`);
+    const embed = new Discord.MessageEmbed().setAuthor(`Queue for ${message.guild.name}`);
 
     const multiple = 10;
     const page = args.length && Number(args[0]) ? Number(args[0]) : 1;
