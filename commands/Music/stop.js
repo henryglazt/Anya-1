@@ -19,27 +19,25 @@ class Stop extends Command {
         const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-        const voice = message.member.voice.channel;
+        const voice = message.member.voice;
         if (!voice) {
             xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(xembed);
         }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
-        }
-        const isPlaying = this.client.distube.isPlaying(message)
-        if (!isPlaying && !message.guild.me.voice.channel) {
+        const player = message.client.manager.players.get(message.guild.id);
+        if (!player) {
             xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(xembed);
         }
-        if (!isPlaying && voice) {
-            voice.leave();
-            xembed.setDescription(message.translate("music/stop:LEAVE"));
+        if (voice.id !== player.voiceChannel) {
+            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(xembed);
         }
+        player.destroy();
+        xembed.setDescription(message.translate("music/stop:LEAVE"));
+        return message.channel.send(xembed);
 
-        const members = voice.members.filter((m) => !m.user.bot);
+        /*const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("music/stop:DESCRIPTION"))
             .setFooter(data.config.embed.footer)
@@ -99,7 +97,9 @@ class Stop extends Command {
                     description: message.translate("music/stop:SUCCESS")
                 }
             });
-        }
+        }*/
+
+
     }
 }
 module.exports = Stop;
