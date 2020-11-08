@@ -20,7 +20,6 @@ class Play extends Command {
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
         const { channel } = message.member.voice;
-        const player = message.client.manager.players.get(message.guild.id);
         if (message.guild.me.voice.channel && message.guild.me.voice.channel.id !== channel.id) {
             embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
@@ -29,25 +28,26 @@ class Play extends Command {
             embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player) {
+        if (!channel.joinable) {
+            embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
+            return message.channel.send(embed);
+        }
+        const search = args.join(" ");
+        if (!search) {
+            embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
+            return message.channel.send(embed);
+        }
+
     const player = message.client.manager.create({
       guild: message.guild.id,
       voiceChannel: channel.id,
       textChannel: message.channel.id,
       selfDeafen: true
     });
-        if (!channel.joinable) {
-            embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
-            return message.channel.send(embed);
-        }
+
     player.connect();
     }
 
-        const search = args.join(" ");
-        if (!search) {
-            embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
-            return message.channel.send(embed);
-        }
     let res;
 
     try {
