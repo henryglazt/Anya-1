@@ -20,7 +20,7 @@ class Play extends Command {
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
         const { channel } = message.member.voice;
-        const player = message.client.manager.players.get(message.guild.id);
+        let play = message.client.manager.players.get(message.guild.id);
         if (!channel) {
             embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
@@ -30,7 +30,7 @@ class Play extends Command {
             embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
             return message.channel.send(embed);
         }
-        if (!player) {
+        if (!play) {
     const player = message.client.manager.create({
       guild: message.guild.id,
       voiceChannel: channel.id,
@@ -43,7 +43,7 @@ class Play extends Command {
         }
     player.connect();
     }
-
+    const player = message.client.manager.players.get(message.guild.id);
         if (!player.options.voiceChannel !== channel.id) {
             embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
