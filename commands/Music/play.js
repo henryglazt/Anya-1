@@ -25,14 +25,6 @@ class Play extends Command {
             embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player.options.voiceChannel !== channel.id) {
-            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(embed);
-        }
-        if (!channel.joinable) {
-            embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
-            return message.channel.send(embed);
-        }
         const search = args.join(" ");
         if (!search) {
             embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
@@ -45,9 +37,17 @@ class Play extends Command {
       textChannel: message.channel.id,
       selfDeafen: true
     });
+        if (!channel.joinable) {
+            embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
+            return message.channel.send(embed);
+        }
+    player.connect();
     }
 
-    player.connect();
+        if (!player.options.voiceChannel !== channel.id) {
+            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
 
     let res;
 
