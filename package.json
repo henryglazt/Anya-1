@@ -24,6 +24,7 @@
     "amethyste-api": "github:Androz2091/amethyste-api",
     "ascii-table": "0.0.9",
     "btoa": "^1.2.1",
+    "byte-size": "^6.2.0",
     "canvas": "^2.6.1",
     "chalk": "^4.1.0",
     "colors-generator": "^0.3.4",
