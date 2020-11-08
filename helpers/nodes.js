@@ -2,7 +2,9 @@ const nodes = [
     {
         host: "localhost", 
         port: 2333,
-        password: "password"
+        password: "password",
+        identifier: "LUA",
+        retryDelay: 500
     }
 ]
 
