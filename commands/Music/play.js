@@ -29,11 +29,6 @@ class Play extends Command {
             embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        const search = args.join(" ");
-        if (!search) {
-            embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
-            return message.channel.send(embed);
-        }
         if (!player) {
     const player = message.client.manager.create({
       guild: message.guild.id,
@@ -48,6 +43,11 @@ class Play extends Command {
     player.connect();
     }
 
+        const search = args.join(" ");
+        if (!search) {
+            embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
+            return message.channel.send(embed);
+        }
     let res;
 
     try {
