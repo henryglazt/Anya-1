@@ -21,7 +21,7 @@ class Play extends Command {
             .setFooter(data.config.embed.footer)
         const { channel } = message.member.voice;
         const player = message.client.manager.players.get(message.guild.id);
-        if (message.guild.me.voice.channel !== channel.id) {
+        if (message.guild.me.voice.channel && message.guild.me.voice.channel.id !== channel.id) {
             embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
