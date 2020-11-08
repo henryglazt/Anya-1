@@ -46,7 +46,6 @@ class Play extends Command {
     });
 
     player.connect();
-    }
 
     let res;
 
