@@ -2,6 +2,7 @@ Procfile
 LICENSE
 crowdin.yml
 assets
+dashboard
 languages/af-ZA
 languages/es-ES
 languages/fr-FR
