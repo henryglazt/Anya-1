@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+      API = require("../../helpers.utils.js");
 class Play extends Command {
     constructor(client) {
         super(client, {
@@ -16,102 +17,105 @@ class Play extends Command {
         });
     }
     async run(message, args, data) {
-        const embed = new Discord.MessageEmbed()
-            .setColor(data.config.embed.color)
-            .setFooter(data.config.embed.footer)
-        const { channel } = message.member.voice;
-        if (message.guild.me.voice.channel && message.guild.me.voice.channel.id !== channel.id) {
-            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(embed);
-        }
-        if (!channel) {
-            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(embed);
-        }
-        if (!channel.joinable) {
-            embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
-            return message.channel.send(embed);
-        }
-        const search = args.join(" ");
-        if (!search) {
-            embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
-            return message.channel.send(embed);
-        }
+          let play = message.client.manager.players.get(message.guild.id)
 
+  const { channel } = message.member.voice;
+
+  if(!channel) return message.reply("no channel");;
+  if(!args.length) return message.reply("no args");
+
+  if(!play) {
     const player = message.client.manager.create({
       guild: message.guild.id,
       voiceChannel: channel.id,
       textChannel: message.channel.id,
-      selfDeafen: true
+      selfDeafen: true,
     });
-
+    if(!channel.joinable) { return message.channel.send("perms") }
     player.connect();
+  }
 
-    let res;
+  const player = message.client.manager.players.get(message.guild.id)
 
-    try {
-      res = await player.search(search, message.author);
-      if (res.loadType === 'LOAD_FAILED') {
-        if (!player.queue.current) player.destroy();
-        throw new Error(res.exception.message);
-      }
-    } catch (err) {
-      return message.reply(`There was an error while searching: ${err.message}`);
+  if(!player.options.voiceChannel === channel.id) { return message.channel.send("...") }
+
+  const search = args.join(' ');
+  let res;
+
+  try {
+    res = await player.search(search, message.author);
+    if (res.loadType === 'LOAD_FAILED') {
+      if (!player.queue.current) player.destroy();
+      throw new Error(res.exception.message);
     }
+  } catch (err) {
+    return message.reply(err.message);
+  }
 
-    switch (res.loadType) {
-      case 'NO_MATCHES':
-        if (!player.queue.current) player.destroy();
-        return message.reply('No results were found.');
+  switch (res.loadType) {
+    case 'NO_MATCHES':
+      if (!player.queue.current) player.destroy();
+      return message.reply("result");
       case 'TRACK_LOADED':
-        await player.queue.add(res.tracks[0]);
+      await player.queue.add(res.tracks[0]);
 
-        if (!player.playing && !player.paused && !player.queue.length) player.play();
-        return message.channel.send(`**Enqueuing** \`${res.tracks[0].title}\`.`);
-      case 'PLAYLIST_LOADED':
-        await player.queue.add(res.tracks);
+      if (!player.playing && !player.paused && !player.queue.length) player.play();
+      let embed = new Discord.MessageEmbed()
+      embed.setTimestamp()
+      embed.setDescription(`\`${res.tracks[0].title}\`\n${API.time2(res.tracks[0].duration)}`)
+      embed.setFooter(res.tracks[0].requester.tag, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
+      return message.channel.send(embed)
 
-        if (!player.playing && !player.paused && player.queue.size === res.tracks.length) player.play();
-        return message.reply(`**Enqueuing playlist**: \n **${res.playlist.name}** : **${res.tracks.length} tracks**`);
-      case 'SEARCH_RESULT':
-        let max = 5, collected, filter = (m) => m.author.id === message.author.id && /^(\d+|end)$/i.test(m.content);
-        if (res.tracks.length < max) max = res.tracks.length;
+    case 'PLAYLIST_LOADED':
+      await player.queue.add(res.tracks);
 
-        const results = res.tracks
-            .slice(0, max)
-            .map((track, index) => `${++index} - \`${track.title}\``)
-            .join('\n');
-            
-        const resultss = new Discord.MessageEmbed()
-            .setDescription(results)
-            .setColor(data.config.embed.color)
+      if (!player.playing && !player.paused && player.queue.size === res.tracks.length) player.play();
+      let embed2 = new Discord.MessageEmbed()
+      embed2.setTimestamp()
+      embed2.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${API.time2(res.playlist.duration)}`)
+      return message.channel.send(embed2);
 
-        message.channel.send(resultss);
-        message.channel.send("You have 30 senconds to select.")
+    case 'SEARCH_RESULT':
+      let max = 5, collected, filter = (m) => m.author.id === message.author.id && /^(\d+|cancelar)$/i.test(m.content) || message.author.id && /^(\d+|cancel)$/i.test(m.content);
+      if (res.tracks.length < max) max = res.tracks.length;
 
-        try {
-          collected = await message.channel.awaitMessages(filter, { max: 1, time: 30e3, errors: ['time'] });
-        } catch (e) {
-          if (!player.queue.current) player.destroy();
-          return message.reply("You didn't provide a selection.");
-        }
+      const results = res.tracks
+      .slice(0, max)
+      .map((track, index) => `${++index} - \`${track.title}\``)
+      .join('\n');
 
-        const first = collected.first().content;
+      let embed3 = new Discord.MessageEmbed()
+      embed3.setTimestamp()
+      embed3.addFields({ name: "Cancel", value: "Cancel" })
+      embed3.setDescription(results)
+      message.channel.send(embed3);
 
-        if (first.toLowerCase() === 'end') {
-          if (!player.queue.current) player.destroy();
-          return message.channel.send('Cancelled selection.');
-        }
+      try {
+        collected = await message.channel.awaitMessages(filter, { max: 1, time: 30e3, errors: ['time'] });
+      } catch (e) {
+        if (!player.queue.current) player.destroy();
+        return message.reply("...");
+      }
 
-        const index = Number(first) - 1;
-        if (index < 0 || index > max - 1) return message.reply(`the number you provided too small or too big (1-${max}).`);
+      const first = collected.first().content;
 
-        const track = res.tracks[index];
-        await player.queue.add(track);
+      if (first.toLowerCase() === 'cancelar' || first.toLowerCase() === 'cancel') {
+        if (!player.queue.current) player.destroy();
+        return message.channel.send("cancel");
+      }
 
-        if (!player.playing && !player.paused && !player.queue.length) player.play();
-        return message.channel.send(`**Enqueuing:** \`${track.title}\`.`);
-    }
+      const index = Number(first) - 1;
+      if (index < 0 || index > max - 1) return message.reply("max" + max + ')');
+
+      const track = res.tracks[index];
+      await player.queue.add(track);
+
+      let embed4 = new Discord.MessageEmbed()
+      embed4.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
+      embed4.setDescription(`\`${track.title}\` \n ${API.time2(track.duration)}`)
+      if(!player.playing && !player.paused && !player.queue.length) player.play();
+      return message.channel.send(embed4);
+  }
       
     }
 }
