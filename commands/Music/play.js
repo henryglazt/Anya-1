@@ -20,16 +20,16 @@ class Play extends Command {
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
         const { channel } = message.member.voice;
+        const player = message.client.manager.players.get(message.guild.id);
         if (!channel) {
             embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+        if (!player.options.voiceChannel !== channel.id) {
             embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        const perms = channel.permissionsFor(this.client.user);
-        if (!perms.has("CONNECT") || !perms.has("SPEAK")) {
+        if (!channel.joinable)) {
             embed.setDescription(message.translate("music/play:VOICE_CHANNEL_CONNECT"));
             return message.channel.send(embed);
         }
@@ -38,14 +38,14 @@ class Play extends Command {
             embed.setDescription(message.translate("music/play:MISSING_SONG_NAME"));
             return message.channel.send(embed);
         }
-      
+        if (!player) {
     const player = message.client.manager.create({
       guild: message.guild.id,
       voiceChannel: channel.id,
       textChannel: message.channel.id,
-      volume: 70,
       selfDeafen: true
     });
+    }
 
     player.connect();
 
@@ -66,12 +66,12 @@ class Play extends Command {
         if (!player.queue.current) player.destroy();
         return message.reply('No results were found.');
       case 'TRACK_LOADED':
-        player.queue.add(res.tracks[0]);
+        await player.queue.add(res.tracks[0]);
 
         if (!player.playing && !player.paused && !player.queue.length) player.play();
         return message.channel.send(`**Enqueuing** \`${res.tracks[0].title}\`.`);
       case 'PLAYLIST_LOADED':
-        player.queue.add(res.tracks);
+        await player.queue.add(res.tracks);
 
         if (!player.playing && !player.paused && player.queue.size === res.tracks.length) player.play();
         return message.reply(`**Enqueuing playlist**: \n **${res.playlist.name}** : **${res.tracks.length} tracks**`);
@@ -109,7 +109,7 @@ class Play extends Command {
         if (index < 0 || index > max - 1) return message.reply(`the number you provided too small or too big (1-${max}).`);
 
         const track = res.tracks[index];
-        player.queue.add(track);
+        await player.queue.add(track);
 
         if (!player.playing && !player.paused && !player.queue.length) player.play();
         return message.channel.send(`**Enqueuing:** \`${track.title}\`.`);
