@@ -35,7 +35,7 @@ class Nowplaying extends Command {
     let embed = new MessageEmbed()
     embed.setTimestamp()
     embed.setAuthor("NowPlaying", message.author.displayAvatarURL({ dynamic: true, size: 2048 }))
-    embed.setColor(config.color)
+    embed.setColor(data.config.embed.color)
     embed.setDescription(`${player.playing ? API.emojis.play.id : API.emojis.pause.id} ${title}\n${progressBar} \`${player.position <= 60000 ? `${API.time2(player.position)}s` : API.time2(player.position)} / ${API.time2(duration)}\``);
     message.channel.send(embed)
 
