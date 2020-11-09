@@ -156,7 +156,7 @@ class Queue extends Command {
             const { channel } = message.member.voice;
             if (!channel) return message.channel.send('**You Have To Be Connected To A Voice Channel!**');
 
-            const player = this.bot.music.players.get(message.guild.id);
+            const player = message.client.manager.players.get(message.guild.id);
             if (!player || player.queue.size === 0 || (player.position === 0 && !player.playing)) return message.channel.send('**Nothing Playing In This Server!**');
             if (channel.id !== player.voiceChannel) return message.channel.send('**You Have To Be In The Same Voice Channel With The Bot!**');
 
@@ -202,13 +202,13 @@ class Queue extends Command {
             let j;
             embeds.length === 0 ? j = i : j = i - 1;
             k += 10;
-            const info = current.map(track => `${++j + 1} - [${track.title}](${track.url})`).join('\n');
+            const info = current.map(track => `${++j + 1} - [${track.title}](${track.uri})`).join('\n');
             const embed = new Discord.MessageEmbed()
-                .setAuthor(`${this.bot.user.username} Queue`, this.bot.user.displayAvatarURL())
+                .setAuthor(`${this.client.user.username} Queue`, this.client.user.displayAvatarURL())
                 .setTitle('Song Queue\n')
                 .setThumbnail(message.guild.iconURL({ dynamic: true }))
                 .setColor('GREEN')
-                .setDescription(`\n**Current Song** - [${queue.current.title}](${queue.current.url})\n\n${info}`)
+                .setDescription(`\n**Current Song** - [${queue.current.title}](${queue.current.uri})\n\n${info}`)
                 .setFooter(`Requested By - ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
                 .setTimestamp();
             embeds.push(embed);
