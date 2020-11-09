@@ -30,11 +30,11 @@ class Nowplaying extends Command {
 
     const { title, duration } = player.queue.current;
 
-    const progressBar = porgressBar({ currentPositon: player.position > 0 ? player.position : "1", endPositon: duration, width: 10, barStyle: "▬", currentStyle: player.playing ? "<:bolinha:771832602591232040>" : "<:bolinha:771832602591232040>"  }, { format:" [ <bar> ] " })
+    const progressBar = porgressBar({ currentPositon: player.position > 0 ? player.position : "1", endPositon: duration, width: 10, barStyle: "▬", currentStyle: player.playing ? "<:gangsebelah:774970576355328000>" : "<:gangsebelah:774970576355328000>"  }, { format:" [ <bar> ] " })
 
     let embed = new MessageEmbed()
     embed.setTimestamp()
-    embed.setAuthor("NowPlaying", message.author.displayAvatarURL({ dynamic: true, size: 2048 }))
+    embed.setAuthor("NowPlaying", message.author.displayAvatarURL({ dynamic: true }))
     embed.setColor(data.config.embed.color)
     embed.setDescription(`${player.playing ? API.emojis.play.id : API.emojis.pause.id} ${title}\n${progressBar} \`${player.position <= 60000 ? `${API.time2(player.position)}s` : API.time2(player.position)} / ${API.time2(duration)}\``);
     message.channel.send(embed)
