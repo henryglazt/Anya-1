@@ -16,7 +16,20 @@ class Skip extends Command {
         });
     }
     async run(message, args, data) {
-        const xembed = new Discord.MessageEmbed()
+
+    const player = message.client.manager.players.get(message.guild.id);
+    if(!player) return message.reply(idioma.skip.nada)
+
+    const { channel } = message.member.voice
+
+    if(!channel) return message.reply(idioma.skip.conectar);
+    if(channel.id !== player.voiceChannel) return message.reply(idioma.skip.conectar2);
+
+    if(player.queue.size <= 1) return message.channel.send(idioma.skip.semMusica)
+    
+    return player.stop();
+
+       /* const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
@@ -111,7 +124,7 @@ class Skip extends Command {
                     description: message.translate("music/skip:SUCCESS")
                 }
             });
-        }
+        }*/
     }
 }
 module.exports = Skip;
