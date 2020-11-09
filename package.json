@@ -24,7 +24,6 @@
     "amethyste-api": "github:Androz2091/amethyste-api",
     "ascii-table": "0.0.9",
     "btoa": "^1.2.1",
-    "byte-size": "^6.2.0",
     "canvas": "^2.6.1",
     "chalk": "^4.1.0",
     "colors-generator": "^0.3.4",
@@ -50,9 +49,9 @@
     "moment-duration-format": "^2.3.2",
     "mongoose": "^5.10.11",
     "ms": "^2.1.2",
+    "music-progress-bar": "^1.0.4",
     "os": "^0.1.1",
-    "reaction-role": "^2.1.6",
-    "string-progressbar": "^1.0.1"
+    "reaction-role": "^2.1.6"
   },
   "engines": {
     "node": "^12.x"
