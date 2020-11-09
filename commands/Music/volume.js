@@ -19,18 +19,18 @@ class Volume extends Command {
         
     const player = message.client.manager.players.get(message.guild.id);
 
-    if(!player) return message.channel.send(idioma.volume.nada)
+    if(!player) return message.channel.send("aint playing")
 
     const { channel } = message.member.voice
 
-    if(!channel) return message.channel.send(idioma.volume.conectar)
+    if(!channel) return message.channel.send("error")
 
-    if(channel.id !== player.voiceChannel) return message.channel.send(idioma.player.conectar2)
+    if(channel.id !== player.voiceChannel) return message.channel.send("error")
 
     const volume = Number(args[0]);
-    if (!volume || volume < 1 || volume > 100) return message.reply(idioma.volume.invalido);
+    if (!volume || volume < 1 || volume > 100) return message.reply("invalid");
     player.setVolume(volume);
-    return message.reply(idioma.volume.mudado + player.volume);
+    return message.reply("volume" + player.volume);
 
 
 /*      const embed = new Discord.MessageEmbed()
