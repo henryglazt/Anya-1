@@ -20,7 +20,7 @@ class Queue extends Command {
 
     async run(message, args, data) {
 
-        const xembed = new Discord.MessageEmbed()
+        const xembed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
