@@ -169,7 +169,7 @@ class Queue extends Command {
     if(queue.current) embed.addField("Now Playing", `[${queue.current.title}](${queue.current.uri}) | \`${player.queue.current.requester.tag}\``);
 
     if(!tracks.length) embed.setDescription(`No tracks in ${page > 1 ? `Page ${page}` : "the queue"}.`);
-    else embed.setDescription(tracks.map((track, i) => `**${start + (++i)} -** [${track.title}](${track.uri})`).join("\n"));
+    else embed.setDescription(tracks.map((track, i) => `**${start + (++i)} -** ${track.title}${track.uri}`).join("\n"));
 
     const maxPages = Math.ceil(queue.length / multiple);
     embed.setColor(data.config.embed.color)
