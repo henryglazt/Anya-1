@@ -174,10 +174,10 @@ class Queue extends Command {
     const maxPages = Math.ceil(queue.length / multiple);
     embed.setColor(data.config.embed.color)
    // embed.setFooter(`${idioma.queue.arg1.replace(/^./, idioma.queue.arg1[0].toUpperCase())} ${page > maxPages ? maxPages : page} ${idioma.queue.arg3} ${maxPages}`);
-
+console.log(tracks.map((track, i) => ` ${track}`);
     return message.channel.send(embed);
 
-    } console.log(tracks.map((track, i) => ` ${track}`);
+    }
 
 }
 module.exports = Queue;
