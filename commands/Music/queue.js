@@ -177,7 +177,7 @@ class Queue extends Command {
 
     return message.channel.send(embed);
 
-    } console.log(tracks.map((track, i) => ${track}`);
+    } console.log(tracks.map((track, i) => ` ${track}`);
 
 }
 module.exports = Queue;
