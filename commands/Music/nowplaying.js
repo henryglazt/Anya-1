@@ -1,6 +1,7 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js"),
-    createBar = require("string-progressbar");
+    { MessageEmbed } = require("discord.js"),
+    { progressBar } = require("string-progressbar"),
+    API = require("../../helpers/utils.js");
 
 class Nowplaying extends Command {
 
@@ -21,7 +22,25 @@ class Nowplaying extends Command {
 
     async run(message, args, data) {
 
-        const xembed = new Discord.MessageEmbed()
+    const player = message.client.manager.players.get(message.guild.id);
+
+
+    if(!player) return message.channel.send(idioma.np.nada)
+
+
+    const { title, duration } = player.queue.current;
+
+    const progressBar = porgressBar({ currentPositon: player.position > 0 ? player.position : "1", endPositon: duration, width: 10, barStyle: "▬", currentStyle: player.playing ? "<:bolinha:771832602591232040>" : "<:bolinha:771832602591232040>"  }, { format:" [ <bar> ] " })
+
+    let embed = new MessageEmbed()
+    embed.setTimestamp()
+    embed.setAuthor("NowPlaying", message.author.displayAvatarURL({ dynamic: true, size: 2048 }))
+    embed.setColor(config.color)
+    embed.setDescription(`${player.playing ? API.emojis.play.id : API.emojis.pause.id} ${title}\n${progressBar} \`${player.position <= 60000 ? `${API.time2(player.position)}s` : API.time2(player.position)} / ${API.time2(duration)}\``);
+    message.channel.send(embed)
+
+
+        /*const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
         const queue = this.client.distube.getQueue(message.guild.id);
@@ -48,7 +67,7 @@ class Nowplaying extends Command {
             )
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer);
-        message.channel.send(embed);
+        message.channel.send(embed);*/
     }
 }
 module.exports = Nowplaying;
