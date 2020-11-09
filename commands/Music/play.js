@@ -62,8 +62,8 @@ class Play extends Command {
       if (!player.playing && !player.paused && !player.queue.length) player.play();
       let embed = new Discord.MessageEmbed()
       embed.setTimestamp()
-      embed.setDescription(`\`${res.tracks[0].title}\`\n${res.tracks[0].duration}`)
-      embed.setFooter(res.tracks[0].requester.tag, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true, size: 2048 })}`)
+      embed.setDescription(`\`${res.tracks[0].title}\`\n${API.time2(res.tracks[0].duration)}`)
+      embed.setFooter(res.tracks[0].requester.tag, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`)
       return message.channel.send(embed)
 
     case 'PLAYLIST_LOADED':
@@ -72,7 +72,7 @@ class Play extends Command {
       if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
       let embed2 = new Discord.MessageEmbed()
       embed2.setTimestamp()
-      embed2.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${res.playlist.duration}`)
+      embed2.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${API.time2(res.playlist.duration)}`)
       return message.channel.send(embed2);
 
     case 'SEARCH_RESULT':
@@ -112,7 +112,7 @@ class Play extends Command {
 
       let embed4 = new Discord.MessageEmbed()
       embed4.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
-      embed4.setDescription(`\`${track.title}\` \n ${track.duration}`)
+      embed4.setDescription(`\`${track.title}\` \n ${API.time2(track.duration)}`)
       if(!player.playing && !player.paused && !player.queue.length) player.play();
       return message.channel.send(embed4);
   }
