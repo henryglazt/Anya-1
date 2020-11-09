@@ -1,7 +1,6 @@
 const moment = require("moment")
 require("moment-duration-format")
-const byteSize = require('byte-size')
-moment.locale("pt-br")
+moment.locale("id")
 const API = {}
 
 API.time = function(s) {
@@ -55,12 +54,8 @@ API.badges = function(badges) {
     return (badges.join(' ').replace('HOUSE_BALANCE', '<:balance:746939323143946320>').replace('HOUSE_BRILLIANCE', '<:Brilliance:746939322904870973>').replace('HOUSE_BRAVERY', '<:Bravery:746939322996883516>').replace('BUGHUNTER_LEVEL_1', '<:Hunter:750415765424963634>').replace('BUGHUNTER_LEVEL_2', '<:hunterv2:750415765496135700>').replace('VERIFIED_DEVELOPER', '<:developer:746940343252942956>').replace('DISCORD_PARTNER', '<:parceiro:750415765366112457>').replace('VERIFIED_BOT', '<:bot:750415765311717476>').replace('EARLY_SUPPORTER', '<:early:750416436458946773>').replace('HYPESQUAD_EVENTS', '<:hypesquad:750415765026635929>').replace('TEAM_USER', '<:funcionario:750415765655519403>').replace('SYSTEM', '<:funcionario:750415765655519403>') || 'Não possui')
 }
 
-API.bytes = function(size) {
-    return (byteSize(size))
-}
-
-API.moment = function(numero, formato) {
-    return (moment(numero).format(formato))
+API.moment = function(number, format) {
+    return (moment(number).format(format))
 }
 
 API.emojis = {
@@ -81,8 +76,5 @@ API.emojis = {
         "nome": "pause"
     }
 }
-
-API.eval = ["422002630106152970", "672652538880720896", "704468807229505637"]
-
 
 module.exports = API
