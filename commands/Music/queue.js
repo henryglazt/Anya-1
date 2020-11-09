@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    { MessageEmbed } = require("discord.js");
 
 class Queue extends Command {
 
@@ -131,7 +131,7 @@ class Queue extends Command {
     if (!player) return message.reply("I have not joined a channel because I have nothing to play. Use the play command to play the song.");
 
     const queue = player.queue;
-    const embed = new Discord.MessageEmbed().setAuthor(`Queue for ${message.guild.name}`);
+    const embed = new MessageEmbed().setAuthor(`Queue for ${message.guild.name}`);
 
     const multiple = 10;
     const page = args.length && Number(args[0]) ? Number(args[0]) : 1;
@@ -152,68 +152,31 @@ class Queue extends Command {
 
     return message.reply(embed);*/
 
-        try {
-            const { channel } = message.member.voice;
-            if (!channel) return message.channel.send('**You Have To Be Connected To A Voice Channel!**');
+    const player = message.client.manager.players.get(message.guild.id);
+    if (!player) return message.reply("No queue");
 
-            const player = message.client.manager.players.get(message.guild.id);
-            if (!player || player.queue.size === 0 || (player.position === 0 && !player.playing)) return message.channel.send('**Nothing Playing In This Server!**');
-            if (channel.id !== player.voiceChannel) return message.channel.send('**You Have To Be In The Same Voice Channel With The Bot!**');
+    const queue = player.queue;
+    const embed = new MessageEmbed().setAuthor(`Queue for ${message.guild.name}`);
 
-            let currentPage = 0;
-            const embeds = this.generateQueueEmbed(message, player.queue);
-            const queueEmbed = await message.channel.send(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
-            await queueEmbed.react('⬅️');
-            await queueEmbed.react('⏹')
-            await queueEmbed.react('➡️');
+    const multiple = 5;
+    const page = args.length && Number(args[0]) ? Number(args[0]) : 1;
 
-            const filter = (reaction, user) => ['⬅️', '⏹', '➡️'].includes(reaction.emoji.name) && (message.author.id === user.id);
-            const collector = queueEmbed.createReactionCollector(filter)
+    const end = page * multiple;
+    const start = end - multiple;
 
-            collector.on('collect', async (reaction, user) => {
-                if (reaction.emoji.name === '➡️') {
-                    if (currentPage < embeds.length - 1) {
-                        currentPage++;
-                        queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
-                    }
-                } else if (reaction.emoji.name === '⬅️') {
-                    if (currentPage !== 0) {
-                        --currentPage;
-                        queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
-                    }
-                } else {
-                    collector.stop();
-                    reaction.message.reactions.removeAll();
-                }
-                await reaction.users.remove(message.author.id)
-            });
-        } catch (error) {
-            console.error(error);
-            return message.channel.send(`An Error Occurred: \`${error.message}\`!`);
-        };
-    };
+    const tracks = queue.slice(start, end);
 
-    generateQueueEmbed(message, queue) {
-        const embeds = [];
-        let size = queue.size === 0 && queue.current !== null ? 1 : queue.size;
-        let k = 10;
-        for (let i = 0; i < size; i += 10) {
-            const current = queue.slice(embeds.length === 0 ? i : i - 1, embeds.length === 0 ? k - 1: k - 1);
-            let j;
-            embeds.length === 0 ? j = i : j = i - 1;
-            k += 10;
-            const info = current.map(track => `${++j + 1} - [${track.title}](${track.uri})`).join('\n');
-            const embed = new Discord.MessageEmbed()
-                .setAuthor(`${this.client.user.username} Queue`, this.client.user.displayAvatarURL())
-                .setTitle('Song Queue\n')
-                .setThumbnail(message.guild.iconURL({ dynamic: true }))
-                .setColor('GREEN')
-                .setDescription(`\n**Current Song** - [${queue.current.title}](${queue.current.uri})\n\n${info}`)
-                .setFooter(`Requested By - ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true }))
-                .setTimestamp();
-            embeds.push(embed);
-        };
-        return embeds;
+    if(queue.current) embed.addField(idioma.queue.np, `[${queue.current.title}](${queue.current.uri}) | \`${player.queue.current.requester.tag}\``);
+
+    if(!tracks.length) embed.setDescription(`No tracks in ${page > 1 ? `${idioma.queue.arg1} ${page}` : `${idioma.queue.arg2}`}.`);
+    else embed.setDescription(tracks.map((track, i) => `**${start + (++i)} -** [${track.title}](${track.uri})`).join("\n"));
+
+    const maxPages = Math.ceil(queue.length / multiple);
+    embed.setColor(bot.color)
+   // embed.setFooter(`${idioma.queue.arg1.replace(/^./, idioma.queue.arg1[0].toUpperCase())} ${page > maxPages ? maxPages : page} ${idioma.queue.arg3} ${maxPages}`);
+
+    return message.channel.send(embed);
+
 
     }
 
