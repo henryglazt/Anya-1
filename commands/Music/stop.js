@@ -16,7 +16,20 @@ class Stop extends Command {
         });
     }
     async run(message, args, data) {
-        const xembed = new Discord.MessageEmbed()
+
+    const player = message.client.manager.players.get(message.guild.id);
+    if(!player) return message.reply(idioma.stop.nada)
+
+    const { channel } = message.member.voice
+
+    if(!channel) return message.reply(idioma.stop.conectar);
+    if (channel.id !== player.voiceChannel) return message.reply(idioma.stop.conectar2);
+
+    player.destroy();
+    return message.channel.send(idioma.stop.parou);
+
+
+        /*const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
         const voice = message.member.voice.channel;
@@ -35,7 +48,7 @@ class Stop extends Command {
         }
         player.destroy();
         xembed.setDescription(message.translate("music/stop:LEAVE"));
-        return message.channel.send(xembed);
+        return message.channel.send(xembed);*/
 
         /*const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
