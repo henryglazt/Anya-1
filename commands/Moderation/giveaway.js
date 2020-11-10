@@ -110,7 +110,8 @@ class Giveaway extends Command {
             }
             this.client.giveawaysManager.reroll(messageID, {
                     congrat: message.translate("moderation/giveaway:REROLL_CONGRAT"),
-                    error: message.translate("moderation/giveaway:REROLL_ERROR")
+                    error: message.translate("moderation/giveaway:REROLL_ERROR"),
+                    winnerCount: 1
                 })
                 .then(() => {
                     return message.success("moderation/giveaway:GIVEAWAY_REROLLED");
