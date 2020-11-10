@@ -70,9 +70,17 @@ client.manager = new Manager({
     .on("queueEnd", player => {
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("Queue ended");
-        setTimeout(function () {
-        player.destroy();
-        }, 20000);
+        var timer;
+        function start() {
+            timer = setTimeout(function () {
+                 player.destroy();
+            }, 20000);
+        }
+        if (player.playing) {
+            function stop() {
+                 clearTimeout(timer);
+            }
+        }
     });
 
 client.on("raw", d => client.manager.updateVoiceState(d));
