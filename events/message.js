@@ -131,7 +131,7 @@ module.exports = class {
 				await data.userData.save();
 				message.sendT("general/setafk:DELETED", {
 					username: message.author.username
-				});
+				}).then(m => {m.delete({ timeout: 5000 })});
 			}
 
 			message.mentions.users.forEach(async (u) => {
