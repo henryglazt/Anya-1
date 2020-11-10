@@ -140,7 +140,7 @@ module.exports = class {
 					message.error("general/setafk:IS_AFK", {
 						username: u.tag,
 						reason: userData.afk
-					});
+					}).then(m => {m.delete({ timeout: 5000 })});
 				}
 			});
 
