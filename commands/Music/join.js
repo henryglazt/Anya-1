@@ -16,7 +16,26 @@ class Join extends Command {
         });
     }
     async run(message, args, data) {
-        const xembed = new Discord.MessageEmbed()
+
+    const player = message.client.manager.players.get(message.guild.id);
+
+    const { channel } = message.member.voice;
+
+    if(!channel) return message.reply("no channel");
+    if (channel.id !== player.voiceChannel) return message.reply("joined");
+
+  if(!player) {
+    const player = message.client.manager.create({
+      guild: message.guild.id,
+      voiceChannel: channel.id,
+      textChannel: message.channel.id,
+      selfDeafen: true,
+    });
+    if(!channel.joinable) { return message.channel.send("perms") }
+    player.connect();
+  }
+
+       /* const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
         const voice = message.member.voice.channel;
@@ -40,9 +59,7 @@ class Join extends Command {
         voice.join()
             .then(connection => {
                 connection.voice.setSelfDeaf(true)
-                xembed.setDescription(message.translate("music/play:JOIN"));
-                return message.channel.send(xembed);
-            });
+                xembed.setDescription(message.translate("music/play:JOIN"));*/
     }
 }
 module.exports = Join;
