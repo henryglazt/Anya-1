@@ -35,7 +35,6 @@ class Join extends Command {
   } else {
 return message.channel.send("already being used");
 }
-}
        /* const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
