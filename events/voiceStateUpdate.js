@@ -7,17 +7,17 @@ module.exports = class {
     
     const client = this.client;
     
-		const player = client.manager.players.get(newState.guild.id)
+    const player = client.manager.players.get(newState.guild.id);
 
     if(!player) return;
 
-    const channel = client.channels.cache.get(player.textChannel)
+    const channel = client.channels.cache.get(player.textChannel);
     
-    let chnl = player.options.voiceChannel
+    let chnl = player.options.voiceChannel;
 
-    let guild = player.options.guild
+    let guild = player.options.guild;
 
-    if(client.guilds.cache.get(guild).channels.cache.get(chnl).members.size == 1) {
+    if(client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
         channel.send("im alone, im leaving...")
         return player.destroy()
     }
