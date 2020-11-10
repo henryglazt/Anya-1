@@ -72,7 +72,7 @@ client.manager = new Manager({
         channel.send("Queue ended");
         setTimeout(function () {
         player.destroy();
-        }, 180000);
+        }, 20000);
     });
 
 client.on("raw", d => client.manager.updateVoiceState(d));
