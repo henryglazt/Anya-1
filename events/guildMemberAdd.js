@@ -146,11 +146,11 @@ module.exports = class {
 								`**Baca tata krama di :** <#773711420533112883>`,
 								`**Ambil role di :** <#773711707314716693>`,
 								`**Dan jangan lupa isi data diri lu di :** <#773709399511400448>\n`,
-								`**Enjoy your stay and Have fun guys! No Baper ya...** <a:aemoji_:773751678507548682>
+								`**Enjoy your stay and Have fun guys! No Baper ya...** <a:aemoji_:773751678507548682>`
 								])
 							.setImage(member.guild.bannerURL({ format: "png", size: 512 }))
 								.setColor(this.client.config.embed.color)
-								.setFooter(`Member Saat ini : ${member.guild.memberCount}`, `${member.guild.iconURL({ dynamic: true })}`)
+								.setFooter(`Member Saat ini : ${member.guild.memberCount}`, member.guild.iconURL({ dynamic: true }))
 								.setTimestamp();
 						wembc.send(`**Assalamualaikum** ${member}`, wembed)
 					} else {
