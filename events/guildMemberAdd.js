@@ -138,21 +138,21 @@ module.exports = class {
 						if (!wembc) return;
 						const wembed = new Discord.MessageEmbed()
 							.setAuthor(
-								`Selamat Datang di ${member.guild.name}, ${member.displayName}!`,
-								`${member.user.displayAvatarURL({ dynamic: true })}`
+								`Welcome to ${member.guild.name}, ${member.displayName}!`,
+								//`${member.guild.iconURL({ dynamic: true })}`
 								)
 							.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 							.setDescription([
 								`**Baca tata krama di :** <#773711420533112883>`,
 								`**Ambil role di :** <#773711707314716693>`,
 								`**Dan jangan lupa isi data diri lu di :** <#773709399511400448>\n`,
-								`**Enjoy your stay and Have fun guys! Cheers...** <a:tenor:746856902708822118>`
+								`**Enjoy your stay and Have fun guys! No Baper ya...** <a:aemoji_:773751678507548682>
 								])
 							.setImage(member.guild.bannerURL({ format: "png", size: 512 }))
 								.setColor(this.client.config.embed.color)
-								.setFooter(`Member Saat ini : ${member.guild.memberCount}`)
+								.setFooter(`Member Saat ini : ${member.guild.memberCount}`, member.guild.iconURL({ dynamic: true }))
 								.setTimestamp();
-						wembc.send(`Welcome ${member}`, wembed)
+						wembc.send(`**Assalamualaikum** ${member}`, wembed)
 					} else {
 						channel.send(message);
 					}
