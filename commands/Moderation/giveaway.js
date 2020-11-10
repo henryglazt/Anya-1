@@ -108,10 +108,9 @@ class Giveaway extends Command {
             if (!messageID) {
                 return message.error("moderation/giveaway:MISSING_ID_REROLL");
             }
-            this.client.giveawaysManager.reroll(messageID, {
+            this.client.giveawaysManager.reroll(messageID, 1, {
                     congrat: message.translate("moderation/giveaway:REROLL_CONGRAT"),
-                    error: message.translate("moderation/giveaway:REROLL_ERROR"),
-                    winnerCount: 1
+                    error: message.translate("moderation/giveaway:REROLL_ERROR")
                 })
                 .then(() => {
                     return message.success("moderation/giveaway:GIVEAWAY_REROLLED");
