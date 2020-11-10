@@ -78,7 +78,7 @@ client.manager = new Manager({
         }
         if (player.playing) {
             function stop() {
-                 clearTimeout(timer);
+                 return clearTimeout(timer);
             }
         }
     });
