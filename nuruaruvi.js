@@ -25,7 +25,7 @@ require("./helpers/player")
 const nodes = require("./helpers/nodes")
 client.manager = new Manager({
         nodes,
-        plugins: [ new Spotify({ clientID, clientSecret })],
+        plugins: [ new Spotify({ clientID, clientSecret, convertUnresolved: true })],
             autoPlay: true,
             send: (id, payload) => {
                 const guild = client.guilds.cache.get(id);
