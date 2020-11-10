@@ -16,7 +16,21 @@ class Shuffle extends Command {
 		});
 	}
 	async run(message, args, data) {
-        const xembed = new Discord.MessageEmbed()
+
+    const player = message.client.manager.players.get(message.guild.id);
+
+    if(!player) return message.channel.send(idioma.shuffle.nada)
+
+    const { channel } = message.member.voice
+
+    if(!channel) return message.channel.send(idioma.shuffle.conectar)
+
+    if(channel.id !== player.voiceChannel) return message.channel.send(idioma.shuffle.conectar2)
+
+    player.queue.shuffle();
+    return message.reply(idioma.shuffle.embaralhado)
+
+        /*const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
@@ -40,7 +54,7 @@ class Shuffle extends Command {
         }
 	this.client.distube.shuffle(message);
 	xembed.setDescription(message.translate("music/shuffle:SUCCESS"));
-	return message.channel.send(xembed);
+	return message.channel.send(xembed);*/
 	}
 }
 module.exports = Shuffle;
