@@ -21,8 +21,7 @@ class Join extends Command {
 
     const { channel } = message.member.voice;
 
-    if(!channel) return message.reply("no channel");
-    if (channel.id !== player.voiceChannel) return message.reply("joined");
+    if (!channel) return message.reply("no channel");
 
   if(!player) {
     const player = message.client.manager.create({
@@ -33,8 +32,10 @@ class Join extends Command {
     });
     if(!channel.joinable) { return message.channel.send("perms") }
     player.connect();
-  }
-
+  } else {
+return message.channel.send("already being used");
+}
+}
        /* const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
