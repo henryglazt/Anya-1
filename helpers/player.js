@@ -1,7 +1,7 @@
 const { Structure } = require("erela.js");
 
 module.exports = Structure.extend('Player', Player => {
-    class boneeplayer extends Player {
+    class aruviplayer extends Player {
         constructor(...args) {
             super(...args)
             this.speed = 1;
@@ -75,7 +75,7 @@ module.exports = Structure.extend('Player', Player => {
                 this.setNightcore(false)
                 this.setVaporwave(false)
                 this.setDistort(0.5)
-            } else this.clearEQ();
+            } else this.clearEffects();
             return this;
         }
 
@@ -167,6 +167,7 @@ module.exports = Structure.extend('Player', Player => {
             this.bassboost = false;
             this.nightcore = false;
             this.vaporwave = false;
+            this.distortion = false;
             this.clearEQ();
 
             this.node.send({
@@ -176,5 +177,5 @@ module.exports = Structure.extend('Player', Player => {
             return this;
         }
     }
-    return boneeplayer;
+    return aruviplayer;
 });
