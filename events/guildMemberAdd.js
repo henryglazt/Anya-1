@@ -143,7 +143,7 @@ module.exports = class {
 								)
 							.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 							.setDescription([
-								`**Baca tata krama di :** <#773711420533112883>`,
+								`\n**Baca tata krama di :** <#773711420533112883>`,
 								`**Ambil role di :** <#773711707314716693>`,
 								`**Dan jangan lupa isi data diri lu di :** <#773709399511400448>\n`,
 								`**Enjoy your stay and Have fun guys! No Baper ya...** <a:aemoji_:773751678507548682>`
