@@ -150,7 +150,7 @@ module.exports = class {
 								])
 							.setImage(member.guild.bannerURL({ format: "png", size: 512 }))
 								.setColor(this.client.config.embed.color)
-								.setFooter(`Member Saat ini : ${member.guild.memberCount}`, member.guild.iconURL({ dynamic: true }))
+								.setFooter(`Member Saat ini : ${member.guild.memberCount}`, `${member.guild.iconURL({ dynamic: true })}`)
 								.setTimestamp();
 						wembc.send(`**Assalamualaikum** ${member}`, wembed)
 					} else {
