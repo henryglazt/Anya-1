@@ -71,15 +71,11 @@ client.manager = new Manager({
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("Queue ended");
         var timer;
-        function start() {
-            timer = setTimeout(function () {
-                 player.destroy();
-            }, 20000);
-        }
+        timer = setTimeout(function () {
+            player.destroy();
+        }, 20000);
         if (player.queue.length) {
-            function stop() {
-                 return clearTimeout(timer);
-            }
+            return clearTimeout(timer);
         }
     });
 
