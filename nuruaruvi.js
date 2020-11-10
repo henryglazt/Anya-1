@@ -21,8 +21,9 @@ const Spotify = require("erela.js-spotify"),
     clientID = client.config.spotify.id,
     clientSecret = client.config.spotify.secret;
 
-require("./helpers/player")
-const nodes = require("./helpers/nodes")
+require("./helpers/player");
+const nodes = require("./helpers/nodes");
+var timer;
 client.manager = new Manager({
         nodes,
         plugins: [ new Spotify({ clientID, clientSecret, convertUnresolved: true })],
@@ -35,6 +36,7 @@ client.manager = new Manager({
     .on("nodeConnect", () => console.log(`[NODE] - connected`))
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
     .on("trackStart", (player, track) => {
+        clearTimeout(timer);
         const channel = client.channels.cache.get(player.textChannel);
         let embed = new Discord.MessageEmbed()
         embed.setDescription(`**Now playing:** \`${track.title}\``)
@@ -70,13 +72,9 @@ client.manager = new Manager({
     .on("queueEnd", player => {
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("Queue ended");
-        var timer;
         timer = setTimeout(function () {
             player.destroy();
         }, 20000);
-        if (player.playing) {
-            return clearTimeout(timer);
-        }
     });
 
 client.on("raw", d => client.manager.updateVoiceState(d));
