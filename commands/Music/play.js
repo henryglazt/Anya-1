@@ -22,14 +22,14 @@ class Play extends Command {
 
   const { channel } = message.member.voice;
 
-  if(!channel) return message.reply("no channel");;
+  if(!channel) return message.reply("no channel");
   if(!args.length) return message.reply("no args");
 
   if(!play) await message.client.commands.get("join").run(message, null, data);
 
   const player = message.client.manager.players.get(message.guild.id)
 
-  if(!player.options.voiceChannel === channel.id) { return message.channel.send("...") }
+  if(channel.id !== player.voiceChannel) { return message.channel.send("...") }
 
   const search = args.join(' ');
   let res;
