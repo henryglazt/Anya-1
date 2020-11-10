@@ -26,7 +26,7 @@ class Setafk extends Command {
 		// Send success message
 		message.success("general/setafk:SUCCESS", {
 			reason
-		});
+		}).then(m => {m.delete({ timeout: 5000 })});
 
 		data.userData.afk = reason;
 		data.userData.save();
