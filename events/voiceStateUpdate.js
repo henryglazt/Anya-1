@@ -13,11 +13,11 @@ module.exports = class {
 
     const channel = client.channels.cache.get(player.textChannel);
     
-    let chnl = player.options.voiceChannel;
+    let chnl = player.voiceChannel;
 
-    let guild = player.options.guild;
+    let guild = player.guild;
 
-    if(client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size === 0) {
+    if(client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
         channel.send("im alone, im leaving...")
         return player.destroy()
     }
