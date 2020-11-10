@@ -1,6 +1,7 @@
 const Command = require("../../base/Command.js"),
     Discord = require("discord.js"),
-      API = require("../../helpers/utils.js");
+      API = require("../../helpers/utils.js"),
+        join = require("../../commands/Music/join.js");
 class Play extends Command {
     constructor(client) {
         super(client, {
@@ -24,16 +25,7 @@ class Play extends Command {
   if(!channel) return message.reply("no channel");;
   if(!args.length) return message.reply("no args");
 
-  if(!play) {
-    const player = message.client.manager.create({
-      guild: message.guild.id,
-      voiceChannel: channel.id,
-      textChannel: message.channel.id,
-      selfDeafen: true,
-    });
-    if(!channel.joinable) { return message.channel.send("perms") }
-    player.connect();
-  }
+  if(!play) await join.run(message, args, data);
 
   const player = message.client.manager.players.get(message.guild.id)
 
