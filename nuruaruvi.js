@@ -74,7 +74,7 @@ client.manager = new Manager({
         timer = setTimeout(function () {
             player.destroy();
         }, 20000);
-        if (player.queue.length) {
+        if (player.playing) {
             return clearTimeout(timer);
         }
     });
