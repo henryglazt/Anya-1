@@ -73,8 +73,9 @@ client.manager = new Manager({
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("Queue ended");
         timer = setTimeout(function () {
+            channel.send("been idle for 3 minutes, leaving");
             player.destroy();
-        }, 180000).then(channel.send("been idle for 3 minutes, leaving"));
+        }, 180000)
     });
 
 client.on("raw", d => client.manager.updateVoiceState(d));
