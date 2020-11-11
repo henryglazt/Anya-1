@@ -14,7 +14,7 @@ module.exports = class {
 			    .setDescription(
 			    	`**Guild Name:** ${guild.name}\n**Guild ID:** (\`${guild.id}\`)\nThis guild has \`${guild.memberCount}\` members!`
 			    )
-			    .setFooter(`Now connected to ${client.guilds.cache.size} guilds`)
+			    .setFooter(`Now connected to ${this.client.guilds.cache.size} guilds`)
 			    .setTimestamp();
 		this.client.channels.cache.get(this.client.config.support.logs).send(embed);
 
