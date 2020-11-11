@@ -36,14 +36,8 @@ client.manager = new Manager({
     })
     .on("nodeConnect", () => console.log(`[NODE] - connected`))
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
-    .on("playerCreate", player => {
-        const channel = client.channels.cache.get(player.textChannel);
-        timer = setTimeout(function () {
-            channel.send("been idle for 3 minutes, leaving");
-            player.destroy();
-        }, 180000)
-    })
     .on("trackStart", (player, track) => {
+        clearTimeout(timer);
         clearTimeout(timer2);
         const channel = client.channels.cache.get(player.textChannel);
         let embed = new Discord.MessageEmbed()
@@ -52,6 +46,13 @@ client.manager = new Manager({
         embed.setColor(config.color)
         embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
         channel.send(embed).then(msg => player.set("message", msg));
+    })
+    .on("playerCreate", player => {
+        const channel = client.channels.cache.get(player.textChannel);
+        timer = setTimeout(function () {
+            channel.send("been idle for 3 minutes, leaving");
+            player.destroy();
+        }, 180000)
     })
     .on("socketClosed", (player, payload) => {
         if (payload.byRemote == true) {
