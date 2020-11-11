@@ -9,9 +9,7 @@ module.exports = class {
 	async run (message) {
 
 		const data = {};
-		if(message.author.id === "408785106942164992" && message.content.includes(`:seedling: | ${message.member.user.username}`){
-console.log("owoh");
-}
+		if(message.author.id === "408785106942164992" && message.content.includes(`:seedling: | ${message.member.user.username}`)){console.log("owoh");}
 		if(message.author.bot){
 			return;
 		}
