@@ -24,6 +24,7 @@ const Spotify = require("erela.js-spotify"),
 require("./helpers/player");
 const nodes = require("./helpers/nodes");
 var timer;
+var timer2;
 client.manager = new Manager({
         nodes,
         plugins: [ new Spotify({ clientID, clientSecret, convertUnresolved: true })],
@@ -35,8 +36,14 @@ client.manager = new Manager({
     })
     .on("nodeConnect", () => console.log(`[NODE] - connected`))
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
+    .on("playerCreate", player => {
+        timer = setTimeout(function () {
+            channel.send("been idle for 3 minutes, leaving");
+            player.destroy();
+        }, 180000)
+    })
     .on("trackStart", (player, track) => {
-        clearTimeout(timer);
+        clearTimeout(timer2);
         const channel = client.channels.cache.get(player.textChannel);
         let embed = new Discord.MessageEmbed()
         embed.setDescription(`**Now playing:** \`${track.title}\``)
@@ -72,7 +79,7 @@ client.manager = new Manager({
     .on("queueEnd", player => {
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("Queue ended");
-        timer = setTimeout(function () {
+        timer2 = setTimeout(function () {
             channel.send("been idle for 3 minutes, leaving");
             player.destroy();
         }, 180000)
