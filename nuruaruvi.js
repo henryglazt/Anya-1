@@ -47,6 +47,9 @@ client.manager = new Manager({
         embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
         channel.send(embed).then(msg => player.set("message", msg));
     })
+    .on("playerDestroy", player => {
+        clearTimeout(timer);
+    })
     .on("playerCreate", player => {
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(function () {
