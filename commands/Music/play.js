@@ -76,7 +76,7 @@ class Play extends Command {
 
       const results = res.tracks
       .slice(0, max)
-      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${APItime2(track.duration})\``)
+      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${API.time2(track.duration)}\``)
       .join('\n');
 
       resembed.addFields({ name: "Cancel", value: "Cancel" })
@@ -104,7 +104,7 @@ class Play extends Command {
       await player.queue.add(track);
 
       embed.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
-      embed.setDescription(`\`${track.title}\` \n ${API.time2(track.duration)}`)
+      embed.setDescription(`[${track.title}](${track.uri}) \n \`${API.time2(track.duration)}\``)
       if(!player.playing && !player.paused && !player.queue.length) player.play();
       return message.channel.send(embed);
       }
