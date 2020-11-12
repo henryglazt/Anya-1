@@ -67,7 +67,7 @@ class Play extends Command {
 
       if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
       embed.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${API.time2(res.playlist.duration)}`)
-      return message.channel.send(embed2);
+      return message.channel.send(embed);
 
     case 'SEARCH_RESULT':
       let max = 5, collected, filter = (m) => m.author.id === message.author.id && /^(\d+|cancelar)$/i.test(m.content) || message.author.id && /^(\d+|cancel)$/i.test(m.content);
@@ -80,7 +80,7 @@ class Play extends Command {
 
       embed.addFields({ name: "Cancel", value: "Cancel" })
       embed.setDescription(results)
-      message.channel.send(embed3);
+      message.channel.send(embed);
 
       try {
         collected = await message.channel.awaitMessages(filter, { max: 1, time: 30e3, errors: ['time'] });
@@ -105,7 +105,7 @@ class Play extends Command {
       embed.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
       embed.setDescription(`\`${track.title}\` \n ${API.time2(track.duration)}`)
       if(!player.playing && !player.paused && !player.queue.length) player.play();
-      return message.channel.send(embed4);
+      return message.channel.send(embed);
       }
       
     }
