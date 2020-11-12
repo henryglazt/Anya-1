@@ -79,8 +79,10 @@ class Play extends Command {
       .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${API.time2(track.duration)}\``)
       .join('\n');
 
-      resembed.addFields({ name: "Cancel", value: "Cancel" })
+      resembed.addFields({ name: "Cancel", value: "Type `cancel` to cancel" })
       resembed.setDescription(results)
+      resembed.setColor(data.config.embed.color)
+      resembed.setFooter(data.config.embed.footer)
       message.channel.send(resembed);
 
       try {
