@@ -58,14 +58,14 @@ class Play extends Command {
       await player.queue.add(res.tracks[0]);
 
       if (!player.playing && !player.paused && !player.queue.length) player.play();
-      embed.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})\n${formatTime(res.tracks[0].duration)}`)
+      embed.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})\n\`${formatTime(res.tracks[0].duration, true)}\``)
       embed.setFooter(`Requested by: ${res.tracks[0].requester.tag}`, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`)
       return message.channel.send(embed)
 
     case 'PLAYLIST_LOADED':
       await player.queue.add(res.tracks);
       if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
-      embed.setDescription(`${res.playlist.name} \`${res.tracks.length}\` \`${formatTime(res.playlist.duration)}\``)
+      embed.setDescription(`${res.playlist.name} \`${res.tracks.length}\` \`${formatTime(res.playlist.duration, true)}\``)
       return message.channel.send(embed);
 
     case 'SEARCH_RESULT':
@@ -75,7 +75,7 @@ class Play extends Command {
 
       const results = res.tracks
       .slice(0, max)
-      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${formatTime(track.duration)}\``)
+      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${formatTime(track.duration, true)}\``)
       .join('\n');
 
       resembed.addFields({ name: "Cancel", value: "Type `cancel` to cancel" })
@@ -105,7 +105,7 @@ class Play extends Command {
       await player.queue.add(track);
 
       embed.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
-      embed.setDescription(`[${track.title}](${track.uri}) \n \`${formatTime(track.duration)}\``)
+      embed.setDescription(`[${track.title}](${track.uri}) \n \`${formatTime(track.duration, true)}\``)
       if(!player.playing && !player.paused && !player.queue.length) player.play();
       return message.channel.send(embed);
       }
