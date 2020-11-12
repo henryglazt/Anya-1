@@ -44,7 +44,7 @@ client.manager = new Manager({
         embed.setAuthor("Now Playing", "https://cdn.discordapp.com/emojis/750364941449691206.gif")
         embed.setDescription(`[${track.title}](${track.uri})`)
         embed.setTimestamp()
-        embed.setColor(config.color)
+        embed.setColor(config.embed.color)
         embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
         channel.send(embed).then(msg => player.set("message", msg));
     })
@@ -54,7 +54,7 @@ client.manager = new Manager({
     .on("playerCreate", player => {
         let embed = new Discord.MessageEmbed()
                 embed.setTimestamp()
-                embed.setColor(config.color)
+                embed.setColor(config.embed.color)
                 embed.setDescription("music/stop:IDLE")
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(function () {
@@ -90,7 +90,7 @@ client.manager = new Manager({
     .on("queueEnd", player => {
         let embed = new Discord.MessageEmbed()
                 embed.setTimestamp()
-                embed.setColor(config.color)
+                embed.setColor(config.embed.color)
                 embed.setDescription("music/play:QUEUE_ENDED")
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("embed");
