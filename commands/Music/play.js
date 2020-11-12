@@ -71,12 +71,12 @@ class Play extends Command {
 
     case 'SEARCH_RESULT':
       let resembed = new MessageEmbed()
-      let max = 5, collected, filter = (m) => m.author.id === message.author.id && /^(\d+|cancelar)$/i.test(m.content) || message.author.id && /^(\d+|cancel)$/i.test(m.content);
+      let max = 5, collected, filter = (m) => m.author.id === message.author.id && /^(\d+|cancel)$/i.test(m.content) || message.author.id && /^(\d+|batal)$/i.test(m.content);
       if (res.tracks.length < max) max = res.tracks.length;
 
       const results = res.tracks
       .slice(0, max)
-      .map((track, index) => `${++index} - \`${track.title}\``)
+      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${APItime2(track.duration})\``)
       .join('\n');
 
       resembed.addFields({ name: "Cancel", value: "Cancel" })
