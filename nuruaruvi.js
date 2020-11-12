@@ -43,11 +43,10 @@ client.manager = new Manager({
         let embed = new Discord.MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
         embed.setAuthor("Now Playing", "https://cdn.discordapp.com/emojis/750364941449691206.gif")
-        embed.setDescription(`[${track.title}](${track.uri}) - ${formatTime(track.duration, true)}`)
-        embed.setTimestamp()
+        embed.setDescription(`[${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
         embed.setColor(config.embed.color)
-        embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
+        embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`);
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
@@ -55,9 +54,9 @@ client.manager = new Manager({
     })
     .on("playerCreate", player => {
         let embed = new Discord.MessageEmbed()
-                embed.setTimestamp()
+                embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription("music/stop:IDLE")
+                embed.setDescription("I've been idle for 3 minutes, leaving... <a:ablobwave:754574913209368687>");
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(function () {
             channel.send(embed);
@@ -75,7 +74,7 @@ client.manager = new Manager({
     .on("trackStuck", (player, track, payload) => {
         const channel = client.channels.cache.get(player.textChannel)
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send("music/play:ERROR")
+        channel.send("Error encountered: Track stuck!")
     })
     .on("trackError", (player, track, payload) => {
         let embed = new Discord.MessageEmbed()
@@ -84,20 +83,20 @@ client.manager = new Manager({
             return
         }
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send("music/play:ERROR")
+        channel.send("Error encountered: Track error!")
     })
     .on("playerMove", (player, currentChannel, newChannel) => {
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
         let embed = new Discord.MessageEmbed()
-                embed.setTimestamp()
+                embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription("music/play:QUEUE_ENDED")
+                embed.setDescription("Queue ended, add more songs before im leaving in 3 minutes.");
         const channel = client.channels.cache.get(player.textChannel);
         channel.send(embed);
         timer2 = setTimeout(function () {
-            embed.setDescription("music/stop:IDLE")
+            embed.setDescription("I've been idle for 3 minutes, leaving... <a:ablobwave:754574913209368687>")
             channel.send(embed);
             player.destroy();
         }, 180000)
