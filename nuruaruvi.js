@@ -90,7 +90,7 @@ client.manager = new Manager({
     })
     .on("queueEnd", player => {
         let embed = new MessageEmbed()
-                embed.setFooter(Message.translate("music/play:QUEUE_ENDED"))
+                embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
                 embed.setDescription("Queue ended, add more songs before im leaving in 3 minutes.");
         const channel = client.channels.cache.get(player.textChannel);
