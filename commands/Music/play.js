@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js"),
+      { MessageEmbed } = require("discord.js"),
       API = require("../../helpers/utils.js");
 
 class Play extends Command {
@@ -18,7 +18,13 @@ class Play extends Command {
         });
     }
     async run(message, args, data) {
-          let play = message.client.manager.players.get(message.guild.id)
+        
+        const embed = new MessageEmbed()
+        .setColor(data.config.embed.color)
+        .setFooter(data.config.embed.footer)
+        .setTimestamp()
+        
+  let play = message.client.manager.players.get(message.guild.id)
 
   const { channel } = message.member.voice;
 
@@ -52,8 +58,6 @@ class Play extends Command {
       await player.queue.add(res.tracks[0]);
 
       if (!player.playing && !player.paused && !player.queue.length) player.play();
-      let embed = new Discord.MessageEmbed()
-      embed.setTimestamp()
       embed.setDescription(`\`${res.tracks[0].title}\`\n${API.time2(res.tracks[0].duration)}`)
       embed.setFooter(res.tracks[0].requester.tag, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`)
       return message.channel.send(embed)
@@ -62,9 +66,7 @@ class Play extends Command {
       await player.queue.add(res.tracks);
 
       if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
-      let embed2 = new Discord.MessageEmbed()
-      embed2.setTimestamp()
-      embed2.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${API.time2(res.playlist.duration)}`)
+      embed.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${API.time2(res.playlist.duration)}`)
       return message.channel.send(embed2);
 
     case 'SEARCH_RESULT':
@@ -76,10 +78,8 @@ class Play extends Command {
       .map((track, index) => `${++index} - \`${track.title}\``)
       .join('\n');
 
-      let embed3 = new Discord.MessageEmbed()
-      embed3.setTimestamp()
-      embed3.addFields({ name: "Cancel", value: "Cancel" })
-      embed3.setDescription(results)
+      embed.addFields({ name: "Cancel", value: "Cancel" })
+      embed.setDescription(results)
       message.channel.send(embed3);
 
       try {
@@ -102,12 +102,11 @@ class Play extends Command {
       const track = res.tracks[index];
       await player.queue.add(track);
 
-      let embed4 = new Discord.MessageEmbed()
-      embed4.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
-      embed4.setDescription(`\`${track.title}\` \n ${API.time2(track.duration)}`)
+      embed.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
+      embed.setDescription(`\`${track.title}\` \n ${API.time2(track.duration)}`)
       if(!player.playing && !player.paused && !player.queue.length) player.play();
       return message.channel.send(embed4);
-  }
+      }
       
     }
 }
