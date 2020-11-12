@@ -95,7 +95,7 @@ class Play extends Command {
 
       if (first.toLowerCase() === 'cancel' || first.toLowerCase() === 'batal') {
         if (!player.queue.current) player.destroy();
-        return message.channel.send("cancel");
+        return message.channel.send("music/play:CANCELED");
       }
 
       const index = Number(first) - 1;
