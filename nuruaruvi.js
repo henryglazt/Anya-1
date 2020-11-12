@@ -58,7 +58,7 @@ client.manager = new Manager({
                 embed.setDescription("music/stop:IDLE")
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(function () {
-            channel.send("embed");
+            channel.send(embed);
             player.destroy();
         }, 180000)
     })
@@ -93,10 +93,10 @@ client.manager = new Manager({
                 embed.setColor(config.embed.color)
                 embed.setDescription("music/play:QUEUE_ENDED")
         const channel = client.channels.cache.get(player.textChannel);
-        channel.send("embed");
+        channel.send(embed);
         timer2 = setTimeout(function () {
             embed.setDescription("music/stop:IDLE")
-            channel.send("embed");
+            channel.send(embed);
             player.destroy();
         }, 180000)
     });
