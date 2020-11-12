@@ -41,7 +41,7 @@ client.manager = new Manager({
         clearTimeout(timer2);
         let embed = new Discord.MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
-        embed.setAuthor("music/np:NOW_PLAYING", https://cdn.discordapp.com/emojis/750364941449691206.gif)
+        embed.setAuthor("music/np:NOW_PLAYING", "https://cdn.discordapp.com/emojis/750364941449691206.gif")
         embed.setDescription(`[${track.title}](${track.uri})`)
         embed.setTimestamp()
         embed.setColor(config.color)
