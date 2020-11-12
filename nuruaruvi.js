@@ -15,7 +15,7 @@ if (config.apiKeys.sentryDSN) {
 
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
-const Discord = require("discord.js");
+const { Message, MessageEmbed } = require("discord.js");
 const { Manager } = require("erela.js");
 const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
@@ -40,7 +40,7 @@ client.manager = new Manager({
     .on("trackStart", (player, track) => {
         clearTimeout(timer);
         clearTimeout(timer2);
-        let embed = new Discord.MessageEmbed()
+        let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
         embed.setAuthor("Now Playing", "https://cdn.discordapp.com/emojis/750364941449691206.gif")
         embed.setDescription(`[${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
@@ -53,7 +53,7 @@ client.manager = new Manager({
         clearTimeout(timer);
     })
     .on("playerCreate", player => {
-        let embed = new Discord.MessageEmbed()
+        let embed = new MessageEmbed()
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
                 embed.setDescription("I've been idle for 3 minutes, leaving... <a:ablobwave:754574913209368687>");
@@ -77,7 +77,7 @@ client.manager = new Manager({
         channel.send("Error encountered: Track stuck!")
     })
     .on("trackError", (player, track, payload) => {
-        let embed = new Discord.MessageEmbed()
+        let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel)
         if (!player.get("message")) {
             return
@@ -89,8 +89,8 @@ client.manager = new Manager({
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
-        let embed = new Discord.MessageEmbed()
-                embed.setFooter(config.embed.footer)
+        let embed = new MessageEmbed()
+                embed.setFooter(Message.translate("music/play:QUEUE_ENDED"))
                 embed.setColor(config.embed.color)
                 embed.setDescription("Queue ended, add more songs before im leaving in 3 minutes.");
         const channel = client.channels.cache.get(player.textChannel);
