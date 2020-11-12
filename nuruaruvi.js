@@ -17,6 +17,7 @@ const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
 const Discord = require("discord.js");
 const { Manager } = require("erela.js");
+const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
     clientID = client.config.spotify.id,
     clientSecret = client.config.spotify.secret;
@@ -42,8 +43,9 @@ client.manager = new Manager({
         let embed = new Discord.MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
         embed.setAuthor("Now Playing", "https://cdn.discordapp.com/emojis/750364941449691206.gif")
-        embed.setDescription(`[${track.title}](${track.uri})`)
+        embed.setDescription(`[${track.title}](${track.uri}) - ${formatTime(track.duration, true)}`)
         embed.setTimestamp()
+        embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
         embed.setColor(config.embed.color)
         embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
         channel.send(embed).then(msg => player.set("message", msg));
