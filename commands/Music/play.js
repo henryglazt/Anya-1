@@ -19,7 +19,7 @@ class Play extends Command {
     }
     async run(message, args, data) {
         
-        const embed = new MessageEmbed()
+        let embed = new MessageEmbed()
         .setColor(data.config.embed.color)
         .setFooter(data.config.embed.footer)
         .setTimestamp()
@@ -70,6 +70,7 @@ class Play extends Command {
       return message.channel.send(embed);
 
     case 'SEARCH_RESULT':
+      let resembed = new MessageEmbed()
       let max = 5, collected, filter = (m) => m.author.id === message.author.id && /^(\d+|cancelar)$/i.test(m.content) || message.author.id && /^(\d+|cancel)$/i.test(m.content);
       if (res.tracks.length < max) max = res.tracks.length;
 
@@ -78,9 +79,9 @@ class Play extends Command {
       .map((track, index) => `${++index} - \`${track.title}\``)
       .join('\n');
 
-      embed.addFields({ name: "Cancel", value: "Cancel" })
-      embed.setDescription(results)
-      message.channel.send(embed);
+      resembed.addFields({ name: "Cancel", value: "Cancel" })
+      resembed.setDescription(results)
+      message.channel.send(resembed);
 
       try {
         collected = await message.channel.awaitMessages(filter, { max: 1, time: 30e3, errors: ['time'] });
@@ -91,7 +92,7 @@ class Play extends Command {
 
       const first = collected.first().content;
 
-      if (first.toLowerCase() === 'cancelar' || first.toLowerCase() === 'cancel') {
+      if (first.toLowerCase() === 'cancel' || first.toLowerCase() === 'batal') {
         if (!player.queue.current) player.destroy();
         return message.channel.send("cancel");
       }
