@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
       { MessageEmbed } = require("discord.js"),
-      API = require("../../helpers/utils.js");
+      { formatTime } = require("../../helpers/functions.js");
 
 class Play extends Command {
     constructor(client) {
@@ -58,15 +58,14 @@ class Play extends Command {
       await player.queue.add(res.tracks[0]);
 
       if (!player.playing && !player.paused && !player.queue.length) player.play();
-      embed.setDescription(`\`${res.tracks[0].title}\`\n${API.time2(res.tracks[0].duration)}`)
-      embed.setFooter(res.tracks[0].requester.tag, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`)
+      embed.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})\n${formatTime(res.tracks[0].duration)}`)
+      embed.setFooter(`Requested by: ${res.tracks[0].requester.tag}`, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`)
       return message.channel.send(embed)
 
     case 'PLAYLIST_LOADED':
       await player.queue.add(res.tracks);
-
       if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
-      embed.setDescription(`\`${res.playlist.name}\` \`${res.tracks.length}\` ${API.time2(res.playlist.duration)}`)
+      embed.setDescription(`${res.playlist.name} \`${res.tracks.length}\` \`${formatTime(res.playlist.duration)}\``)
       return message.channel.send(embed);
 
     case 'SEARCH_RESULT':
@@ -76,7 +75,7 @@ class Play extends Command {
 
       const results = res.tracks
       .slice(0, max)
-      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${API.time2(track.duration)}\``)
+      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${formatTime(track.duration)}\``)
       .join('\n');
 
       resembed.addFields({ name: "Cancel", value: "Type `cancel` to cancel" })
@@ -106,7 +105,7 @@ class Play extends Command {
       await player.queue.add(track);
 
       embed.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
-      embed.setDescription(`[${track.title}](${track.uri}) \n \`${API.time2(track.duration)}\``)
+      embed.setDescription(`[${track.title}](${track.uri}) \n \`${formatTime(track.duration)}\``)
       if(!player.playing && !player.paused && !player.queue.length) player.play();
       return message.channel.send(embed);
       }
