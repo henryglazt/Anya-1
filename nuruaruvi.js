@@ -15,7 +15,7 @@ if (config.apiKeys.sentryDSN) {
 
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
-const { Message, MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { Manager } = require("erela.js");
 const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
@@ -54,9 +54,10 @@ client.manager = new Manager({
     })
     .on("playerCreate", player => {
         let embed = new MessageEmbed()
+                embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription("I've been idle for 3 minutes, leaving... <a:ablobwave:754574913209368687>");
+                embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${message.guild.me.user.username}`)
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(function () {
             channel.send(embed);
@@ -90,13 +91,15 @@ client.manager = new Manager({
     })
     .on("queueEnd", player => {
         let embed = new MessageEmbed()
+                embed.setAuthor("Queue Ended", "https://cdn.discordapp.com/emojis/750352772536467525.png")
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription("Queue ended, add more songs before im leaving in 3 minutes.");
+                embed.setDescription("Add more songs before im leaving in 3 minutes.")
         const channel = client.channels.cache.get(player.textChannel);
         channel.send(embed);
         timer2 = setTimeout(function () {
-            embed.setDescription("I've been idle for 3 minutes, leaving... <a:ablobwave:754574913209368687>")
+            embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
+            embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${message.guild.me.user.username}`)
             channel.send(embed);
             player.destroy();
         }, 180000)
