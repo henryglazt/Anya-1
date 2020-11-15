@@ -59,7 +59,7 @@ client.manager = new Manager({
                 embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${client.user.username}`)
+                embed.setDescription(`I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}**.`)
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(() => {
             channel.send(embed);
@@ -77,7 +77,7 @@ client.manager = new Manager({
     .on("trackStuck", (player, track, payload) => {
         const channel = client.channels.cache.get(player.textChannel)
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send("Error encountered: Track stuck!")
+        channel.send(`Error encountered: Track stuck!\nCan't play \`${track.title}\``)
     })
     .on("trackError", (player, track, payload) => {
         let embed = new MessageEmbed()
@@ -86,7 +86,7 @@ client.manager = new Manager({
             return
         }
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send("Error encountered: Track error!")
+        channel.send(`Error encountered: Track error!\nCan't play \`${track.title}\``)
     })
     .on("playerMove", (player, currentChannel, newChannel) => {
         player.voiceChannel = client.channels.cache.get(newChannel);
@@ -96,12 +96,13 @@ client.manager = new Manager({
                 embed.setAuthor("Queue Ended", "https://cdn.discordapp.com/emojis/750352772536467525.png")
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription("Add more songs before im leaving in 3 minutes.")
+                embed.setDescription("Add more songs before im leaving in **3 minutes.**")
         const channel = client.channels.cache.get(player.textChannel);
         channel.send(embed);
         timer2 = setTimeout(() => {
+            embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
             embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
-            embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${client.user.username}`)
+            embed.setDescription(`I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
             channel.send(embed);
             player.destroy();
         }, 180000)
