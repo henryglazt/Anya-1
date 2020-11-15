@@ -18,7 +18,7 @@ module.exports = class {
     let guild = player.guild;
 
     if(client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
-        channel.send("im alone, im leaving...")
+        channel.send(newState.guild.translate("music/stop:LEAVE"));
         return player.destroy()
     }
 	}
