@@ -6,7 +6,7 @@ module.exports = {
 		logs: "773774472150646785", // And the ID of the logs channel of your server (new servers for example)
 	},
 	dashboard: {
-		enabled: true, // whether the dashboard is enabled or not
+		enabled: false, // whether the dashboard is enabled or not
 		secret: "xxxxxx", // Your discord client secret
 		baseURL: "https://localhost", // The base URl of the dashboard
 		logs: "773774472150646785", // The channel ID of logs
