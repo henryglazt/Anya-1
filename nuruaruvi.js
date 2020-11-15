@@ -57,7 +57,7 @@ client.manager = new Manager({
                 embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${message.guild.me.user.username}`)
+                embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${client.guild.me.user.username}`)
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(function () {
             channel.send(embed);
@@ -99,7 +99,7 @@ client.manager = new Manager({
         channel.send(embed);
         timer2 = setTimeout(function () {
             embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
-            embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${message.guild.me.user.username}`)
+            embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${client.guild.me.user.username}`)
             channel.send(embed);
             player.destroy();
         }, 180000)
