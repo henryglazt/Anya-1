@@ -17,39 +17,27 @@ class Stop extends Command {
     }
     async run(message, args, data) {
 
-    const player = message.client.manager.players.get(message.guild.id);
-    if(!player) return message.reply("aint playing")
-
-    const { channel } = message.member.voice
-
-    if(!channel) return message.reply("no channel");
-    if (channel.id !== player.voiceChannel) return message.reply("not your channel");
-
-    player.destroy();
-    return message.channel.send("stoping");
-
-
-        /*const xembed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg
-        const voice = message.member.voice.channel;
-        if (!voice) {
-            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
-        }
+
         const player = message.client.manager.players.get(message.guild.id);
-        if (!player) {
-            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
-            return message.channel.send(xembed);
+        const { channel } = message.member.voice;
+        if (!channel) {
+            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
-        if (voice.id !== player.voiceChannel) {
-            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+        if (!player) {
+            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
+        }
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
         player.destroy();
-        xembed.setDescription(message.translate("music/stop:LEAVE"));
-        return message.channel.send(xembed);*/
+        embed.setDescription(message.translate("music/stop:LEAVE"));
+        return message.channel.send(embed);
 
         /*const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
