@@ -17,7 +17,7 @@ class Skip extends Command {
     }
     async run(message, args, data) {
 
-    const player = message.client.manager.players.get(message.guild.id);
+   /* const player = message.client.manager.players.get(message.guild.id);
     if(!player) return message.reply("aint playing")
 
     const { channel } = message.member.voice
@@ -25,21 +25,21 @@ class Skip extends Command {
     if(!channel) return message.reply("no channel");
     if(channel.id !== player.voiceChannel) return message.reply("my voice channel");
 
-    if(player.queue.size === 0) return message.channel.send("no more song")
+    if(player.queue.totalSize <= 1) return message.channel.send("no more song")
     
-    return player.stop();
+    return player.stop();*/
 
-       /* const xembed = new Discord.MessageEmbed()
+       const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
-        const queue = this.client.distube.getQueue(message);
-        const voice = message.member.voice.channel;
-        if (!voice) {
+        const player = message.client.manager.players.get(message.guild.id);
+        const { channel } = message.member.voice;
+        if (!channel) {
             xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(xembed);
         }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
+        if (channel.id !== player.voiceChannel) {
             xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(xembed);
         }
@@ -47,11 +47,13 @@ class Skip extends Command {
             xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(xembed);
         }
-        if (!queue.songs[1]) {
+        if (player.queue.totalSize <= 1) {
             xembed.setDescription(message.translate("music/skip:NO_NEXT_SONG"));
             return message.channel.send(xembed);
         }
-        const members = voice.members.filter((m) => !m.user.bot);
+        return player.stop();
+
+        /*const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("music/skip:DESCRIPTION"))
             .setThumbnail(queue.songs[0].thumbnail)
