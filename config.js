@@ -6,12 +6,12 @@ module.exports = {
 		logs: "773774472150646785", // And the ID of the logs channel of your server (new servers for example)
 	},
 	dashboard: {
-		enabled: false, // whether the dashboard is enabled or not
-		secret: "XXXXXXXXXXX", // Your discord client secret
-		baseURL: "", // The base URl of the dashboard
-		logs: "XXXXXXXXXXX", // The channel ID of logs
+		enabled: true, // whether the dashboard is enabled or not
+		secret: "mgyb1A2J-aqdgxIYXmj6K_pPMGNb1jd8", // Your discord client secret
+		baseURL: "https://localhost", // The base URl of the dashboard
+		logs: "773774472150646785", // The channel ID of logs
 		port: 8080, // Dashboard port
-		expressSessionPassword: "XXXXXXXXXXX", // Express session password (it can be what you want)
+		expressSessionPassword: "password", // Express session password (it can be what you want)
 		failureURL: "" // url on which users will be redirected if they click the cancel button (discord authentication)
 	},
 	mongoDB: "mongodb+srv://anyageraldine:laililham@cluster0.efdfb.mongodb.net/anya?retryWrites=true&w=majority", // The URl of the mongodb database
