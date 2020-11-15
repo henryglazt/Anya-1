@@ -29,30 +29,28 @@ class Skip extends Command {
          
          return player.stop();*/
 
-        const xembed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
         const player = message.client.manager.players.get(message.guild.id);
-        const {
-            channel
-        } = message.member.voice;
+        const { channel } = message.member.voice;
         if (!channel) {
-            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
         if (!player) {
-            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
-            return message.channel.send(xembed);
+            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
         } else {
             if (channel.id !== player.voiceChannel) {
-                xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-                return message.channel.send(xembed);
+                embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+                return message.channel.send(embed);
             }
         }
         if (player.queue.totalSize <= 1) {
-            xembed.setDescription(message.translate("music/skip:NO_NEXT_SONG"));
-            return message.channel.send(xembed);
+            embed.setDescription(message.translate("music/skip:NO_NEXT_SONG"));
+            return message.channel.send(embed);
         }
         return player.stop();
 
