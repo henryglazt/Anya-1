@@ -25,7 +25,7 @@ class Skip extends Command {
     if(!channel) return message.reply("no channel");
     if(channel.id !== player.voiceChannel) return message.reply("my voice channel");
 
-    if(player.queue.size <= 1) return message.channel.send("skipped")
+    if(player.queue.size === 0) return message.channel.send("no more song")
     
     return player.stop();
 
