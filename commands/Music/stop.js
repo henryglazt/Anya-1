@@ -43,14 +43,14 @@ class Stop extends Command {
             player.destroy();
             embed.setAuthor(message.translate("music/stop:LEAVE"), "https://cdn.discordapp.com/emojis/754574913209368687.gif");
             embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg");
-            embed.setDescription(message.translate("music/stop:CONTENT", anya: this.client.user.username));
+            embed.setDescription(message.translate("music/stop:CONTENT", { anya: this.client.user.username }));
             return message.channel.send(embed);
         }
         if (player && channel.id === player.voiceChannel) {
             player.destroy();
             embed.setAuthor(message.translate("music/stop:SUCCESS"));
             embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg");
-            embed.setDescription(message.translate("music/stop:CONTENT", anya: this.client.user.username));
+            embed.setDescription(message.translate("music/stop:CONTENT", { anya: this.client.user.username }));
             return message.channel.send(embed);
         }
         /*const members = voice.members.filter((m) => !m.user.bot);
