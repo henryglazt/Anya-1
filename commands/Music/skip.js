@@ -17,18 +17,6 @@ class Skip extends Command {
     }
     async run(message, args, data) {
 
-        /* const player = message.client.manager.players.get(message.guild.id);
-         if(!player) return message.reply("aint playing")
-
-         const { channel } = message.member.voice
-
-         if(!channel) return message.reply("no channel");
-         if(channel.id !== player.voiceChannel) return message.reply("my voice channel");
-
-         if(player.queue.totalSize <= 1) return message.channel.send("no more song")
-         
-         return player.stop();*/
-
         const embed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
@@ -42,17 +30,18 @@ class Skip extends Command {
         if (!player) {
             embed.setDescription(message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
-        } else {
-            if (channel.id !== player.voiceChannel) {
-                embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-                return message.channel.send(embed);
-            }
+        }
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
         if (player.queue.totalSize <= 1) {
             embed.setDescription(message.translate("music/skip:NO_NEXT_SONG"));
             return message.channel.send(embed);
         }
-        return player.stop();
+        player.stop();
+        embed.setDescription(message.translate("music/skip:SUCCESS"));
+        return message.channel.send(embed)
 
         /*const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
