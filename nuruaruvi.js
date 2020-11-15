@@ -15,7 +15,8 @@ if (config.apiKeys.sentryDSN) {
 
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
-const { MessageEmbed } = require("discord.js");
+const { Message, MessageEmbed } = require("discord.js");
+const m = new Message();
 const { Manager } = require("erela.js");
 const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
@@ -51,6 +52,7 @@ client.manager = new Manager({
     })
     .on("playerDestroy", player => {
         clearTimeout(timer);
+        clearTimeout(timer2);
     })
     .on("playerCreate", player => {
         let embed = new MessageEmbed()
@@ -59,7 +61,7 @@ client.manager = new Manager({
                 embed.setColor(config.embed.color)
                 embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${client.guild.me.user.username}`)
         const channel = client.channels.cache.get(player.textChannel);
-        timer = setTimeout(function () {
+        timer = setTimeout(() => {
             channel.send(embed);
             player.destroy();
         }, 180000)
@@ -91,13 +93,13 @@ client.manager = new Manager({
     })
     .on("queueEnd", player => {
         let embed = new MessageEmbed()
-                embed.setAuthor("Queue Ended", "https://cdn.discordapp.com/emojis/750352772536467525.png")
+                embed.setAuthor(m.translate("music/play:QUEUE_ENDED"), "https://cdn.discordapp.com/emojis/750352772536467525.png")
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
                 embed.setDescription("Add more songs before im leaving in 3 minutes.")
         const channel = client.channels.cache.get(player.textChannel);
         channel.send(embed);
-        timer2 = setTimeout(function () {
+        timer2 = setTimeout(() => {
             embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
             embed.setDescription(`I've been idle for 3 minutes.\nThank you for using ${client.guild.me.user.username}`)
             channel.send(embed);
