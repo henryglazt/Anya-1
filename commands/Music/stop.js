@@ -36,7 +36,8 @@ class Stop extends Command {
             return message.channel.send(embed);
         }
         player.destroy();
-        embed.setDescription(message.translate("music/stop:LEAVE"));
+        embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg");
+        embed.setDescription(message.translate("music/stop:SUCCESS"));
         return message.channel.send(embed);
 
         /*const members = voice.members.filter((m) => !m.user.bot);
