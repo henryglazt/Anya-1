@@ -93,7 +93,7 @@ client.manager = new Manager({
     })
     .on("queueEnd", player => {
         let embed = new MessageEmbed()
-                embed.setAuthor("Queue Ended", "https://cdn.discordapp.com/emojis/750352772536467525.png")
+                embed.setAuthor(player.guild.translate("music/play:QUEUE_ENDED"), "https://cdn.discordapp.com/emojis/750352772536467525.png")
                 embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
                 embed.setDescription("Add more songs before im leaving in **3 minutes.**")
