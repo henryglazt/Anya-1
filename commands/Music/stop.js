@@ -32,6 +32,7 @@ class Stop extends Command {
         /*const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
+https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg
         const voice = message.member.voice.channel;
         if (!voice) {
             xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
