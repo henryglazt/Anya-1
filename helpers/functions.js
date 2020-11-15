@@ -153,7 +153,7 @@ module.exports = {
                     if (v === 0 && !first) {
                         continue;
                     }
-                    finalTime.push(v < 10 ? `0${v}` : `0${v}`);
+                    finalTime.push(v < 10 ? `0${v}` : `${v}`);
                     first = true;
                     continue;
                 }
