@@ -50,7 +50,7 @@ class Serverinfo extends Command {
   
   const feature = guild.features;
   const emojis = this.client.customEmojis;
-  let boost = {"1": emojis.boost.tier1};
+  let boost = {"1": emojis.boost.tier1, "2": emojis.boost.tier2, "3": emojis.boost.tier3};
   
   guild.members.fetch().then(fetchedMembers => {
     const totalOnline = fetchedMembers.filter(member => member.presence.status === 'online').size;
