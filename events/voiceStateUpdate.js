@@ -20,7 +20,7 @@ module.exports = class {
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/emojis/754574913209368687.gif")
-            .setAuthor(newState.guild.translate("music/stop:LEAVE"));
+            .setAuthor(newState.guild.translate("music/stop:LEAVE"), https://cdn.discordapp.com/emojis/754574913209368687.gif);
 
         if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
             channel.send(embed);
