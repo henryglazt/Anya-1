@@ -19,7 +19,7 @@ module.exports = class {
         let embed = new MessagEmbed()
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
-            .setImage("https://cdn.discordapp.com/emojis/754574913209368687.gif")
+            .setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
             .setAuthor(newState.guild.translate("music/stop:LEAVE"), "https://cdn.discordapp.com/emojis/754574913209368687.gif");
 
         if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
