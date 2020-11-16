@@ -41,7 +41,31 @@
 	"desc2": "<:atlanta_desc2:601019203721625640>",
 	"patreon": "<:atlanta_patreon:602163441083351051>",
 	"server": "<:atlanta_server:610825960853471242>",
-	"boost": "<a:boostgems:739595657123201125>",
+	"boost": {
+		"boost": "<a:Boost:774542922472488970>",
+		"tier1": "<:tier1:778038233643745292>",
+		"tier2": "<:tier2:778038269535453235>",
+		"tier3": "<:tier3:778038306347679765>
+	},
+	"music": {
+		"play": "<:play:778031720779874336>",
+		"pause": "<:pause:778032100753801267>",
+		"stop": "<:stop:778032009518907403>",
+		"forward": "<:forward:778032257285881948>",
+		"next": "<:next:778032151500947456>",
+		"rewind": "<:rewind:778032289061142578>",
+		"prev": "<:prev:778032211000819753>",
+		"add": "<:add:778031830921248779>",
+		"remove": "<:remove:778031871425773618>",
+		"queue": "<:queue:778031793470963783>",
+		"volup": "<:vol_up:778031968172245013>",
+		"voldown": "<:vol_down:778031921435246622>",
+		"shuffleoff": "<:shuffle_off:778031031823106048>",
+		"shuffle": "<:shuffle:778031748603969556>",
+		"repeatoff": "<:repeat_off:778032412864544778>",
+		"repeatall": "<:repeat_all:778032332312936460>",
+		"repeatone": "<:repeat_one:778032376021909515>
+	},
 	"status": {
 		"dnd": "<:atlanta_dnd:616613445252546570>",
 		"idle": "<:atlanta_idle:616613445290164224>",
