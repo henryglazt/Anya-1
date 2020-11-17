@@ -209,6 +209,6 @@ module.exports = {
                         : '00')
                 }`;
             return duration;
-    };
+    }
 
 };
