@@ -17,6 +17,7 @@ class Stop extends Command {
     }
     async run(message, args, data) {
 
+        const musji = this.client.customEmojis.music;
         const embed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
@@ -37,15 +38,13 @@ class Stop extends Command {
         }
         if (!player.playing) {
             player.destroy();
-            embed.setAuthor(message.translate("music/stop:LEAVE"), "https://cdn.discordapp.com/emojis/754574913209368687.gif");
+            embed.addField(musji.leave + " " + message.translate("music/stop:LEAVE"), message.translate("music/stop:CONTENT", { anya: this.client.user.username }));
             embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg");
-            embed.setDescription(message.translate("music/stop:CONTENT", { anya: this.client.user.username }));
             return message.channel.send(embed);
         }
         player.destroy();
-        embed.setAuthor(message.translate("music/stop:SUCCESS"));
+        embed.addField(musji.stop + " " + message.translate("music/stop:SUCCESS"), message.translate("music/stop:CONTENT", { anya: this.client.user.username }));
         embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg");
-        embed.setDescription(message.translate("music/stop:CONTENT", { anya: this.client.user.username }));
         return message.channel.send(embed);
 
         /*const members = voice.members.filter((m) => !m.user.bot);
