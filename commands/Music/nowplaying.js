@@ -63,7 +63,6 @@ const emojis = data.customEmojis;
             console.error(error);
             return message.channel.send(`An Error Occurred: \`${error.message}\`!`);
         };
-    };
 
 
 
