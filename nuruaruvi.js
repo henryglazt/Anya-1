@@ -41,9 +41,9 @@ client.manager = new Manager({
     .on("trackStart", (player, track) => {
         clearTimeout(timer);
         clearTimeout(timer2);
-        let m = player.get("member");
         let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
+        let m = player.get("member");
         embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
           songName: track.title,
           songURL: track.uri,
@@ -61,15 +61,15 @@ client.manager = new Manager({
         clearTimeout(timer2);
     })
     .on("playerCreate", player => {
-        let m = player.get("member");
-        let embed = new MessageEmbed()
-                embed.setColor(config.embed.color)
-                embed.setFooter(config.embed.footer)
-                embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
-                  anya: client.user.username
-                }));
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(() => {
+            let m = player.get("member");
+            let embed = new MessageEmbed()
+                    embed.setColor(config.embed.color)
+                    embed.setFooter(config.embed.footer)
+                    embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
+                      anya: client.user.username
+                    }));
             channel.send(embed);
             player.destroy();
         }, 180000)
