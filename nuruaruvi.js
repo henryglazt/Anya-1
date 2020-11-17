@@ -64,9 +64,6 @@ client.manager = new Manager({
             player.destroy();
         }, 180000)
     })
-    .on("socketClosed", (player, payload) => {
-            player.destroy()
-    })
     .on("trackEnd", player => {
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
     })
@@ -88,10 +85,11 @@ client.manager = new Manager({
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
+        let m = player.get("message")
         let embed1 = new MessageEmbed()
                 embed1.setColor(config.embed.color)
                 embed1.setFooter(config.embed.footer)
-                embed1.addField(musji.info + " Queue Ended", "Add more songs before im leaving in **3 minutes.**");
+                embed1.addField(musji.info + m.translate("music/play:QUEUE_ENDED"), "Add more songs before im leaving in **3 minutes.**");
         let embed2 = new MessageEmbed()
                 embed2.setColor(config.embed.color)
                 embed2.setFooter(config.embed.footer)
