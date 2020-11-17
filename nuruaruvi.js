@@ -99,7 +99,7 @@ client.manager = new Manager({
         channel.send(embed);
         timer2 = setTimeout(() => {
             embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-            embed.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
+            embed.spliceFields(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
             channel.send(embed);
             player.destroy();
         }, 180000)
