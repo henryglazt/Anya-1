@@ -4,7 +4,7 @@
     "EXAMPLES": "{{prefix}}play Bye Bye",
     "JOIN": "I'm joining the channel...",
     "JOINED": "I'm already joined... Are you blind?",
-    "NOW_PLAYING": "Now Playing [{{songName}}]({{songURL}}) - `{{songDuration}}`",
+    "NOW_PLAYING": "**Now Playing**\n[{{songName}}]({{songURL}}) - `{{songDuration}}`",
     "NO_VOICE_CHANNEL": "You are not in a voice channel!",
     "VOICE_CHANNEL_CONNECT": "I can't connect to your voice channel!",
     "MY_VOICE_CHANNEL": "I'm already being used in a different channel!",
@@ -15,8 +15,9 @@
     "CANCELLED": "Selection cancelled.",
     "EMPTY": "Channel is empty. Leaving the channel...",
     "ERROR": "An error {{error}}",
+    "REQ": "Requested by: {{user}}",
     "NOT_PLAYING": "No songs are currently playing in this server.",
-    "QUEUE_ENDED": "Queue has ended. No more music to play...",
+    "QUEUE_ENDED": "**Queue ended**\nAdd more songs before im leaving in **3 minutes**",
     "ADDED": "[{{songName}}]({{songURL}}) - `{{songDuration}}` added to the queue.",
     "ADDED_PL": "{{items}} songs from [{{plTitle}}]({{plURL}}) added to the queue. `{{plDuration}}`"
 }
