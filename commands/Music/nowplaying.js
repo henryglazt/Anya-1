@@ -22,7 +22,7 @@ class Nowplaying extends Command {
     async run(message, args, data) {
 
         try {
-            const player = this.bot.music.players.get(message.guild.id);
+            const player = message.client.manager.players.get(message.guild.id);
             if (!player || player.queue.size === 0 || (player.position === 0 && !player.playing)) return message.channel.send('**Nothing Playing In This Server!**');
 
             const { channel } = message.member.voice;
