@@ -7,7 +7,7 @@ module.exports = class {
     async run(oldState, newState) {
 
         const client = this.client;
-        const emoji = client.customEmojis;
+        const musji = client.customEmojis.music;
 
         const player = client.manager.players.get(newState.guild.id);
         if (!player) return;
@@ -21,7 +21,7 @@ module.exports = class {
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-            .addField(emoji.music.leave + " " + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:CONTENT", { anya: client.user.username });
+            .addField(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:CONTENT", { anya: client.user.username });
 
         if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
             channel.send(embed);
