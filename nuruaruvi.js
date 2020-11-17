@@ -16,7 +16,6 @@ if (config.apiKeys.sentryDSN) {
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
 const { Message, MessageEmbed } = require("discord.js");
-const m = new Message();
 const { Manager } = require("erela.js");
 const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
@@ -94,7 +93,7 @@ client.manager = new Manager({
         let embed1 = new MessageEmbed()
                 embed1.setColor(config.embed.color)
                 embed1.setFooter(config.embed.footer)
-                embed1.addField(musji.clear + " Queue Ended", "Add more songs before im leaving in **3 minutes.**");
+                embed1.addField(musji.info + " Queue Ended", "Add more songs before im leaving in **3 minutes.**");
         let embed2 = new MessageEmbed()
                 embed2.setColor(config.embed.color)
                 embed2.setFooter(config.embed.footer)
