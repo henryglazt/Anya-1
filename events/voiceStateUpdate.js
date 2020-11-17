@@ -17,11 +17,11 @@ module.exports = class {
         let chnl = player.voiceChannel;
         let guild = player.guild;
 
-        let embed = new MessagEmbed()
+        let embed = new MessageEmbed()
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-            .addField(emoji.music.leave + newState.guild.translate("music/stop:LEAVE"), "https://cdn.discordapp.com/emojis/754574913209368687.gif");
+            .addField(emoji.music.leave + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:CONTENT"));
 
         if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
             channel.send(embed);
