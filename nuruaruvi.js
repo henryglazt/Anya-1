@@ -91,16 +91,19 @@ client.manager = new Manager({
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
-        let embed = new MessageEmbed()
-                embed.setColor(config.embed.color)
-                embed.setFooter(config.embed.footer)
-                embed.addField(musji.clear + " Queue Ended", "Add more songs before im leaving in **3 minutes.**")
+        let embed1 = new MessageEmbed()
+                embed1.setColor(config.embed.color)
+                embed1.setFooter(config.embed.footer)
+                embed1.addField(musji.clear + " Queue Ended", "Add more songs before im leaving in **3 minutes.**");
+        let embed2 = new MessageEmbed()
+                embed2.setColor(config.embed.color)
+                embed2.setFooter(config.embed.footer)
+                embed2.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
+                embed2.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
         const channel = client.channels.cache.get(player.textChannel);
-        channel.send(embed);
+        channel.send(embed1);
         timer2 = setTimeout(() => {
-            embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-            embed.spliceFields(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
-            channel.send(embed);
+            channel.send(embed2);
             player.destroy();
         }, 180000)
     });
