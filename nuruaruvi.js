@@ -41,9 +41,9 @@ client.manager = new Manager({
     .on("trackStart", (player, track) => {
         clearTimeout(timer);
         clearTimeout(timer2);
-        let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
+        let embed = new MessageEmbed()
         embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
           songName: track.title,
           songURL: track.uri,
@@ -53,7 +53,7 @@ client.manager = new Manager({
         embed.setColor(config.embed.color)
         embed.setFooter(m.guild.translate("music/play:REQ", {
           user: track.requester.tag
-        }, track.requester.displayAvatarURL({ dynamic: true })));
+        }), track.requester.displayAvatarURL({ dynamic: true }));
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
@@ -63,15 +63,15 @@ client.manager = new Manager({
     .on("playerCreate", player => {
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(() => {
-            let m = player.get("member");
-            let embed = new MessageEmbed()
-                    embed.setColor(config.embed.color)
-                    embed.setFooter(config.embed.footer)
-                    embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
-                      anya: client.user.username
-                    }));
-            channel.send(embed);
-            player.destroy();
+          let m = player.get("member");
+          let embed = new MessageEmbed()
+              embed.setColor(config.embed.color)
+              embed.setFooter(config.embed.footer)
+              embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
+                anya: client.user.username
+              }));
+          channel.send(embed);
+          player.destroy();
         }, 180000)
     })
     .on("trackEnd", player => {
@@ -102,16 +102,16 @@ client.manager = new Manager({
     .on("queueEnd", player => {
         let m = player.get("member");
         let embed1 = new MessageEmbed()
-                embed1.setColor(config.embed.color)
-                embed1.setFooter(config.embed.footer)
-                embed1.setDescription(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"));
+            embed1.setColor(config.embed.color)
+            embed1.setFooter(config.embed.footer)
+            embed1.setDescription(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"));
         let embed2 = new MessageEmbed()
-                embed2.setColor(config.embed.color)
-                embed2.setFooter(config.embed.footer)
-                embed2.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-                embed2.addField(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
-                  anya: client.user.username
-                }));
+            embed2.setColor(config.embed.color)
+            embed2.setFooter(config.embed.footer)
+            embed2.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
+            embed2.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
+              anya: client.user.username
+            }));
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("<@" + m.id + ">", embed1);
         timer2 = setTimeout(() => {
@@ -120,9 +120,9 @@ client.manager = new Manager({
         }, 180000)
     });
 
-client.on("raw", d => client.manager.updateVoiceState(d));
+    client.on("raw", d => client.manager.updateVoiceState(d));
 
-const init = async() => {
+    const init = async() => {
 
     const directories = await readdir("./commands/");
     client.logger.log(`Loading a total of ${directories.length} categories.`, "log");
@@ -168,7 +168,7 @@ const init = async() => {
     const languages = require("./helpers/languages");
     client.translations = await languages();
 
-};
+    };
 
 init();
 
