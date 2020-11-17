@@ -49,7 +49,6 @@
     "moment-duration-format": "^2.3.2",
     "mongoose": "^5.10.13",
     "ms": "^2.1.2",
-    "music-progress-bar": "^1.0.4",
     "os": "^0.1.1",
     "reaction-role": "^2.1.6"
   },
