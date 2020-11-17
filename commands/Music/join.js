@@ -31,6 +31,7 @@ class Join extends Command {
       selfDeafen: true,
     });
     if(!channel.joinable) { return message.channel.send("perms") }
+    player.set("member", message.member);
     player.connect();
   } else {
 return message.channel.send("already being used");
