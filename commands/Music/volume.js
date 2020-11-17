@@ -44,11 +44,11 @@ class Volume extends Command {
         }
         player.setVolume(volume);
         if (volume > player.volume) {
-            embed.setDescription(musji.volup + " " + message.translate("music/volume:SUCCESS"));
+            embed.setDescription(musji.volup + " " + message.translate("music/volume:SUCCESS", {volume: player.volume}));
         } else {
-            embed.setDescription(musji.voldown + " " + message.translate("music/volume:SUCCESS"));
+            embed.setDescription(musji.voldown + " " + message.translate("music/volume:SUCCESS", {volume: player.volume}));
         }
-        return message.channel.send("volume" + player.volume);
+        return message.channel.send(embed);
 
 
 /*      const embed = new Discord.MessageEmbed()
