@@ -85,11 +85,11 @@ client.manager = new Manager({
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
-        let m = player.get("message")
+        let m = player.get("member")
         let embed1 = new MessageEmbed()
                 embed1.setColor(config.embed.color)
                 embed1.setFooter(config.embed.footer)
-                embed1.addField(musji.info + m.translate("music/play:QUEUE_ENDED"), "Add more songs before im leaving in **3 minutes.**");
+                embed1.addField(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"), "Add more songs before im leaving in **3 minutes.**");
         let embed2 = new MessageEmbed()
                 embed2.setColor(config.embed.color)
                 embed2.setFooter(config.embed.footer)
@@ -97,7 +97,7 @@ client.manager = new Manager({
                 embed2.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
         const channel = client.channels.cache.get(player.textChannel);
         const member = player.get("member").id;
-        channel.send("<@" + member + ">", embed1);
+        channel.send("<@" + m.id + ">", embed1);
         timer2 = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
