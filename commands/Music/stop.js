@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    { MessageEmbed } = require("discord.js");
 class Stop extends Command {
     constructor(client) {
         super(client, {
@@ -18,7 +18,7 @@ class Stop extends Command {
     async run(message, args, data) {
 
         const musji = this.client.customEmojis.music;
-        const embed = new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
