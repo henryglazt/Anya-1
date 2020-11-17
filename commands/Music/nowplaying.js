@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-    { MessageEmbed } = require("discord.js");
+    { MessageEmbed } = require("discord.js"),
+    { formatDuration } = require("../../helpers/functions.js");
 
 class Nowplaying extends Command {
 
@@ -20,7 +21,51 @@ class Nowplaying extends Command {
 
     async run(message, args, data) {
 
-    const player = message.client.manager.players.get(message.guild.id);
+        try {
+            const player = this.bot.music.players.get(message.guild.id);
+            if (!player || player.queue.size === 0 || (player.position === 0 && !player.playing)) return message.channel.send('**Nothing Playing In This Server!**');
+
+            const { channel } = message.member.voice;
+            if (!channel) return message.channel.send('**You Have To Be Connected To A Voice Channel!**');
+
+            if (channel.id !== player.voiceChannel) return message.channel.send('**You Have To Be In The Same Voice Channel With The Bot!**');
+
+            let video = player.queue.current;
+            let description;
+
+            if (video.isStream) {
+                description = 'Live Stream';
+            } else {
+                const part = Math.floor((player.position / video.duration) * 30);
+                const positionObj = {
+                    seconds: Math.floor((player.position / 1000) % 60),
+                    minutes: Math.floor((player.position / (1000 * 60)) % 60),
+                    hours: Math.floor((player.position / (1000 * 60 * 60)) % 24)
+                };
+                const totalDurationObj = {
+                    seconds: Math.floor((video.duration / 1000) % 60),
+                    minutes: Math.floor((video.duration / (1000 * 60)) % 60),
+                    hours: Math.floor((video.duration / (1000 * 60 * 60)) % 24)
+                };
+                description = `${'─'.repeat(part) + '⚪' + '─'.repeat(30 - part)}\n\n\`${formatDuration(positionObj)} / ${formatDuration(totalDurationObj)}\``;
+            };
+
+            const videoEmbed = new MessageEmbed()
+                .setThumbnail(`https://i.ytimg.com/vi/${video.identifier}/hqdefault.jpg`)
+                .setColor(data.config.embed.color)
+                .setTitle(video.title)
+                .setDescription(description)
+                .setFooter(data.config.embed.footer)
+            return message.channel.send({ embed: videoEmbed });
+        } catch (error) {
+            console.error(error);
+            return message.channel.send(`An Error Occurred: \`${error.message}\`!`);
+        };
+    };
+
+
+
+    /*const player = message.client.manager.players.get(message.guild.id);
 
 
     if(!player) return message.channel.send(idioma.np.nada)
@@ -35,7 +80,7 @@ class Nowplaying extends Command {
     embed.setAuthor("NowPlaying", message.author.displayAvatarURL({ dynamic: true }))
     embed.setColor(data.config.embed.color)
     embed.setDescription(`${player.playing ? API.emojis.play.id : API.emojis.pause.id} ${title}\n${progressBar} \`${player.position <= 60000 ? `${API.time2(player.position)}s` : API.time2(player.position)} / ${API.time2(duration)}\``);
-    message.channel.send(embed)
+    message.channel.send(embed)*/
 
 
         /*const xembed = new Discord.MessageEmbed()
