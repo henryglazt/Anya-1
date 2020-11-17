@@ -37,12 +37,12 @@ class Volume extends Command {
             return message.channel.send(embed);
         }
         const volume = Number(args[0]);
-        if (!volume || volume === player.volume) {
-            embed.setDescription(musji.vol + " " + message.translate("music/volume:SET", {volume: player.volume}));
-            return message.channel.send(embed);
-        }
         if (volume < 1 || volume > 100) {
             embed.setDescription(musji.info + " " + message.translate("music/volume:VALUE"));
+            return message.channel.send(embed);
+        }
+        if (!volume || volume === player.volume) {
+            embed.setDescription(musji.vol + " " + message.translate("music/volume:SET", {volume: player.volume}));
             return message.channel.send(embed);
         }
         if (volume > player.volume) {
