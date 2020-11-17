@@ -21,8 +21,6 @@ class Nowplaying extends Command {
 
     async run(message, args, data) {
 
-const emojis = data.customEmojis;
-
         try {
             const player = this.bot.music.players.get(message.guild.id);
             if (!player || player.queue.size === 0 || (player.position === 0 && !player.playing)) return message.channel.send('**Nothing Playing In This Server!**');
@@ -49,7 +47,7 @@ const emojis = data.customEmojis;
                     minutes: Math.floor((video.duration / (1000 * 60)) % 60),
                     hours: Math.floor((video.duration / (1000 * 60 * 60)) % 24)
                 };
-                description = `${'─'.repeat(part) + emojis.music.np + '─'.repeat(30 - part)}\n\n\`${formatDuration(positionObj)} / ${formatDuration(totalDurationObj)}\``;
+                description = `${'─'.repeat(part) + this.client.customEmojis.music.np + '─'.repeat(30 - part)}\n\n\`${formatDuration(positionObj)} / ${formatDuration(totalDurationObj)}\``;
             };
 
             const videoEmbed = new MessageEmbed()
