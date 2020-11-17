@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    { MessageEmbed } = require("discord.js");
 class Volume extends Command {
     constructor(client) {
         super(client, {
@@ -7,30 +7,48 @@ class Volume extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["vol"],
+            aliases: [ "vol" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 5000
         });
     }
     async run(message, args, data) {
+
+        const musji = this.client.customEmojis.music;
         
-    const player = message.client.manager.players.get(message.guild.id);
+        const embed = new MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
 
-    if(!player) return message.channel.send("aint playing")
-
-    const { channel } = message.member.voice
-
-    if(!channel) return message.channel.send("error")
-
-    if(channel.id !== player.voiceChannel) return message.channel.send("error")
-
-    const volume = Number(args[0]);
-    if (!volume || volume < 1 || volume > 100) return message.reply("invalid");
-    player.setVolume(volume);
-    return message.reply("volume" + player.volume);
+        const player = message.client.manager.players.get(message.guild.id);
+        const { channel } = message.member.voice;
+        if (!channel) {
+            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (!player) {
+            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
+        }
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        const volume = Number(args[0]);
+        if (!volume || volume < 1 || volume > 100) {
+            embed.setDescription(message.translate("music/volume:VALUE"));
+            return message.channel.send(embed);
+        }
+        player.setVolume(volume);
+        if (volume > player.volume) {
+            embed.setDescription(musji.volup + " " + message.translate("music/volume:SUCCESS"));
+        } else {
+            embed.setDescription(musji.voldown + " " + message.translate("music/volume:SUCCESS"));
+        }
+        return message.channel.send("volume" + player.volume);
 
 
 /*      const embed = new Discord.MessageEmbed()
