@@ -78,16 +78,16 @@ client.manager = new Manager({
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
     })
     .on("trackStuck", (player, track, payload) => {
+        const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
-        const channel = client.channels.cache.get(player.textChannel)
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
         channel.send(m.guild.error("music/play:ERROR", {
           error: payload.thresholdMs
         }))
     })
     .on("trackError", (player, track, payload) => {
+        const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
-        const channel = client.channels.cache.get(player.textChannel)
         if (!player.get("message")) {
             return
         }
@@ -100,6 +100,7 @@ client.manager = new Manager({
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
+        const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
         let embed1 = new MessageEmbed()
             embed1.setColor(config.embed.color)
@@ -112,7 +113,6 @@ client.manager = new Manager({
             embed2.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
               anya: client.user.username
             }));
-        const channel = client.channels.cache.get(player.textChannel);
         channel.send("<@" + m.id + ">", embed1);
         timer2 = setTimeout(() => {
             channel.send(embed2);
