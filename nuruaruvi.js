@@ -19,8 +19,8 @@ const { MessageEmbed } = require("discord.js");
 const { Manager } = require("erela.js");
 const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
-    clientID = client.config.spotify.id,
-    clientSecret = client.config.spotify.secret;
+    clientID = config.spotify.id,
+    clientSecret = config.spotify.secret;
 
 require("./helpers/player");
 const nodes = require("./helpers/nodes");
