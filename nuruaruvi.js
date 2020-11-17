@@ -25,6 +25,7 @@ const Spotify = require("erela.js-spotify"),
 
 require("./helpers/player");
 const nodes = require("./helpers/nodes");
+const musji = client.customEmojis.music;
 var timer;
 var timer2;
 client.manager = new Manager({
@@ -43,8 +44,7 @@ client.manager = new Manager({
         clearTimeout(timer2);
         let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
-        embed.setAuthor("Now Playing", "https://cdn.discordapp.com/emojis/750364941449691206.gif")
-        embed.setDescription(`[${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
+        embed.addField(musji.play + " Now Playing", `[${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
         embed.setColor(config.embed.color)
         embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`);
@@ -56,10 +56,9 @@ client.manager = new Manager({
     })
     .on("playerCreate", player => {
         let embed = new MessageEmbed()
-                embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
-                embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription(`I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}**.`)
+                embed.setFooter(config.embed.footer)
+                embed.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}**.`)
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(() => {
             channel.send(embed);
@@ -93,16 +92,14 @@ client.manager = new Manager({
     })
     .on("queueEnd", player => {
         let embed = new MessageEmbed()
-                embed.setAuthor("Queue Ended", "https://cdn.discordapp.com/emojis/750352772536467525.png")
-                embed.setFooter(config.embed.footer)
                 embed.setColor(config.embed.color)
-                embed.setDescription("Add more songs before im leaving in **3 minutes.**")
+                embed.setFooter(config.embed.footer)
+                embed.addField(musji.clear + " Queue Ended", "Add more songs before im leaving in **3 minutes.**")
         const channel = client.channels.cache.get(player.textChannel);
         channel.send(embed);
         timer2 = setTimeout(() => {
             embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-            embed.setAuthor("Leaving... Bye...", "https://cdn.discordapp.com/emojis/754574913209368687.gif")
-            embed.setDescription(`I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
+            embed.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
             channel.send(embed);
             player.destroy();
         }, 180000)
