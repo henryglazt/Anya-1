@@ -39,7 +39,6 @@ client.manager = new Manager({
     .on("nodeConnect", () => console.log(`[NODE] - connected`))
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
     .on("trackStart", (player, track) => {
-        player.set("member", track.requester);
         clearTimeout(timer);
         clearTimeout(timer2);
         let embed = new MessageEmbed()
