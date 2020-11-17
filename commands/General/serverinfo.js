@@ -101,7 +101,7 @@ class Serverinfo extends Command {
 			`**● Region:** ${region[guild.region]}`,
 			`**● Verification Level:** ${verifLevels[guild.verificationLevel]}`,
 			`**● Explicit Content Filter:** \`${guild.explicitContentFilter}\``,
-			`**● Boosters:** <a:Boost:774542922472488970> ${guild.premiumSubscriptionCount}`,
+			`**● Boosters:** ${this.client.customEmojis.boost.0} ${guild.premiumSubscriptionCount}`,
 			`**● Tier:** ${this.client.customEmojis.boost[guild.premiumTier]} Level ${guild.premiumTier}`,
 			`**● Banner:** ${banner ? banner : '`None`'}`,
 			`**● Vanity URL:** ${vanity ? vanity : '`None`'}`,
