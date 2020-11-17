@@ -41,9 +41,10 @@ client.manager = new Manager({
     .on("trackStart", (player, track) => {
         clearTimeout(timer);
         clearTimeout(timer2);
+        let m = player.get("member");
         let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
-        embed.addField(musji.play + " Now Playing", `[${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
+        embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {songName: track.title, songURL: track.uri, songDuration: formatTime(track.duration, true)});
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
         embed.setColor(config.embed.color)
         embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`);
@@ -57,7 +58,7 @@ client.manager = new Manager({
         let embed = new MessageEmbed()
                 embed.setColor(config.embed.color)
                 embed.setFooter(config.embed.footer)
-                embed.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}**.`)
+                embed.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\nThank you for using **${client.user.username}**.`)
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(() => {
             channel.send(embed);
@@ -85,7 +86,7 @@ client.manager = new Manager({
         player.voiceChannel = client.channels.cache.get(newChannel);
     })
     .on("queueEnd", player => {
-        let m = player.get("member")
+        let m = player.get("member");
         let embed1 = new MessageEmbed()
                 embed1.setColor(config.embed.color)
                 embed1.setFooter(config.embed.footer)
@@ -96,7 +97,6 @@ client.manager = new Manager({
                 embed2.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
                 embed2.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
         const channel = client.channels.cache.get(player.textChannel);
-        const member = player.get("member").id;
         channel.send("<@" + m.id + ">", embed1);
         timer2 = setTimeout(() => {
             channel.send(embed2);
