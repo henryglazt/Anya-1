@@ -21,7 +21,7 @@ class Nowplaying extends Command {
 
     async run(message, args, data) {
 
-const emojis = this.client.customEmojis;
+const emojis = data.customEmojis;
 
         try {
             const player = this.bot.music.players.get(message.guild.id);
