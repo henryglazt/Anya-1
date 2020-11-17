@@ -49,9 +49,6 @@ class Serverinfo extends Command {
                    };
   
   const feature = guild.features;
-  const emojis = data.customEmojis;
-  let boost = {"1": emojis.boost.tier1, "2": emojis.boost.tier2, "3": emojis.boost.tier3};
-  
   guild.members.fetch().then(fetchedMembers => {
     const totalOnline = fetchedMembers.filter(member => member.presence.status === 'online').size;
     const totalIdle = fetchedMembers.filter(member => member.presence.status === 'idle').size;
@@ -105,7 +102,7 @@ class Serverinfo extends Command {
 			`**● Verification Level:** ${verifLevels[guild.verificationLevel]}`,
 			`**● Explicit Content Filter:** \`${guild.explicitContentFilter}\``,
 			`**● Boosters:** <a:Boost:774542922472488970> ${guild.premiumSubscriptionCount}`,
-			`**● Tier:** <a:Boost:774542922472488970> Level ${guild.premiumTier}`,
+			`**● Tier:** ${this.client.customEmojis.boost[guild.premiumTier]} Level ${guild.premiumTier}`,
 			`**● Banner:** ${banner ? banner : '`None`'}`,
 			`**● Vanity URL:** ${vanity ? vanity : '`None`'}`,
 			`**● Partnered | Verified:** ${partnered[guild.partnered]} | ${verified[guild.verified]}`,
