@@ -15,7 +15,7 @@ if (config.apiKeys.sentryDSN) {
 
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
-const { Message, MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { Manager } = require("erela.js");
 const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
@@ -44,10 +44,16 @@ client.manager = new Manager({
         let m = player.get("member");
         let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
-        embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {songName: track.title, songURL: track.uri, songDuration: formatTime(track.duration, true)}));
+        embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
+          songName: track.title,
+          songURL: track.uri,
+          songDuration: formatTime(track.duration, true)
+        }));
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
         embed.setColor(config.embed.color)
-        embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`);
+        embed.setFooter(m.guild.translate("music/play:REQ", {
+          user: track.requester.tag
+        }, track.requester.displayAvatarURL({ dynamic: true })));
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
@@ -55,10 +61,13 @@ client.manager = new Manager({
         clearTimeout(timer2);
     })
     .on("playerCreate", player => {
+        let m = player.get("member");
         let embed = new MessageEmbed()
                 embed.setColor(config.embed.color)
                 embed.setFooter(config.embed.footer)
-                embed.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\nThank you for using **${client.user.username}**.`)
+                embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
+                  anya: client.user.username
+                }));
         const channel = client.channels.cache.get(player.textChannel);
         timer = setTimeout(() => {
             channel.send(embed);
@@ -69,18 +78,23 @@ client.manager = new Manager({
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
     })
     .on("trackStuck", (player, track, payload) => {
+        let m = player.get("member");
         const channel = client.channels.cache.get(player.textChannel)
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send(`Error encountered: Track stuck!\nCan't play \`${track.title}\``)
+        channel.send(m.guild.error("music/play:ERROR", {
+          error: payload.thresholdMs
+        }))
     })
     .on("trackError", (player, track, payload) => {
-        let embed = new MessageEmbed()
+        let m = player.get("member");
         const channel = client.channels.cache.get(player.textChannel)
         if (!player.get("message")) {
             return
         }
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send(`Error encountered: Track error!\nCan't play \`${track.title}\``)
+        channel.send(m.guild.error("music/play:ERROR", {
+          error: payload.error
+        }))
     })
     .on("playerMove", (player, currentChannel, newChannel) => {
         player.voiceChannel = client.channels.cache.get(newChannel);
@@ -90,12 +104,14 @@ client.manager = new Manager({
         let embed1 = new MessageEmbed()
                 embed1.setColor(config.embed.color)
                 embed1.setFooter(config.embed.footer)
-                embed1.addField(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"), "Add more songs before im leaving in **3 minutes.**");
+                embed1.setDescription(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"));
         let embed2 = new MessageEmbed()
                 embed2.setColor(config.embed.color)
                 embed2.setFooter(config.embed.footer)
                 embed2.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-                embed2.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
+                embed2.addField(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
+                  anya: client.user.username
+                }));
         const channel = client.channels.cache.get(player.textChannel);
         channel.send("<@" + m.id + ">", embed1);
         timer2 = setTimeout(() => {
