@@ -101,7 +101,7 @@ client.manager = new Manager({
                 embed2.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
         const channel = client.channels.cache.get(player.textChannel);
         const member = player.get("member").id;
-        channel.send("<@member", embed1);
+        channel.send("<@" + member + ">", embed1);
         timer2 = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
