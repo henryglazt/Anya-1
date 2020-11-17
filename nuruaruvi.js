@@ -66,7 +66,7 @@ client.manager = new Manager({
         }, 180000)
     })
     .on("socketClosed", (player, payload) => {
-        if (payload.byRemote == true) {
+        if (payload.byRemote === true) {
             player.destroy()
         }
     })
