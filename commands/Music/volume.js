@@ -43,9 +43,9 @@ class Volume extends Command {
             return message.channel.send(embed);
         }
         if (volume > player.volume) {
-            embed.setDescription(musji.volup + " " + message.translate("music/volume:SUCCESS", {volume: player.volume}));
+            embed.setDescription(musji.volup + " " + message.translate("music/volume:SUCCESS", {volume: volume}));
         } else {
-            embed.setDescription(musji.voldown + " " + message.translate("music/volume:SUCCESS", {volume: player.volume}));
+            embed.setDescription(musji.voldown + " " + message.translate("music/volume:SUCCESS", {volume: volume}));
         }
         player.setVolume(volume);
         return message.channel.send(embed);
