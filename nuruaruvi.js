@@ -25,8 +25,6 @@ const Spotify = require("erela.js-spotify"),
 require("./helpers/player");
 const nodes = require("./helpers/nodes");
 const musji = client.customEmojis.music;
-var timer;
-var timer2;
 client.manager = new Manager({
         nodes,
         plugins: [ new Spotify({ clientID, clientSecret, convertUnresolved: true })],
@@ -39,9 +37,8 @@ client.manager = new Manager({
     .on("nodeConnect", () => console.log(`[NODE] - connected`))
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
     .on("trackStart", (player, track) => {
-        clearTimeout(timer);
-        clearTimeout(timer2);
         const channel = client.channels.cache.get(player.textChannel);
+        clearTimeout(player.guild);
         let m = player.get("member");
         let embed = new MessageEmbed()
         embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
@@ -57,12 +54,11 @@ client.manager = new Manager({
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
-        clearTimeout(timer);
-        clearTimeout(timer2);
+        clearTimeout(player.guild);
     })
     .on("playerCreate", player => {
         const channel = client.channels.cache.get(player.textChannel);
-        timer = setTimeout(() => {
+        player.guild = setTimeout(() => {
           let m = player.get("member");
           let embed = new MessageEmbed()
               embed.setColor(config.embed.color)
@@ -114,7 +110,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        timer2 = setTimeout(() => {
+        player.guild = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000)
