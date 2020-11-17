@@ -100,7 +100,7 @@ client.manager = new Manager({
                 embed2.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
                 embed2.addField(musji.leave + " Leaving... Bye...", `I've been idle for **3 minutes**.\n\nThank you for using **${client.user.username}.**`)
         const channel = client.channels.cache.get(player.textChannel);
-        channel.send(embed1);
+        channel.send(message.member, embed1);
         timer2 = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
