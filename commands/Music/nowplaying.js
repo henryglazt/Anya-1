@@ -1,7 +1,5 @@
 const Command = require("../../base/Command.js"),
-    { MessageEmbed } = require("discord.js"),
-    { porgressBar } = require("music-progress-bar"),
-    API = require("../../helpers/utils.js");
+    { MessageEmbed } = require("discord.js");
 
 class Nowplaying extends Command {
 
