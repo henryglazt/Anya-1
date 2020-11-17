@@ -18,7 +18,6 @@ class Volume extends Command {
     async run(message, args, data) {
 
         const musji = this.client.customEmojis.music;
-        
         const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
@@ -38,7 +37,11 @@ class Volume extends Command {
             return message.channel.send(embed);
         }
         const volume = Number(args[0]);
-        if (!volume || volume < 1 || volume > 100) {
+        if (!volume || volume === player.volume) {
+            embed.setDescription(message.translate("music/volume:SET"));
+            return message.channel.send(embed);
+        }
+        if (volume < 1 || volume > 100) {
             embed.setDescription(message.translate("music/volume:VALUE"));
             return message.channel.send(embed);
         }
@@ -49,46 +52,6 @@ class Volume extends Command {
         }
         player.setVolume(volume);
         return message.channel.send(embed);
-
-
-/*      const embed = new Discord.MessageEmbed()
-            .setColor(data.config.embed.color)
-            .setFooter(data.config.embed.footer)
-        const voice = message.member.voice.channel;
-        if (!voice) {
-            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(embed);
-        }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(embed);
-        }
-        if (!this.client.distube.isPlaying(message)) {
-            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
-            return message.channel.send(embed);
-        }
-        let volume = parseInt(args[0])
-        if (!args[0]) {
-            embed.setDescription(message.translate("music/volume:VALUE"));
-            return message.channel.send(embed);
-        }
-        if (isNaN(volume)) {
-            embed.setDescription(message.translate("music/volume:VALUE"));
-            return message.channel.send(embed);
-        }
-        if (200 < volume) {
-            embed.setDescription(message.translate("music/volume:VALUE"));
-            return message.channel.send(embed);
-        }
-        if (volume <= 0) {
-            embed.setDescription(message.translate("music/volume:VALUE"));
-            return message.channel.send(embed);
-        }
-        this.client.distube.setVolume(message, volume);
-        embed.setDescription(message.translate("music/volume:SUCCESS", {
-            volume: volume
-        }));
-        return message.channel.send(embed);*/
     }
 }
 module.exports = Volume;
