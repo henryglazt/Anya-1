@@ -44,7 +44,7 @@ client.manager = new Manager({
         let m = player.get("member");
         let embed = new MessageEmbed()
         const channel = client.channels.cache.get(player.textChannel);
-        embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {songName: track.title, songURL: track.uri, songDuration: formatTime(track.duration, true)});
+        embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {songName: track.title, songURL: track.uri, songDuration: formatTime(track.duration, true)}));
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
         embed.setColor(config.embed.color)
         embed.setFooter(`Requested by: ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`);
