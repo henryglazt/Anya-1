@@ -64,11 +64,9 @@ client.manager = new Manager({
             player.destroy();
         }, 180000)
     })
-    /*.on("socketClosed", (player, payload) => {
-        if (payload.byRemote === true) {
+    .on("socketClosed", (player, payload) => {
             player.destroy()
-        }
-    })*/
+    })
     .on("trackEnd", player => {
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
     })
