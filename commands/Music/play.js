@@ -81,7 +81,7 @@ class Play extends Command {
           embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
             songName: res.tracks[0].title,
             songURL: res.tracks[0].uri,
-            songDuration: formatTime(res.tracks[0].duration, true)
+            songDuration: formatTime(res.tracks[0].duration)
           }));
           return message.channel.send(embed);
         }
@@ -95,7 +95,7 @@ class Play extends Command {
             items: res.tracks.length,
             plName: res.playlist.name,
             plURL: search,
-            plDuration: fomatTime(res.playlist.duration, true)
+            plDuration: fomatTime(res.playlist.duration)
           }));
           return message.channel.send(embed);
         }
@@ -109,7 +109,7 @@ class Play extends Command {
 
         const results = res.tracks
           .slice(0, max)
-          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
+          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatTime(track.duration)}\``)
           .join("\n");
 
         resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + "\n\n" + message.translate("music/play:FOOTER"));
@@ -147,7 +147,7 @@ class Play extends Command {
         embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
-          songDuration: formatTime(track.duration, true)
+          songDuration: formatTime(track.duration)
         }));
         if (!player.playing && !player.paused && !player.queue.length)
           player.play();
