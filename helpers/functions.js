@@ -106,9 +106,9 @@ module.exports = {
             return absoluteTime.join(", ");
         },
         formatTime(time) {
-            const seconds = Math.floor((time / 1000) % 60);
-            const minutes = Math.floor((time / (1000 * 60)) % 60);
-            const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+            let seconds = Math.floor((time / 1000) % 60);
+            let minutes = Math.floor((time / (1000 * 60)) % 60);
+            let hours = Math.floor((time / (1000 * 60 * 60)) % 24);
 
             hours = (hours < 10) ? "0" + hours : hours;
             minutes = (minutes < 10) ? "0" + minutes : minutes;
