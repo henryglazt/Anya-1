@@ -31,7 +31,16 @@ class Play extends Command {
       return message.channel.send(embed);
     }
     if (!args) {
-      embed.setDescription(message.translate("music/play:NO_ARGS"));
+      embed.setDescription([
+        message.translate("music/play:NO_ARGS"),
+        musji.youtube + " Youtube",
+        musji.soundcloud + " Soundcloud",
+        musji.spotify + " Spotify",
+        musji.bandcamp + " Bandcamp",
+        musji.twitch + " Twitch",
+        musji.mixer + " Mixer",
+        musji.vimeo + " Vimeo"
+        ]);
       return message.channel.send(embed);
     }
     if (!play) {
