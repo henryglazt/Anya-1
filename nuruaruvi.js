@@ -57,7 +57,6 @@ client.manager = new Manager({
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
-        let m = player.get("member");
         clearTimeout(timer1);
         clearTimeout(timer2);
     })
