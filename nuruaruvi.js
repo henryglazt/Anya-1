@@ -47,8 +47,8 @@ client.manager = new Manager({
           songURL: track.uri,
           songDuration: formatTime(track.duration, true)
         }));
-        embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
-        embed.setColor(config.embed.color)
+        embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
+        embed.setColor(config.embed.color);
         embed.setFooter(m.guild.translate("music/play:REQ", {
           user: track.requester.tag
         }), track.requester.displayAvatarURL({ dynamic: true }));
@@ -63,16 +63,16 @@ client.manager = new Manager({
         const channel = await client.channels.cache.get(player.textChannel);
         let m = await player.get("member");
         let embed = new MessageEmbed()
-            embed.setColor(config.embed.color)
-            embed.setFooter(config.embed.footer)
-            embed.setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
+            embed.setColor(config.embed.color);
+            embed.setFooter(config.embed.footer);
+            embed.setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png");
             embed.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
         m.voice.sessionID = setTimeout(() => {
          channel.send(embed);
           player.destroy();
-        }, 180000)
+        }, 180000);
     })
     .on("trackEnd", player => {
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
@@ -83,7 +83,7 @@ client.manager = new Manager({
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
         channel.send(m.guild.translate("music/play:ERROR", {
           error: payload.thresholdMs
-        }))
+        }));
     })
     .on("trackError", (player, track, payload) => {
         const channel = client.channels.cache.get(player.textChannel);
@@ -94,7 +94,7 @@ client.manager = new Manager({
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
         channel.send(m.guild.translate("music/play:ERROR", {
           error: payload.error
-        }))
+        }));
     })
     .on("playerMove", (player, currentChannel, newChannel) => {
         player.voiceChannel = client.channels.cache.get(newChannel);
@@ -103,13 +103,13 @@ client.manager = new Manager({
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
         let embed1 = new MessageEmbed()
-            embed1.setColor(config.embed.color)
-            embed1.setFooter(config.embed.footer)
+            embed1.setColor(config.embed.color);
+            embed1.setFooter(config.embed.footer);
             embed1.addField(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"), m.guild.translate("music/play:3MIN"));
         let embed2 = new MessageEmbed()
-            embed2.setColor(config.embed.color)
-            embed2.setFooter(config.embed.footer)
-            embed2.setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
+            embed2.setColor(config.embed.color);
+            embed2.setFooter(config.embed.footer);
+            embed2.setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png");
             embed2.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
@@ -117,7 +117,7 @@ client.manager = new Manager({
         m.voice.sessionID = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
-        }, 180000)
+        }, 180000);
     });
 
     client.on("raw", d => client.manager.updateVoiceState(d));
