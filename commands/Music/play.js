@@ -68,6 +68,7 @@ class Play extends Command {
         await player.queue.add(res.tracks[0]);
         if (!player.playing && !player.paused && !player.queue.length) {
           player.play();
+          embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
           embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
             songName: res.tracks[0].title,
             songURL: res.tracks[0].uri,
@@ -83,12 +84,16 @@ class Play extends Command {
         await player.queue.add(res.tracks);
         if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) {
           player.play();
+          embed.addField(`https://i.ytimg.com/vi/${res.playlist.selectedTrack.identifier}/hqdefault.jpg`);
           embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:ADDED_PL", {
             items: res.tracks.length,
             plName: res.playlist.name,
             plURL: search,
             plDuration: formatTime(res.playlist.duration, true)
           }));
+          embed.setFooter(message.translate("music/play:REQ", {
+            user: message.member.user.tag
+          }), message.member.displayAvatarURL({ dynamic: true }));
           return message.channel.send(embed);
         }
         
@@ -104,7 +109,8 @@ class Play extends Command {
           .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
           .join("\n");
 
-        resembed.addField(musji.folder + " " + message.translate("music/play:HEADER"), results);
+        resembed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
+        resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results);
         resembed.setColor(data.config.embed.color);
         resembed.setFooter(message.translate("music/play:FOOTER"));
         message.channel.send(resembed);
@@ -138,6 +144,7 @@ class Play extends Command {
         embed.setFooter(message.translate("music/play:REQ", {
           user: track.requester.tag
         }), track.requester.displayAvatarURL({ dynamic: true }));
+        embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
         embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
