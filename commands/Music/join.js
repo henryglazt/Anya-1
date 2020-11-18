@@ -25,7 +25,7 @@ class Join extends Command {
         const player = message.client.manager.players.get(message.guild.id);
         const { channel } = message.member.voice;
         if (!channel) {
-            embed.setDescription(message.error("music/play:NO_VOICE_CHANNEL"));
+            embed.setDescription(this.client.customEmojis.error + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
         if (!player) {
