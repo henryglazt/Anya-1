@@ -21,7 +21,7 @@ module.exports = class {
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-            .setDescription(musji.leave + " " + newState.guild.translate("music/stop:LEAVE", {
+            .addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
 
