@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
     { MessageEmbed } = require("discord.js"),
-    { formatDuration } = require("../../helpers/functions.js");
+    { formatTime } = require("../../helpers/functions.js");
 
 class Nowplaying extends Command {
 
@@ -48,7 +48,7 @@ class Nowplaying extends Command {
                     minutes: Math.floor((video.duration / (1000 * 60)) % 60),
                     hours: Math.floor((video.duration / (1000 * 60 * 60)) % 24)
                 };
-                description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatDuration(positionObj)} / ${formatDuration(totalDurationObj)}\``;
+                description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(video.duration)}\``;
             };
 
             const videoEmbed = new MessageEmbed()
