@@ -55,7 +55,7 @@ client.manager = new Manager({
     })
     .on("playerDestroy", player => {
         let m = player.get("member");
-        return clearTimeout(m.id);
+        clearTimeout(m.id);
     })
     .on("playerCreate", async player => {
         const channel = await client.channels.cache.get(player.textChannel);
