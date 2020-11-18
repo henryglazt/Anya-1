@@ -71,7 +71,7 @@ client.manager = new Manager({
             embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
               anya: client.user.username
             }));
-        timer1 = player.guild = setTimeout(() => {
+        timer1 = player.guild.id = setTimeout(() => {
          channel.send(embed);
           player.destroy();
         }, 180000)
@@ -116,7 +116,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        timer2 = player.guild = setTimeout(() => {
+        timer2 = player.guild.id = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000)
