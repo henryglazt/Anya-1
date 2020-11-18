@@ -1,6 +1,7 @@
 const Command = require("../../base/Command.js"),
   { MessageEmbed } = require("discord.js"),
-  API = require("../../helpers/utils.js");
+  API = require("../../helpers/utils.js"),
+  { formatTime } = require("../../helpers/utils.js");
 
 class Play extends Command {
   constructor(client) {
