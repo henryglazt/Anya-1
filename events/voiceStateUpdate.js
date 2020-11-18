@@ -20,7 +20,7 @@ module.exports = class {
         let embed = new MessageEmbed()
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
-            .setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
+            .setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
             .addField(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
