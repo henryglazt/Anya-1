@@ -38,8 +38,8 @@ client.manager = new Manager({
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
     .on("trackStart", (player, track) => {
         const channel = client.channels.cache.get(player.textChannel);
-        clearTimeout(player.guild.id);
         let m = player.get("member");
+        clearTimeout(m.id);
         let embed = new MessageEmbed()
         embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
           songName: track.title,
@@ -54,12 +54,13 @@ client.manager = new Manager({
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
-        return clearTimeout(player.guild.id);
+        let m = player.get("member");
+        return clearTimeout(m.id);
     })
     .on("playerCreate", player => {
         const channel = client.channels.cache.get(player.textChannel);
-        player.guild.id = setTimeout(() => {
-          let m = player.get("member");
+        let m = player.get("member");
+        m.id = setTimeout(() => {
           let embed = new MessageEmbed()
               embed.setColor(config.embed.color)
               embed.setFooter(config.embed.footer)
@@ -110,7 +111,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        player.guild.id = setTimeout(() => {
+        m.id = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000)
