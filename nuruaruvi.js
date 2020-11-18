@@ -57,7 +57,7 @@ client.manager = new Manager({
         let m = player.get("member");
         return clearTimeout(m.id);
     })
-    /*.on("playerCreate", async player => {
+    .on("playerCreate", async player => {
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
         if (!m) m = player.guild;
@@ -71,7 +71,7 @@ client.manager = new Manager({
          channel.send(embed);
           player.destroy();
         }, 180000)
-    })*/
+    })
     .on("trackEnd", player => {
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
     })
