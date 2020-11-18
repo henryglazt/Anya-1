@@ -60,13 +60,13 @@ client.manager = new Manager({
     .on("playerCreate", player => {
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
+        let embed = new MessageEmbed()
+            embed.setColor(config.embed.color)
+            embed.setFooter(config.embed.footer)
+            embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
+              anya: client.user.username
+            }));
         m.id = setTimeout(() => {
-          let embed = new MessageEmbed()
-              embed.setColor(config.embed.color)
-              embed.setFooter(config.embed.footer)
-              embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
-                anya: client.user.username
-              }));
          channel.send(embed);
           player.destroy();
         }, 180000)
