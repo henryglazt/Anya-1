@@ -2,7 +2,6 @@
     "DESCRIPTION": "Shows information about the current song!",
     "USAGE": "{{prefix}}np",
     "EXAMPLES": "{{prefix}}np",
-    "NOW_PLAYING": "Now Playing",
     "TITLE": "Title",
     "ELAPSED": "Elapsed"
 }
