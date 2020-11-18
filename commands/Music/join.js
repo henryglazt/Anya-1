@@ -45,6 +45,7 @@ class Join extends Command {
             voice: channel.id,
             text: message.channel.id
           }));
+          return message.channel.send(embed);
         }
         if (player && channel.id !== player.voiceChannel) {
           embed.setDescription(musji.info + " " + message.translate("music/join:USED", {
