@@ -77,7 +77,7 @@ class Play extends Command {
         await player.queue.add(res.tracks[0]);
         if (!player.playing && !player.paused && !player.queue.length) {
           player.play();
-          embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
+          embed.setThumbnail(`https://i.ytimg.com/vi/${res.tracks[0].identifier}/hqdefault.jpg`);
           embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
             songName: res.tracks[0].title,
             songURL: res.tracks[0].uri,
@@ -112,8 +112,9 @@ class Play extends Command {
           .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
           .join("\n");
 
-        resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + "\u200b" + message.translate("music/play:FOOTER"));
+        resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + "\n" + message.translate("music/play:FOOTER"));
         resembed.setColor(data.config.embed.color);
+        resembed.setFooter(data.config.embed.footer);
         message.channel.send(resembed);
 
         try {
