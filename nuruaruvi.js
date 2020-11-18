@@ -25,6 +25,7 @@ const Spotify = require("erela.js-spotify"),
 require("./helpers/player");
 const nodes = require("./helpers/nodes");
 const musji = client.customEmojis.music;
+var timer;
 client.manager = new Manager({
         nodes,
         plugins: [ new Spotify({ clientID, clientSecret, convertUnresolved: true })],
@@ -55,7 +56,7 @@ client.manager = new Manager({
     })
     .on("playerDestroy", player => {
         let m = player.get("member");
-        clearTimeout(m.id);
+        clearTimeout(timer);
     })
     .on("playerCreate", async player => {
         const channel = await client.channels.cache.get(player.textChannel);
@@ -63,10 +64,11 @@ client.manager = new Manager({
         let embed = new MessageEmbed()
             embed.setColor(config.embed.color)
             embed.setFooter(config.embed.footer)
-            embed.setDescription(musji.leave + " " + await m.guild.translate("music/stop:IDLE", {
+            embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
               anya: client.user.username
             }));
-        m.id = setTimeout(() => {
+        timer = m.id;
+        timer = setTimeout(() => {
          channel.send(embed);
           player.destroy();
         }, 180000)
