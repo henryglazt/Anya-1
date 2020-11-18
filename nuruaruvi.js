@@ -40,7 +40,6 @@ client.manager = new Manager({
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
         clearTimeout(m.voice.sessionID);
-        clearTimeout(m.voice.sessionID);
         let embed = new MessageEmbed()
         embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
@@ -56,7 +55,6 @@ client.manager = new Manager({
     })
     .on("playerDestroy", player => {
         let m = player.get("member");
-        clearTimeout(m.voice.sessionID);
         clearTimeout(m.voice.sessionID);
     })
     .on("playerCreate", async player => {
