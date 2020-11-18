@@ -38,7 +38,7 @@ client.manager = new Manager({
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
     .on("trackStart", (player, track) => {
         const channel = client.channels.cache.get(player.textChannel);
-        clearTimeout(player.guild);
+        clearTimeout(player.guild.id);
         let m = player.get("member");
         let embed = new MessageEmbed()
         embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
@@ -51,10 +51,10 @@ client.manager = new Manager({
         embed.setFooter(m.guild.translate("music/play:REQ", {
           user: track.requester.tag
         }), track.requester.displayAvatarURL({ dynamic: true }));
-        channel.send(embed).then(msg => player.set("message", msg));
+        return channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
-        clearTimeout(player.guild);
+        return clearTimeout(player.guild.id);
     })
     .on("playerCreate", player => {
         const channel = client.channels.cache.get(player.textChannel);
@@ -66,7 +66,7 @@ client.manager = new Manager({
               embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
                 anya: client.user.username
               }));
-          channel.send(embed);
+         channel.send(embed);
           player.destroy();
         }, 180000)
     })
