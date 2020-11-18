@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
   { MessageEmbed } = require("discord.js"),
-  { formatTime } = require("../../helpers/functions.js");
+  API = require("../../helpers/utils.js");
 
 class Play extends Command {
   constructor(client) {
@@ -147,7 +147,7 @@ class Play extends Command {
         embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
-          songDuration: formatTime(track.duration, true)
+          songDuration: API.time2(track.duration)
         }));
         if (!player.playing && !player.paused && !player.queue.length)
           player.play();
