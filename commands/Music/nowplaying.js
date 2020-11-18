@@ -38,16 +38,6 @@ class Nowplaying extends Command {
                 description = 'Live Stream';
             } else {
                 const part = Math.floor((player.position / video.duration) * 30);
-                const positionObj = {
-                    seconds: Math.floor((player.position / 1000) % 60),
-                    minutes: Math.floor((player.position / (1000 * 60)) % 60),
-                    hours: Math.floor((player.position / (1000 * 60 * 60)) % 24)
-                };
-                const totalDurationObj = {
-                    seconds: Math.floor((video.duration / 1000) % 60),
-                    minutes: Math.floor((video.duration / (1000 * 60)) % 60),
-                    hours: Math.floor((video.duration / (1000 * 60 * 60)) % 24)
-                };
                 description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(video.duration)}\``;
             };
 
