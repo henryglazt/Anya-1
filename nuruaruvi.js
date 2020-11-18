@@ -58,7 +58,7 @@ client.manager = new Manager({
     })
     .on("playerCreate", player => {
         const channel = client.channels.cache.get(player.textChannel);
-        player.guild = setTimeout(() => {
+        player.guild.id = setTimeout(() => {
           let m = player.get("member");
           let embed = new MessageEmbed()
               embed.setColor(config.embed.color)
@@ -110,7 +110,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        player.guild = setTimeout(() => {
+        player.guild.id = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000)
