@@ -58,12 +58,12 @@ client.manager = new Manager({
         return clearTimeout(m.id);
     })
     .on("playerCreate", async player => {
-        const channel = client.channels.cache.get(player.textChannel);
+        const channel = await client.channels.cache.get(player.textChannel);
         let m = await player.get("member");
         let embed = new MessageEmbed()
             embed.setColor(config.embed.color)
             embed.setFooter(config.embed.footer)
-            embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
+            embed.setDescription(musji.leave + " " + await m.guild.translate("music/stop:IDLE", {
               anya: client.user.username
             }));
         m.id = setTimeout(() => {
