@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
   { MessageEmbed } = require("discord.js"),
-  { formatTime, formatDuration, parseTime, converTime } = require("../../helpers/functions.js");
+  { formatDuration, converTime } = require("../../helpers/functions.js");
 
 class Play extends Command {
   constructor(client) {
@@ -81,7 +81,7 @@ class Play extends Command {
           embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
             songName: res.tracks[0].title,
             songURL: res.tracks[0].uri,
-            songDuration: parseTime(res.tracks[0].duration)
+            songDuration: formatDuration(res.tracks[0].duration)
           }));
           return message.channel.send(embed);
         }
@@ -109,7 +109,7 @@ class Play extends Command {
 
         const results = res.tracks
           .slice(0, max)
-          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${parseTime(track.duration)}\``)
+          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatDuration(track.duration)}\``)
           .join("\n");
 
         resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + "\n\n" + message.translate("music/play:FOOTER"));
@@ -147,7 +147,7 @@ class Play extends Command {
         embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
-          songDuration: converTime(data.guild.id, track.duration)
+          songDuration: convertTime(data.guild.id, track.duration)
         }));
         if (!player.playing && !player.paused && !player.queue.length)
           player.play();
