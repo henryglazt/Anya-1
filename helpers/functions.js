@@ -116,5 +116,4 @@ module.exports = {
 
             return hours + ":" + minutes + ":" + seconds;
         },
-    }
 };
