@@ -112,9 +112,8 @@ class Play extends Command {
           .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
           .join("\n");
 
-        resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results);
+        resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + \u200b + message.translate("music/play:FOOTER"));
         resembed.setColor(data.config.embed.color);
-        resembed.setFooter(message.translate("music/play:FOOTER"));
         message.channel.send(resembed);
 
         try {
