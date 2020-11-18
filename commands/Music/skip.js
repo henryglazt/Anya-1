@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    { MessageEmbed } = require("discord.js");
 class Skip extends Command {
     constructor(client) {
         super(client, {
@@ -17,7 +17,8 @@ class Skip extends Command {
     }
     async run(message, args, data) {
 
-        const embed = new Discord.MessageEmbed()
+        const musji = this.client.customEmojis.music;
+        const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
