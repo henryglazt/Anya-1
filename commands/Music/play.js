@@ -93,7 +93,7 @@ class Play extends Command {
         await player.queue.add(res.tracks);
         if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) {
           player.play();
-          embed.addField(`https://i.ytimg.com/vi/${res.playlist.selectedTrack.identifier}/hqdefault.jpg`);
+          embed.addField(`https://i.ytimg.com/vi/${res.tracks[0].identifier}/hqdefault.jpg`);
           embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:ADDED_PL", {
             items: res.tracks.length,
             plName: res.playlist.name,
