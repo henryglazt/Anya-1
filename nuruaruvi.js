@@ -65,7 +65,7 @@ client.manager = new Manager({
         let embed = new MessageEmbed()
             embed.setColor(config.embed.color)
             embed.setFooter(config.embed.footer)
-            embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
+            embed.setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
             embed.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
@@ -109,7 +109,7 @@ client.manager = new Manager({
         let embed2 = new MessageEmbed()
             embed2.setColor(config.embed.color)
             embed2.setFooter(config.embed.footer)
-            embed2.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
+            embed2.setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
             embed2.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
