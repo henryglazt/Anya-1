@@ -70,7 +70,8 @@ client.manager = new Manager({
             embed.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
-        timer1 = player.guild.id = setTimeout(() => {
+        timer1 = player.guild.id;
+        timer1 = setTimeout(() => {
          channel.send(embed);
           player.destroy();
         }, 180000)
@@ -115,7 +116,8 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        timer2 = player.guild.id = setTimeout(() => {
+        timer2 = player.guild.id;
+        timer2 = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000)
