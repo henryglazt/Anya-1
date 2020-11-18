@@ -1,5 +1,9 @@
 {
     "DESCRIPTION": "Summon me to a voice channel.",
     "USAGE": "{{prefix}}join",
-    "EXAMPLES": "{{prefix}}join"
+    "EXAMPLES": "{{prefix}}join",
+    "JOIN": "I'm joining the channel...",
+    "JOINED": "I'm already joined... Are you blind?",
+    "USED": "I'm already being used in <#{{channel}}>",
+    "BOUND": "Joined <#{{voice}}> and bound to <#{{text}}>"
 }
