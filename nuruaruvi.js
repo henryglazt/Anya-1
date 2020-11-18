@@ -51,7 +51,7 @@ client.manager = new Manager({
         embed.setFooter(m.guild.translate("music/play:REQ", {
           user: track.requester.tag
         }), track.requester.displayAvatarURL({ dynamic: true }));
-        return channel.send(embed).then(msg => player.set("message", msg));
+        channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
         return clearTimeout(player.guild.id);
