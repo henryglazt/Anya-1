@@ -115,5 +115,5 @@ module.exports = {
             seconds = (seconds < 10) ? "0" + seconds : seconds;
 
             return hours + ":" + minutes + ":" + seconds;
-        },
+        }
 };
