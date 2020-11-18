@@ -25,7 +25,8 @@ const Spotify = require("erela.js-spotify"),
 require("./helpers/player");
 const nodes = require("./helpers/nodes");
 const musji = client.customEmojis.music;
-var timer;
+var timer1;
+var timer2;
 client.manager = new Manager({
         nodes,
         plugins: [ new Spotify({ clientID, clientSecret, convertUnresolved: true })],
@@ -40,7 +41,8 @@ client.manager = new Manager({
     .on("trackStart", (player, track) => {
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
-        clearTimeout(m.id);
+        clearTimeout(timer1);
+        clearTimeout(timer2);
         let embed = new MessageEmbed()
         embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
           songName: track.title,
@@ -56,7 +58,8 @@ client.manager = new Manager({
     })
     .on("playerDestroy", player => {
         let m = player.get("member");
-        clearTimeout(timer);
+        clearTimeout(timer1);
+        clearTimeout(timer2);
     })
     .on("playerCreate", async player => {
         const channel = await client.channels.cache.get(player.textChannel);
@@ -64,11 +67,11 @@ client.manager = new Manager({
         let embed = new MessageEmbed()
             embed.setColor(config.embed.color)
             embed.setFooter(config.embed.footer)
+            embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
             embed.setDescription(musji.leave + " " + m.guild.translate("music/stop:IDLE", {
               anya: client.user.username
             }));
-        timer = m.id;
-        timer = setTimeout(() => {
+        timer1 = player.guild = setTimeout(() => {
          channel.send(embed);
           player.destroy();
         }, 180000)
@@ -113,7 +116,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        m.id = setTimeout(() => {
+        timer2 = player.guild = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000)
