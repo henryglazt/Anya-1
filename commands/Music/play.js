@@ -83,9 +83,6 @@ class Play extends Command {
             songURL: res.tracks[0].uri,
             songDuration: formatTime(res.tracks[0].duration, true)
           }));
-          embed.setFooter(message.translate("music/play:REQ", {
-            user: res.tracks[0].requester.tag
-          }), res.tracks[0].requester.displayAvatarURL({ dynamic: true }));
           return message.channel.send(embed);
         }
 
@@ -100,9 +97,6 @@ class Play extends Command {
             plURL: search,
             plDuration: formatTime(res.playlist.duration, true)
           }));
-          embed.setFooter(message.translate("music/play:REQ", {
-            user: message.member.user.tag
-          }), message.member.displayAvatarURL({ dynamic: true }));
           return message.channel.send(embed);
         }
         
@@ -149,9 +143,6 @@ class Play extends Command {
         const track = res.tracks[index];
         await player.queue.add(track);
 
-        embed.setFooter(message.translate("music/play:REQ", {
-          user: track.requester.tag
-        }), track.requester.displayAvatarURL({ dynamic: true }));
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
         embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
           songName: track.title,
