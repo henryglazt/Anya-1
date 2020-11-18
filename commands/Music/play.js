@@ -70,7 +70,7 @@ class Play extends Command {
     switch (res.loadType) {
       case "NO_MATCHES":
         if (!player.queue.current) player.destroy();
-        embed.setDescription(message.translate("music/play:NO_RESULT"));
+        embed.setDescription(this.client.customEmojis.error + " " + message.translate("music/play:NO_RESULT"));
         return message.channel.send(embed);
       
       case "TRACK_LOADED":
