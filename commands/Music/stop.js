@@ -38,14 +38,14 @@ class Stop extends Command {
         }
         if (!player.playing) {
             player.destroy();
-            embed.setDescription(musji.leave + " " + message.translate("music/stop:LEAVE"), message.translate("music/stop:THANK", {
+            embed.addField(musji.leave + " " + message.translate("music/stop:LEAVE"), message.translate("music/stop:THANK", {
               anya: this.client.user.username
             }));
             embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg");
             return message.channel.send(embed);
         }
         player.destroy();
-        embed.setDescription(musji.stop + " " + message.translate("music/stop:LEAVE"), message.translate("music/stop:THANK", {
+        embed.addField(musji.stop + " " + message.translate("music/stop:LEAVE"), message.translate("music/stop:THANK", {
           anya: this.client.user.username
         }));
         embed.setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg");
