@@ -1,115 +1,132 @@
 const Command = require("../../base/Command.js"),
-      { MessageEmbed } = require("discord.js"),
-      { formatTime } = require("../../helpers/functions.js");
+  { MessageEmbed } = require("discord.js"),
+  { formatTime } = require("../../helpers/functions.js");
 
 class Play extends Command {
-    constructor(client) {
-        super(client, {
-            name: "play",
-            dirname: __dirname,
-            enabled: true,
-            guildOnly: true,
-            aliases: [ "p" ],
-            memberPermissions: [],
-            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
-            nsfw: false,
-            ownerOnly: false,
-            cooldown: 5000
-        });
-    }
-    async run(message, args, data) {
-        
-        let embed = new MessageEmbed()
-        .setColor(data.config.embed.color)
-        .setFooter(data.config.embed.footer)
-        .setTimestamp()
-        
-  let play = message.client.manager.players.get(message.guild.id)
-
-  const { channel } = message.member.voice;
-
-  if(!channel) return message.reply("no channel");
-  if(!args.length) return message.reply("no args");
-
-  if(!play) await message.client.commands.get("join").run(message, null, data);
-
-  const player = message.client.manager.players.get(message.guild.id)
-
-  if(channel.id !== player.voiceChannel) { return message.channel.send("...") }
-
-  const search = args.join(' ');
-  let res;
-
-  try {
-    res = await player.search(search, message.author);
-    if (res.loadType === 'LOAD_FAILED') {
-      if (!player.queue.current) player.destroy();
-      throw new Error(res.exception.message);
-    }
-  } catch (err) {
-    return message.reply(err.message);
+  constructor(client) {
+    super(client, {
+      name: "play",
+      dirname: __dirname,
+      enabled: true,
+      guildOnly: true,
+      aliases: [ "p" ],
+      memberPermissions: [],
+      botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
+      nsfw: false,
+      ownerOnly: false,
+      cooldown: 5000
+    });
   }
+  async run(message, args, data) {
+    
+    const musji = this.client.customEmojis.music;
+    const embed = new MessageEmbed()
+      .setColor(data.config.embed.color)
+      .setFooter(data.config.embed.footer);
 
-  switch (res.loadType) {
-    case 'NO_MATCHES':
-      if (!player.queue.current) player.destroy();
-      return message.reply("result");
-      case 'TRACK_LOADED':
-      await player.queue.add(res.tracks[0]);
-
-      if (!player.playing && !player.paused && !player.queue.length) player.play();
-      embed.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})\n\`${formatTime(res.tracks[0].duration, true)}\``)
-      embed.setFooter(`Requested by: ${res.tracks[0].requester.tag}`, `${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`)
-      return message.channel.send(embed)
-
-    case 'PLAYLIST_LOADED':
-      await player.queue.add(res.tracks);
-      if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
-      embed.setDescription(`${res.playlist.name} \`${res.tracks.length}\` \`${formatTime(res.playlist.duration, true)}\``)
+    const play = message.client.manager.players.get(message.guild.id);
+    const { channel } = message.member.voice;
+    if (!channel) {
+      embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
       return message.channel.send(embed);
-
-    case 'SEARCH_RESULT':
-      let resembed = new MessageEmbed()
-      let max = 5, collected, filter = (m) => m.author.id === message.author.id && /^(\d+|cancel)$/i.test(m.content) || message.author.id && /^(\d+|batal)$/i.test(m.content);
-      if (res.tracks.length < max) max = res.tracks.length;
-
-      const results = res.tracks
-      .slice(0, max)
-      .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${formatTime(track.duration, true)}\``)
-      .join('\n');
-
-      resembed.addFields({ name: "Cancel", value: "Type `cancel` to cancel" })
-      resembed.setDescription(results)
-      resembed.setColor(data.config.embed.color)
-      resembed.setFooter(data.config.embed.footer)
-      message.channel.send(resembed);
-
-      try {
-        collected = await message.channel.awaitMessages(filter, { max: 1, time: 30e3, errors: ['time'] });
-      } catch (e) {
-        if (!player.queue.current) player.destroy();
-        return message.reply("...");
-      }
-
-      const first = collected.first().content;
-
-      if (first.toLowerCase() === 'cancel' || first.toLowerCase() === 'batal') {
-        if (!player.queue.current) player.destroy();
-        return message.channel.send("music/play:CANCELED");
-      }
-
-      const index = Number(first) - 1;
-      if (index < 0 || index > max - 1) return message.reply("max" + max + ')');
-
-      const track = res.tracks[index];
-      await player.queue.add(track);
-
-      embed.setFooter(` ${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`)
-      embed.setDescription(`[${track.title}](${track.uri}) \n \`${formatTime(track.duration, true)}\``)
-      if(!player.playing && !player.paused && !player.queue.length) player.play();
-      return message.channel.send(embed);
-      }
-      
     }
+    if (!args) {
+      embed.setDescription(message.translate("music/play:NO_ARGS"));
+      return message.channel.send(embed);
+    }
+    if (!play) {
+      await message.client.commands.get("join").run(message, null, data);
+    }
+    const player = message.client.manager.players.get(message.guild.id);
+    if (channel.id !== player.voiceChannel) {
+      embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+      return message.channel.send(embed);
+    }
+
+    const search = args.join(" ");
+    let res;
+
+    try {
+      res = await player.search(search, message.author);
+      if (res.loadType === "LOAD_FAILED") {
+        if (!player.queue.current) player.destroy();
+        throw new Error(res.exception.message);
+      }
+    } catch (err) {
+      return message.reply(err.message);
+    }
+
+    switch (res.loadType) {
+      case "NO_MATCHES":
+        if (!player.queue.current) player.destroy();
+        return message.reply("result");
+      
+      case "TRACK_LOADED":
+        await player.queue.add(res.tracks[0]);
+        if (!player.playing && !player.paused && !player.queue.length) {
+          player.play();
+          embed.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})\n\`${formatTime(res.tracks[0].duration,true)}\``);
+          embed.setFooter(`Requested by: ${res.tracks[0].requester.tag}`,`${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`);
+          return message.channel.send(embed);
+        }
+
+      case "PLAYLIST_LOADED":
+        await player.queue.add(res.tracks);
+        if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) {
+          player.play();
+          embed.setDescription(`${res.playlist.name} \`${res.tracks.length}\` \`${formatTime(res.playlist.duration, true)}\``);
+          return message.channel.send(embed);
+        }
+        
+      case "SEARCH_RESULT":
+        let resembed = new MessageEmbed();
+        let max = 5,
+          collected,
+          filter = m => (m.author.id === message.author.id && /^(\d+|cancel)$/i.test(m.content)) || (message.author.id && /^(\d+|batal)$/i.test(m.content));
+        if (res.tracks.length < max) max = res.tracks.length;
+
+        const results = res.tracks
+          .slice(0, max)
+          .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${formatTime(
+                track.duration, true)}\``)
+          .join("\n");
+
+        resembed.addFields({name: "Cancel", value: "Type `cancel` to cancel"});
+        resembed.setDescription(results);
+        resembed.setColor(data.config.embed.color);
+        resembed.setFooter(data.config.embed.footer);
+        message.channel.send(resembed);
+
+        try {
+          collected = await message.channel.awaitMessages(filter, {
+            max: 1,
+            time: 30e3,
+            errors: ["time"]
+          });
+        } catch (e) {
+          if (!player.queue.current) player.destroy();
+          return message.reply("...");
+        }
+
+        const first = collected.first().content;
+        if (first.toLowerCase() === "cancel" || first.toLowerCase() === "batal") {
+          if (!player.queue.current) player.destroy();
+          return message.channel.send("music/play:CANCELED");
+        }
+        const index = Number(first) - 1;
+        if (index < 0 || index > max - 1) {
+          return message.reply("max" + max + ")");
+        }
+        
+        const track = res.tracks[index];
+        await player.queue.add(track);
+
+        embed.setFooter(`${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`);
+        embed.setDescription(`[${track.title}](${track.uri}) \n \`${formatTime(track.duration, true)}\``);
+        if (!player.playing && !player.paused && !player.queue.length)
+          player.play();
+        return message.channel.send(embed);
+    }
+  }
 }
 module.exports = Play;
