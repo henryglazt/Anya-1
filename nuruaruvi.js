@@ -39,8 +39,8 @@ client.manager = new Manager({
     .on("trackStart", (player, track) => {
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
-        clearTimeout(m.id);
-        clearTimeout(m.id);
+        clearTimeout(m.voice.sessionID);
+        clearTimeout(m.voice.sessionID);
         let embed = new MessageEmbed()
         embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
@@ -56,8 +56,8 @@ client.manager = new Manager({
     })
     .on("playerDestroy", player => {
         let m = player.get("member");
-        clearTimeout(m.id);
-        clearTimeout(m.id);
+        clearTimeout(m.voice.sessionID);
+        clearTimeout(m.voice.sessionID);
     })
     .on("playerCreate", async player => {
         const channel = await client.channels.cache.get(player.textChannel);
@@ -69,7 +69,7 @@ client.manager = new Manager({
             embed.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
-        m.id = setTimeout(() => {
+        m.voice.sessionID = setTimeout(() => {
          channel.send(embed);
           player.destroy();
         }, 180000)
@@ -114,7 +114,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        m.id = setTimeout(() => {
+        m.voice.sessionID = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000)
