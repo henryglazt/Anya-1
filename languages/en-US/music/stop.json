@@ -3,7 +3,8 @@
     "USAGE": "{{prefix}}stop",
     "EXAMPLES": "{{prefix}}stop",
     "VOTE_CONTENT": "React with ⏹️ to stop the music! {{requiredCount}} more votes are required.",
-    "SUCCESS": "**Music stopped! Leaving... Bye...**\nThank you for using **{{anya}}**!",
-    "LEAVE": "**Leaving... Bye...**\nThank you for using **{{anya}}**!",
-    "IDLE": "**Leaving... Bye...**\nI've been idle for 3 minutes\nThank you for using **{{anya}}**!"
+    "SUCCESS": "Music stopped! Leaving... Bye...",
+    "LEAVE": "Leaving... Bye...",
+    "IDLE": "I've been idle for 3 minutes.",
+    "THANK": "Thank you for using **{{anya}}**!"
 }
