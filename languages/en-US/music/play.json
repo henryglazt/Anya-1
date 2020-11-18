@@ -2,8 +2,6 @@
     "DESCRIPTION": "Plays music for you!",
     "USAGE": "{{prefix}}play [song]",
     "EXAMPLES": "{{prefix}}play Bye Bye",
-    "JOIN": "I'm joining the channel...",
-    "JOINED": "I'm already joined... Are you blind?",
     "NOW_PLAYING": "Now Playing",
     "SONG": "[{{songName}}]({{songURL}}) - `{{songDuration}}`",
     "NO_VOICE_CHANNEL": "You are not in a voice channel!",
