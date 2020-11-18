@@ -17,7 +17,7 @@ const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
 const { MessageEmbed } = require("discord.js");
 const { Manager } = require("erela.js");
-const { formatDuration } = require("./helpers/functions");
+const { formatTime } = require("./helpers/functions");
 const Spotify = require("erela.js-spotify"),
     clientID = config.spotify.id,
     clientSecret = config.spotify.secret;
@@ -44,7 +44,7 @@ client.manager = new Manager({
         embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
-          songDuration: formatDuration(track.duration)
+          songDuration: formatTime(track.duration)
         }));
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
         embed.setColor(config.embed.color);
