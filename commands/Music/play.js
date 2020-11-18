@@ -30,7 +30,7 @@ class Play extends Command {
       embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
       return message.channel.send(embed);
     }
-    if (!args) {
+    if (!args.length) {
       embed.setDescription([
         message.translate("music/play:NO_ARGS"),
         musji.youtube + " Youtube",
