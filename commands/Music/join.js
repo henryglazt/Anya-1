@@ -41,7 +41,7 @@ class Join extends Command {
           }
           player.connect();
           player.set("member", message.member);
-          embed.setDescription(musji.enter + " " + message.translate("music/join:JOIN"), message.translate("music/join:BOUND", {
+          embed.addField(musji.join + " " + message.translate("music/join:JOIN"), message.translate("music/join:BOUND", {
             voice: channel.id,
             text: message.channel.id
           }));
