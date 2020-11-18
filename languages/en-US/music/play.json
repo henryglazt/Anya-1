@@ -7,18 +7,18 @@
     "NOW_PLAYING": "Now Playing",
     "SONG": "[{{songName}}]({{songURL}}) - `{{songDuration}}`",
     "NO_VOICE_CHANNEL": "You are not in a voice channel!",
-    "VOICE_CHANNEL_CONNECT": "I can't connect to your voice channel!",
+    "CONNECT": "I can't connect to your voice channel!",
     "MY_VOICE_CHANNEL": "I'm already being used in a different channel!",
     "NO_ARGS": "**Please specify a Song Name, a Song URL or a Playlist URL!**\n\n**Current supported URL:**",
-    "RESULTS_HEADER": "Choose one of the options below:",
-    "RESULTS_FOOTER": "Type `cancel` or wait 30 seconds to cancel!",
+    "HEADER": "Choose one of the options below:",
+    "FOOTER": "Type `cancel` or wait 30 seconds to cancel!",
     "NO_RESULT": "Can't find related song to play.",
-    "CANCELLED": "Selection cancelled.",
+    "CANCELED": "Selection cancelled.",
     "ERROR": "An error encountered: {{error}}",
     "REQ": "Requested by: {{user}}",
     "NOT_PLAYING": "No songs are currently playing in this server.",
     "QUEUE_ENDED": "Queue Ended",
     "3MIN": "Add more songs before im leaving in **3 minutes**.",
     "ADDED": "Added to the queue.",
-    "ADDED_PL": "{{items}} songs from [{{plTitle}}]({{plURL}}) - `{{plDuration}}`"
+    "ADDED_PL": "{{items}} songs from [{{plName}}]({{plURL}}) - `{{plDuration}}`"
 }
