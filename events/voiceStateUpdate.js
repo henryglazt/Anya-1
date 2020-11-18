@@ -21,18 +21,15 @@ module.exports = class {
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/attachments/544570919553859597/777604827752169472/1543963619588.jpg")
-
-        if (!chnl) {
-            embed.addField(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:IDLE") + "\n" + newState.guild.translate("music/stop:THANK", {
+            .addField(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
+
+        if (!chnl) {
             channel.send(embed);
             return player.destroy()
         }
         if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
-            embed.addField(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:THANK", {
-              anya: client.user.username
-            }));
             channel.send(embed);
             return player.destroy()
         }
