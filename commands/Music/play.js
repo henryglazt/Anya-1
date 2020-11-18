@@ -53,20 +53,29 @@ class Play extends Command {
         throw new Error(res.exception.message);
       }
     } catch (err) {
-      return message.reply(err.message);
+      return message.error(message.translate("music/play:ERROR", {
+        error: err
+      }));
     }
 
     switch (res.loadType) {
       case "NO_MATCHES":
         if (!player.queue.current) player.destroy();
-        return message.reply("result");
+        embed.setDescription(message.translate("music/play:NO_RESULT"));
+        return message.channel.send(embed);
       
       case "TRACK_LOADED":
         await player.queue.add(res.tracks[0]);
         if (!player.playing && !player.paused && !player.queue.length) {
           player.play();
-          embed.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})\n\`${formatTime(res.tracks[0].duration,true)}\``);
-          embed.setFooter(`Requested by: ${res.tracks[0].requester.tag}`,`${res.tracks[0].requester.displayAvatarURL({ dynamic: true })}`);
+          embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
+            songName: res.tracks[0].title,
+            songURL: res.tracks[0].uri,
+            songDuration: formatTime(res.tracks[0].duration, true)
+          }));
+          embed.setFooter(message.translate("music/play:REQ", {
+            user: res.tracks[0].requester.tag
+          }), res.tracks[0].requester.displayAvatarURL({ dynamic: true }));
           return message.channel.send(embed);
         }
 
@@ -74,7 +83,12 @@ class Play extends Command {
         await player.queue.add(res.tracks);
         if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) {
           player.play();
-          embed.setDescription(`${res.playlist.name} \`${res.tracks.length}\` \`${formatTime(res.playlist.duration, true)}\``);
+          embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:ADDED_PL", {
+            items: res.tracks.length,
+            plName: res.playlist.name,
+            plURL: search,
+            plDuration: formatTime(res.playlist.duration, true)
+          }));
           return message.channel.send(embed);
         }
         
@@ -87,14 +101,12 @@ class Play extends Command {
 
         const results = res.tracks
           .slice(0, max)
-          .map((track, index) => `${++index} - [${track.title}](${track.uri}) \`${formatTime(
-                track.duration, true)}\``)
+          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatTime(track.duration, true)}\``)
           .join("\n");
 
-        resembed.addFields({name: "Cancel", value: "Type `cancel` to cancel"});
-        resembed.setDescription(results);
+        resembed.addField(musji.folder + " " + message.translate("music/play:HEADER"), results);
         resembed.setColor(data.config.embed.color);
-        resembed.setFooter(data.config.embed.footer);
+        resembed.setFooter(message.translate("music/play:FOOTER"));
         message.channel.send(resembed);
 
         try {
@@ -105,7 +117,9 @@ class Play extends Command {
           });
         } catch (e) {
           if (!player.queue.current) player.destroy();
-          return message.reply("...");
+          return message.error(message.translate("music/play:ERROR", {
+            error: e
+          }));
         }
 
         const first = collected.first().content;
@@ -121,8 +135,14 @@ class Play extends Command {
         const track = res.tracks[index];
         await player.queue.add(track);
 
-        embed.setFooter(`${track.requester.tag}`, `${track.requester.displayAvatarURL({ dynamic: true })}`);
-        embed.setDescription(`[${track.title}](${track.uri}) \n \`${formatTime(track.duration, true)}\``);
+        embed.setFooter(message.translate("music/play:REQ", {
+          user: track.requester.tag
+        }), track.requester.displayAvatarURL({ dynamic: true }));
+        embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
+          songName: track.title,
+          songURL: track.uri,
+          songDuration: formatTime(track.duration, true)
+        }));
         if (!player.playing && !player.paused && !player.queue.length)
           player.play();
         return message.channel.send(embed);
