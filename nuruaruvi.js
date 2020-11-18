@@ -44,7 +44,7 @@ client.manager = new Manager({
         clearTimeout(timer1);
         clearTimeout(timer2);
         let embed = new MessageEmbed()
-        embed.setDescription(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING", {
+        embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
           songDuration: formatTime(track.duration, true)
@@ -106,7 +106,7 @@ client.manager = new Manager({
         let embed1 = new MessageEmbed()
             embed1.setColor(config.embed.color)
             embed1.setFooter(config.embed.footer)
-            embed1.setDescription(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"));
+            embed1.addField(musji.info + " " + m.guild.translate("music/play:QUEUE_ENDED"), m.guild.translate("music/play:3MIN"));
         let embed2 = new MessageEmbed()
             embed2.setColor(config.embed.color)
             embed2.setFooter(config.embed.footer)
