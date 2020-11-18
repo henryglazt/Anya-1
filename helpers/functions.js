@@ -114,6 +114,7 @@ module.exports = {
             minutes = (minutes < 10) ? "0" + minutes : minutes;
             seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-            return hours + ":" + minutes + ":" + seconds;
+            const duration = `${hours ? (hours + ':') : ''}${minutes ? minutes : '00'}:${(seconds < 10) ? ('0' + seconds) : (seconds ? seconds : '00')}`;
+            return duration;
         }
 };
