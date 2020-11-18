@@ -57,9 +57,10 @@ client.manager = new Manager({
         let m = player.get("member");
         return clearTimeout(m.id);
     })
-    /*.on("playerCreate", player => {
+    /*.on("playerCreate", async player => {
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
+        if (!m) m = player.guild;
         let embed = new MessageEmbed()
             embed.setColor(config.embed.color)
             embed.setFooter(config.embed.footer)
