@@ -35,19 +35,22 @@ class Nowplaying extends Command {
             let description;
 
             if (video.isStream) {
-                description = 'Live Stream';
+                description = musji.live1 + musji.live2;
             } else {
                 const part = Math.floor((player.position / video.duration) * 30);
                 description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(video.duration)}\``;
             };
 
-            const videoEmbed = new MessageEmbed()
+            const embed = new MessageEmbed()
                 .setThumbnail(`https://i.ytimg.com/vi/${video.identifier}/hqdefault.jpg`)
                 .setColor(data.config.embed.color)
-                .setTitle(video.title)
+                .addField(musji.play + " " message.translate("music/play:NOW_PLAYING"), message.translate("music/np:SONG", {
+                   songName: video.title,
+                   songURL: video.uri
+                }))
                 .setDescription(description)
                 .setFooter(data.config.embed.footer)
-            return message.channel.send({ embed: videoEmbed });
+            return message.channel.send(embed);
         } catch (error) {
             console.error(error);
             return message.channel.send(`An Error Occurred: \`${error.message}\`!`);
