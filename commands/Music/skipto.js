@@ -57,12 +57,12 @@ class Skipto extends Command {
         if (track > 1 && player.queue.size !== track) {
             player.queue.splice(0, track - 1);
             player.stop();
-            embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `\`${song - 1 === 1 ? "1 " + `${song}` : `${track - 1} songs`}\``);
+            embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `\`${track - 1 === 1 ? "1 " + `${song}` : `${track - 1} songs`}\``);
             return message.channel.send(embed);
         } else if (track > 1 && player.queue.size === track) {
             player.queue.splice(0, player.queue.length - 1);
             player.stop();
-            embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `\`${song - 1}\`` + " " + `\`${message.translate("music/skipto:SONGS")}\``);
+            embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `\`${track - 1}\`` + " " + `\`${songs}\``);
             return message.channel.send(embed);
         };
         /*const members = voice.members.filter((m) => !m.user.bot);
