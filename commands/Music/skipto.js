@@ -41,17 +41,15 @@ class Skipto extends Command {
             return message.channel.send(embed);
         }
 
-        let song = Number(args[0])
+        let song = Number(args[0]);
         if (!song || isNaN(song) || song < 1) {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE"));
             return message.channel.send(embed);
         }
-        if (song > player.queue.size || !player.queue[player.queue.size > 1 ? song - 2 : song - 1]) return message.channel.send('**Song Not Found!**');
-
         if (song > 1 && player.queue.size !== song) {
-            player.queue.splice(0, song - 2);
+            player.queue.splice(0, song - 1);
             player.stop();
-            return message.channel.send(`**Skipped \`${song - 1 === 1 ? '1 Song' : `$song - 1} Songs`}\`**`);
+            return message.channel.send(`**Skipped \`${song - 1 === 1 ? '1 Song' : `${song - 1} Songs`}\`**`);
         } else if (song > 1 && player.queue.size === song) {
             player.queue.splice(0, player.queue.length - 1);
             player.stop();
