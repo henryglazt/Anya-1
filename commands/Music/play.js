@@ -27,7 +27,7 @@ class Play extends Command {
     const play = message.client.manager.players.get(message.guild.id);
     const { channel } = message.member.voice;
     if (!channel) {
-      embed.setDescription(message.error("music/play:NO_VOICE_CHANNEL"));
+      embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
       return message.channel.send(embed);
     }
     if (!args.length) {
@@ -48,7 +48,7 @@ class Play extends Command {
     }
     const player = message.client.manager.players.get(message.guild.id);
     if (channel.id !== player.voiceChannel) {
-      embed.setDescription(message.error("music/play:MY_VOICE_CHANNEL"));
+      embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
       return message.channel.send(embed);
     }
 
@@ -63,7 +63,7 @@ class Play extends Command {
         throw new Error(res.exception.message);
       }
     } catch (err) {
-      embed.setDescription(message.error("music/play:ERROR", {
+      embed.setDescription(musji.info + " " + message.translate("music/play:ERROR", {
         error: err
       }));
       return message.channel.send(embed);
@@ -72,7 +72,7 @@ class Play extends Command {
     switch (res.loadType) {
       case "NO_MATCHES":
         if (!player.queue.current) player.destroy();
-        embed.setDescription(message.error("music/play:NO_RESULT"));
+        embed.setDescription(musji.info + " " + message.translate("music/play:NO_RESULT"));
         return message.channel.send(embed);
       
       case "TRACK_LOADED":
@@ -132,19 +132,19 @@ class Play extends Command {
           });
         } catch {
           if (!player.queue.current) player.destroy();
-          embed.setDescription(message.error("music/play:CANCELED"));
+          embed.setDescription(musji.info + " " + message.translate("music/play:CANCELED"));
           return message.channel.send(embed);
         }
 
         const first = collected.first().content;
         if (first.toLowerCase() === "cancel" || first.toLowerCase() === "batal") {
           if (!player.queue.current) player.destroy();
-          embed.setDescription(message.error("music/play:CANCELED"));
+          embed.setDescription(musji.info + " " + message.translate("music/play:CANCELED"));
           return message.channel.send(embed);
         }
         const index = Number(first) - 1;
         if (index < 0 || index > max - 1) {
-          embed.setDescription(message.translate("music/play:CHOOSE", {
+          embed.setDescription(musji.info + " " + message.translate("music/play:CHOOSE", {
             max: max
           }));
           return message.channel.send(embed);
