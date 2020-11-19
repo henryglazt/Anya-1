@@ -33,18 +33,18 @@ class Nowplaying extends Command {
         let description;
 
         if (track.isStream) {
-            description = "🔴 " + musji.live1 + musji.live2;
+            description = musji.live1 + musji.live2;
         } else {
             const part = Math.floor((player.position / track.duration) * 30);
             description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(track.duration)}\``;
         };
 
-        embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
+        embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
         embed.setDescription(message.translate("music/np:SONG", {
               songName: track.title,
               songURL: track.uri
-           }) + description)
-        embed.setAuthor(message.translate("music/play:NOW_PLAYING"))
+           })\n\ndescription);
+        embed.setAuthor(message.translate("music/play:NOW_PLAYING"), "https://cdn.discordapp.com/attachments/733966113167245312/778819885596934184/25629.png");
         return message.channel.send(embed);
     }
 }
