@@ -77,8 +77,7 @@ class Play extends Command {
       
       case "TRACK_LOADED":
         await player.queue.add(res.tracks[0]);
-        if (!player.playing && !player.paused && !player.queue.length) {
-          player.play();
+        if (!player.playing && !player.paused && !player.queue.length) player.play();
           if (res.tracks[0].isStream) {
              duration = musji.live1 + musji.live2;
           } else {
@@ -91,12 +90,10 @@ class Play extends Command {
             songDuration: duration
           }));
           return message.channel.send(embed);
-        }
 
       case "PLAYLIST_LOADED":
         await player.queue.add(res.tracks);
-        if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) {
-          player.play();
+        if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
           embed.setThumbnail(`https://i.ytimg.com/vi/${res.tracks[0].identifier}/hqdefault.jpg`);
           embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:ADDED_PL", {
             items: res.tracks.length,
@@ -105,10 +102,8 @@ class Play extends Command {
             plDuration: formatTime(res.playlist.duration)
           }));
           return message.channel.send(embed);
-        }
         
       case "SEARCH_RESULT":
-        if (search.startsWith("https://" || "http://")) return;
         let resembed = new MessageEmbed();
         let max = 5,
           collected,
