@@ -2,6 +2,5 @@
     "DESCRIPTION": "Shows information about the current song!",
     "USAGE": "{{prefix}}np",
     "EXAMPLES": "{{prefix}}np",
-    "TITLE": "Title",
-    "ELAPSED": "Elapsed"
+    "SONG": "[{{songName}}]({{songURL}})"
 }
