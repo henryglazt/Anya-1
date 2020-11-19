@@ -3,6 +3,6 @@
     "USAGE": "{{prefix}}skip",
     "EXAMPLES": "{{prefix}}skip",
     "NO_NEXT_SONG": "There's no song after this one!",
-    "VOTE_CONTENT": "**Next song:** [{{songName}}]({{songURL}}) - `{{songDuration}}`\nReact with ⏭️ to skip the current song!\n**{{requiredCount}}** more votes are required.",
-    "SUCCESS": "[{{songName}}]({{songURL}}) skipped!"
+    "VOTE_CONTENT": "[{{songName}}]({{songURL}}) - {{songDuration}}\nReact with <:next:778032151500947456> to skip the current song!\n**{{requiredCount}}** more votes are required.",
+    "SUCCESS": "Skipped"
 }
