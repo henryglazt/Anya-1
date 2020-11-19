@@ -45,7 +45,7 @@ class Skipto extends Command {
 
         if (song || isNaN(song) || song < 1) {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE"));
-            return message.channel.send(xembed);
+            return message.channel.send(embed);
         }
         if (song > player.queue.size || !player.queue[player.queue.size > 1 ? song - 2 : song - 1]) return message.channel.send('**Song Not Found!**');
 
