@@ -27,7 +27,7 @@ class Play extends Command {
     const play = message.client.manager.players.get(message.guild.id);
     const { channel } = message.member.voice;
     if (!channel) {
-      embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+      embed.setDescription(message.error("music/play:NO_VOICE_CHANNEL"));
       return message.channel.send(embed);
     }
     if (!args.length) {
@@ -48,7 +48,7 @@ class Play extends Command {
     }
     const player = message.client.manager.players.get(message.guild.id);
     if (channel.id !== player.voiceChannel) {
-      embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+      embed.setDescription(message.error("music/play:MY_VOICE_CHANNEL"));
       return message.channel.send(embed);
     }
 
@@ -63,7 +63,7 @@ class Play extends Command {
         throw new Error(res.exception.message);
       }
     } catch (err) {
-      return message.error(message.translate("music/play:ERROR", {
+      return message.error("music/play:ERROR", {
         error: err
       }));
     }
@@ -71,7 +71,7 @@ class Play extends Command {
     switch (res.loadType) {
       case "NO_MATCHES":
         if (!player.queue.current) player.destroy();
-        embed.setDescription(this.client.customEmojis.error + " " + message.translate("music/play:NO_RESULT"));
+        embed.setDescription(message.error("music/play:NO_RESULT"));
         return message.channel.send(embed);
       
       case "TRACK_LOADED":
@@ -81,10 +81,10 @@ class Play extends Command {
           if (res.tracks[0].isStream) {
              duration = musji.live1 + musji.live2;
           } else {
-             duration = formatTime(res.tracks[0].duration);
+             duration = `\`${formatTime(res.tracks[0].duration)}\``;
           }
           embed.setThumbnail(`https://i.ytimg.com/vi/${res.tracks[0].identifier}/hqdefault.jpg`);
-          embed.addField(musji.add + " " + message.error("music/play:ADDED"), message.translate("music/play:SONG", {
+          embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
             songName: res.tracks[0].title,
             songURL: res.tracks[0].uri,
             songDuration: duration
@@ -115,7 +115,7 @@ class Play extends Command {
 
         const results = res.tracks
           .slice(0, max)
-          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - \`${formatTime(track.duration)}\``)
+          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - ${track.isStream ? musji.live1 + musji.live2 : \`formatTime(track.duration)\`}`)
           .join("\n");
 
         resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + "\n\n" + message.translate("music/play:FOOTER"));
@@ -129,17 +129,16 @@ class Play extends Command {
             time: 30e3,
             errors: ["time"]
           });
-        } catch (e) {
+        } catch {
           if (!player.queue.current) player.destroy();
-          return message.error(message.translate("music/play:ERROR", {
-            error: e
-          }));
+          embed.setDescription(message.error("music/play:CANCELED"));
+          return message.channel.send(embed);
         }
 
         const first = collected.first().content;
         if (first.toLowerCase() === "cancel" || first.toLowerCase() === "batal") {
           if (!player.queue.current) player.destroy();
-          embed.setDescription(message.translate("music/play:CANCELED"));
+          embed.setDescription(message.error("music/play:CANCELED"));
           return message.channel.send(embed);
         }
         const index = Number(first) - 1;
@@ -153,11 +152,16 @@ class Play extends Command {
         const track = res.tracks[index];
         await player.queue.add(track);
 
+        if (track.isStream) {
+           duration = musji.live1 + musji.live2;
+        } else {
+           duration = `\`${formatTime(track.duration)}\``;
+        }
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
         embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
-          songDuration: formatTime(track.duration)
+          songDuration: duration
         }));
         if (!player.playing && !player.paused && !player.queue.length)
           player.play();
