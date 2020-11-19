@@ -63,9 +63,10 @@ class Play extends Command {
         throw new Error(res.exception.message);
       }
     } catch (err) {
-      return message.error("music/play:ERROR", {
+      embed.setDescription(message.error("music/play:ERROR", {
         error: err
       }));
+      return message.channel.send(embed);
     }
 
     switch (res.loadType) {
