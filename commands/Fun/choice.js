@@ -20,8 +20,8 @@ class Choice extends Command {
 	async run (message, args) {
 
 		// Gets the answers by spliting on "/"
-		const answers = args.join(" ").split("/");
-		answer = answer.replace(/<(?:[^\d>]+|:[A-Za-z0-9]+:)\w+>/g, "").trim();
+		let answers = args.join(" ").split("/");
+		answers = answers.replace(/<(?:[^\d>]+|:[A-Za-z0-9]+:)\w+>/g, "").trim();
 		if (answers.length < 2) return message.error("fun/choice:MISSING");
 		if (answers.some(answer => !answer))
 			return message.error("fun/choice:EMPTY");
