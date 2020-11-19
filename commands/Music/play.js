@@ -102,7 +102,7 @@ class Play extends Command {
             items: res.tracks.length,
             plName: res.playlist.name,
             plURL: search,
-            plDuration: fomatTime(res.playlist.duration)
+            plDuration: formatTime(res.playlist.duration)
           }));
           return message.channel.send(embed);
         }
@@ -116,7 +116,7 @@ class Play extends Command {
 
         const results = res.tracks
           .slice(0, max)
-          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - ${track.isStream ? musji.live1 + musji.live2 : \`formatTime(track.duration)\`}`)
+          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - ${track.isStream ? musji.live1 + musji.live2 : "`" + formatTime(track.duration) + "`"}`)
           .join("\n");
 
         resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + "\n\n" + message.translate("music/play:FOOTER"));
