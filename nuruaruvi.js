@@ -42,7 +42,7 @@ client.manager = new Manager({
         if (track.isStream) {
             duration = musji.live1 + musji.live2;
         } else {
-            duration = formatTime(track.duration);
+            duration = `\`${formatTime(track.duration)}\``;
         }
         let m = player.get("member");
         clearTimeout(m.voice.sessionID);
@@ -85,7 +85,7 @@ client.manager = new Manager({
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send(m.guild.translate("music/play:ERROR", {
+        channel.send(musji.info + " " + m.guild.translate("music/play:ERROR", {
           error: payload.thresholdMs
         }));
     })
@@ -96,7 +96,7 @@ client.manager = new Manager({
             return
         }
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
-        channel.send(m.guild.translate("music/play:ERROR", {
+        channel.send(musji.info + " " + m.guild.translate("music/play:ERROR", {
           error: payload.error
         }));
     })
