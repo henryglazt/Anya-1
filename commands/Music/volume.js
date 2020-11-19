@@ -25,15 +25,15 @@ class Volume extends Command {
         const player = message.client.manager.players.get(message.guild.id);
         const { channel } = message.member.voice;
         if (!channel) {
-            embed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
+            embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
         if (!player) {
-            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
         if (channel.id !== player.voiceChannel) {
-            embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
+            embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
         const volume = Number(args[0]);
