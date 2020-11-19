@@ -160,8 +160,7 @@ class Play extends Command {
           songURL: track.uri,
           songDuration: duration
         }));
-        if (!player.playing && !player.paused && !player.queue.length)
-          player.play();
+        if (!player.playing && !player.paused && !player.queue.length) player.play();
         return message.channel.send(embed);
     }
   }
