@@ -38,13 +38,19 @@ client.manager = new Manager({
     .on("nodeError", (node, error) => console.log(`[NODE] - error encountered: ${error.message}.`))
     .on("trackStart", (player, track) => {
         const channel = client.channels.cache.get(player.textChannel);
+        let duration;
+        if (track.isStream) {
+            duration = musji.live1 + musji.live2;
+        } else {
+            duration = formatTime(track.duration);
+        }
         let m = player.get("member");
         clearTimeout(m.voice.sessionID);
         let embed = new MessageEmbed()
         embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
           songURL: track.uri,
-          songDuration: formatTime(track.duration)
+          songDuration: duration
         }));
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
         embed.setColor(config.embed.color);
