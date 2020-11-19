@@ -36,26 +36,34 @@ class Skipto extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (player.queue.totalSize <= 1) {
+        if (!player.queue.size) {
             embed.setDescription(musji.info + " " + message.translate("music/skip:NO_NEXT_SONG"));
             return message.channel.send(embed);
         }
+        if (player.queue.size === 1) {
+            embed.setDescription(musji.info + " " + message.translate("music/skip:SKIP"));
+            return message.channel.send(embed);
+        }
 
-        let song = Number(args[0]);
-        if (!song || isNaN(song) || song < 1 || song > player.queue.size) {
+        let song = message.translate("music/skipto:SONG");
+        let songs = message.translate("music/skipto:SONGS");
+        let track = Number(args[0]);
+        if (!track || isNaN(track) || track < 1 || track > player.queue.size) {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE", {
                max: player.queue.totalSize
             }));
             return message.channel.send(embed);
         }
-        if (song > 1 && player.queue.size !== song) {
-            player.queue.splice(0, song - 1);
+        if (track > 1 && player.queue.size !== track) {
+            player.queue.splice(0, track - 1);
             player.stop();
-            return message.channel.send(`**Skipped \`${song - 1 === 1 ? '1 Song' : `${song - 1} Songs`}\`**`);
-        } else if (song > 1 && player.queue.size === song) {
+            embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `\`${song - 1 === 1 ? "1 " + `${song}` : `${track - 1} songs`}\``);
+            return message.channel.send(embed);
+        } else if (track > 1 && player.queue.size === track) {
             player.queue.splice(0, player.queue.length - 1);
             player.stop();
-            return message.channel.send(`**Skipped \`${song - 1} Songs\`**`);
+            embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `\`${song - 1}\`` + " " + `\`${message.translate("music/skipto:SONGS")}\``);
+            return message.channel.send(embed);
         };
         /*const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
