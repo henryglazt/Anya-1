@@ -54,6 +54,7 @@ class Play extends Command {
 
     const search = args.join(" ");
     let res;
+    let duration;
 
     try {
       res = await player.search(search, message.author);
@@ -77,11 +78,16 @@ class Play extends Command {
         await player.queue.add(res.tracks[0]);
         if (!player.playing && !player.paused && !player.queue.length) {
           player.play();
+          if (res.tracks[0].isStream) {
+             duration = musji.live1 + musji.live2;
+          } else {
+             duration = formatTime(res.tracks[0].duration);
+          }
           embed.setThumbnail(`https://i.ytimg.com/vi/${res.tracks[0].identifier}/hqdefault.jpg`);
-          embed.addField(musji.add + " " + message.translate("music/play:ADDED"), message.translate("music/play:SONG", {
+          embed.addField(musji.add + " " + message.error("music/play:ADDED"), message.translate("music/play:SONG", {
             songName: res.tracks[0].title,
             songURL: res.tracks[0].uri,
-            songDuration: formatTime(res.tracks[0].duration)
+            songDuration: duration
           }));
           return message.channel.send(embed);
         }
@@ -133,11 +139,15 @@ class Play extends Command {
         const first = collected.first().content;
         if (first.toLowerCase() === "cancel" || first.toLowerCase() === "batal") {
           if (!player.queue.current) player.destroy();
-          return message.channel.send(message.translate("music/play:CANCELED"));
+          embed.setDescription(message.translate("music/play:CANCELED"));
+          return message.channel.send(embed);
         }
         const index = Number(first) - 1;
         if (index < 0 || index > max - 1) {
-          return message.reply("max" + max + ")");
+          embed.setDescription(message.translate("music/play:CHOOSE", {
+            max: max
+          }));
+          return message.channel.send(embed);
         }
         
         const track = res.tracks[index];
