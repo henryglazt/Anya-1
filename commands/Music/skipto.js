@@ -41,24 +41,24 @@ class Skipto extends Command {
             return message.channel.send(embed);
         }
 
-        let songs = parseInt(args[0])
+        let song = Number(args[0])
 
-        if (!args[0] || isNaN(songs) || args[0] < 1) {
-            embed.setDescription(musji.info + " " + essage.translate("music/skipto:VALUE"));
+        if (song || isNaN(song) || song < 1) {
+            embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
         }
-        if (args[0] > player.queue.size || !player.queue[player.queue.size > 1 ? args[0] - 2 : args[0] - 1]) return message.channel.send('**Song Not Found!**');
+        if (song > player.queue.size || !player.queue[player.queue.size > 1 ? song - 2 : song - 1]) return message.channel.send('**Song Not Found!**');
 
-        if (args[0] > 1 && player.queue.size != args[0]) {
-            player.queue.splice(0, args[0] - 2);
+        if (song > 1 && player.queue.size !== song) {
+            player.queue.splice(0, song - 2);
             player.stop();
-            return message.channel.send(`**Skipped \`${args[0] - 1 === 1 ? '1 Song' : `${args[0] - 1} Songs`}\`**`);
-        } else if (args[0] > 1 && player.queue.size == args[0]) {
+            return message.channel.send(`**Skipped \`${song - 1 === 1 ? '1 Song' : `$song - 1} Songs`}\`**`);
+        } else if (song > 1 && player.queue.size === song) {
             player.queue.splice(0, player.queue.length - 1);
             player.stop();
-            return message.channel.send(`**Skipped \`${args[0] - 1} Songs\`**`);
+            return message.channel.send(`**Skipped \`${song - 1} Songs\`**`);
         };
-        const members = voice.members.filter((m) => !m.user.bot);
+        /*const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("music/skipto:DESCRIPTION"))
             .setThumbnail(queue.songs[songs - 1].thumbnail)
@@ -138,7 +138,7 @@ class Skipto extends Command {
                     })
                 }
             });
-        }
+        }*/
     }
 }
 module.exports = Skipto;
