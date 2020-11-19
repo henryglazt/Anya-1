@@ -19,7 +19,7 @@ class Setafk extends Command {
 	async run (message, args, data) {
 
 		let reason = args.join(" ");
-		reason = reason.splice(/<(?:[^\d>]+|:[A-Za-z0-9]+:)\w+>/g).trim();
+		reason = reason.slice(/<(?:[^\d>]+|:[A-Za-z0-9]+:)\w+>/g).trim();
 		if(!reason){
 			return message.error("general/setafk:MISSING_REASON");
 		}
