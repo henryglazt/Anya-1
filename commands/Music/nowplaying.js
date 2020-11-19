@@ -33,7 +33,7 @@ class Nowplaying extends Command {
         let description;
 
         if (track.isStream) {
-            description = musji.live1 + musji.live2;
+            description = "🔴 " + musji.live1 + musji.live2;
         } else {
             const part = Math.floor((player.position / track.duration) * 30);
             description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(track.duration)}\``;
@@ -43,7 +43,7 @@ class Nowplaying extends Command {
         embed.setDescription(message.translate("music/np:SONG", {
               songName: track.title,
               songURL: track.uri
-           }) + "🔴" + description)
+           }) + description)
         embed.setAuthor(message.translate("music/play:NOW_PLAYING"))
         return message.channel.send(embed);
     }
