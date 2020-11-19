@@ -4,5 +4,6 @@
     "EXAMPLES": "{{prefix}}skip",
     "NO_NEXT_SONG": "There's no song after this one!",
     "VOTE_CONTENT": "[{{songName}}]({{songURL}}) - {{songDuration}}\nReact with <:next:778032151500947456> to skip the current song!\n**{{requiredCount}}** more votes are required.",
-    "SUCCESS": "Skipped"
+    "SUCCESS": "Skipped",
+    "SKIP": "Why would you jump to the next song?\nUse the `skip` command instead!"
 }
