@@ -42,7 +42,7 @@ class Skipto extends Command {
         }
 
         let song = Number(args[0])
-        if (song || isNaN(song) || song < 1) {
+        if (!song || isNaN(song) || song < 1) {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE"));
             return message.channel.send(embed);
         }
