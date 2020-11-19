@@ -50,7 +50,7 @@ class Skipto extends Command {
         let track = Number(args[0]);
         if (!track || isNaN(track) || track < 1 || track > player.queue.size) {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE", {
-               max: player.queue.totalSize
+               max: player.queue.size
             }));
             return message.channel.send(embed);
         }
