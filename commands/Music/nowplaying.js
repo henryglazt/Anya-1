@@ -44,7 +44,7 @@ class Nowplaying extends Command {
             const embed = new MessageEmbed()
                 .setThumbnail(`https://i.ytimg.com/vi/${video.identifier}/hqdefault.jpg`)
                 .setColor(data.config.embed.color)
-                .addField(musji.play + " " message.translate("music/play:NOW_PLAYING"), message.translate("music/np:SONG", {
+                .addField(musji.play + " " + message.translate("music/play:NOW_PLAYING"), message.translate("music/np:SONG", {
                    songName: video.title,
                    songURL: video.uri
                 }))
