@@ -43,7 +43,7 @@ class Nowplaying extends Command {
         embed.setDescription(message.translate("music/np:SONG", {
               songName: track.title,
               songURL: track.uri
-           })\n\ndescription);
+           }) + "\n\n" + description);
         embed.setAuthor(message.translate("music/play:NOW_PLAYING"), "https://cdn.discordapp.com/attachments/733966113167245312/778819885596934184/25629.png");
         return message.channel.send(embed);
     }
