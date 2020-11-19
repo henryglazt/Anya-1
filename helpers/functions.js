@@ -112,5 +112,10 @@ module.exports = {
 
             const duration = `${hours ? (hours + ':') : ''}${minutes ? minutes : '00'}:${(seconds < 10) ? ('0' + seconds) : (seconds ? seconds : '00')}`;
             return duration;
+        },
+        escapeMarkdown(text) {
+            var unescaped = text.replace(/\\(\*|_|`|~|\\)/g, '$1'); // unescape any "backslashed" character
+            var escaped = unescaped.replace(/(\*|_|`|~|\\)/g, '\\$1'); // escape *, _, `, ~, \
+            return escaped;
         }
 };
