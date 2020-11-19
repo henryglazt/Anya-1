@@ -11,7 +11,7 @@
     "HEADER": "Select one of these songs below:",
     "FOOTER": "Type `cancel` or wait 30 seconds to cancel!",
     "NO_RESULT": "Can't find related song to play.",
-    "CHOOSE": "Select the song number between 1 and {{max}}!",
+    "CHOOSE": "Select the song number between **1 and {{max}}!**",
     "CANCELED": "Selection cancelled.",
     "ERROR": "An error encountered: {{error}}",
     "REQ": "Requested by: {{user}}",
@@ -19,5 +19,5 @@
     "QUEUE_ENDED": "Queue Ended",
     "3MIN": "Add more songs before im leaving in **3 minutes**.",
     "ADDED": "Added to the queue.",
-    "ADDED_PL": "{{items}} songs from [{{plName}}]({{plURL}}) - `{{plDuration}}`"
+    "ADDED_PL": "**{{items}}** songs from [{{plName}}]({{plURL}}) - `{{plDuration}}`"
 }
