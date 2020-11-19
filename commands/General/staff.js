@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    { MessageEmbed } = require("discord.js"),
+    { escapeMarkdown } = require("../../helpers/functions.js");
 
 class Staff extends Command {
 
@@ -26,16 +27,14 @@ class Staff extends Command {
             .setAuthor(message.translate("general/staff:TITLE", {
                 guild: message.guild.name
             }))
-            .setDescription([message.translate("general/staff:ADMINS") + "\n" + (administrators.size > 0 ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${a.user.tag}`)
+            .setDescription([message.translate("general/staff:ADMINS") + "\n" + (administrators.size > 0 ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}`)
                     .join("\n") + "\n" : message.translate("general/staff:NO_ADMINS") + "\n"),
-                message.translate("general/staff:MODS") + "\n" + (moderators.size > 0 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${m.user.tag}`)
+                message.translate("general/staff:MODS") + "\n" + (moderators.size > 0 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`)
                     .join("\n") : message.translate("general/staff:NO_MODS") + "\n")
             ])
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer);
         message.channel.send(embed);
     }
-
 }
-
 module.exports = Staff;
