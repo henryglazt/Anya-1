@@ -40,10 +40,6 @@ class Skipto extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/skip:NO_NEXT_SONG"));
             return message.channel.send(embed);
         }
-        if (player.queue.size === 1) {
-            embed.setDescription(musji.info + " " + message.translate("music/skip:SKIP"));
-            return message.channel.send(embed);
-        }
 
         let song = message.translate("music/skipto:SONG");
         let songs = message.translate("music/skipto:SONGS");
@@ -52,6 +48,11 @@ class Skipto extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE", {
                max: player.queue.size
             }));
+            return message.channel.send(embed);
+        }
+        if (track === 1) {
+            player.stop();
+            embed.setDescription(musji.info + " " + message.translate("music/skip:SUCCESS"));
             return message.channel.send(embed);
         }
         if (track > 1 && player.queue.size !== track) {
