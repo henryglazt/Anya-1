@@ -39,10 +39,10 @@ class Nowplaying extends Command {
             description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(track.duration)}\``;
         };
 
-        embed.setThumbnail(`https://i.ytimg.com/vi/${video.identifier}/hqdefault.jpg`)
+        embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`)
         embed.setDescription(message.translate("music/np:SONG", {
-              songName: video.title,
-              songURL: video.uri
+              songName: track.title,
+              songURL: track.uri
            }) + "🔴" + description)
         embed.setAuthor(message.translate("music/play:NOW_PLAYING"))
         return message.channel.send(embed);
