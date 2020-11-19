@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    { MessageEmbed } = require("discord.js");
 class Skipto extends Command {
     constructor(client) {
         super(client, {
@@ -7,52 +7,57 @@ class Skipto extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["jump"],
+            aliases: [ "jump" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 5000
         });
     }
     async run(message, args, data) {
-        const xembed = new Discord.MessageEmbed()
+
+        const musji = this.client.customEmojis.music;
+        const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
 
-        const queue = this.client.distube.getQueue(message);
-        const voice = message.member.voice.channel;
-        if (!voice) {
-            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+        const player = message.client.manager.players.get(message.guild.id);
+        const { channel } = message.member.voice;
+        if (!channel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+        if (!player) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
         }
-        if (!this.client.distube.isPlaying(message)) {
-            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
-            return message.channel.send(xembed);
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
-        if (!queue.songs[1]) {
-            xembed.setDescription(message.translate("music/skip:NO_NEXT_SONG"));
-            return message.channel.send(xembed);
+        if (player.queue.totalSize <= 1) {
+            embed.setDescription(musji.info + " " + message.translate("music/skip:NO_NEXT_SONG"));
+            return message.channel.send(embed);
         }
 
         let songs = parseInt(args[0])
 
-        if (!args[0]) {
-            xembed.setDescription(message.translate("music/skipto:VALUE"));
+        if (!args[0] || isNaN(songs) || args[0] < 1) {
+            embed.setDescription(musji.info + " " + essage.translate("music/skipto:VALUE"));
             return message.channel.send(xembed);
         }
-        if (isNaN(songs)) {
-            xembed.setDescription(message.translate("music/skipto:VALUE"));
-            return message.channel.send(xembed);
-        }
-        if (songs <= 0) {
-            xembed.setDescription(message.translate("music/skipto:VALUE"));
-            return message.channel.send(xembed);
-        }
+        if (args[0] > player.queue.size || !player.queue[player.queue.size > 1 ? args[0] - 2 : args[0] - 1]) return message.channel.send('**Song Not Found!**');
+
+        if (args[0] > 1 && player.queue.size != args[0]) {
+            player.queue.splice(0, args[0] - 2);
+            player.stop();
+            return message.channel.send(`**Skipped \`${args[0] - 1 === 1 ? '1 Song' : `${args[0] - 1} Songs`}\`**`);
+        } else if (args[0] > 1 && player.queue.size == args[0]) {
+            player.queue.splice(0, player.queue.length - 1);
+            player.stop();
+            return message.channel.send(`**Skipped \`${args[0] - 1} Songs\`**`);
+        };
         const members = voice.members.filter((m) => !m.user.bot);
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("music/skipto:DESCRIPTION"))
