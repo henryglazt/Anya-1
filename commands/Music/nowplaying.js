@@ -25,7 +25,7 @@ class Nowplaying extends Command {
 
         const player = message.client.manager.players.get(message.guild.id);
         if (!player) {
-            embed.setDescription(message.translate("music/play:NOT_PLAYING"));
+            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
 
@@ -35,8 +35,8 @@ class Nowplaying extends Command {
         if (track.isStream) {
             description = musji.live1 + musji.live2;
         } else {
-            const part = Math.floor((player.position / video.duration) * 30);
-            description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(video.duration)}\``;
+            const part = Math.floor((player.position / track.duration) * 30);
+            description = `${'─'.repeat(part) + musji.gs + '─'.repeat(30 - part)}\n\n\`${formatTime(player.position)} / ${formatTime(track.duration)}\``;
         };
 
         embed.setThumbnail(`https://i.ytimg.com/vi/${video.identifier}/hqdefault.jpg`)
