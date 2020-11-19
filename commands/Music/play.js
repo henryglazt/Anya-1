@@ -108,6 +108,7 @@ class Play extends Command {
         }
         
       case "SEARCH_RESULT":
+        if (search.startsWith("https://" || "http://") return;
         let resembed = new MessageEmbed();
         let max = 5,
           collected,
