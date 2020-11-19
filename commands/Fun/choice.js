@@ -21,6 +21,7 @@ class Choice extends Command {
 
 		// Gets the answers by spliting on "/"
 		const answers = args.join(" ").split("/");
+		answer = answer.replace(/<(?:[^\d>]+|:[A-Za-z0-9]+:)\w+>/g, "").trim();
 		if (answers.length < 2) return message.error("fun/choice:MISSING");
 		if (answers.some(answer => !answer))
 			return message.error("fun/choice:EMPTY");
