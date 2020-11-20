@@ -45,7 +45,7 @@ class Stop extends Command {
             return message.channel.send(embed);
         }
         player.destroy();
-        embed.addField(musji.stop + " " + message.translate("music/stop:LEAVE"), message.translate("music/stop:THANK", {
+        embed.addField(musji.stop + " " + message.translate("music/stop:SUCCESS"), message.translate("music/stop:THANK", {
           anya: this.client.user.username
         }));
         embed.setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png");
