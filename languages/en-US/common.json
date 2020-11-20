@@ -60,5 +60,8 @@
     "NO_CHANNEL": "No channel",
     "REPORTS": "Reports",
     "DISCONNECT": "Disconnect",
-    "REQUESTEDBY": "Requested by"
+    "REQUESTEDBY": "Requested by",
+    "TOTAL": "Total",
+    "SONG": "Song",
+    "SONGS": "Songs"
 }
