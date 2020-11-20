@@ -36,7 +36,7 @@ class Loopqueue extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player.trackRepeat) {
+        if (!player.queueRepeat) {
             player.setQueueRepeat(true);
             embed.setDescription(musji.repeatall + " " + message.translate("music/lq:SUCCESS"));
             return message.channel.send(embed);
