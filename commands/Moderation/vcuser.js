@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-	Discord = require("discord.js");
+	{ MessageEmbed } = require("discord.js");
 
 class Vcuser extends Command {
 
@@ -20,6 +20,7 @@ class Vcuser extends Command {
 
 	async run (message, args, data) {
 
+    const emoji = this.client.customEmojis;
     const voiceChannels = message.guild.channels.cache.filter(c => c.type === "voice");
     let count = 0;
     let user = 0;
@@ -29,12 +30,12 @@ class Vcuser extends Command {
     for (const [id, voiceChannel] of voiceChannels) user += voiceChannel.members.filter(m => !m.user.bot).size;
     for (const [id, voiceChannel] of voiceChannels) bot += voiceChannel.members.filter(m => m.user.bot).size;
 
-    const vcmbd = new Discord.MessageEmbed()
+    const vcmbd = new MessageEmbed()
     .setColor(data.config.embed.color)
     .setAuthor(message.guild.name + " members in voice channels")
-    .addField("User:", `<a:giphy_3:744676992141623399> ${user}`)
-    .addField("Bot:", `<a:giphy_3:744676992141623399> ${bot}`)
-    .addField("Total:", `<a:giphy_3:744676992141623399> ${count}`)
+    .addField(message.translate("common:USER") + ":", emoji.vc + " " + user)
+    .addField(message.translate("common:BOTS") + ":", emoji.vc + " " + bot)
+    .addField(message.translate("common:TOTAL") + ":", emoji.vc + " " + count)
     .setFooter(data.config.embed.footer)
     message.channel.send(vcmbd);
    }
