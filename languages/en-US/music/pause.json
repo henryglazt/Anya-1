@@ -2,6 +2,6 @@
     "DESCRIPTION": "Pause the current song!",
     "USAGE": "{{prefix}}pause",
     "EXAMPLES": "{{prefix}}pause",
-    "SUCCESS": "⏸️ Music paused!",
-    "PAUSED": "<a:ano:744384493376503869> The player is already paused."
+    "SUCCESS": "Music paused!",
+    "PAUSED": "Music is already paused."
 }
