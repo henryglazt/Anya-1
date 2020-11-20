@@ -41,8 +41,8 @@ class Skipto extends Command {
             return message.channel.send(embed);
         }
 
-        let song = message.translate("music/skipto:SONG");
-        let songs = message.translate("music/skipto:SONGS");
+        let song = message.translate("common:SONG");
+        let songs = message.translate("common:SONGS");
         let track = Number(args[0]);
         if (!track || isNaN(track) || track < 1 || track > player.queue.size) {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE", {
