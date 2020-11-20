@@ -107,7 +107,7 @@ class Play extends Command {
         let resembed = new MessageEmbed();
         let max = 5,
           collected,
-          filter = m => (m.author.id === message.author.id && /^(\d+|cancel)$/i.test(m.content)) || (message.author.id && /^(\d+|batal)$/i.test(m.content));
+          filter = m => (m.author.id === message.author.id);
         if (res.tracks.length < max) max = res.tracks.length;
 
         const results = res.tracks
@@ -133,7 +133,7 @@ class Play extends Command {
         }
 
         const first = collected.first().content;
-        if (first.toLowerCase() === "cancel" || first.toLowerCase() === "batal") {
+        if (isNaN(first)) {
           if (!player.queue.current) player.destroy();
           embed.setDescription(musji.info + " " + message.translate("music/play:CANCELED"));
           return message.channel.send(embed);
