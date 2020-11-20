@@ -79,7 +79,7 @@ class Play extends Command {
         await player.queue.add(res.tracks[0]);
         if (!player.playing && !player.paused && !player.queue.length) player.play();
           if (res.tracks[0].isStream) {
-             duration = musji.live1 + musji.live2;
+             duration = "\n" + musji.live1 + musji.live2;
           } else {
              duration = `\`${formatTime(res.tracks[0].duration)}\``;
           }
@@ -112,7 +112,7 @@ class Play extends Command {
 
         const results = res.tracks
           .slice(0, max)
-          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - ${track.isStream ? musji.live1 + musji.live2 : "`" + formatTime(track.duration) + "`"}`)
+          .map((track, index) => `${++index} - [${track.title}](${track.uri}) - ${track.isStream ? "\n" + musji.live1 + musji.live2 : "`" + formatTime(track.duration) + "`"}`)
           .join("\n");
 
         resembed.addField(musji.musicfolder + " " + message.translate("music/play:HEADER"), results + "\n\n" + message.translate("music/play:FOOTER"));
@@ -150,7 +150,7 @@ class Play extends Command {
         await player.queue.add(track);
 
         if (track.isStream) {
-           duration = musji.live1 + musji.live2;
+           duration = "\n" + musji.live1 + musji.live2;
         } else {
            duration = `\`${formatTime(track.duration)}\``;
         }
