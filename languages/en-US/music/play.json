@@ -9,7 +9,7 @@
     "MY_VOICE_CHANNEL": "You are not in my voice channel!",
     "NO_ARGS": "**Please specify a Song Name, a Song URL or a Playlist URL!**\n\n**Current supported URL:**",
     "HEADER": "Select one of these songs below:",
-    "FOOTER": "Type `cancel` or wait 30 seconds to cancel!",
+    "FOOTER": "Type anything else or wait 30 seconds to cancel!",
     "NO_RESULT": "Can't find related song to play.",
     "CHOOSE": "Select the song number between **1 and {{max}}!**",
     "CANCELED": "Selection cancelled.",
@@ -18,6 +18,6 @@
     "NOT_PLAYING": "No songs are currently playing in this server.",
     "QUEUE_ENDED": "Queue Ended",
     "3MIN": "Add more songs before im leaving in **3 minutes**.",
-    "ADDED": "Added to the queue.",
+    "ADDED": "Added to the queue",
     "ADDED_PL": "**{{items}}** songs from [{{plName}}]({{plURL}}) - `{{plDuration}}`"
 }
