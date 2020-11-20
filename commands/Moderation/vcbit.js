@@ -29,14 +29,14 @@ class Vcbitrate extends Command {
                     timeout: 5000
                 })
             });
-        if (isNaN(args[0]) || !args[0] || args[0] > 384000) return message.error("voice/main:ENUM")
+        if (isNaN(args[0]) || !args[0] || args[0] > 384 || args[0] < 8) return message.error("voice/main:ENUM")
             .then(m => {
                 m.delete({
                     timeout: 5000
                 })
             });
         message.member.voice.channel.setBitrate(bit);
-        message.success(`Updated to ${bit}`)
+        message.success("voice/vcbit:SUCCESS", {bit: bit})
             .then(m => {
                 m.delete({
                     timeout: 5000
