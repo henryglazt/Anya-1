@@ -2,6 +2,6 @@
     "DESCRIPTION": "Shuffle the queue!",
     "USAGE": "{{prefix}}shuffle",
     "EXAMPLES": "{{prefix}}shuffle",
-    "SUCCESS": "🔀 Music shuffled!",
-    "MIN_QUEUE": "3 songs in queue is required to shuffle the queue."
+    "SUCCESS": "Music shuffled!",
+    "MIN_QUEUE": "**3 songs in queue** is required to shuffle the queue."
 }
