@@ -2,6 +2,6 @@
     "DESCRIPTION": "Loops the entire queue.",
     "USAGE": "{{prefix}}loopqueue",
     "EXAMPLES": "{{prefix}}loopqueue",
-    "SUCCESS": "Queue has been Looped.",
+    "SUCCESS": "Loop queue enabled.",
     "OFF": "Loop disabled."
 }
