@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-	Discord = require("discord.js");
+	{ MessageEmbed } = require("discord.js");
 class Shuffle extends Command {
 	constructor(client) {
 		super(client, {
@@ -17,18 +17,32 @@ class Shuffle extends Command {
 	}
 	async run(message, args, data) {
 
-    const player = message.client.manager.players.get(message.guild.id);
+        const musji = this.client.customEmojis.music;
+        const embed = new MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
 
-    if(!player) return message.channel.send(idioma.shuffle.nada)
-
-    const { channel } = message.member.voice
-
-    if(!channel) return message.channel.send(idioma.shuffle.conectar)
-
-    if(channel.id !== player.voiceChannel) return message.channel.send(idioma.shuffle.conectar2)
-
-    player.queue.shuffle();
-    return message.reply(idioma.shuffle.embaralhado)
+        const player = message.client.manager.players.get(message.guild.id);
+        const { channel } = message.member.voice;
+        if (!channel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (!player) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
+        }
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (player.queue.size <= 2) {
+            embed.setDescription(musji.info + " " + message.translate("music/shuffle:MIN_QUEUE"));
+            return message.channel.send(embed);
+        }
+        player.queue.shuffle();
+        embed.setDescription(musji.shuffle + " " + message.translate("music/shuffle:SUCCESS"));
+        return message.channel.send(embed);
 
         /*const xembed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
