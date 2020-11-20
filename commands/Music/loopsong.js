@@ -42,7 +42,7 @@ class Loopsong extends Command {
             return message.channel.send(embed);
         } else {
             player.setTrackRepeat(false);
-            embed.setDescription(musji.repeatone + " " + message.translate("music/ls:OFF"));
+            embed.setDescription(musji.repeatoff + " " + message.translate("music/ls:OFF"));
             return message.channel.send(embed);
         };
     }
