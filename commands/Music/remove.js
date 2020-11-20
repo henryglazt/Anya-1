@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    { MessageEmbed } = require("discord.js");
 class Remove extends Command {
     constructor(client) {
         super(client, {
