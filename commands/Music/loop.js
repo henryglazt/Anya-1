@@ -1,53 +1,50 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
-class Loop extends Command {
+    { MessageEmbed } = require("discord.js");
+class Loopsong extends Command {
     constructor(client) {
         super(client, {
-            name: "loop",
+            name: "loopsong",
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["repeat", "ulang"],
+            aliases: [ "ls" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 5000
         });
     }
     async run(message, args, data) {
-        const xembed = new Discord.MessageEmbed()
+
+        const musji = this.client.customEmojis.music;
+        const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-        const voice = message.member.voice.channel;
-        if (!voice) {
-            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+
+        const player = message.client.manager.players.get(message.guild.id);
+        const { channel } = message.member.voice;
+        if (!channel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+        if (!player) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
         }
-        if (!this.client.distube.isPlaying(message)) {
-            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
-            return message.channel.send(xembed);
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
-        let mode = null;
-        switch (args[0]) {
-        case "off":
-            mode = 0
-            break
-        case "song":
-            mode = 1
-            break
-        case "queue":
-            mode = 2
-            break
-        }
-        mode = this.client.distube.setRepeatMode(message, mode);
-        mode = mode ? mode == 2 ? message.translate("music/loop:SUCCESS_QUEUE") : message.translate("music/loop:SUCCESS_SONG") : message.translate("music/loop:OFF");
-        xembed.setDescription(mode);
-        message.channel.send(xembed);
+        if (!player.trackRepeat) {
+            player.setTrackRepeat(true);
+            embed.setDescription(musji.repeatone + " " + message.translate("music/ls:SUCCESS"));
+            return message.channel.send(embed);
+        } else {
+            player.setTrackRepeat(false);
+            embed.setDescription(musji.repeatone + " " + message.translate("music/ls:OFF"));
+            return message.channel.send(embed);
+        };
     }
 }
-module.exports = Loop;
+module.exports = Loopsong;
