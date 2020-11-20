@@ -1,8 +1,0 @@
-{
-    "DESCRIPTION": "Loop the song or the queue!",
-    "USAGE": "{{prefix}}loop",
-    "EXAMPLES": "{{prefix}}loop",
-    "SUCCESS_SONG": "🔂 I will now loop the current song",
-    "SUCCESS_QUEUE": "🔁 I will now loop the queue",
-    "OFF": "<:toggleOff:755319233201831949> I'm Turning off the loop mode..."
-}
