@@ -36,11 +36,11 @@ class Pause extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player.playing) {
+        if (player.paused) {
             embed.setDescription(musji.info + " " + message.translate("music/pause:PAUSED"));
             return message.channel.send(embed);
         } else {
-            player.paused(true);
+            player.pause(true);
             embed.setDescription(musji.play + " " + message.translate("music/pause:SUCCESS"));
             return message.channel.send(embed);
         }
