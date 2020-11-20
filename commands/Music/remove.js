@@ -7,9 +7,9 @@ class Remove extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["hapus"],
+            aliases: [ "hapus" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 5000
@@ -51,6 +51,7 @@ class Remove extends Command {
         }
         if (track >= 1 && player.queue.size !== track) {
             player.queue.splice(track - 1, 1);
+            embed.setImage(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
             embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/np:SONG", {
                songName: song.title,
                songURL: song.uri
@@ -58,6 +59,7 @@ class Remove extends Command {
             return message.channel.send(embed);
         } else if (track >= 1 && player.queue.size === track) {
             player.queue.splice(player.queue.length - 1, 1);
+            embed.setImage(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
             embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/np:SONG", {
                songName: song.title,
                songURL: song.uri
