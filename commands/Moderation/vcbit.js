@@ -23,20 +23,20 @@ class Vcbitrate extends Command {
 
         const bit = args[0];
 
-        if (!message.member.voice.channel) return message.error("voice/main:ERROR")
+        if (!message.member.voice.channel) return message.error("voice:ERROR")
             .then(m => {
                 m.delete({
                     timeout: 5000
                 })
             });
-        if (isNaN(args[0]) || !args[0] || args[0] > 384 || args[0] < 8) return message.error("voice/main:ENUM")
+        if (isNaN(args[0]) || !args[0] || args[0] > 384 || args[0] < 8) return message.error("voice:EBIT")
             .then(m => {
                 m.delete({
                     timeout: 5000
                 })
             });
-        message.member.voice.channel.setBitrate(bit);
-        message.success("voice/vcbit:SUCCESS", {bit: bit})
+        message.member.voice.channel.setBitrate(bit.concat("000"));
+        message.success("voice:SUCCESS")
             .then(m => {
                 m.delete({
                     timeout: 5000
