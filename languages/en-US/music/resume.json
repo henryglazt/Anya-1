@@ -2,6 +2,6 @@
     "DESCRIPTION": "Resume the current song!",
     "USAGE": "{{prefix}}resume",
     "EXAMPLES": "{{prefix}}resume",
-    "SUCCESS": "▶️ Music resumed!",
-    "NOT_PAUSED": "<a:ano:744384493376503869> The player is not paused."
+    "SUCCESS": "Music resumed!",
+    "NOT_PAUSED": "Music is not paused."
 }
