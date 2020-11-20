@@ -84,7 +84,7 @@ client.manager = new Manager({
         let m = player.get("member");
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
         channel.send(musji.info + " " + m.guild.translate("music/play:ERROR", {
-          error: payload.error
+          error: payload.thresholdMS
         }));
     })
     .on("trackError", (player, track, payload) => {
