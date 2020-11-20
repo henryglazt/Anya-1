@@ -40,7 +40,7 @@ client.manager = new Manager({
         const channel = client.channels.cache.get(player.textChannel);
         let duration;
         if (track.isStream) {
-            duration = musji.live1 + musji.live2;
+            duration = "\n" + musji.live1 + musji.live2;
         } else {
             duration = `\`${formatTime(track.duration)}\``;
         }
@@ -86,7 +86,7 @@ client.manager = new Manager({
         let m = player.get("member");
         if (player.get("message") && !player.get("message").deleted) player.get("message").delete();
         channel.send(musji.info + " " + m.guild.translate("music/play:ERROR", {
-          error: payload.thresholdMs
+          error: payload.error
         }));
     })
     .on("trackError", (player, track, payload) => {
