@@ -110,7 +110,7 @@ module.exports = {
             const minutes = Math.floor((time / (1000 * 60)) % 60);
             const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
 
-            const duration = `${hours ? (hours + ':') : ''}${minutes ? minutes : '00'}:${(seconds < 10) ? ('0' + seconds) : (seconds ? seconds : '00')}`;
+            const duration = `${hours ? (hours + ':') : ''}${(minutes < 10) ? ('0' + minutes) : (minutes ? minutes : '00'}:${(seconds < 10) ? ('0' + seconds) : (seconds ? seconds : '00')}`;
             return duration;
         },
         escapeMarkdown(text) {
