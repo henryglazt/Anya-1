@@ -105,7 +105,7 @@ class Play extends Command {
         
       case "SEARCH_RESULT":
         let resembed = new MessageEmbed();
-        let max = 10,
+        let max = 5,
           collected,
           filter = m => (m.author.id === message.author.id);
         if (res.tracks.length < max) max = res.tracks.length;
