@@ -36,7 +36,7 @@ class Skip extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (player.queue.totalSize <= 1) {
+        if (!player.queue.size) {
             embed.setDescription(musji.info + " " + message.translate("music/skip:NO_NEXT_SONG"));
             return message.channel.send(embed);
         }
