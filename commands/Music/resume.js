@@ -36,11 +36,11 @@ class Resume extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player.playing) {
+        if (!player.paused) {
             embed.setDescription(musji.info + " " + message.translate("music/resume:NOT_PAUSED"));
             return message.channel.send(embed);
         } else {
-            player.paused(false);
+            player.pause(false);
             embed.setDescription(musji.play + " " + message.translate("music/resume:SUCCESS"));
             return message.channel.send(embed);
         }
