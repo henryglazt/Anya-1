@@ -50,17 +50,17 @@ class Skipto extends Command {
             }));
             return message.channel.send(embed);
         }
-        if (track === 1) {
+        /*if (track === 1) {
             player.stop();
             embed.setDescription(musji.info + " " + message.translate("music/skip:SUCCESS"));
             return message.channel.send(embed);
-        }
-        if (track > 1 && player.queue.size !== track) {
+        }*/
+        if (track >= 1 && player.queue.size !== track) {
             player.queue.splice(0, track - 1);
             player.stop();
             embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `**${track - 1 === 1 ? "1 " + `${song}` : `${track - 1}` + " " + `${songs}`}**`);
             return message.channel.send(embed);
-        } else if (track > 1 && player.queue.size === track) {
+        } else if (track >= 1 && player.queue.size === track) {
             player.queue.splice(0, player.queue.length - 1);
             player.stop();
             embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), `**${track - 1}` + " " + `${songs}**`);
