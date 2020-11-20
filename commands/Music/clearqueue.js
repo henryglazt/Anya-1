@@ -7,15 +7,16 @@ class Clearqueue extends Command {
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
-			aliases: ["cq"],
+			aliases: [ "cq" ],
 			memberPermissions: [],
-			botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
 			ownerOnly: false,
 			cooldown: 5000
 		});
 	}
 	async run(message, args, data) {
+
         const musji = this.client.customEmojis.music;
         const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
