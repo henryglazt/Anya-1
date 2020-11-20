@@ -23,20 +23,20 @@ class Vcname extends Command {
 
         const name = args.join(" ");
 
-        if (!message.member.voice.channel) return message.sendT("voice/main:ERROR")
+        if (!message.member.voice.channel) return message.sendT("voice:ERROR")
             .then(m => {
                 m.delete({
                     timeout: 5000
                 })
             });
-        if (!args[0]) return message.sendT("voice/main:ENAME")
+        if (!args[0]) return message.sendT("voice:ENAME")
             .then(m => {
                 m.delete({
                     timeout: 5000
                 })
             });
         message.member.voice.channel.setName(name);
-        message.success("voice/main:SUCCESS")
+        message.success("voice:SUCCESS")
             .then(m => {
                 m.delete({
                     timeout: 5000
