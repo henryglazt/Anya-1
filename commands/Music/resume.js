@@ -1,7 +1,6 @@
 const Command = require("../../base/Command.js"),
     { MessageEmbed } = require("discord.js");
 class Resume extends Command {
-
     constructor(client) {
         super(client, {
             name: "resume",
@@ -37,7 +36,7 @@ class Resume extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player.paused) {
+        if (!player.playing) {
             embed.setDescription(musji.info + " " + message.translate("music/resume:NOT_PAUSED"));
             return message.channel.send(embed);
         } else {
