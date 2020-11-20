@@ -41,7 +41,7 @@ class Pause extends Command {
             return message.channel.send(embed);
         } else {
             player.pause(true);
-            embed.setDescription(musji.play + " " + message.translate("music/pause:SUCCESS"));
+            embed.setDescription(musji.pause + " " + message.translate("music/pause:SUCCESS"));
             return message.channel.send(embed);
         }
     }
