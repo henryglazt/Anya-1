@@ -16,6 +16,7 @@ class Pause extends Command {
         });
     }
     async run(message, args, data) {
+
         const musji = this.client.customEmojis.music;
         const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
