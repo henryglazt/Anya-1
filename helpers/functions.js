@@ -113,6 +113,43 @@ module.exports = {
             const duration = `${hours ? (hours + ':') : ''}${(minutes < 10) ? ('0' + minutes) : (minutes ? minutes : '00')}:${(seconds < 10) ? ('0' + seconds) : (seconds ? seconds : '00')}`;
             return duration;
         },
+    parseTime(time) {
+        const regex = /\d+\.*\d*\D+/g;
+        time = time.split(/\s+/).join("");
+        let res;
+        let duration = 0;
+        while ((res = regex.exec(time)) !== null) {
+            if (res.index === regex.lastIndex) {
+                regex.lastIndex++;
+            }
+            const local = res[0].toLowerCase();
+            if (local.endsWith("seconds") || local.endsWith("second") || (local.endsWith("s") && local.match(/\D+/)[0].length === 1)) {
+                duration += parseInt(local.match(/\d+\.*\d*/)[0], 10) * 1000;
+            }
+            else if (local.endsWith("minutes") || local.endsWith("minute") || (local.endsWith("m") && local.match(/\D+/)[0].length === 1)) {
+                duration += parseInt(local.match(/\d+\.*\d*/)[0], 10) * 60000;
+            }
+            else if (local.endsWith("hours") || local.endsWith("hour") || (local.endsWith("h") && local.match(/\D+/)[0].length === 1)) {
+                duration += parseInt(local.match(/\d+\.*\d*/)[0], 10) * 3600000;
+            }
+            else if (local.endsWith("days") || local.endsWith("day") || (local.endsWith("d") && local.match(/\D+/)[0].length === 1)) {
+                duration += parseInt(local.match(/\d+\.*\d*/)[0], 10) * 86400000;
+            }
+            else if (local.endsWith("weeks") || local.endsWith("week") || (local.endsWith("w") && local.match(/\D+/)[0].length === 1)) {
+                duration += parseInt(local.match(/\d+\.*\d*/)[0], 10) * 604800000;
+            }
+            else if (local.endsWith("months") || local.endsWith("month")) {
+                duration += parseInt(local.match(/\d+\.*\d*/)[0], 10) * 2628000000;
+            }
+            else if (local.endsWith("years") || local.endsWith("year") || (local.endsWith("y") && local.match(/\D+/)[0].length === 1)) {
+                duration += parseInt(local.match(/\d+\.*\d*/)[0], 10) * 31557600000;
+            }
+        }
+        if (duration === 0) {
+            return null;
+        }
+        return duration;
+    },
         escapeMarkdown(text) {
             var unescaped = text.replace(/\\(\*|_|`|~|\\)/g, '$1'); // unescape any "backslashed" character
             var escaped = unescaped.replace(/(\*|_|`|~|\\)/g, '\\$1'); // escape *, _, `, ~, \
