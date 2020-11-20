@@ -41,8 +41,8 @@ class Remove extends Command {
             return message.channel.send(embed);
         }
 
-        let song = player.queue.current;
         let track = Number(args[0]);
+        let song = player.queue[track - 1];
         if (!track || isNaN(track) || track < 1 || track > player.queue.size) {
             embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE", {
                max: player.queue.size
@@ -51,7 +51,7 @@ class Remove extends Command {
         }
         if (track >= 1 && player.queue.size !== track) {
             player.queue.splice(track - 1, 1);
-            embed.setImage(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
+            embed.setThumbnail(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
             embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/np:SONG", {
                songName: song.title,
                songURL: song.uri
@@ -59,7 +59,7 @@ class Remove extends Command {
             return message.channel.send(embed);
         } else if (track >= 1 && player.queue.size === track) {
             player.queue.splice(player.queue.length - 1, 1);
-            embed.setImage(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
+            embed.setThumbnail(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
             embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/np:SONG", {
                songName: song.title,
                songURL: song.uri
