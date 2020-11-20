@@ -3,5 +3,5 @@
     "USAGE": "{{prefix}}loopsong",
     "EXAMPLES": "{{prefix}}loopsong",
     "SUCCESS": "Song has been Looped.",
-    "OFF": "Song has been Unlooped."
+    "OFF": "Loop disabled."
 }
