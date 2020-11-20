@@ -3,5 +3,5 @@
     "USAGE": "{{prefix}}loopqueue",
     "EXAMPLES": "{{prefix}}loopqueue",
     "SUCCESS": "Queue has been Looped.",
-    "OFF": "Queue has been Unlooped."
+    "OFF": "Loop disabled."
 }
