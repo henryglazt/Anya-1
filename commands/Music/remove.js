@@ -51,7 +51,6 @@ class Remove extends Command {
         }
         if (track >= 1 && player.queue.size !== track) {
             player.queue.splice(track - 1, 1);
-            player.stop();
             embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/skip:SONG", {
                songName: song.title,
                songURL: song.uri
@@ -59,7 +58,6 @@ class Remove extends Command {
             return message.channel.send(embed);
         } else if (track >= 1 && player.queue.size === track) {
             player.queue.splice(player.queue.length - 1, 1);
-            player.stop();
             embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/skip:SONG", {
                songName: song.title,
                songURL: song.uri
