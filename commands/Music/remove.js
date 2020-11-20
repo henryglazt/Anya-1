@@ -16,7 +16,57 @@ class Remove extends Command {
         });
     }
     async run(message, args, data) {
-        const embed = new Discord.MessageEmbed()
+
+        const musji = this.client.customEmojis.music;
+        const embed = new MessageEmbed()
+            .setColor(data.config.embed.color)
+            .setFooter(data.config.embed.footer)
+
+        const player = message.client.manager.players.get(message.guild.id);
+        const { channel } = message.member.voice;
+        if (!channel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (!player) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
+        }
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (!player.queue.size) {
+            embed.setDescription(musji.info + " " + message.translate("music/skip:NO_NEXT_SONG"));
+            return message.channel.send(embed);
+        }
+
+        let song = player.queue.current;
+        let track = Number(args[0]);
+        if (!track || isNaN(track) || track < 1 || track > player.queue.size) {
+            embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE", {
+               max: player.queue.size
+            }));
+            return message.channel.send(embed);
+        }
+        if (track >= 1 && player.queue.size !== track) {
+            player.queue.splice(track - 1, 1);
+            player.stop();
+            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/skip:SONG", {
+               songName: song.title,
+               songURL: song.uri
+            }));
+            return message.channel.send(embed);
+        } else if (track >= 1 && player.queue.size === track) {
+            player.queue.splice(player.queue.length - 1, 1);
+            player.stop();
+            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/skip:SONG", {
+               songName: song.title,
+               songURL: song.uri
+            }));
+            return message.channel.send(embed);
+        };
+        /*const embed = new Discord.MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
         const number = args[0];
@@ -53,7 +103,7 @@ class Remove extends Command {
         const song = queue.songs[number];
         embed.setDescription(message.translate("music/remove:SUCCESS", {songName: song.name, songURL: song.url}));
         message.channel.send(embed);
-        return queue.songs.splice(number, 1);
+        return queue.songs.splice(number, 1);*/
     }
 }
 module.exports = Remove;
