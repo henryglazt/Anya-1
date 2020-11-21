@@ -1,6 +1,7 @@
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js"),
-	fetch = require("node-fetch");
+	fetch = require("node-fetch"),
+	{ convertTime } = require("../../helpers/functions.js");
 
 class Userinfo extends Command {
 
@@ -61,7 +62,7 @@ class Userinfo extends Command {
 			`**● ID:** \`${user.id}\``,
 			`**● Status:** ${status[user.presence.status]}`,
 			`**● Avatar:** 🔗 [${user.username}\`s Avatar](${user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 })})`,
-			`**● Created Date:** ${message.printDate(user.createdAt)}`,
+			`**● Created Date:** ${message.printDate(user.createdAt)} \`${convertTime(user.createdAt)\``,
 			`\u200b`
 			])
 			/*.addField(":man: "+message.translate("common:USERNAME"), user.username, true)
