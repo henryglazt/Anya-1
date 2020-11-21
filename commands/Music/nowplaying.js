@@ -40,7 +40,7 @@ class Nowplaying extends Command {
         };
 
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
-        embed.setDescription(message.translate("music/np:SONG", {
+        embed.setDescription(message.translate("music/nowplaying:SONG", {
               songName: track.title,
               songURL: track.uri
            }) + "\n\n" + description);
