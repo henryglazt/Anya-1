@@ -27,19 +27,6 @@ class Lyrics extends Command {
             .setFooter(data.config.embed.footer)
 
         const player = message.client.manager.players.get(message.guild.id);
-        const { channel } = message.member.voice;
-        if (!channel) {
-            embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(embed);
-        }
-        if (!player || !player.playing || !player.paused || player.queue.totalSize === 0) {
-            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
-            return message.channel.send(embed);
-        }
-        if (channel.id !== player.voiceChannel) {
-            embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(embed);
-        }
 
         let song = args.join(" ");
         if (!args.length) song = player.queue.current;
