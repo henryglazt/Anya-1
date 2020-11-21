@@ -56,6 +56,7 @@ class Seek extends Command {
                dur: formatTime(player.queue.current.duration)
             }));
             return message.channel.send(embed);
+        }
     }
 }
 module.exports = Seek;
