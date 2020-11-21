@@ -20,39 +20,43 @@ class Lyrics extends Command {
     }
 
     async run(message, args, data) {
-        const xembed = new Discord.MessageEmbed()
+
+        const musji = this.client.customEmojis.music;
+        const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-        const queue = this.client.distube.getQueue(message);
-        const voice = message.member.voice.channel;
-        if (!voice) {
-            xembed.setDescription(message.translate("music/play:NO_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+
+        const player = message.client.manager.players.get(message.guild.id);
+        const { channel } = message.member.voice;
+        if (!channel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            xembed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
-            return message.channel.send(xembed);
+        if (!player) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
+            return message.channel.send(embed);
         }
-        if (!this.client.distube.isPlaying(message)) {
-            xembed.setDescription(message.translate("music/play:NOT_PLAYING"));
-            return message.channel.send(xembed);
+        if (channel.id !== player.voiceChannel) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
         }
-        let song = queue.songs[0];
+
+        let song = player.queue.current;
         let lyrics = null;
         try {
-            lyrics = await lyricsFinder(song.name, "");
+            lyrics = await lyricsFinder(song.title, "");
             if (!lyrics) {
-                xembed.setDescription(message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.name, songURL: song.url}));
-                return message.channel.send(xembed);
+                eembed.setDescription(message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.title, songURL: song.uri}));
+                return message.channel.send(embed);
             }
         } catch (error) {
-            xembed.setDescription(message.translate("music/lyrics:ERROR", {error: error}));
-            return message.channel.send(xembed);
+            embed.setDescription(message.translate("music/lyrics:ERROR", {error: error}));
+            return message.channel.send(embed);
         }
-        let lyricsEmbed = new Discord.MessageEmbed()
+        let lyricsEmbed = new MessageEmbed()
             .setAuthor(message.translate("music/lyrics:LYRICS_OF"), "https://cdn.discordapp.com/emojis/755359026862227486.png")
-            .setTitle(song.name)
-            .setURL(song.url)
+            .setTitle(song.title)
+            .setURL(song.uri)
             .setDescription(lyrics)
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer);
