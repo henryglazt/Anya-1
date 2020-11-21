@@ -28,7 +28,7 @@ class Remove extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player) {
+        if (!player || !player.playing || !player.paused || player.queue.totalSize === 0) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
@@ -52,10 +52,7 @@ class Remove extends Command {
         if (track >= 1 && player.queue.size !== track) {
             player.queue.splice(track - 1, 1);
             embed.setThumbnail(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
-            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/nowplaying:SONG", {
-               songName: song.title,
-               songURL: song.uri
-            }));
+            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), `[${song.title}](${song.uri})`);
             return message.channel.send(embed);
         } else if (track >= 1 && player.queue.size === track) {
             player.queue.splice(player.queue.length - 1, 1);
