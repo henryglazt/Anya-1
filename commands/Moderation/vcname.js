@@ -29,7 +29,7 @@ class Vcname extends Command {
                     timeout: 5000
                 })
             });
-        if (!args[0]) return message.sendT("voice:ENAME")
+        if (!args[0]) return message.error("voice:ENAME")
             .then(m => {
                 m.delete({
                     timeout: 5000
