@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
     { MessageEmbed } = require("discord.js"),
-    { parseTime } = require("../../helpers/functions.js");
+    { formatTime, parseTime } = require("../../helpers/functions.js");
 class Seek extends Command {
     constructor(client) {
         super(client, {
