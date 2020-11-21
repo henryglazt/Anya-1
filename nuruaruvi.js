@@ -54,7 +54,7 @@ client.manager = new Manager({
         }));
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
         embed.setColor(config.embed.color);
-        embed.setFooter(m.guild.translate("common:REQUESTED_BY") + ": " + track.requester.tag, track.requester.displayAvatarURL({ dynamic: true }));
+        embed.setFooter(m.guild.translate("common:REQUESTEDBY") + ": " + track.requester.tag, track.requester.displayAvatarURL({ dynamic: true }));
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
