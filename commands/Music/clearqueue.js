@@ -41,7 +41,7 @@ class Clearqueue extends Command {
             return message.channel.send(embed);
         }
         player.queue.splice(0, player.queue.length);
-        embed.setDescription(musji.clear + " " + message.translate("music/cq:SUCCESS"));
+        embed.setDescription(musji.clear + " " + message.translate("music/clearqueue:SUCCESS"));
         return message.channel.send(embed);
     }
 }
