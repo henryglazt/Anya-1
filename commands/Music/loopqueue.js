@@ -38,11 +38,11 @@ class Loopqueue extends Command {
         }
         if (!player.queueRepeat) {
             player.setQueueRepeat(true);
-            embed.setDescription(musji.repeatall + " " + message.translate("music/lq:SUCCESS"));
+            embed.setDescription(musji.repeatall + " " + message.translate("music/loopqueue:SUCCESS"));
             return message.channel.send(embed);
         } else {
             player.setQueueRepeat(false);
-            embed.setDescription(musji.repeatoff + " " + message.translate("music/lq:OFF"));
+            embed.setDescription(musji.repeatoff + " " + message.translate("music/loopqueue:OFF"));
             return message.channel.send(embed);
         };
     }
