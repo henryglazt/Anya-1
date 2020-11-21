@@ -10,9 +10,9 @@ class Lyrics extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: false,
-            aliases: ["lyric", "lirik", "ly"],
+            aliases: [ "lyric", "lirik", "ly" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 5000
@@ -32,7 +32,7 @@ class Lyrics extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player) {
+        if (!player || !player.playing || !player.paused || player.queue.totalSize === 0) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
@@ -41,20 +41,21 @@ class Lyrics extends Command {
             return message.channel.send(embed);
         }
 
-        let song = player.queue.current;
+        let song = args.join(" ");
+        if (!args.length) song = player.queue.current;
         let lyrics = null;
         try {
             lyrics = await lyricsFinder(song.title, "");
             if (!lyrics) {
-                embed.setDescription(message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.title, songURL: song.uri}));
+                embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.title, songURL: song.uri}));
                 return message.channel.send(embed);
             }
         } catch (error) {
-            embed.setDescription(message.translate("music/lyrics:ERROR", {error: error}));
+            embed.setDescription(musji.info + " " + message.translate("music/lyrics:ERROR", {error: error}));
             return message.channel.send(embed);
         }
         let lyricsEmbed = new MessageEmbed()
-            .setAuthor(message.translate("music/lyrics:LYRICS_OF"), "https://cdn.discordapp.com/emojis/755359026862227486.png")
+            .setAuthor(message.translate("music/lyrics:LYRICS_OF"), "https://cdn.discordapp.com/attachments/733966113167245312/779781365448966214/lyrics.png")
             .setTitle(song.title)
             .setURL(song.uri)
             .setDescription(lyrics)
