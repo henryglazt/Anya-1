@@ -52,7 +52,7 @@ class Remove extends Command {
         if (track >= 1 && player.queue.size !== track) {
             player.queue.splice(track - 1, 1);
             embed.setThumbnail(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
-            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/np:SONG", {
+            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/nowplaying:SONG", {
                songName: song.title,
                songURL: song.uri
             }));
@@ -60,7 +60,7 @@ class Remove extends Command {
         } else if (track >= 1 && player.queue.size === track) {
             player.queue.splice(player.queue.length - 1, 1);
             embed.setThumbnail(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
-            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/np:SONG", {
+            embed.addField(musji.remove + " " + message.translate("music/remove:SUCCESS"), message.translate("music/nowplaying:SONG", {
                songName: song.title,
                songURL: song.uri
             }));
