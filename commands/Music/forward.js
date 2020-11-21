@@ -37,7 +37,7 @@ class Forward extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        let timestampInMS = parseTime(args.join(''));
+        let timestampInMS = player.position + parseTime(args.join(''));
         if (timestampInMS === null) {
             embed.setDescription(musji.info + " " + message.translate("music/seek:NO_ARGS"));
             return message.channel.send(embed);
@@ -46,12 +46,11 @@ class Forward extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/seek:BEYOND"));
             return message.channel.send(embed);
         }
-        let time = player.position + timestampInMS;
         if (!player.queue.current.isSeekable || player.queue.current.isStream) {
             embed.setDescription(musji.info + " " + message.translate("music/seek:SEEKABLE"));
             return message.channel.send(embed);
         } else {
-            player.seek(time);
+            player.seek(timestampInMS);
             embed.setDescription(musji.forward + " " + message.translate("music/seek:SUCCESS", {
                pos: formatTime(player.position),
                dur: formatTime(player.queue.current.duration)
