@@ -23,7 +23,7 @@ class Vcname extends Command {
 
         const name = args.join(" ");
 
-        if (!message.member.voice.channel) return message.sendT("voice:ERROR")
+        if (!message.member.voice.channel) return message.error("voice:ERROR")
             .then(m => {
                 m.delete({
                     timeout: 5000
