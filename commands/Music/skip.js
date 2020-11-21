@@ -43,7 +43,7 @@ class Skip extends Command {
         let song = player.queue.current;
         player.stop();
         embed.setThumbnail(`https://i.ytimg.com/vi/${song.identifier}/hqdefault.jpg`);
-        embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), message.translate("music/np:SONG", {
+        embed.addField(musji.next + " " + message.translate("music/skip:SUCCESS"), message.translate("music/nowplaying:SONG", {
             songName: song.title,
             songURL: song.uri
         }));
