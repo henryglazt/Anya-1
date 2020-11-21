@@ -50,12 +50,21 @@ class Seek extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/seek:SEEKABLE"));
             return message.channel.send(embed);
         } else {
-            player.seek(timestampInMS);
-            embed.setDescription(musji.forward + " " + message.translate("music/seek:SUCCESS", {
-               pos: formatTime(player.position),
-               dur: formatTime(player.queue.current.duration)
-            }));
-            return message.channel.send(embed);
+            if (player.position < timestampInMS) {
+                player.seek(timestampInMS);
+                embed.setDescription(musji.rewind + " " + message.translate("music/seek:SUCCESS", {
+                   pos: formatTime(player.position),
+                   dur: formatTime(player.queue.current.duration)
+                }));
+                return message.channel.send(embed);
+            } else {
+                player.seek(timestampInMS);
+                embed.setDescription(musji.forward + " " + message.translate("music/seek:SUCCESS", {
+                   pos: formatTime(player.position),
+                   dur: formatTime(player.queue.current.duration)
+                }));
+                return message.channel.send(embed);
+            }
         }
     }
 }
