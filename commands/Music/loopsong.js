@@ -38,11 +38,11 @@ class Loopsong extends Command {
         }
         if (!player.trackRepeat) {
             player.setTrackRepeat(true);
-            embed.setDescription(musji.repeatone + " " + message.translate("music/ls:SUCCESS"));
+            embed.setDescription(musji.repeatone + " " + message.translate("music/loopsong:SUCCESS"));
             return message.channel.send(embed);
         } else {
             player.setTrackRepeat(false);
-            embed.setDescription(musji.repeatoff + " " + message.translate("music/ls:OFF"));
+            embed.setDescription(musji.repeatoff + " " + message.translate("music/loopsong:OFF"));
             return message.channel.send(embed);
         };
     }
