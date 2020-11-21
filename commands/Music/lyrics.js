@@ -46,7 +46,7 @@ class Lyrics extends Command {
         try {
             lyrics = await lyricsFinder(song.title, "");
             if (!lyrics) {
-                eembed.setDescription(message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.title, songURL: song.uri}));
+                embed.setDescription(message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.title, songURL: song.uri}));
                 return message.channel.send(embed);
             }
         } catch (error) {
