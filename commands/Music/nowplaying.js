@@ -24,7 +24,7 @@ class Nowplaying extends Command {
             .setFooter(data.config.embed.footer)
 
         const player = message.client.manager.players.get(message.guild.id);
-        if (!player) {
+        if (!player || !player.playing || !player.paused || player.queue.totalSize === 0) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
