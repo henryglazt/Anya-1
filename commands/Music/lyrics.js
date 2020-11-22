@@ -45,9 +45,7 @@ class Lyrics extends Command {
             return message.channel.send(embed);
         }
         let lyricsEmbed = new MessageEmbed()
-            .setAuthor(message.translate("music/lyrics:LYRICS_OF"), "https://cdn.discordapp.com/attachments/733966113167245312/779781365448966214/lyrics.png")
-            .setTitle(song.title)
-            .setURL(song.uri)
+            .setTitle(musji.lyrics + " " + message.translate("music/lyrics:LYRICS_OF", {song: song}))
             .setDescription(lyrics)
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer);
