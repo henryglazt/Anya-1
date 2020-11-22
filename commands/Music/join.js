@@ -17,6 +17,13 @@ class Join extends Command {
     }
     async run(message, args, data) {
 
+        const voiceData = {
+            "id": message.member.id,
+            "guild": message.member.guild.id
+            "channel": message.member.voice.channel.id,
+            "session": message.member.voice.sessionID,
+            "timeout": {}
+        };
         const musji = this.client.customEmojis.music;
         const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
@@ -40,7 +47,7 @@ class Join extends Command {
             return message.channel.send(embed);
           }
           player.connect();
-          player.set("member", message.member);
+          player.set("member", voiceData);
           embed.addField(musji.join + " " + message.translate("music/join:JOIN"), message.translate("music/join:BOUND", {
             voice: channel.id,
             text: message.channel.id
