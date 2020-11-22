@@ -28,7 +28,7 @@ class Lyrics extends Command {
 
         const player = message.client.manager.players.get(message.guild.id);
         let song = args.join(" ");
-        if (!args.length && !player || !song && !player.queue.current) {
+        if (!args.length && !player || !args.length && !player.queue.current) {
             embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_ARGS"));
             return message.channel.send(embed);
         }
