@@ -45,7 +45,8 @@ client.manager = new Manager({
             duration = `\`${formatTime(track.duration)}\``;
         }
         let m = player.get("member");
-        clearTimeout(m.voice.sessionID);
+        let v = player.get("voiceData")
+        clearTimeout(v.timeout);
         let embed = new MessageEmbed()
         embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
@@ -58,12 +59,13 @@ client.manager = new Manager({
         channel.send(embed).then(msg => player.set("message", msg));
     })
     .on("playerDestroy", player => {
-        let m = player.get("member");
-        clearTimeout(m.voice.sessionID);
+        let v = player.get("voiceData");
+        clearTimeout(v.timeout);
     })
     .on("playerCreate", async player => {
         const channel = await client.channels.cache.get(player.textChannel);
         let m = await player.get("member");
+        let v = await player.get("voiceData");
         let embed = new MessageEmbed()
             embed.setColor(config.embed.color);
             embed.setFooter(config.embed.footer);
@@ -71,7 +73,7 @@ client.manager = new Manager({
             embed.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
-        m.voice.sessionID = setTimeout(() => {
+        v.timeout = setTimeout(() => {
          channel.send(embed);
           player.destroy();
         }, 180000);
@@ -104,6 +106,7 @@ client.manager = new Manager({
     .on("queueEnd", player => {
         const channel = client.channels.cache.get(player.textChannel);
         let m = player.get("member");
+        let v = player.get("voiceData");
         let embed1 = new MessageEmbed()
             embed1.setColor(config.embed.color);
             embed1.setFooter(config.embed.footer);
@@ -116,7 +119,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         channel.send("<@" + m.id + ">", embed1);
-        m.voice.sessionID = setTimeout(() => {
+        v.timeout = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
         }, 180000);
