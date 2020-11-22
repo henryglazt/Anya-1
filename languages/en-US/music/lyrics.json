@@ -4,5 +4,5 @@
     "EXAMPLES": "{{prefix}}lyrics\n{{prefix}}lyrics adele hello",
     "ERROR": "An error encountered: `{{error}}`",
     "LYRICS_OF": "Lyrics Of:",
-    "NO_LYRICS_FOUND": "No lyrics found for: [{{songName}}]({{songURL}})"
+    "NO_LYRICS_FOUND": "No lyrics found for: {{song}}"
 }
