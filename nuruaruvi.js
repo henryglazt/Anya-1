@@ -118,7 +118,7 @@ client.manager = new Manager({
             embed2.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
-        channel.send("<@" + m.id + ">", embed1);
+        channel.send("<@" + v.id + ">", embed1);
         v.timeout = setTimeout(() => {
             channel.send(embed2);
             player.destroy();
