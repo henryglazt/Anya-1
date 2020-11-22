@@ -1,0 +1,7 @@
+{
+    "DESCRIPTION": "Move a song to a different index",
+    "USAGE": "{{prefix}}move [song number] [index number]",
+    "EXAMPLES": "{{prefix}} move 7 2",
+    "VALUE": "Please specify a song number and the index number to move the song to!",
+    "SUCCESS": "Moved [{{songName}}]({{songURL}}) from index **{{indexFrom}}** to index **{{indexTo}}**."
+}
