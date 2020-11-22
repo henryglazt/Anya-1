@@ -27,12 +27,15 @@ class Lyrics extends Command {
             .setFooter(data.config.embed.footer)
 
         const player = message.client.manager.players.get(message.guild.id);
-
         let song = args.join(" ");
-        if (!args.length) song = player.queue.current;
+        if (!song && !player.queue.current) {
+            embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_ARGS"));
+            return message.channel.send(embed);
+        }
+        if (!song && player.queue.current) song = await player.queue.current.title;
         let lyrics = null;
         try {
-            lyrics = await lyricsFinder(song.title, "");
+            lyrics = await lyricsFinder(song, "");
             if (!lyrics) {
                 embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.title, songURL: song.uri}));
                 return message.channel.send(embed);
