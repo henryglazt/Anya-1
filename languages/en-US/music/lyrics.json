@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "Displays the current song lyrics.",
+    "DESCRIPTION": "Search for a lyrics or displays the current song lyrics.",
     "USAGE": "{{prefix}}lyrics (song)",
     "EXAMPLES": "{{prefix}}lyrics\n{{prefix}}lyrics adele hello",
     "ERROR": "An error encountered: `{{error}}`",
