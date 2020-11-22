@@ -3,7 +3,7 @@
     "USAGE": "{{prefix}}lyrics (song)",
     "EXAMPLES": "{{prefix}}lyrics\n{{prefix}}lyrics adele hello",
     "ERROR": "An error encountered: `{{error}}`",
-    "NO_ARGS": "There's no playing song, please specify a song name to search!"
+    "NO_ARGS": "There's no playing song, please specify a song name to search!",
     "LYRICS_OF": "Lyrics of: {{song}}",
     "NO_LYRICS_FOUND": "No lyrics found for: {{song}}"
 }
