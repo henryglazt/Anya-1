@@ -28,16 +28,16 @@ class Lyrics extends Command {
 
         const player = message.client.manager.players.get(message.guild.id);
         let song = args.join(" ");
-        if (!args.length < 1 && !player || !args.length < 1 && !player.queue.current) {
+        if (!song && !player || !song && !player.queue.current) {
             embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_ARGS"));
             return message.channel.send(embed);
         }
-        if (!args.length < 1 && player.queue.current) song = player.queue.current.title;
+        if (!song && player.queue.current) song = player.queue.current.title;
         let lyrics = null;
         try {
             lyrics = await lyricsFinder(song, "");
             if (!lyrics) {
-                embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND"), {song: song});
+                embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND", {song: song});
                 return message.channel.send(embed);
             }
         } catch (error) {
