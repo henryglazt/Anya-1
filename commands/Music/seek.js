@@ -52,14 +52,14 @@ class Seek extends Command {
         } else {
             if (player.position < timestampInMS) {
                 player.seek(timestampInMS);
-                embed.setDescription(musji.rewind + " " + message.translate("music/seek:SUCCESS", {
+                embed.setDescription(musji.forward + " " + message.translate("music/seek:SUCCESS", {
                    pos: formatTime(player.position),
                    dur: formatTime(player.queue.current.duration)
                 }));
                 return message.channel.send(embed);
             } else {
                 player.seek(timestampInMS);
-                embed.setDescription(musji.forward + " " + message.translate("music/seek:SUCCESS", {
+                embed.setDescription(musji.rewind + " " + message.translate("music/seek:SUCCESS", {
                    pos: formatTime(player.position),
                    dur: formatTime(player.queue.current.duration)
                 }));
