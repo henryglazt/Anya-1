@@ -3,6 +3,6 @@
     "USAGE": "{{prefix}}lyrics (song)",
     "EXAMPLES": "{{prefix}}lyrics\n{{prefix}}lyrics adele hello",
     "ERROR": "An error encountered: `{{error}}`",
-    "LYRICS_OF": "Lyrics Of:",
+    "LYRICS_OF": "Lyrics of: {{song}}",
     "NO_LYRICS_FOUND": "No lyrics found for: {{song}}"
 }
