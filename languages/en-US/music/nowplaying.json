@@ -1,6 +1,5 @@
 {
-    "DESCRIPTION": "Shows information about the current song!",
-    "USAGE": "{{prefix}}np",
-    "EXAMPLES": "{{prefix}}np",
-    "SONG": "[{{songName}}]({{songURL}})"
+    "DESCRIPTION": "Shows currently playing song!",
+    "USAGE": "{{prefix}}nowplaying",
+    "EXAMPLES": "{{prefix}}nowplaying"
 }
