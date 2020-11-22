@@ -140,6 +140,6 @@ module.exports = {
 			let elmDel = 1;
 			const elm = input.splice(from, elmDel)[0];
 			elmDel = 0;
-			input.splice(to, elmDel, elm);
+			return input.splice(to, elmDel, elm);
 		}
 };
