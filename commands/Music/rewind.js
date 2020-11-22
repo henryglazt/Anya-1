@@ -37,7 +37,7 @@ class Rewind extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        let time = parseTime(args.join(''));
+        let time = parseTime(args.join('')); console.log(time)
         let timestampInMS = player.position - time;
         if (timestampInMS === null) {
             embed.setDescription(musji.info + " " + message.translate("music/seek:NO_ARGS"));
