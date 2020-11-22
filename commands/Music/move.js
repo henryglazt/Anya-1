@@ -57,8 +57,8 @@ class Move extends Command {
         }
         arrMove(player.queue, from -1, to -1);
         embed.setDescription(musji.swap + " " + message.translate("music/move:SUCCESS", {
-           songName: player.queue[from -1].title,
-           songURL: player.queue[from -1].uri,
+           songName: player.queue[to -1].title,
+           songURL: player.queue[to -1].uri,
            indexFrom: from,
            indexTo: to
         }));
