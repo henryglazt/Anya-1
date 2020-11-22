@@ -24,7 +24,8 @@ class Move extends Command {
             .setFooter(data.config.embed.footer)
 
         const player = message.client.manager.players.get(message.guild.id);
-        const { channel } = message.member.voice;
+        let sid = player.get("voiceData").session;
+        const { channel, sessionID } = message.member.voice;
         if (!channel) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
@@ -35,6 +36,10 @@ class Move extends Command {
         }
         if (channel.id !== player.voiceChannel) {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
+            return message.channel.send(embed);
+        }
+        if (sessionID !== sid) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:SESSION"));
             return message.channel.send(embed);
         }
         if (!player.queue.size) {
