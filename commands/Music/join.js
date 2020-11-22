@@ -17,7 +17,7 @@ class Join extends Command {
     }
     async run(message, args, data) {
 
-        const voiceData = {
+        let voiceData = {
             id: message.member.id,
             guild: message.member.guild.id
             channel: message.member.voice.channel.id,
