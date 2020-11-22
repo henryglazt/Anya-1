@@ -1,9 +1,7 @@
 const Command = require("../../base/Command.js"),
     { MessageEmbed } = require("discord.js"),
     lyricsFinder = require("lyrics-finder");
-
 class Lyrics extends Command {
-
     constructor(client) {
         super(client, {
             name: "lyrics",
@@ -18,7 +16,6 @@ class Lyrics extends Command {
             cooldown: 5000
         });
     }
-
     async run(message, args, data) {
 
         const musji = this.client.customEmojis.music;
