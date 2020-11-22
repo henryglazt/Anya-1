@@ -8,7 +8,7 @@ class Rewind extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: [ "rw "],
+            aliases: [ "rw" ],
             memberPermissions: [],
             botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
@@ -37,9 +37,9 @@ class Rewind extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        let time = parseTime(args.join('')); console.log(time)
+        let time = parseTime(args.join(''));
         let timestampInMS = player.position - time;
-        if (timestampInMS === null) {
+        if (time === null || timestampInMS === null) {
             embed.setDescription(musji.info + " " + message.translate("music/seek:NO_ARGS"));
             return message.channel.send(embed);
         }
