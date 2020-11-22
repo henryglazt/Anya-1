@@ -1,8 +1,8 @@
 {
     "DESCRIPTION": "Displays the current song lyrics.",
-    "USAGE": "{{prefix}}lyrics",
-    "EXAMPLES": "{{prefix}}lyrics",
+    "USAGE": "{{prefix}}lyrics (song)",
+    "EXAMPLES": "{{prefix}}lyrics\n{{prefix}}lyrics adele hello",
     "ERROR": "An error encountered: `{{error}}`",
-    "LYRICS_OF": "Lyrics",
-    "NO_LYRICS_FOUND": "<a:ano:744384493376503869> No lyrics found for: [{{songName}}]({{songURL}})!"
+    "LYRICS_OF": "Lyrics Of:",
+    "NO_LYRICS_FOUND": "No lyrics found for: [{{songName}}]({{songURL}})"
 }
