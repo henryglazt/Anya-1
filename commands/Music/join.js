@@ -19,7 +19,7 @@ class Join extends Command {
 
         let voiceData = {
             id: message.member.id,
-            guild: message.member.guild.id
+            guild: message.member.guild.id,
             channel: message.member.voice.channel.id,
             session: message.member.voice.sessionID,
             timeout: {}
