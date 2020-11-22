@@ -40,7 +40,7 @@ class Nowplaying extends Command {
         };
 
         embed.setThumbnail(`https://i.ytimg.com/vi/${track.identifier}/hqdefault.jpg`);
-        embed.setDescription(message.translate("music/nowplaying:SONG") + `[${song.title}](${song.uri})` + "\n\n" + description);
+        embed.setDescription(message.translate("music/nowplaying:SONG") + `[${track.title}](${track.uri})` + "\n\n" + description);
         embed.setAuthor(message.translate("music/play:NOW_PLAYING"), "https://cdn.discordapp.com/attachments/733966113167245312/778819885596934184/25629.png");
         return message.channel.send(embed);
     }
