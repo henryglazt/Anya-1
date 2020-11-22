@@ -36,7 +36,7 @@ class Stop extends Command {
             embed.setDescription(message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player.playing) {
+        if (!player.queue.current) {
             player.destroy();
             embed.addField(musji.leave + " " + message.translate("music/stop:LEAVE"), message.translate("music/stop:THANK", {
               anya: this.client.user.username
