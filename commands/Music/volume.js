@@ -28,7 +28,7 @@ class Volume extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player || !player.queue.current) {
+        if (!player) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
