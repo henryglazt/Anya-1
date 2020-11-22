@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "Fast forward current song duration",
+    "DESCRIPTION": "Fast forward current song position",
     "USAGE": "{{prefix}}forward [time]",
     "EXAMPLES": "{{prefix}}forward 7m"
 }
