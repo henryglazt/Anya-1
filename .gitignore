@@ -5,13 +5,6 @@ base
 commands
 helpers
 dashboard
-languages/af-ZA
-languages/es-ES
-languages/fr-FR
-languages/hr-HR
-languages/hu-HU
-languages/it-IT
-languages/nl-NL
-languages/pt-PT
-languages/ro-RO
-languages/tr-TR
+scripts
+events
+languages
