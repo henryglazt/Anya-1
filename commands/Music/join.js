@@ -17,13 +17,13 @@ class Join extends Command {
     }
     async run(message, args, data) {
 
-        const voiceData = {
+        const voiceData = [{
             "id": message.member.id,
             "guild": message.member.guild.id
             "channel": message.member.voice.channel.id,
             "session": message.member.voice.sessionID,
             "timeout": {}
-        };
+        }];
         const musji = this.client.customEmojis.music;
         const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
