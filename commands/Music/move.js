@@ -29,7 +29,7 @@ class Move extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player || !player.playing || !player.playing && !player.paused || player.queue.totalSize === 0) {
+        if (!player || !player.queue.current) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
@@ -45,13 +45,18 @@ class Move extends Command {
         let from = Number(args[0]);
         let to = Number(args[1]);
         if (!from || !to || from === to || isNaN(from) || isNaN(to) || from < 1 || to < 1|| from > player.queue.size || to > player.queue.size) {
-            embed.setDescription(musji.info + " " + message.translate("music/skipto:VALUE", {
+            embed.setDescription(musji.info + " " + message.translate("music/move:VALUE", {
                max: player.queue.size
             }));
             return message.channel.send(embed);
         }
         arrMove(player.queue, from -1, to -1);
-        embed.setDescription(from + " " + to)
+        embed.setDescription(musji.swap + " " + message.translate("music/move:SUCCESS", {
+           songName: player.queue[from -1].title,
+           songURL: player.queue[from -1].uri,
+           indexFrom: from,
+           indexTo: to
+        }));
         return message.channel.send(embed);
 
         /*const embed = new Discord.MessageEmbed()
