@@ -23,7 +23,7 @@ class Stop extends Command {
             .setFooter(data.config.embed.footer)
 
         const player = message.client.manager.players.get(message.guild.id);
-        let sid = player.get("voiceData").session;
+        let v = player.get("voiceData");
         const { channel, sessionID } = message.member.voice;
         if (!channel) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
@@ -37,8 +37,8 @@ class Stop extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:MY_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (sessionID !== sid) {
-            embed.setDescription(musji.info + " " + message.translate("music/play:SESSION"));
+        if (sessionID !== v.session) {
+            embed.setDescription(musji.info + " " + message.translate("music/play:SESSION", {user: "<@" + v.id + ">"}));
             return message.channel.send(embed);
         }
         if (!player.queue.current) {
