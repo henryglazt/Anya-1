@@ -32,12 +32,12 @@ class Lyrics extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_ARGS"));
             return message.channel.send(embed);
         }
-        if (!song && player.queue.current) song = await player.queue.current.title;
+        if (!song && player.queue.current) song = player.queue.current.title;
         let lyrics = null;
         try {
             lyrics = await lyricsFinder(song, "");
             if (!lyrics) {
-                embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND", {songName: song.title, songURL: song.uri}));
+                embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND"), {song: song});
                 return message.channel.send(embed);
             }
         } catch (error) {
