@@ -29,7 +29,7 @@ class Forward extends Command {
             embed.setDescription(musji.info + " " + message.translate("music/play:NO_VOICE_CHANNEL"));
             return message.channel.send(embed);
         }
-        if (!player || !player.playing || !player.paused || player.queue.totalSize === 0) {
+        if (!player || !player.playing || !player.playing && !player.paused || player.queue.totalSize === 0) {
             embed.setDescription(musji.info + " " + message.translate("music/play:NOT_PLAYING"));
             return message.channel.send(embed);
         }
