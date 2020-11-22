@@ -135,5 +135,11 @@ module.exports = {
 			var unescaped = text.replace(/\\(\*|_|`|~|\\)/g, '$1'); // unescape any "backslashed" character
 			var escaped = unescaped.replace(/(\*|_|`|~|\\)/g, '\\$1'); // escape *, _, `, ~, \
 			return escaped;
+		},
+		arrMove(input, from, to) {
+			let elmDel = 1;
+			const elm = input.splice(from, elmDel)[0];
+			elmDel = 0;
+			input.splice(to, elmDel, elm);
 		}
 };
