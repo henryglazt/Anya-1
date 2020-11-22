@@ -1,7 +1,9 @@
-Procfile
 LICENSE
 crowdin.yml
 assets
+base
+commands
+helpers
 dashboard
 languages/af-ZA
 languages/es-ES
