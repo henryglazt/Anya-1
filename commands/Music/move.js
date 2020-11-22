@@ -50,7 +50,7 @@ class Move extends Command {
             }));
             return message.channel.send(embed);
         }
-        arrMove(player.queue, from, to);
+        arrMove(player.queue, from -1, to -1);
         embed.setDescription(from + " " + to)
         return message.channel.send(embed);
 
