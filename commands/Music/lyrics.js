@@ -37,7 +37,7 @@ class Lyrics extends Command {
         try {
             lyrics = await lyricsFinder(song, "");
             if (!lyrics) {
-                embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND", {song: song});
+                embed.setDescription(musji.info + " " + message.translate("music/lyrics:NO_LYRICS_FOUND", {song: song}));
                 return message.channel.send(embed);
             }
         } catch (error) {
