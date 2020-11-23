@@ -57,10 +57,10 @@ class Swap extends Command {
         }
         arrSwap(player.queue, from -1, to -1);
         embed.setDescription(musji.swap + " " + message.translate("music/swap:SUCCESS", {
-           songName: player.queue[to -1].title,
-           songURL: player.queue[to -1].uri,
-           indexFrom: from,
-           indexTo: to
+           songName1: player.queue[to -1].title,
+           songURL1: player.queue[to -1].uri,
+           songName2: player.queue[from -1].title,
+           songURL2: player.queue[from -1].uri
         }));
         return message.channel.send(embed);
     }
