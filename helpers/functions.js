@@ -144,6 +144,6 @@ module.exports = {
 		},
 		arrSwap(input, from, to) {
 			let elmDell = 1;
-			return input.splice(from, elmDell, input.splice(to, elmDell, input[from]))[0];
+			return input.splice(from, elmDell, input.splice(to, elmDell, input[from])[0]);
 		}
 };
