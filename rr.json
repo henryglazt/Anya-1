@@ -298,6 +298,20 @@
         ]
     },
     {
+        "messageID": "780380659805061122",
+        "channelID": "773710240864534548",
+        "limit": true,
+        "restrictions": null,
+        "reactions": [
+            {
+                "emoji": "a:verifyblack:773738682301284362",
+                "roles": [
+                    "773714356013367316"
+                ]
+            }
+        ]
+    },
+    {
         "messageID": "773887633448370176",
         "channelID": "773711707314716693",
         "limit": 21,
