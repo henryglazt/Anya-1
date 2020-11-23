@@ -1,0 +1,7 @@
+{
+    "DESCRIPTION": "Move a song to a different index",
+    "USAGE": "{{prefix}}move [from] [to]",
+    "EXAMPLES": "{{prefix}} move 7 2",
+    "VALUE": "Please specify **TWO** song number to swap the song with!\nMax index number: **{{max}}**",
+    "SUCCESS": "Swapped [{{songName1}}]({{songURL1}}) with [{{songName2}}]({{songURL2}})"
+}
