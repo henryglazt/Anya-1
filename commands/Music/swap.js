@@ -50,13 +50,13 @@ class Swap extends Command {
         let from = Number(args[0]);
         let to = Number(args[1]);
         if (!from || !to || from === to || isNaN(from) || isNaN(to) || from < 1 || to < 1|| from > player.queue.size || to > player.queue.size) {
-            embed.setDescription(musji.info + " " + message.translate("music/move:VALUE", {
+            embed.setDescription(musji.info + " " + message.translate("music/swap:VALUE", {
                max: player.queue.size
             }));
             return message.channel.send(embed);
         }
         arrSwap(player.queue, from -1, to -1);
-        embed.setDescription(musji.swap + " " + message.translate("music/move:SUCCESS", {
+        embed.setDescription(musji.swap + " " + message.translate("music/swap:SUCCESS", {
            songName: player.queue[to -1].title,
            songURL: player.queue[to -1].uri,
            indexFrom: from,
