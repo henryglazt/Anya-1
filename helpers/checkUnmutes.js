@@ -38,10 +38,10 @@ module.exports = {
                     const guildData = await client.findOrCreateGuild({
                         id: guild.id
                     });
-                    let roles = await memberData.mute.roles;
-                    let muted = await member.roles.cache.filter((r) => r.managed !== true);
                     guild.data = guildData;
                     if (member) {
+                        let roles = await memberData.mute.roles;
+                        let muted = await member.roles.cache.filter((r) => r.managed !== true);
                         await member.roles.remove(muted);
                         await member.roles.add(roles);
                     }
