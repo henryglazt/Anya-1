@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
     { MessageEmbed } = require("discord.js"),
-    { arrMove } = require("../../helpers/functions.js");
+    { arrSwap } = require("../../helpers/functions.js");
 class Swap extends Command {
     constructor(client) {
         super(client, {
