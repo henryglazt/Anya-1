@@ -1,14 +1,14 @@
 const Command = require("../../base/Command.js"),
     { MessageEmbed } = require("discord.js"),
     { arrMove } = require("../../helpers/functions.js");
-class Move extends Command {
+class Swap extends Command {
     constructor(client) {
         super(client, {
-            name: "move",
+            name: "swap",
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: [ "pindah" ],
+            aliases: [ "tukar" ],
             memberPermissions: [],
             botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
@@ -65,4 +65,4 @@ class Move extends Command {
         return message.channel.send(embed);
     }
 }
-module.exports = Move;
+module.exports = Swap;
