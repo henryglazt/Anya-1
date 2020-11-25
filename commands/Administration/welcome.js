@@ -119,7 +119,7 @@ class Welcome extends Command {
 
 			collector.on("end", (_, reason) => {
 				if (reason === "time") {
-					return message.error("misc:TIMEOUT");
+					return message.error("misc:TIMES_UP");
 				}
 			});
 		}
