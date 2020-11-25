@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "Summon me to a voice channel.",
+    "DESCRIPTION": "Summons me to a voice channel.",
     "USAGE": "{{prefix}}join",
     "EXAMPLES": "{{prefix}}join",
     "JOIN": "I'm joining the channel...",
