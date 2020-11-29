@@ -40,7 +40,7 @@ class Confess extends Command {
 		}
 
 		let embed = new Discord.MessageEmbed()
-			.setTitle(this.client.customEmojis.desc2 + " " + message.translate("general/confess:TITLE")
+			.setTitle(this.client.customEmojis.desc2 + " " + message.translate("general/confess:TITLE"))
 			.setColor("RANDOM")
 			.setFooter(message.translate("general/confess:ANON"))
 			.setDescription(confess)
