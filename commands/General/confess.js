@@ -20,8 +20,6 @@ class Confess extends Command {
 
 	async run (message, args, data) {
 
-		await message.delete();
-
 		if (message.guild) {
 			return message.error("general/confess:DM_ONLY");
 		}
