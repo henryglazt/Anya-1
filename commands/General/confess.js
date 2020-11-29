@@ -26,14 +26,14 @@ class Confess extends Command {
 			return message.error("general/confess:DM_ONLY");
 		}
 
-		const confessChannel = message.guild.channels.cache.get(data.guild.plugins.suggestions);
+		const confessChannel = message.guild.channels.cache.get("782461424551067648");
 		if(!confessChannel){
-			return message.error("general/suggest:MISSING_CHANNEL");
+			return message.error("general/confess:MISSING_CHANNEL");
 		}
 
 		const confess = args.join(" ");
 		if(!confess){
-			return message.error("general/suggest:MISSING_CONTENT");
+			return message.error("general/confess:MISSING_CONTENT");
 		}
 
 		let embed = new Discord.MessageEmbed()
@@ -47,7 +47,7 @@ class Confess extends Command {
 
 		confessChannel.send(embed).catch(console.error);
 
-		message.success("general/suggest:SUCCESS", {
+		message.success("general/confess:SUCCESS", {
 			channel: confessChannel.toString()
 		});
 	}
