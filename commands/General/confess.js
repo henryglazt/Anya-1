@@ -27,7 +27,7 @@ class Confess extends Command {
 			return message.error("general/confess:DM_ONLY");
 		}
 
-		const confessChannel = message.guild.channels.cache.get("782461424551067648");
+		const confessChannel = client.channels.cache.get("782461424551067648");
 		if(!confessChannel){
 			return message.error("general/confess:MISSING_CHANNEL");
 		}
