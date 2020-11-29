@@ -1,9 +1,8 @@
 {
-    "DESCRIPTION": "Send your conffesion to the defined channel!",
+    "DESCRIPTION": "Send your conffesion to the defined channel in Gang Sebelah!",
     "USAGE": "{{prefix}}confess [message]",
     "EXAMPLES": "{{prefix}}confess i ate my dog",
     "DM_ONLY": "This command is DM only for a privacy reason!",
-    "GS_ONLY": "This command is currently only available in Gang Sebelah!",
     "MISSING_CHANNEL": "No confession channel defined!",
     "MISSING_CONTENT": "Please enter a confession!",
     "TITLE": "Confession",
