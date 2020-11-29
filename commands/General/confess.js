@@ -20,9 +20,6 @@ class Confess extends Command {
 
 	async run (message, args, data) {
 
-		if (message.guild.id !== "773707418482769982") {
-			return message.error("general/confess:GS_ONLY");
-		}
 		if (message.guild) {
 			return message.error("general/confess:DM_ONLY");
 		}
