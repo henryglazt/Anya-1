@@ -7,6 +7,6 @@
     "MISSING_CHANNEL": "No confession channel defined!",
     "MISSING_CONTENT": "Please enter a confession!",
     "TITLE": "Confession",
-    "ANON": "All confessions are anonymous"
+    "ANON": "All confessions are anonymous",
     "SUCCESS": "Your confession has been sent to {{channel}}!"
 }
