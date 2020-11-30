@@ -24,6 +24,7 @@ class Confess extends Command {
 			return message.error("general/confess:DM_ONLY");
 		}
 
+		const logsChannel = await this.client.channels.fetch("782833944118558761");
 		const confessChannel = await this.client.channels.fetch("782478711533862962");
 		if(!confessChannel){
 			return message.error("general/confess:MISSING_CHANNEL");
@@ -52,6 +53,10 @@ class Confess extends Command {
 		message.success("general/confess:SUCCESS", {
 			channel: confessChannel.toString()
 		});
+		embed.setTitle(message.author.tag);
+		embed.setFooter(message.author.id);
+		embed.setTimestamp();
+		logsChannel.send(embed).catch(console.error);
 	}
 }
 module.exports = Confess;
