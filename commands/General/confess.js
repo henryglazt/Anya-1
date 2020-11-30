@@ -14,7 +14,7 @@ class Confess extends Command {
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
 			ownerOnly: false,
-			cooldown: 5000
+			cooldown: 180000
 		});
 	}
 
@@ -24,12 +24,12 @@ class Confess extends Command {
 			return message.error("general/confess:DM_ONLY");
 		}
 
-		const confessChannel = await this.client.channels.fetch("782461424551067648");
+		const confessChannel = await this.client.channels.fetch("782478711533862962");
 		if(!confessChannel){
 			return message.error("general/confess:MISSING_CHANNEL");
 		}
 
-		const confess = args.join(" ");
+		let confess = args.join(" ");
 		if(!confess){
 			return message.error("general/confess:MISSING_CONTENT");
 		}
@@ -37,19 +37,35 @@ class Confess extends Command {
 		let embed = new Discord.MessageEmbed()
 			.setTitle(this.client.customEmojis.desc2 + " " + message.translate("general/confess:TITLE"))
 			.setColor("RANDOM")
-			.setFooter(message.translate("general/confess:ANON"))
 			.setDescription(confess)
 		if (embed.description.length >= 2048) {
 			embed.description = `${embed.description.substr(0, 2045)}...`;
 		}
 
-		confessChannel.send(embed).catch(console.error);
+		message.sendT("general/confess:PROMPT");
+		const collector = message.dmChannel.createMessageCollector(msg => true, {max: 1, time: 15000});
+		collector.on("collect", async (msg) => {
+			if(msg.content.toLowerCase() === message.translate("common:NO").toLowerCase()){
+				embed.setFooter(message.translate("general/confess:ANON"));
+				collector.stop(true);
+			}
+			if(msg.content.toLowerCase() === message.translate("common:YES").toLowerCase()){
+				embed.setFooter(message.author.tag);
+				collector.stop(true);
+			}
+		});
+		collector.on("end", (collected, reason) => {
+			if(reason === "time"){
+				return message.error("misc:TIMES_UP");
+			}
 
-		message.success("general/confess:SUCCESS", {
-			channel: confessChannel.toString()
+			confessChannel.send(embed).catch(console.error);
+
+			message.success("general/confess:SUCCESS", {
+				channel: confessChannel.toString()
+			});
 		});
 	}
-
 }
 
 module.exports = Confess;
