@@ -7,6 +7,6 @@
     "MISSING_CONTENT": "Please enter a confession!",
     "TITLE": "Confession",
     "ANON": "Anonymous",
-    "PROMPT": ""Would you like to add your username in it?\nAnswer by sending `yes` or `no`!",
+    "PROMPT": "Would you like to add your username in it?\nAnswer by sending `yes` or `no`!",
     "SUCCESS": "Your confession has been sent to {{channel}}!"
 }
