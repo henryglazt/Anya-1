@@ -42,30 +42,24 @@ class Confess extends Command {
 			embed.description = `${embed.description.substr(0, 2045)}...`;
 		}
 
-		message.sendT("general/confess:PROMPT");
-		const collector = message.dmChannel.createMessageCollector(msg => true, {max: 1, time: 15000});
-		collector.on("collect", async (msg) => {
-			if(msg.content.toLowerCase() === message.translate("common:NO").toLowerCase()){
-				embed.setFooter(message.translate("general/confess:ANON"));
-				collector.stop(true);
-			}
-			if(msg.content.toLowerCase() === message.translate("common:YES").toLowerCase()){
-				embed.setFooter(message.author.tag);
-				collector.stop(true);
-			}
-		});
-		collector.on("end", (collected, reason) => {
-			if(reason === "time"){
-				return message.error("misc:TIMES_UP");
-			}
-
-			confessChannel.send(embed).catch(console.error);
-
-			message.success("general/confess:SUCCESS", {
-				channel: confessChannel.toString()
+		message.sendT("general/confess:PROMPT").then(() => {
+			message.dmChannel.awaitMessages(filter, {max: 1, time: 15000, errors : ["time"]}).then(collected => {
+				if (collected.toLowerCase() === message.translate("common:NO").toLowerCase()){
+					embed.setFooter(message.translate("general/confess:ANON"));
+					confessChannel.send(embed).catch(console.error);
+					message.success("general/confess:SUCCESS", {
+						channel: confessChannel.toString()
+					});
+				}
+				if (collected.toLowerCase() === message.translate("common:YES").toLowerCase()){
+					embed.setFooter(message.author.tag);
+					confessChannel.send(embed).catch(console.error);
+					message.success("general/confess:SUCCESS", {
+						channel: confessChannel.toString()
+					});
+				}
 			});
 		});
 	}
 }
-
 module.exports = Confess;
