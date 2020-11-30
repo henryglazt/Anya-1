@@ -58,6 +58,8 @@ class Confess extends Command {
 						channel: confessChannel.toString()
 					});
 				}
+			}).catch(collected => {
+				message.error(message.translate("common:TIMES_UP"));
 			});
 		});
 	}
