@@ -175,8 +175,8 @@ module.exports = class {
 
 		if(message.guild){
 			let neededPermissions = [];
-			if(!cmd.conf.botPermissions.includes("EMBED_LINKS")){
-				cmd.conf.botPermissions.push("EMBED_LINKS");
+			if(!cmd.conf.botPermissions.includes(["SEND_MESSAGES", "EMBED_LINKS"])){
+				cmd.conf.botPermissions.push(["SEND_MESSAGES", "EMBED_LINKS"]);
 			}
 			cmd.conf.botPermissions.forEach((perm) => {
 				if(!message.channel.permissionsFor(message.guild.me).has(perm)){
@@ -184,7 +184,7 @@ module.exports = class {
 				}
 			});
 			if(neededPermissions.length > 0){
-				return message.error("misc:MISSING_BOT_PERMS", {
+				return message.author.send("misc:MISSING_BOT_PERMS", {
 					list: neededPermissions.map((p) => `\`${p}\``).join(", ")
 				});
 			}
