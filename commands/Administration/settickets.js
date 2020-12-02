@@ -1,11 +1,11 @@
 const Command = require("../../base/Command.js"),
 	Resolvers = require("../../helpers/resolvers");
 
-class Setticket extends Command {
+class Settickets extends Command {
 
 	constructor (client) {
 		super(client, {
-			name: "setticket",
+			name: "settickets",
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
@@ -21,30 +21,28 @@ class Setticket extends Command {
 	async run (message, args, data) {
 
 
-		if ((!args[0] || !["edit", "off"].includes(args[0])) && data.guild.plugins.welcome.enabled)
-			return message.error("administration/welcome:MISSING_STATUS");
+		if ((!args[0] || !["edit", "off"].includes(args[0])) && data.guild.plugins.tickets.enabled)
+			return message.error("administration/settickets:MISSING_STATUS");
 
 		if (args[0] === "off") {
-			data.guild.plugins.ticket = {
+			data.guild.plugins.tickets = {
 				enabled: false,
-				message: null,
-				channelID: null,
-				withImage: null
+				category: null,
+				message: null
 			};
-			data.guild.markModified("plugins.welcome");
+			data.guild.markModified("plugins.tickets");
 			data.guild.save();
-			return message.error("administration/welcome:DISABLED", {
+			return message.error("administration/tickets:DISABLED", {
 				prefix: data.guild.prefix
 			});
 		} else {
-			const ticket = {
+			const tickets = {
 				enabled: true,
-				channel: null,
-				message: null,
-				withImage: null,
+				category: null,
+				message: null
 			};
 
-			message.sendT("administration/welcome:FORM_1", {
+			message.sendT("administration/tickets:FORM_1", {
 				author: message.author.toString()
 			});
 			const collector = message.channel.createMessageCollector(
@@ -117,4 +115,4 @@ class Setticket extends Command {
 
 }
 
-module.exports = Setticket;
+module.exports = Settickets;
