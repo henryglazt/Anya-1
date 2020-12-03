@@ -175,9 +175,6 @@ module.exports = class {
 
 		if(message.guild){
 			let neededPermissions = [];
-			if(!cmd.conf.botPermissions.includes(["SEND_MESSAGES", "EMBED_LINKS"])){
-				cmd.conf.botPermissions.push(["SEND_MESSAGES", "EMBED_LINKS"]);
-			}
 			cmd.conf.botPermissions.forEach((perm) => {
 				if(!message.channel.permissionsFor(message.guild.me).has(perm)){
 					neededPermissions.push(perm);
