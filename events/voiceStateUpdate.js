@@ -31,6 +31,7 @@ module.exports = class {
             return player.destroy()
         }
         const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
+        const exist = member.members.get(v.id);
         if (member.members.filter(m => !m.user.bot).size < 1) {
             channel.send(embed);
             return player.destroy()
@@ -38,10 +39,9 @@ module.exports = class {
         if (member.members.filter(m => m.id === v.id && m.voice.sessionID !== v.session)) {
             v.session = newState.guild.members.cache.get(v.id).voice.sessionID;
         }
-        if (member.members.filter(m => !m.user.bot && m.id === v.id)) {
+        if (exist) {
             clearTimeout(v.timeout2);
-        }
-        if (member.members.filter(m => !m.user.bot && m.id !== v.id)) {
+        } else {
             v.timeout2 = setTimeout(() => {
                 let arr = [];
                 member.members.filter(m => !m.user.bot).forEach(m => arr.push({
