@@ -42,7 +42,7 @@ module.exports = class {
                     anya: client.user.username
                 }));
                 channel.send(embed)
-                player.destroy();
+                return player.destroy();
             }, 180000);
         }
         if (exist && exist.voice.sessionID !== v.session) {
