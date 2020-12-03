@@ -36,7 +36,7 @@ module.exports = class {
         }
         const member = client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => m.id === v.id);
         if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => m.id === v.id && m.voice.sessionID !== v.session)) {
-            v.session = member.voice.sessionID;
+            v.session = newState.guild.members.cache.get(v.id).voice.sessionID;
         }
     }
 };
