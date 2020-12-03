@@ -181,9 +181,9 @@ module.exports = class {
 				}
 			});
 			if(neededPermissions.length > 0){
-				return message.author.sendT("misc:MISSING_BOT_PERMS", {
+				return message.author.send(message.translate("misc:MISSING_BOT_PERMS", {
 					list: neededPermissions.map((p) => `\`${p}\``).join(", ")
-				});
+				}));
 			}
 			neededPermissions = [];
 			cmd.conf.memberPermissions.forEach((perm) => {
