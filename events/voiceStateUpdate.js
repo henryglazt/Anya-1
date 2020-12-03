@@ -48,8 +48,8 @@ module.exports = class {
                     sid: m.voice.sessionID
                 }));
                 arr.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-                v.id = arr[0].id;
-                v.session = arr[0].sid;
+                v.id = await arr[0].id;
+                v.session = await arr[0].sid;
             }, 60000);
         }
         if (!exist && member.members.filter(m => !m.user.bot).size < 1 || member.members.filter(m => !m.user.bot).size < 1) {
@@ -57,7 +57,7 @@ module.exports = class {
                 embed.setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
                     anya: client.user.username
                 }));
-                channel.send(embed);
+                await channel.send(embed);
                 return player.destroy();
             }, 180000);
         }
