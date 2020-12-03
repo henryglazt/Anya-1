@@ -23,7 +23,7 @@ module.exports = class {
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
             .setTitle(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"))
-            .setDescription(newState.guild.translate("music/stop:THANK", {
+            .setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
                   anya: client.user.username
             }));
 
@@ -32,7 +32,7 @@ module.exports = class {
             return player.destroy();
         }
         const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
-        const exist = await member.members.get(v.id);
+        const exist = member.members.get(v.id);
         if (exist && exist.voice.sessionID !== v.session) {
             v.session = exist.voice.sessionID;
         }
@@ -40,7 +40,7 @@ module.exports = class {
             clearTimeout(v.timeout2);
         }
         if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
-            v.timeout2 = setTimeout(async() => {
+            v.timeout2 = setTimeout(() => {
                 let arr = [];
                 member.members.filter(m => !m.user.bot).forEach(m => arr.push({
                     name: m.user.username,
@@ -48,8 +48,8 @@ module.exports = class {
                     sid: m.voice.sessionID
                 }));
                 arr.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-                v.id = await arr[0].id;
-                v.session = await arr[0].sid;
+                v.id = arr[0].id;
+                v.session = arr[0].sid;
             }, 60000);
         }
         if (!exist && member.members.filter(m => !m.user.bot).size < 1 || member.members.filter(m => !m.user.bot).size < 1) {
