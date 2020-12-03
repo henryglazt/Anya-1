@@ -30,12 +30,12 @@ module.exports = class {
         if (!chnl) {
             channel.send(embed);
             return player.destroy();
-        }
+        };
         const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
         const exist = await member.members.get(v.id);
         if (member.members.filter(m => !m.user.bot).size > 0) {
             clearTimeout(v.timeout2);
-        }
+        };
         if (member.members.filter(m => !m.user.bot).size < 1) {
             v.timeout2 = setTimeout(() => {
                 embed.setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
@@ -44,13 +44,13 @@ module.exports = class {
                 channel.send(embed);
                 return player.destroy();
             }, 180000);
-        }
+        };
         if (exist && exist.voice.sessionID !== v.session) {
             v.session = exist.voice.sessionID;
-        }
+        };
         if (exist) {
             clearTimeout(v.timeout2);
-        }
+        };
         if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
             v.timeout2 = setTimeout(() => {
                 let arr = [];
@@ -63,6 +63,6 @@ module.exports = class {
                 v.id = arr[0].id;
                 v.session = arr[0].sid;
             }, 60000);
-        }
+        };
     }
 };
