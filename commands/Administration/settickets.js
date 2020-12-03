@@ -1,11 +1,11 @@
 const Command = require("../../base/Command.js"),
 	Resolvers = require("../../helpers/resolvers");
 
-class Settickets extends Command {
+class Setticket extends Command {
 
 	constructor (client) {
 		super(client, {
-			name: "settickets",
+			name: "setticket",
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: true,
@@ -21,87 +21,110 @@ class Settickets extends Command {
 	async run (message, args, data) {
 
 
-		if ((!args[0] || !["edit", "off"].includes(args[0])) && data.guild.plugins.tickets.enabled)
-			return message.error("administration/settickets:MISSING_STATUS");
+		if ((!args[0] || !["edit", "off"].includes(args[0])) && data.guild.plugins.ticket.enabled)
+			return message.error("administration/setticket:MISSING_STATUS");
 
 		if (args[0] === "off") {
-			data.guild.plugins.tickets = {
+			data.guild.plugins.ticket = {
 				enabled: false,
 				category: null,
-				message: null
+				channel: null,
+				name: null,
+				message: null,
+				emoji: null,
+				role: null
 			};
-			data.guild.markModified("plugins.tickets");
+			data.guild.markModified("plugins.ticket");
 			data.guild.save();
-			return message.error("administration/tickets:DISABLED", {
+			return message.error("administration/setticket:DISABLED", {
 				prefix: data.guild.prefix
 			});
 		} else {
-			const tickets = {
+			const ticket = {
 				enabled: true,
 				category: null,
-				message: null
+				channel: null,
+				name: null,
+				message: null,
+				emoji: null,
+				role: null
 			};
 
-			message.sendT("administration/tickets:FORM_1", {
+			message.sendT("administration/setticket:FORM_1", {
 				author: message.author.toString()
 			});
 			const collector = message.channel.createMessageCollector(
 				m => m.author.id === message.author.id,
 				{
-					time: 120000 // 2 minutes
-				}
-			);
+					time: 180000 // 3 minutes
+				});
 
 			collector.on("collect", async msg => {
-				// If the message is filled, it means the user sent yes or no for the image
-				if (welcome.message) {
-					if (
-						msg.content.toLowerCase() ===
-                        message.translate("common:YES").toLowerCase()
-					) {
-						welcome.withImage = true;
-					} else if (
-						msg.content.toLowerCase() ===
-                        message.translate("common:NO").toLowerCase()
-					) {
-						welcome.withImage = false;
-					} else {
-						return message.error("misc:INVALID_YES_NO");
-					}
-					data.guild.plugins.welcome = welcome;
-					data.guild.markModified("plugins.welcome");
-					await data.guild.save();
-					message.sendT("administration/welcome:FORM_SUCCESS", {
-						prefix: data.guild.prefix,
-						channel: `<#${welcome.channel}>`
+				if (!ticket.category) {
+					const category = await Resolvers.resolveChannel({
+						message: msg,
+						search: msg,
+						channelType: "category"
 					});
-					return collector.stop();
-				}
-
-				// If the channel is filled and the message is not, it means the user sent the message
-				if (welcome.channel && !welcome.message) {
-					if (msg.content.length < 1800) {
-						welcome.message = msg.content;
-						return message.sendT("administration/welcome:FORM_3");
+					if (!category) {
+						return message.error("misc:INVALID_CHANNEL");
 					}
-					return message.error("administration/goodbye:MAX_CHARACT");
+					ticket.category = category.id;
+					message.sendT("administration/setticket:FORM_2");
 				}
-
-				// If the channel is not filled, it means the user sent it
-				if (!welcome.channel) {
+				if (ticket.category && !ticket.channel) {
 					const channel = await Resolvers.resolveChannel({
 						message: msg,
+						search: msg,
 						channelType: "text"
 					});
 					if (!channel) {
 						return message.error("misc:INVALID_CHANNEL");
 					}
-					welcome.channel = channel.id;
-					message.sendT("administration/welcome:FORM_2", {
-						guildName: message.guild.name,
-						author: msg.author.tag,
-						memberCount: msg.guild.memberCount
+					ticket.channel = channel.id;
+					message.sendT("administration/setticket:FORM_2");
+				}
+				if (ticket.channel && !ticket.name) {
+					if (msg.content.length < 20) {
+						ticket.name = msg.content;
+						return message.sendT("administration/setticket:FORM_3");
+					}
+					return message.error("administration/setticket:MAX_CHARACT");
+				}
+				if (ticket.name && !ticket.message) {
+					if (msg.content.length < 1000) {
+						ticket.message = msg.content;
+						return message.sendT("administration/setticket:FORM_3");
+					}
+					return message.error("administration/setticket:MAX_CHARACT");
+				}
+				if (ticket.name && !ticket.emoji) {
+					let emoji = await Util.parseEmoji(msg);
+					if (!emoji) {
+						return message.error("misc:INVALID_EMOJI");
+					}
+					if (emoji.animated) emoji = `a:${emoji.name}:${emoji.id}`;
+					else { emoji = `${emoji.name}:${emoji.id}`;
+					}
+					ticket.emoji = emoji;
+					message.sendT("administration/setticket:FORM_2");
+				}
+				if (tickets.emoji && !tickets.role) {
+					const role = await Resolvers.resolveRole({
+						message: msg,
+						search: msg
 					});
+					if (!role) {
+						return message.error("misc:INVALID_ROLE");
+					}
+					ticket.role = role.id;
+					data.guild.plugins.ticket = ticket;
+					data.guild.markModified("plugins.ticket");
+					await data.guild.save();
+					message.sendT("administration/setticket:FORM_SUCCESS", {
+						channel: `<#${ticket.channel}>`
+					});
+					return collector.stop();
 				}
 			});
 
@@ -112,7 +135,5 @@ class Settickets extends Command {
 			});
 		}
 	}
-
 }
-
-module.exports = Settickets;
+module.exports = Setticket;
