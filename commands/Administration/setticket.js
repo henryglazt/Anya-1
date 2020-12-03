@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
 	Resolvers = require("../../helpers/resolvers");
+		{ Util } = require("discord.js);
 
 class Setticket extends Command {
 
@@ -67,7 +68,7 @@ class Setticket extends Command {
 						channelType: "category"
 					});
 					if (!category) {
-						return message.error("misc:INVALID_CHANNEL");
+						return message.error("misc:INVALID_CATEGORY");
 					}
 					ticket.category = category.id;
 					message.sendT("administration/setticket:FORM_2");
@@ -82,19 +83,19 @@ class Setticket extends Command {
 						return message.error("misc:INVALID_CHANNEL");
 					}
 					ticket.channel = channel.id;
-					message.sendT("administration/setticket:FORM_2");
+					message.sendT("administration/setticket:FORM_3");
 				}
 				if (ticket.channel && !ticket.name) {
 					if (msg.content.length < 20) {
 						ticket.name = msg.content;
-						return message.sendT("administration/setticket:FORM_3");
+						return message.sendT("administration/setticket:FORM_4");
 					}
 					return message.error("administration/setticket:MAX_CHARACT");
 				}
 				if (ticket.name && !ticket.message) {
 					if (msg.content.length < 1000) {
 						ticket.message = msg.content;
-						return message.sendT("administration/setticket:FORM_3");
+						return message.sendT("administration/setticket:FORM_5");
 					}
 					return message.error("administration/setticket:MAX_CHARACT");
 				}
@@ -107,7 +108,7 @@ class Setticket extends Command {
 					else { emoji = `${emoji.name}:${emoji.id}`;
 					}
 					ticket.emoji = emoji;
-					message.sendT("administration/setticket:FORM_2");
+					message.sendT("administration/setticket:FORM_6");
 				}
 				if (tickets.emoji && !tickets.role) {
 					const role = await Resolvers.resolveRole({
