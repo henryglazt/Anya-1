@@ -29,10 +29,10 @@ module.exports = class {
 
         if (!chnl) {
             channel.send(embed);
-            return player.destroy()
+            return player.destroy();
         }
         const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
-        const exist = member.members.get(v.id);
+        const exist = await member.members.get(v.id);
         if (member.members.filter(m => !m.user.bot).size > 0) {
             clearTimeout(v.timeout2);
         }
@@ -50,7 +50,8 @@ module.exports = class {
         }
         if (exist) {
             clearTimeout(v.timeout2);
-        } else if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
+        }
+        if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
             v.timeout2 = setTimeout(() => {
                 let arr = [];
                 member.members.filter(m => !m.user.bot).forEach(m => arr.push({
