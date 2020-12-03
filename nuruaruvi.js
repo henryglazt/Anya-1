@@ -47,7 +47,6 @@ client.manager = new Manager({
         let m = player.get("member");
         let v = player.get("voiceData")
         clearTimeout(v.timeout1);
-        clearTimeout(v.timeout2);
         let embed = new MessageEmbed()
         embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
