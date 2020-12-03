@@ -38,8 +38,21 @@ module.exports = class {
         if (member.members.filter(m => m.id === v.id && m.voice.sessionID !== v.session)) {
             v.session = newState.guild.members.cache.get(v.id).voice.sessionID;
         }
-        if (member.members.filter(m => m.id !== v.id)) {
-            setTimeout
+        if (member.members.filter(m => !m.user.bot && m.id === v.id)) {
+            clearTimeout(v.timeout2);
+        }
+        if (member.members.filter(m => !m.user.bot && m.id !== v.id)) {
+            v.timeout2 = setTimeout(() => {
+                let arr = [];
+                member.members.forEach(m => arr.push({
+                    name: m.user.username,
+                    id: m.id,
+                    sid: m.voice.sessionID
+                }));
+                arr.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+                v.id = arr[0].id;
+                v.session = arr[0].sid;
+            }, 60000);
         }
     }
 };
