@@ -47,6 +47,7 @@ client.manager = new Manager({
         let m = player.get("member");
         let v = player.get("voiceData")
         clearTimeout(v.timeout1);
+        clearTimeout(v.timeout2);
         let embed = new MessageEmbed()
         embed.addField(musji.play + " " + m.guild.translate("music/play:NOW_PLAYING"), m.guild.translate("music/play:SONG", {
           songName: track.title,
@@ -61,6 +62,7 @@ client.manager = new Manager({
     .on("playerDestroy", player => {
         let v = player.get("voiceData");
         clearTimeout(v.timeout1);
+        clearTimeout(v.timeout2);
     })
     .on("playerCreate", async player => {
         const channel = await client.channels.cache.get(player.textChannel);
@@ -74,7 +76,7 @@ client.manager = new Manager({
               anya: client.user.username
             }));
         v.timeout1 = setTimeout(() => {
-         channel.send(embed);
+          channel.send(embed);
           player.destroy();
         }, 180000);
     })
