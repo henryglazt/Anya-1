@@ -22,7 +22,8 @@ module.exports = class {
             .setColor(client.config.embed.color)
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
-            .addField(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"), newState.guild.translate("music/stop:THANK", {
+            .setTitle(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"))
+            .setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
 
@@ -32,9 +33,14 @@ module.exports = class {
         }
         const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
         const exist = member.members.get(v.id);
+        if (member.members.filter(m => !m.user.bot).size > 0) {
+            clearTimeout(v.timeout2);
+        }
         if (member.members.filter(m => !m.user.bot).size < 1) {
-            channel.send(embed);
-            return player.destroy()
+            v.timeout2 = setTimeout(() => {
+                channel.send(embed)
+                player.destroy();
+            }, 180000);
         }
         if (exist && exist.voice.sessionID !== v.session) {
             v.session = exist.voice.sessionID;
