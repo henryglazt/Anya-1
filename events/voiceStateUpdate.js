@@ -40,7 +40,7 @@ module.exports = class {
             clearTimeout(v.timeout2);
         }
         if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
-            v.timeout2 = setTimeout(() async => {
+            v.timeout2 = setTimeout(async() => {
                 let arr = [];
                 member.members.filter(m => !m.user.bot).forEach(m => arr.push({
                     name: m.user.username,
@@ -53,7 +53,7 @@ module.exports = class {
             }, 60000);
         }
         if (!exist && member.members.filter(m => !m.user.bot).size < 1 || member.members.filter(m => !m.user.bot).size < 1) {
-            v.timeout2 = setTimeout(() async => {
+            v.timeout2 = setTimeout(async() => {
                 embed.setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
                     anya: client.user.username
                 }));
