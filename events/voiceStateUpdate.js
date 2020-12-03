@@ -33,11 +33,11 @@ module.exports = class {
         }
         const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
         const exist = member.members.get(v.id);
+        if (exist) {
+            clearTimeout(v.timeout2);
+        }
         if (exist && exist.voice.sessionID !== v.session) {
             v.session = exist.voice.sessionID;
-        }
-        if (exist || member.members.filter(m => !m.user.bot).size > 0) {
-            clearTimeout(v.timeout2);
         }
         if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
             v.timeout2 = setTimeout(() => {
