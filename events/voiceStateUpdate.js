@@ -44,7 +44,7 @@ module.exports = class {
         if (member.members.filter(m => !m.user.bot && m.id !== v.id)) {
             v.timeout2 = setTimeout(() => {
                 let arr = [];
-                member.members.forEach(m => arr.push({
+                member.members.filter(m => !m.user.bot).forEach(m => arr.push({
                     name: m.user.username,
                     id: m.id,
                     sid: m.voice.sessionID
