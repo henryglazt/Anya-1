@@ -30,13 +30,16 @@ module.exports = class {
             channel.send(embed);
             return player.destroy()
         }
-        if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
+        const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
+        if (member.members.filter(m => !m.user.bot).size < 1) {
             channel.send(embed);
             return player.destroy()
         }
-        const member = client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => m.id === v.id);
-        if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => m.id === v.id && m.voice.sessionID !== v.session)) {
+        if (member.members.filter(m => m.id === v.id && m.voice.sessionID !== v.session)) {
             v.session = newState.guild.members.cache.get(v.id).voice.sessionID;
+        }
+        if (member.members.filter(m => m.id !== v.id)) {
+            setTimeout
         }
     }
 };
