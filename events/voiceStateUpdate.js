@@ -41,7 +41,7 @@ module.exports = class {
                 embed.setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
                     anya: client.user.username
                 }));
-                channel.send(embed)
+                channel.send(embed);
                 return player.destroy();
             }, 180000);
         }
