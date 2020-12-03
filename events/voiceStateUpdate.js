@@ -50,7 +50,7 @@ module.exports = class {
         }
         if (exist) {
             clearTimeout(v.timeout2);
-        } else {
+        } else if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
             v.timeout2 = setTimeout(() => {
                 let arr = [];
                 member.members.filter(m => !m.user.bot).forEach(m => arr.push({
