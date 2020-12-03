@@ -23,8 +23,8 @@ module.exports = class {
             .setFooter(client.config.embed.footer)
             .setImage("https://cdn.discordapp.com/attachments/773766203914321980/773785370503806976/banner_serverr_10.png")
             .setTitle(musji.leave + " " + newState.guild.translate("music/stop:LEAVE"))
-            .setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
-              anya: client.user.username
+            .setDescription(newState.guild.translate("music/stop:THANK", {
+                  anya: client.user.username
             }));
 
         if (!chnl) {
@@ -38,6 +38,9 @@ module.exports = class {
         }
         if (member.members.filter(m => !m.user.bot).size < 1) {
             v.timeout2 = setTimeout(() => {
+                embed.setDescription(newState.guild.translate("music/stop:ALONE") + "\n" + newState.guild.translate("music/stop:THANK", {
+                    anya: client.user.username
+                }));
                 channel.send(embed)
                 player.destroy();
             }, 180000);
