@@ -12,6 +12,7 @@ module.exports = class {
         const player = client.manager.players.get(newState.guild.id);
         if (!player) return;
 
+        let v = player.get("voiceData");
         const channel = client.channels.cache.get(player.textChannel);
 
         let chnl = player.voiceChannel;
@@ -32,6 +33,10 @@ module.exports = class {
         if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => !m.user.bot).size < 1) {
             channel.send(embed);
             return player.destroy()
+        }
+        const member = client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => m.id === v.id);
+        if (client.guilds.cache.get(guild).channels.cache.get(chnl).members.filter(m => m.id === v.id && m.voice.sessionID !== v.session)) {
+            v.session = member.voice.sessionID;
         }
     }
 };
