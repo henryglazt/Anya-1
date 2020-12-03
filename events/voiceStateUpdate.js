@@ -36,7 +36,7 @@ module.exports = class {
             channel.send(embed);
             return player.destroy()
         }
-        if (exist && exist.voice.sessionID !== v.session)) {
+        if (exist && exist.voice.sessionID !== v.session) {
             v.session = exist.voice.sessionID;
         }
         if (exist) {
