@@ -22,7 +22,8 @@ class Join extends Command {
             guild: message.member.guild.id,
             channel: message.member.voice.channelID,
             session: message.member.voice.sessionID,
-            timeout: {}
+            timeout1: {},
+            timeout2: {}
         };
         const musji = this.client.customEmojis.music;
         const embed = new MessageEmbed()
