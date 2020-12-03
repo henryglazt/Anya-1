@@ -36,8 +36,8 @@ module.exports = class {
             channel.send(embed);
             return player.destroy()
         }
-        if (member.members.filter(m => m.id === v.id && m.voice.sessionID !== v.session)) {
-            v.session = newState.guild.members.cache.get(v.id).voice.sessionID;
+        if (exist && exist.voice.sessionID !== v.session)) {
+            v.session = exist.voice.sessionID;
         }
         if (exist) {
             clearTimeout(v.timeout2);
