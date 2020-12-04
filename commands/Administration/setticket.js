@@ -64,7 +64,6 @@ class Setticket extends Command {
 			collector.on("collect", async msg => {
 				if (!tickets.category) {
 					const category = await Resolvers.resolveChannel({
-						message,
 						search: msg,
 						channelType: "category"
 					});
@@ -87,7 +86,6 @@ class Setticket extends Command {
 				}
 				if (tickets.role && !tickets.logs) {
 					const logs = await Resolvers.resolveChannel({
-						message,
 						search: msg,
 						channelType: "text"
 					});
