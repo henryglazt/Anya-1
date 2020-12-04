@@ -30,7 +30,8 @@ class Setticket extends Command {
 				enabled: false,
 				category: null,
 				channel: null,
-				role: null
+				role: null,
+				logs: null
 			};
 			data.guild.markModified("plugins.ticket");
 			data.guild.save();
@@ -42,13 +43,16 @@ class Setticket extends Command {
 				enabled: true,
 				category: null,
 				channel: null,
-				role: null
+				role: null,
+				logs: null
 			};
 
 			const embed = new MessageEmbed()
 				.setColor(data.config.embed.color)
 				.setFooter(data.config.embed.footer)
-				.setDescription(message.translate("administration/setticket:EMBED_DESC"));
+				.setDescription(message.translate("administration/setticket:EMBED_DESC", {
+					prefix: data.guild.prefix
+				}));
 
 			message.sendT("administration/setticket:FORM_1");
 			const collector = message.channel.createMessageCollector(
@@ -79,6 +83,20 @@ class Setticket extends Command {
 						return message.error("misc:INVALID_ROLE");
 					}
 					ticket.role = role.id;
+					message.sendT("aadministrator/setticket:FORM_3")
+
+				if (!ticket.category) {
+					const category = await Resolvers.resolveChannel({
+						message: msg,
+						search: msg,
+						channelType: "category"
+					});
+					if (!category) {
+						return message.error("misc:INVALID_CATEGORY");
+					}
+					ticket.category = category.id;
+					message.sendT("administration/setticket:FORM_2");
+				}
 					data.guild.plugins.ticket = ticket;
 					data.guild.markModified("plugins.ticket");
 					await data.guild.save();
@@ -88,7 +106,8 @@ class Setticket extends Command {
 					});
 					ticket.channel = channel.id;
 					message.sendT("administration/setticket:FORM_SUCCESS", {
-						channel: `<#${ticket.channel}>`
+						channel: `<#${ticket.channel}>`,
+						prefix: data.guild.prefix
 					});
 					channel.send(embed).catch((e) => message.error(e));
 					return collector.stop();
