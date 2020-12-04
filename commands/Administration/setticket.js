@@ -103,7 +103,7 @@ class Setticket extends Command {
 						permissionOverwrites: [{ allow: "VIEW_CHANNEL", id: message.guild.id }]
 					});
 					tickets.channel = channel.id;
-					message.sendT("administration/setticket:FORM_SUCCESS", {
+					message.success("administration/setticket:FORM_SUCCESS", {
 						channel: `<#${tickets.channel}>`,
 						prefix: data.guild.prefix
 					});
