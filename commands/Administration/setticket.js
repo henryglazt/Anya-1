@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-	Resolvers = require("../../helpers/resolvers");
+	Resolvers = require("../../helpers/resolvers"),
+		{ MessageEmbed } = require("discord.js");
 
 class Setticket extends Command {
 
