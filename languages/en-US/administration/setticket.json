@@ -5,7 +5,7 @@
     "MISSING_STATUS": "You must specify an action between `edit` and `off`",
     "FORM_1": "**In which channel category to create ticket channels in?**\n\n:arrow_right_hook: *Answer by sending a channel categoryID or by mentioning a channel category!*",
     "FORM_2": "**Which role is an Administrator or a Moderator?**\n\n:arrow_right_hook: *Answer by sending a roleID or a roleName or by mentioning a role!*",
-    "FORM_SUCCESS": "**Ticket system enabled!**\n\nOpening ticket channel will be in {{channel}}",
+    "FORM_SUCCESS": "**Ticket system enabled!**\n\nOpening ticket channel will be in {{channel}}\nI also sent a default message for how to use it there.\nYou could delete it and use your own message.",
     "DISABLED": "**Ticket system have just been disabled!**\n\n:arrow_right_hook: *Answer by sending `{{prefix}}configuration` to see the updated server configuration!*",
     "EMBED_DESC": "**Ticket System**\n\nUse the following command to open a new ticket\n`{{prefix}}ticket open [reason for opening]`"
 }
