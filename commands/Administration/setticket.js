@@ -43,11 +43,17 @@ class Setticket extends Command {
 				channel: null,
 				role: null
 			};
+
+			const embed = new MessageEmbed()
+				.setColor(data.config.embed.color)
+				.setFooter(data.config.embed.footer)
+				.setDescription(message.translate("administration/setticket:DESCRIPTION"));
+
 			message.sendT("administration/setticket:FORM_1");
 			const collector = message.channel.createMessageCollector(
 				m => m.author.id === message.author.id,
 				{
-					time: 180000 // 3 minutes
+					time: 120000 // 2 minutes
 				});
 
 			collector.on("collect", async msg => {
@@ -63,19 +69,7 @@ class Setticket extends Command {
 					ticket.category = category.id;
 					message.sendT("administration/setticket:FORM_2");
 				}
-				if (ticket.category && !ticket.channel) {
-					const channel = await Resolvers.resolveChannel({
-						message: msg,
-						search: msg,
-						channelType: "text"
-					});
-					if (!channel) {
-						return message.error("misc:INVALID_CHANNEL");
-					}
-					ticket.channel = channel.id;
-					message.sendT("administration/setticket:FORM_3");
-				}
-				if (ticket.channel && !ticket.role) {
+				if (ticket.category && !ticket.role) {
 					const role = await Resolvers.resolveRole({
 						message: msg,
 						search: msg
@@ -87,9 +81,15 @@ class Setticket extends Command {
 					data.guild.plugins.ticket = ticket;
 					data.guild.markModified("plugins.ticket");
 					await data.guild.save();
+					const channel = await message.guild.channels.create("ticket-channel", {
+						parent: ticket.category,
+						permissionOverwrites: [{ allow: "VIEW_CHANNEL", id: message.guild.id }]
+					});
+					ticket.channel = channel.id;
 					message.sendT("administration/setticket:FORM_SUCCESS", {
 						channel: `<#${ticket.channel}>`
 					});
+					channel.send(embed);
 					return collector.stop();
 				}
 			});
