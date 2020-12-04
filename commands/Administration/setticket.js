@@ -48,7 +48,7 @@ class Setticket extends Command {
 			const embed = new MessageEmbed()
 				.setColor(data.config.embed.color)
 				.setFooter(data.config.embed.footer)
-				.setDescription(message.translate("administration/setticket:DESCRIPTION"));
+				.setDescription(message.translate("administration/setticket:EMBED_DESC"));
 
 			message.sendT("administration/setticket:FORM_1");
 			const collector = message.channel.createMessageCollector(
@@ -90,7 +90,7 @@ class Setticket extends Command {
 					message.sendT("administration/setticket:FORM_SUCCESS", {
 						channel: `<#${ticket.channel}>`
 					});
-					channel.send(embed);
+					channel.send(embed).catch((e) => message.error(e));
 					return collector.stop();
 				}
 			});
