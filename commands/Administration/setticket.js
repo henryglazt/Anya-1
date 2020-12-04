@@ -22,24 +22,24 @@ class Setticket extends Command {
 	async run (message, args, data) {
 
 
-		if ((!args[0] || !["edit", "off"].includes(args[0])) && data.guild.plugins.ticket.enabled)
+		if ((!args[0] || !["edit", "off"].includes(args[0])) && data.guild.plugins.tickets.enabled)
 			return message.error("administration/setticket:MISSING_STATUS");
 
 		if (args[0] === "off") {
-			data.guild.plugins.ticket = {
+			data.guild.plugins.tickets = {
 				enabled: false,
 				category: null,
 				channel: null,
 				role: null,
 				logs: null
 			};
-			data.guild.markModified("plugins.ticket");
+			data.guild.markModified("plugins.tickets");
 			data.guild.save();
 			return message.error("administration/setticket:DISABLED", {
 				prefix: data.guild.prefix
 			});
 		} else {
-			const ticket = {
+			const tickets = {
 				enabled: true,
 				category: null,
 				channel: null,
@@ -62,7 +62,7 @@ class Setticket extends Command {
 				});
 
 			collector.on("collect", async msg => {
-				if (!ticket.category) {
+				if (!tickets.category) {
 					const category = await Resolvers.resolveChannel({
 						message: msg,
 						search: msg,
@@ -71,10 +71,10 @@ class Setticket extends Command {
 					if (!category) {
 						return message.error("misc:INVALID_CATEGORY");
 					}
-					ticket.category = category.id;
+					tickets.category = category.id;
 					message.sendT("administration/setticket:FORM_2");
 				}
-				if (ticket.category && !ticket.role) {
+				if (tickets.category && !tickets.role) {
 					const role = await Resolvers.resolveRole({
 						message: msg,
 						search: msg
@@ -82,29 +82,27 @@ class Setticket extends Command {
 					if (!role) {
 						return message.error("misc:INVALID_ROLE");
 					}
-					ticket.role = role.id;
+					tickets.role = role.id;
 					message.sendT("aadministrator/setticket:FORM_3")
-
-				if (!ticket.category) {
-					const category = await Resolvers.resolveChannel({
+				}
+				if (tickets.role && !tickets.logs) {
+					const logs = await Resolvers.resolveChannel({
 						message: msg,
 						search: msg,
-						channelType: "category"
+						channelType: "text"
 					});
-					if (!category) {
-						return message.error("misc:INVALID_CATEGORY");
+					if (!logs) {
+						return message.error("misc:INVALID_CHANNEL");
 					}
-					ticket.category = category.id;
-					message.sendT("administration/setticket:FORM_2");
-				}
-					data.guild.plugins.ticket = ticket;
-					data.guild.markModified("plugins.ticket");
+					tickets.logs = logs.id;
+					data.guild.plugins.tickets = tickets;
+					data.guild.markModified("plugins.tickets");
 					await data.guild.save();
 					const channel = await message.guild.channels.create("ticket-channel", {
-						parent: ticket.category,
+						parent: tickets.category,
 						permissionOverwrites: [{ allow: "VIEW_CHANNEL", id: message.guild.id }]
 					});
-					ticket.channel = channel.id;
+					tickets.channel = channel.id;
 					message.sendT("administration/setticket:FORM_SUCCESS", {
 						channel: `<#${ticket.channel}>`,
 						prefix: data.guild.prefix
