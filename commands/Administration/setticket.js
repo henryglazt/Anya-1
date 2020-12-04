@@ -1,6 +1,5 @@
 const Command = require("../../base/Command.js"),
 	Resolvers = require("../../helpers/resolvers");
-		{ Util } = require("discord.js);
 
 class Setticket extends Command {
 
@@ -30,9 +29,6 @@ class Setticket extends Command {
 				enabled: false,
 				category: null,
 				channel: null,
-				name: null,
-				message: null,
-				emoji: null,
 				role: null
 			};
 			data.guild.markModified("plugins.ticket");
@@ -45,15 +41,9 @@ class Setticket extends Command {
 				enabled: true,
 				category: null,
 				channel: null,
-				name: null,
-				message: null,
-				emoji: null,
 				role: null
 			};
-
-			message.sendT("administration/setticket:FORM_1", {
-				author: message.author.toString()
-			});
+			message.sendT("administration/setticket:FORM_1");
 			const collector = message.channel.createMessageCollector(
 				m => m.author.id === message.author.id,
 				{
@@ -85,32 +75,7 @@ class Setticket extends Command {
 					ticket.channel = channel.id;
 					message.sendT("administration/setticket:FORM_3");
 				}
-				if (ticket.channel && !ticket.name) {
-					if (msg.content.length < 20) {
-						ticket.name = msg.content;
-						return message.sendT("administration/setticket:FORM_4");
-					}
-					return message.error("administration/setticket:MAX_CHARACT");
-				}
-				if (ticket.name && !ticket.message) {
-					if (msg.content.length < 1000) {
-						ticket.message = msg.content;
-						return message.sendT("administration/setticket:FORM_5");
-					}
-					return message.error("administration/setticket:MAX_CHARACT");
-				}
-				if (ticket.name && !ticket.emoji) {
-					let emoji = await Util.parseEmoji(msg);
-					if (!emoji) {
-						return message.error("misc:INVALID_EMOJI");
-					}
-					if (emoji.animated) emoji = `a:${emoji.name}:${emoji.id}`;
-					else { emoji = `${emoji.name}:${emoji.id}`;
-					}
-					ticket.emoji = emoji;
-					message.sendT("administration/setticket:FORM_6");
-				}
-				if (tickets.emoji && !tickets.role) {
+				if (ticket.channel && !ticket.role) {
 					const role = await Resolvers.resolveRole({
 						message: msg,
 						search: msg
