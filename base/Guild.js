@@ -48,7 +48,8 @@ module.exports = mongoose.model("Guild", new Schema({
 		tickets: {
 			enabled: false, // Whether the tickets system is enabled
 			category: null, // The category for the tickets system
-			message: null
+			channel: null,
+			role: null
 		},
 		suggestions: false, // the channel in which the suggestions will be sent
 		modlogs: false, // the channel in which the moderation logs (mute, kick, ban, etc...) will be sent
