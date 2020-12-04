@@ -83,7 +83,7 @@ class Setticket extends Command {
 						return message.error("misc:INVALID_ROLE");
 					}
 					tickets.role = role.id;
-					return message.sendT("administrator/setticket:FORM_3")
+					return message.sendT("administration/setticket:FORM_3")
 				}
 				if (tickets.role && !tickets.logs) {
 					const logs = await Resolvers.resolveChannel({
@@ -104,7 +104,7 @@ class Setticket extends Command {
 					});
 					tickets.channel = channel.id;
 					message.sendT("administration/setticket:FORM_SUCCESS", {
-						channel: `<#${ticket.channel}>`,
+						channel: `<#${tickets.channel}>`,
 						prefix: data.guild.prefix
 					});
 					channel.send(embed).catch((e) => message.error(e));
