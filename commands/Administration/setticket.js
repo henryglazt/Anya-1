@@ -72,7 +72,7 @@ class Setticket extends Command {
 						return message.error("misc:INVALID_CATEGORY");
 					}
 					tickets.category = category.id;
-					message.sendT("administration/setticket:FORM_2");
+					return message.sendT("administration/setticket:FORM_2");
 				}
 				if (tickets.category && !tickets.role) {
 					const role = await Resolvers.resolveRole({
@@ -83,7 +83,7 @@ class Setticket extends Command {
 						return message.error("misc:INVALID_ROLE");
 					}
 					tickets.role = role.id;
-					message.sendT("administrator/setticket:FORM_3")
+					return message.sendT("administrator/setticket:FORM_3")
 				}
 				if (tickets.role && !tickets.logs) {
 					const logs = await Resolvers.resolveChannel({
