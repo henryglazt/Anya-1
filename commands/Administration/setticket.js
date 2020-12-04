@@ -63,7 +63,7 @@ class Setticket extends Command {
 
 			collector.on("collect", async msg => {
 				if (!tickets.category) {
-					const category = await this.resolveChannel({
+					const category = await this.client.resolveChannel({
 						search: msg,
 						channelType: "category"
 					});
