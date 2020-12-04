@@ -63,7 +63,7 @@ class Setticket extends Command {
 
 			collector.on("collect", async msg => {
 				if (!tickets.category) {
-					const category = await Resolvers.resolveChannel({
+					const category = await this.resolveChannel({
 						search: msg,
 						channelType: "category"
 					});
@@ -82,7 +82,7 @@ class Setticket extends Command {
 						return message.error("misc:INVALID_ROLE");
 					}
 					tickets.role = role.id;
-					message.sendT("aadministrator/setticket:FORM_3")
+					message.sendT("administrator/setticket:FORM_3")
 				}
 				if (tickets.role && !tickets.logs) {
 					const logs = await Resolvers.resolveChannel({
