@@ -45,7 +45,7 @@ module.exports = mongoose.model("Guild", new Schema({
 			ban: false // The number of warns required to ban the user
 		},
 		// Tickets
-		tickets: {
+		ticket: {
 			enabled: false, // Whether the tickets system is enabled
 			category: null, // The category for the tickets system
 			channel: null,
