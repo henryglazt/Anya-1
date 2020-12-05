@@ -40,7 +40,7 @@ class Transcript extends Command {
                 messageCollection = messageCollection.concat(channelMessages);
         }
         let msgs = messageCollection.array().reverse();
-        let data = await fs.readFile('./template.html', 'utf8').catch(err => console.log(err));
+        let data = await fs.readFile('./transcript.html', 'utf8').catch(err => console.log(err));
         if(data) {
             await fs.writeFile('index.html', data).catch(err => console.log(err));
             let guildElement = document.createElement('div');
