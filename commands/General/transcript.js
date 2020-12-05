@@ -90,7 +90,7 @@ class Transcript extends Command {
                 parentContainer.appendChild(messageContainer);
                 await fs.appendFile('index.html', parentContainer.outerHTML).catch(err => console.log(err));
                 let attachment = new MessageAttachment("./index.html");
-                message.channel.send(attachment);
+                return message.channel.send(attachment);
             });
 	}
 	}
