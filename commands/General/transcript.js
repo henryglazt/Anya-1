@@ -89,10 +89,11 @@ class Transcript extends Command {
                 }
                 parentContainer.appendChild(messageContainer);
                 await fs.appendFile('index.html', parentContainer.outerHTML).catch(err => console.log(err));
-                let attachment = new MessageAttachment("./index.html");
-                return message.channel.send(attachment);
+
             });
-	}
+            let attachment = new MessageAttachment("./index.html");
+            return message.channel.send(attachment);
+	    }
 	}
 };
 module.exports = Transcript;
