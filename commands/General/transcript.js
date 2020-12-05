@@ -1,6 +1,7 @@
 const Command = require("../../base/Command.js"),
-	{ JSDOM } = require("jsdom"),
-		fs = require("fs").promises;
+	{ Collection } = require("discord.js"),
+		{ JSDOM } = require("jsdom"),
+			fs = require("fs").promises;
 
 class Transcript extends Command {
 
@@ -22,7 +23,10 @@ class Transcript extends Command {
 	async run (message) {
 
         await message.delete();
-        let messageCollection = new discord.Collection();
+
+        const dom = new JSDOM();
+        const document = dom.window.document;
+        let messageCollection = new Collection();
         let channelMessages = await message.channel.messages.fetch({
             limit: 100
         }).catch(err => console.log(err));
