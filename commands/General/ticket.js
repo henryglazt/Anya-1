@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-	Discord = require("discord.js");
+	{ MessageEmbed } = require("discord.js");
 
 class Ticket extends Command {
 
@@ -27,47 +27,68 @@ class Ticket extends Command {
 		if (tickets.channel !== message.channel.id) {
 			return message.error("general/ticket:WRONG_CHANNEL");
 		}
+		const found = await Resolvers.resolveRole({
+			message,
+			search: tickets.role
+		});
+		if (!found) {
+			return message.error("general/ticket:MISSING_ROLE");
+		}
+		const logsChannel = message.guild.channels.cache.get(tickets.logs);
+		if (!logs) {
+			return message.error("general/ticket:MISSING_CHANNEL");
+		}
+
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
 		if (!status) {
 			return message.error("general/ticket:NO_STATUS");
 		}
-		if (status === "open") {
-			if (!reason) {
-				return message.error("general/ticket:NO_REASON");
-			}
-			if (reason.length > 20) {
-				return message.error("general/ticket:LIMIT_CHAR");
-			}
-			const logsChannel = message.guild.channels.cache.get(tickets.logs);
-			if (!logs) {
-				return message.error("general/ticket:MISSING_CHANNEL");
+		if (!reason) {
+			return message.error("general/ticket:NO_REASON");
+		}
+		if (reason.length > 20) {
+			return message.error("general/ticket:LIMIT_CHAR");
+		}
+		if (status === "open" && reason) {
+			const ticket = data.memberData.ticket;
+			if (!ticket.resolved) {
+				return message.error("general/ticket:RESOLVED");
 			}
 
-		const embed = new Discord.MessageEmbed()
-			.setAuthor(message.translate("general/report:TITLE", {
-				user: member.user.tag
-			}), message.author.displayAvatarURL())
-			.addField(message.translate("common:AUTHOR"), message.author.tag, true)
-			.addField(message.translate("common:DATE"), message.printDate(new Date(Date.now())), true)
-			.addField(message.translate("common:REASON"), "**"+rep+"**", true)
-			.addField(message.translate("common:USER"), `\`${member.user.tag}\` (${member.user.toString()})`, true)
-			.setColor(data.config.embed.color)
-			.setFooter(data.config.embed.footer);
+			const channel = await message.guild.channels.create(reason, {
+				parent: data.guild.plugins.tickets.category,
+				permissionOverwrites: [
+					{ id: found, allow: ["VIEW_CHANNEL", "SEND_MESSAGES", "ATTACH_FILES"] }
+					{ id: message.author.id, allow: ["VIEW_CHANNEL", "SEND_MESSAGES", "ATTACH_FILES"] }
+					{ id: message.guild.id, deny: "VIEW_CHANNEL" }
+				]
+			}).catch((e) => message.error(e));
 
-		const success = Discord.Util.parseEmoji(this.client.customEmojis.success).id;
-		const error = Discord.Util.parseEmoji(this.client.customEmojis.error).id;
-        
-		repChannel.send(embed).then(async (m) => {
-			await m.react(success);
-			await m.react(error);
-		});
+			const ticket = {
+				resolved = false,
+				author = message.author.id,
+				channel = channel.id
+			}
 
-		message.success("general/report:SUCCESS", {
-			channel: repChannel.toString()
-		});
+			memberData.ticket = ticket;
+			memberData.markModified("ticket");
+			await memberData.save();
+
+			const openEmbed = new MessageEmbed()
+				.setColor(data.config.embed.color)
+				.setFooter(data.config.embed.footer)
+				.setDescription(message.translate("general/ticket:EMBED_DESC", {
+					author: message.author.toString(),
+					prefix: data.guild.prefix
+				});
+
+			channel.send(openEmbed);
+
+			message.success("general/ticket:SUCCESS", {
+				channel: channel.toString()
+			});
+		}
 	}
-
 }
-
 module.exports = Ticket;
