@@ -19,7 +19,7 @@ class Transcript extends Command {
 		});
 	}
 
-	async run (message, args, data) {
+	async run (message) {
 
         await message.delete();
         let messageCollection = new discord.Collection();
