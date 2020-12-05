@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-	{ MessageEmbed } = require("discord.js");
+	Resolvers = require("../../helpers/resolvers"),
+		{ MessageEmbed } = require("discord.js");
 
 class Ticket extends Command {
 
@@ -41,6 +42,7 @@ class Ticket extends Command {
 
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
+		const ticket = data.memberData.ticket;
 		if (!status) {
 			return message.error("general/ticket:NO_STATUS");
 		}
@@ -50,10 +52,16 @@ class Ticket extends Command {
 		if (reason.length > 20) {
 			return message.error("general/ticket:LIMIT_CHAR");
 		}
-		if (status === "open" && reason) {
-			const ticket = data.memberData.ticket;
+
+		if (status === "close") {
+			if (ticket.resolved) {
+				return message.error("general/ticket:RESOLVE_TRUE");
+			}
+			if
+
+		} else if (status === "open" && reason) {
 			if (!ticket.resolved) {
-				return message.error("general/ticket:RESOLVED");
+				return message.error("general/ticket:RESOLVE_FALSE");
 			}
 
 			const channel = await message.guild.channels.create(reason, {
@@ -85,7 +93,7 @@ class Ticket extends Command {
 
 			channel.send(openEmbed);
 
-			message.success("general/ticket:SUCCESS", {
+			return message.success("general/ticket:SUCCESS", {
 				channel: channel.toString()
 			});
 		}
