@@ -87,5 +87,6 @@ class Transcript extends Command {
                 await fs.appendFile('index.html', parentContainer.outerHTML).catch(err => console.log(err));
             });
 	}
+	}
 };
 module.exports = Transcript;
