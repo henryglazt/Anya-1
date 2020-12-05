@@ -46,7 +46,7 @@ class Transcript extends Command {
             let guildElement = document.createElement('div');
             let guildText = document.createTextNode(message.guild.name);
             let guildImg = document.createElement('img');
-            guildImg.setAttribute('src', message.guild.iconURL);
+            guildImg.setAttribute('src', message.guild.iconURL({ dynamic: true }));
             guildImg.setAttribute('width', '150');
             guildElement.appendChild(guildImg);
             guildElement.appendChild(guildText);
@@ -60,7 +60,7 @@ class Transcript extends Command {
                 let avatarDiv = document.createElement("div");
                 avatarDiv.className = "avatar-container";
                 let img = document.createElement('img');
-                img.setAttribute('src', msg.author.displayAvatarURL);
+                img.setAttribute('src', msg.author.displayAvatarURL({ dynamic: true, size: 1024 }));
                 img.className = "avatar";
                 avatarDiv.appendChild(img);
 
