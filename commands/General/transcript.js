@@ -1,6 +1,29 @@
+const Command = require("../../base/Command.js"),
+	{ JSDOM } = require("jsdom"),
+		fs = require("fs").promises;
+
+class Transcript extends Command {
+
+	constructor (client) {
+		super(client, {
+			name: "transcript",
+			dirname: __dirname,
+			enabled: true,
+			guildOnly: false,
+			aliases: [ "tr" ],
+			memberPermissions: [],
+			botPermissions: [ "SEND_MESSAGES" ],
+			nsfw: false,
+			ownerOnly: true,
+			cooldown: 1000
+		});
+	}
+
+	async run (message, args, data) {
+
         await message.delete();
         let messageCollection = new discord.Collection();
-        let channelMessages = await message.channel.fetchMessages({
+        let channelMessages = await message.channel.messages.fetch({
             limit: 100
         }).catch(err => console.log(err));
 
@@ -8,7 +31,7 @@
 
         while(channelMessages.size === 100) {
             let lastMessageId = channelMessages.lastKey();
-            channelMessages = await message.channel.fetchMessages({ limit: 100, before: lastMessageId }).catch(err => console.log(err));
+            channelMessages = await message.channel.messages.fetch({ limit: 100, before: lastMessageId }).catch(err => console.log(err));
             if(channelMessages)
                 messageCollection = messageCollection.concat(channelMessages);
         }
@@ -63,3 +86,6 @@
                 parentContainer.appendChild(messageContainer);
                 await fs.appendFile('index.html', parentContainer.outerHTML).catch(err => console.log(err));
             });
+	}
+};
+module.exports = Transcript;
