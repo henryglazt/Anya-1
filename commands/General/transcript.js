@@ -60,7 +60,7 @@ class Transcript extends Command {
                 let avatarDiv = document.createElement("div");
                 avatarDiv.className = "avatar-container";
                 let img = document.createElement('img');
-                img.setAttribute('src', msg.author.displayAvatarURL({ dynamic: true, size: 1024 }));
+                img.setAttribute('src', msg.author.displayAvatarURL({ dynamic: true, size: 512 }));
                 img.className = "avatar";
                 avatarDiv.appendChild(img);
 
@@ -89,6 +89,8 @@ class Transcript extends Command {
                 }
                 parentContainer.appendChild(messageContainer);
                 await fs.appendFile('index.html', parentContainer.outerHTML).catch(err => console.log(err));
+                let attachment = new MessageAttachment("./index.html");
+                message.channel.send(attachment);
             });
 	}
 	}
