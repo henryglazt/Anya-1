@@ -1,6 +1,6 @@
 const nodes = [
     {
-        host: "localhost", 
+        host: "doomlvlk.herokuapp.com", 
         port: 2333,
         password: "password",
         identifier: "LUA",
