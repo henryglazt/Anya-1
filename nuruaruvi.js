@@ -158,9 +158,9 @@ client.manager = new Manager({
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 
-    client.system.importConfig(require("./rr.json"))
+    /* client.system.importConfig(require("./rr.json"))
 
-    client.system.init()
+    client.system.init() */
 
     client.login(process.env.token);
 
