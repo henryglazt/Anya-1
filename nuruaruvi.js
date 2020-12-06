@@ -162,7 +162,7 @@ client.manager = new Manager({
 
     client.system.init()
 
-    client.login(client.config.token);
+    client.login(process.env.token);
 
     mongoose.connect(client.config.mongoDB, {
             useNewUrlParser: true,
