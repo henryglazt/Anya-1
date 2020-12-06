@@ -66,7 +66,7 @@ module.exports = class {
                 return target.voice.setChannel(ch);
             }
         }
-        const vcUser = ch.members.filter(m => !m.user.bot).size < 1);
+        const vcUser = ch.members.filter(m => !m.user.bot).size < 1;
         if (vcUser) {
             return ch.delete().catch(() => {});
         }
