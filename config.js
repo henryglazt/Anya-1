@@ -6,8 +6,8 @@ module.exports = {
 		logs: "773774472150646785", // And the ID of the logs channel of your server (new servers for example)
 	},
 	dashboard: {
-		enabled: true, // whether the dashboard is enabled or not
-		secret: "mgyb1A2J-aqdgxIYXmj6K_pPMGNb1jd8", // Your discord client secret
+		enabled: false, // whether the dashboard is enabled or not
+		secret: "xxxxxx", // Your discord client secret
 		baseURL: "https://anyags.herokuapp.com", // The base URl of the dashboard
 		logs: "773774472150646785", // The channel ID of logs
 		port: 8080, // Dashboard port
