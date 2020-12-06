@@ -1,7 +1,7 @@
 const { Client, Collection } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
-const { ReactionRoleManager } = require("discord.js-collector");
-const ReactionRole = require("reaction-role");
+/* const { ReactionRoleManager } = require("discord.js-collector");
+const ReactionRole = require("reaction-role"); */
 const util = require("util"),
 	path = require("path"),
 	moment = require("moment");
@@ -28,8 +28,8 @@ class NuruAruvi extends Client {
 		this.usersData = require("../base/User"); // User mongoose model
 		this.membersData = require("../base/Member"); // Member mongoose model
 		this.logs = require("../base/Log"); // Log mongoose model
-		this.dashboard = require("../dashboard/app"); // Dashboard app
-		this.queues = new Collection(); // This collection will be used for the music
+		//this.dashboard = require("../dashboard/app"); // Dashboard app
+		//this.queues = new Collection(); // This collection will be used for the music
 		this.states = {}; // Used for the dashboard
 		this.knownGuilds = [];
 
@@ -46,7 +46,7 @@ class NuruAruvi extends Client {
 			mongoDbLink: this.config.mongoDB
 		});*/
 
-		this.system = new ReactionRole(process.env.token, this.config.mongoDB);
+		//this.system = new ReactionRole(process.env.token, this.config.mongoDB);
     
 		this.giveawaysManager = new GiveawaysManager(this, {
 			storage: "./giveaways.json",
