@@ -56,5 +56,19 @@ module.exports = class {
             channel.send(embed);
             return player.destroy();
         }
+
+
+        const voiceCh = client.channels.cache.get("773742429505454081");
+        if (newState.channelID === vc.id) {
+            const target = newState.member;
+            const ch = await voiceCh.clone({ name: target.user.username });
+            if (!ch.deleted && target.user.username.toLowerCase() === ch.name.toLowerCase()) {
+                return target.voice.setChannel(ch);
+            }
+        }
+        const vcUser = ch.members.filter(m => !m.user.bot).size < 1);
+        if (vcUser) {
+            return ch.delete().catch(() => {});
+        }
     }
 };
