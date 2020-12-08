@@ -28,8 +28,8 @@ class Transcript extends Command {
                 let text = "";
                 let txt = [];
                 for (let [key, value] of messages) {
-                    let dateString = moment(msg.createdTimestamp).calendar();
-                    text += `${msg.author.tag} at ${dateString}: ${msg.content}\n`;
+                    let dateString = moment(value.createdTimestamp).calendar();
+                    text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
                     txt.push(text);
                     txt.reverse();
                     await fs.writeFile("index.txt", txt).catch(() => {});
