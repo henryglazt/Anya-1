@@ -24,16 +24,16 @@ class Transcript extends Command {
         await message.delete();
 
         message.channel.messages.fetch({ limit: 100 }).then(messages => {
-                let text = "";
+                let text = new Collection();
 
                 for (let [key, value] of messages) {
-                    const date = new Date(value.createdTimestamp);
-                    let dateString = `${date.getDate()}/${date.getMonth()} ${date.getHours()}h ${date.getMinutes()}m`;
+                    let dateString = `${moment(value.createdTimestamp).calendar()}`;
 
                     text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
+                    fixed = text.array().reverse();
                 }
 
-                fs.writeFileSync("index.txt", text)
+                fs.writeFileSync("index.txt", fixed)
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
                 return message.channel.send(attachment);
             }).catch(err => {
