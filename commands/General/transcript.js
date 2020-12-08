@@ -23,8 +23,7 @@ class Transcript extends Command {
 
         await message.delete();
 
-        message.channel.messages.fetch({ limit: 100 })
-            .then(messages => {
+        message.channel.messages.fetch({ limit: 100 }).then(messages => {
                 let text = "";
 
                 for (let [key, value] of messages) {
@@ -33,11 +32,11 @@ class Transcript extends Command {
 
                     text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
                 }
+
                 fs.writeFileSync("index.txt", text).catch(err => console.log(err));
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
                 return message.channel.send(attachment);
-            })
-            .catch(err => {
+            }).catch(err => {
                 console.log(`Failed to fetch messages: ${err}`);
             });
 
