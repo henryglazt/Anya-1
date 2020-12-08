@@ -27,7 +27,7 @@ class Transcript extends Command {
         let msgs = await message.channel.messages.fetch({ limit: 100 });//.then(messages => {
         text = text.concat(msgs);
         let reversed = text.array().reverse();
-        let data = await fs.readFile('./transcript.txt', 'utf8').catch(err => console.log(err));
+        let data = await fs.readFileSync('./transcript.txt', 'utf8').catch(err => console.log(err));
         if (data) {
                 reversed.forEach(async msg => {
                     let dateString = `${moment(msg.createdTimestamp).calendar()}`;
