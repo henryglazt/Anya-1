@@ -32,7 +32,7 @@ class Transcript extends Command {
                 reversed.forEach(async msg => {
                     let dateString = `${moment(msg.createdTimestamp).calendar()}`;
                     msg = `${msg.author.tag} at ${dateString}: ${msg.content}`;
-                await fs.writeFileSync("index.txt", fixed).catch(() => {});
+                await fs.writeFileSync("index.txt", msg).catch(() => {});
                 })
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
                 return message.channel.send(attachment);
