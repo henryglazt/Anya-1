@@ -40,60 +40,15 @@ class Transcript extends Command {
                 messageCollection = messageCollection.concat(channelMessages);
         }
         let msgs = messageCollection.array().reverse();
-        let data = await fs.readFile('./transcript.html', 'utf8').catch(err => console.log(err));
-        if(data) {
-            await fs.writeFile('index.html', data).catch(err => console.log(err));
-            let guildElement = document.createElement('div');
-            let guildText = document.createTextNode(message.guild.name);
-            let guildImg = document.createElement('img');
-            guildImg.setAttribute('src', message.guild.iconURL({ dynamic: true }));
-            guildImg.setAttribute('width', '150');
-            guildElement.appendChild(guildImg);
-            guildElement.appendChild(guildText);
-            console.log(guildElement.outerHTML);
-            await fs.appendFile('index.html', guildElement.outerHTML).catch(err => console.log(err));
-
+        let data = await fs.readFile('./transcript.txt', 'utf8').catch(err => console.log(err));
+        if (data) {
+            await fs.writeFile('index.txt', data).catch(err => console.log(err));
             msgs.forEach(async msg => {
-                let parentContainer = document.createElement("div");
-                parentContainer.className = "parent-container";
-
-                let avatarDiv = document.createElement("div");
-                avatarDiv.className = "avatar-container";
-                let img = document.createElement('img');
-                img.setAttribute('src', msg.author.displayAvatarURL({ dynamic: true, size: 512 }));
-                img.className = "avatar";
-                avatarDiv.appendChild(img);
-
-                parentContainer.appendChild(avatarDiv);
-
-                let messageContainer = document.createElement('div');
-                messageContainer.className = "message-container";
-
-                let nameElement = document.createElement("span");
-                let name = document.createTextNode(msg.author.tag + " " + msg.createdAt.toDateString() + " " + msg.createdAt.toLocaleTimeString() + " EST");
-                nameElement.appendChild(name);
-                messageContainer.append(nameElement);
-
-                if(msg.content.startsWith("```")) {
-                    let m = msg.content.replace(/```/g, "");
-                    let codeNode = document.createElement("code");
-                    let textNode =  document.createTextNode(m);
-                    codeNode.appendChild(textNode);
-                    messageContainer.appendChild(codeNode);
-                }
-                else {
-                    let msgNode = document.createElement('span');
-                    let textNode = document.createTextNode(msg.content);
-                    msgNode.append(textNode);
-                    messageContainer.appendChild(msgNode);
-                }
-                parentContainer.appendChild(messageContainer);
-                await fs.appendFile('index.html', parentContainer.outerHTML).catch(err => console.log(err));
-
+                await fs.appendFile('index.txt', msg).catch(err => console.log(err));
             });
-            let attachment = new MessageAttachment("./index.html");
+            let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`);
             return message.channel.send(attachment);
-	    }
+	}
 	}
 };
 module.exports = Transcript;
