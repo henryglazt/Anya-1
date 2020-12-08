@@ -25,7 +25,7 @@ class Transcript extends Command {
         await message.delete();
         let text = new Collection();
         let msgs = await message.channel.messages.fetch({ limit: 100 });//.then(messages => {
-        text = text.concat(msgs);
+        text = text.concat(msgs); console.log(text);
         let reversed = text.array().reverse();
         let data = await fs.readFileSync('./transcript.txt', 'utf8')
         if (data) {
