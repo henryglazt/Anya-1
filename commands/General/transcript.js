@@ -28,7 +28,7 @@ class Transcript extends Command {
 
         msg.forEach(m => {
            text.push(m.author.tag + moment(m.createdTimestamp).calendar() + m.content)
-        }
+        })
 console.log(text)
 
                 /*for (let [key, value] of messages) {
