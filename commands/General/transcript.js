@@ -24,19 +24,19 @@ class Transcript extends Command {
 
         await message.delete();
         let text = new Collection();
-        message.channel.messages.fetch({ limit: 100 }).then(messages => {
-
-                for (let [key, value] of messages) {
-                    let dateString = `${moment(value.createdTimestamp).calendar()}`;
-
-                    text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
-
-                }
-                let fixed = text.array().reverse();
-                fs.writeFileSync("index.txt", fixed)
+        let msgs = await message.channel.messages.fetch({ limit: 100 });//.then(messages => {
+        text = text.concat(msgs);
+        let reversed = text.array().reverse();
+        let data = await fs.readFile('./transcript.txt', 'utf8').catch(err => console.log(err));
+        if (data) {
+                reversed.forEach(async msg => {
+                    let dateString = `${moment(msg.createdTimestamp).calendar()}`;
+                    msg = `${msg.author.tag} at ${dateString}: ${msg.content}`;
+                await fs.writeFileSync("index.txt", fixed).catch(() => {});
+                })
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
                 return message.channel.send(attachment);
-            }).catch(err => {
+           /* }).catch(err => {
                 console.log(`Failed to fetch messages: ${err}`);
             });
 
@@ -44,6 +44,12 @@ class Transcript extends Command {
         let channelMessages = await message.channel.messages.fetch({
             limit: 100
         }).catch(err => console.log(err));
+
+let dateString = `${moment(value.createdTimestamp).calendar()}`;
+
+                    text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
+
+                }
 
         messageCollection = messageCollection.concat(channelMessages);
 
@@ -54,7 +60,7 @@ class Transcript extends Command {
                 messageCollection = messageCollection.concat(channelMessages);
         }
         let msgs = messageCollection.array().reverse();
-        let data = await fs.readFile('./transcript.txt', 'utf8').catch(err => console.log(err));
+
         if (data) {
             //await fs.writeFile('index.txt', data).catch(err => console.log(err));
             msgs.forEach(async msg => {
