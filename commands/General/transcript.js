@@ -36,6 +36,7 @@ class Transcript extends Command {
                 })
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
                 return message.channel.send(attachment);
+        }
            /* }).catch(err => {
                 console.log(`Failed to fetch messages: ${err}`);
             });
