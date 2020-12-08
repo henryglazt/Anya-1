@@ -23,9 +23,8 @@ class Transcript extends Command {
 	async run (message) {
 
         await message.delete();
-
+        let text = new Collection();
         message.channel.messages.fetch({ limit: 100 }).then(messages => {
-                let text = new Collection();
 
                 for (let [key, value] of messages) {
                     let dateString = `${moment(value.createdTimestamp).calendar()}`;
