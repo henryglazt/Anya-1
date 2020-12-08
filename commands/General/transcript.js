@@ -1,6 +1,5 @@
 const Command = require("../../base/Command.js"),
-	fs = require("fs").promises,
-		{ JSDOM } = require("jsdom"),
+	fs = require("fs"),
 			{ Collection, MessageAttachment } = require("discord.js");
 
 class Transcript extends Command {
@@ -24,9 +23,25 @@ class Transcript extends Command {
 
         await message.delete();
 
-        const dom = new JSDOM();
-        const document = dom.window.document;
-        let messageCollection = new Collection();
+        message.channel.messages.fetch({ limit: 100 })
+            .then(messages => {
+                let text = "";
+
+                for (let [key, value] of messages) {
+                    const date = new Date(value.createdTimestamp);
+                    let dateString = `${date.getDate()}/${date.getMonth()} ${date.getHours()}h ${date.getMinutes()}m`;
+
+                    text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
+                }
+                await fs.writeFileSync("index.txt", text).catch(err => console.log(err));
+                let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
+                return message.channel.send(attachment);
+            })
+            .catch(err => {
+                console.log(`Failed to fetch messages: ${err}`);
+            });
+
+        /*let messageCollection = new Collection();
         let channelMessages = await message.channel.messages.fetch({
             limit: 100
         }).catch(err => console.log(err));
@@ -48,7 +63,7 @@ class Transcript extends Command {
             });
             let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
             return message.channel.send(attachment);
-	}
+	}*/
 	}
 };
 module.exports = Transcript;
