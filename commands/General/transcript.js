@@ -31,7 +31,7 @@ class Transcript extends Command {
         if (data) {
                 reversed.forEach(async msg => {
                     let dateString = `${moment(msg.createdTimestamp).calendar()}`;
-                    msg = `${msg.author.tag} at ${dateString}: ${msg.content}`;
+                    msg += `${msg.author.tag} at ${dateString}: ${msg.content}\n`;
                 await fs.writeFileSync("index.txt", msg).catch(() => {});
                 })
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
