@@ -24,7 +24,7 @@ class Transcript extends Command {
 
         await message.delete();
 
-        await message.channel.messages.fetch({ limit: 100 }).then(messages => {
+        await message.channel.messages.fetch({ limit: 100 }).then(async messages => {
                 let text = "";
                 let txt = [];
                 for (let [key, value] of messages) {
