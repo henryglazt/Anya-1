@@ -23,19 +23,18 @@ class Transcript extends Command {
 	async run (message) {
 
         await message.delete();
+        let text = [];
+        let msg = await message.channel.messages.fetch({ limit: 100 });//.then(async messages => {
 
-        await message.channel.messages.fetch({ limit: 100 }).then(messages => {
-                let txt = [];
-                let text = "";
-                for (let [key, value] of messages) {
+        msg.forEach(m => {
+           text.push(m.author.tag + moment(m.createdTimestamp).calendar() + m.content)
+        }
+console.log(text)
+
+                /*for (let [key, value] of messages) {
                     let dateString = moment(value.createdTimestamp).calendar();
                     text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
-                    txt.push(text);
-                    txt.reverse();
-                    fs.writeFile("index.txt", txt)
                 }
-                let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
-                return message.channel.send(attachment);
             }).catch(err => {
                 console.log(`Failed to fetch messages: ${err}`);
             });
