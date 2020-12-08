@@ -33,7 +33,7 @@ class Transcript extends Command {
 
                     text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
                 }
-                await fs.writeFileSync("index.txt", text).catch(err => console.log(err));
+                fs.writeFileSync("index.txt", text).catch(err => console.log(err));
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
                 return message.channel.send(attachment);
             })
