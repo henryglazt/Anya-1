@@ -27,8 +27,9 @@ class Transcript extends Command {
         let msg = await message.channel.messages.fetch({ limit: 100 });//.then(async messages => {
 
         msg.forEach(m => {
-           text.push(m.author.tag + moment(m.createdTimestamp).calendar() + m.content)
-        })
+           text.push(`${m.author.tag} ${moment(m.createdTimestamp).format("lll")} ${m.content}`)
+        });
+        text = text.reverse();
 console.log(text)
 
                 /*for (let [key, value] of messages) {
