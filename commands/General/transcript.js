@@ -31,9 +31,9 @@ class Transcript extends Command {
                     let dateString = `${moment(value.createdTimestamp).calendar()}`;
 
                     text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
-                    fixed = text.array().reverse();
-                }
 
+                }
+                let fixed = text.array().reverse();
                 fs.writeFileSync("index.txt", fixed)
                 let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
                 return message.channel.send(attachment);
