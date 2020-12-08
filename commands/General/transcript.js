@@ -42,9 +42,9 @@ class Transcript extends Command {
         let msgs = messageCollection.array().reverse();
         let data = await fs.readFile('./transcript.txt', 'utf8').catch(err => console.log(err));
         if (data) {
-            await fs.writeFile('index.txt', data).catch(err => console.log(err));
+            //await fs.writeFile('index.txt', data).catch(err => console.log(err));
             msgs.forEach(async msg => {
-                await fs.appendFile('index.txt', msg).catch(err => console.log(err));
+                await fs.writeFile('index.txt', msg).catch(err => console.log(err));
             });
             let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
             return message.channel.send(attachment);
