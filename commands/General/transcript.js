@@ -1,6 +1,7 @@
 const Command = require("../../base/Command.js"),
 	fs = require("fs"),
-		{ Collection, MessageAttachment } = require("discord.js");
+		moment = require("moment"),
+			{ Collection, MessageAttachment } = require("discord.js");
 
 class Transcript extends Command {
 
