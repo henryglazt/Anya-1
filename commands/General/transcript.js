@@ -46,7 +46,7 @@ class Transcript extends Command {
             msgs.forEach(async msg => {
                 await fs.appendFile('index.txt', msg).catch(err => console.log(err));
             });
-            let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`);
+            let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
             return message.channel.send(attachment);
 	}
 	}
