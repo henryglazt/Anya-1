@@ -1,3 +1,5 @@
+"use-strict";
+
 const Canvas = require("canvas"),
 	Discord = require("discord.js");
 const { resolve } = require("path");
