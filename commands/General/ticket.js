@@ -1,6 +1,8 @@
 const Command = require("../../base/Command.js"),
-	Resolvers = require("../../helpers/resolvers"),
-		{ MessageEmbed } = require("discord.js");
+	fs = require("fs").promises,
+		moment = require("moment"),
+			Resolvers = require("../../helpers/resolvers"),
+				{ MessageAttachment, MessageEmbed } = require("discord.js");
 
 class Ticket extends Command {
 
@@ -36,7 +38,7 @@ class Ticket extends Command {
 			return message.error("general/ticket:MISSING_ROLE");
 		}
 		const logsChannel = message.guild.channels.cache.get(tickets.logs);
-		if (!logs) {
+		if (!logsChannel) {
 			return message.error("general/ticket:MISSING_CHANNEL");
 		}
 
@@ -54,12 +56,56 @@ class Ticket extends Command {
 		}
 
 		if (status === "close") {
+
 			if (ticket.resolved) {
 				return message.error("general/ticket:RESOLVE_TRUE");
 			}
-			if
+
+			let x;
+			let att = [];
+			let text = [];
+			moment.locale("id");
+
+			let msg = await message.channel.messages.fetch({ limit: 100 });
+
+			msg.forEach(m => {
+				x = m.attachments.map(a => a.proxyURL);
+				if (x.length > 0) att.push(`from: ${m.author.tag} ${x}`);
+				text.push(`${m.author.tag}:\n${m.content}\n${moment(m.createdTimestamp).format("L")} - ${moment(m.createdTimestamp).format("LT")}\n\n`);
+			});
+
+			att = att.join("\n");
+			text = text.reverse().join("");
+
+			let msgs = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
+			if (msgs) {
+				await fs.writeFile("index.txt", text).catch(err => console.error(err));
+				let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
+				await logsChannel.send(attachment);
+				if (att.length > 0) logsChannel.send(att);
+			}
+
+			message.success("general/ticket:CLOSE", {
+				channel: channel.toString()
+			});
+
+			let chToDel = await message.guild.channels.cache.get(memberData.ticket.channel);
+			setTimeout(() => {
+				chToDel.delete();
+			}, 15000);
+
+			memberData.ticket = {
+				resolved = true,
+				author = null,
+				channel = null
+			}
+
+			memberData.markModified("ticket");
+			await memberData.save();
+			return;
 
 		} else if (status === "open" && reason) {
+
 			if (!ticket.resolved) {
 				return message.error("general/ticket:RESOLVE_FALSE");
 			}
@@ -93,10 +139,14 @@ class Ticket extends Command {
 
 			channel.send(openEmbed);
 
-			return message.success("general/ticket:SUCCESS", {
+			return message.success("general/ticket:OPEN", {
 				channel: channel.toString()
 			});
+
 		}
+
 	}
-}
+
+};
+
 module.exports = Ticket;
