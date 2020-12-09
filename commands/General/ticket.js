@@ -135,7 +135,7 @@ class Ticket extends Command {
 				.setDescription(message.translate("general/ticket:EMBED_DESC", {
 					author: message.author.toString(),
 					prefix: data.guild.prefix
-				});
+				}));
 
 			channel.send(openEmbed);
 
@@ -147,6 +147,6 @@ class Ticket extends Command {
 
 	}
 
-};
+}
 
 module.exports = Ticket;
