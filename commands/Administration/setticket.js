@@ -98,11 +98,14 @@ class Setticket extends Command {
 					data.guild.plugins.tickets = tickets;
 					data.guild.markModified("plugins.tickets");
 					await data.guild.save();
-					const channel = await message.guild.channels.create("ticket-channel", {
+					message.guild.channels.create("ticket-channel", {
 						parent: tickets.category,
 						permissionOverwrites: [{ allow: "VIEW_CHANNEL", id: message.guild.id }]
+					}).then((c) => {
+						tickets.channel = c.id;
+					}).catch((e) => {
+						message.error(e);
 					});
-					tickets.channel = channel.id;
 					message.success("administration/setticket:FORM_SUCCESS", {
 						channel: `<#${tickets.channel}>`,
 						prefix: data.guild.prefix
