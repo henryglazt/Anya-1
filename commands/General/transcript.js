@@ -23,52 +23,22 @@ class Transcript extends Command {
 	async run (message) {
 
         await message.delete();
+
         let text = [];
-        let msg = await message.channel.messages.fetch({ limit: 100 });//.then(async messages => {
+        let msg = await message.channel.messages.fetch({ limit: 100 });
 
         msg.forEach(m => {
-           text.push(`${m.author.tag} ${moment(m.createdTimestamp).format("lll")} ${m.content}`)
+           text.push(`${m.author.tag} | ${moment(m.createdTimestamp).format("lll")} | ${m.content}`)
         });
         text = text.reverse();
-console.log(text)
 
-                /*for (let [key, value] of messages) {
-                    let dateString = moment(value.createdTimestamp).calendar();
-                    text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
-                }
-            }).catch(err => {
-                console.log(`Failed to fetch messages: ${err}`);
-            });
-
-        /*let messageCollection = new Collection();
-        let channelMessages = await message.channel.messages.fetch({
-            limit: 100
-        }).catch(err => console.log(err));
-
-let dateString = `${moment(value.createdTimestamp).calendar()}`;
-
-                    text += `${value.author.tag} at ${dateString}: ${value.content}\n`;
-
-                }
-
-        messageCollection = messageCollection.concat(channelMessages);
-
-        while(channelMessages.size === 100) {
-            let lastMessageId = channelMessages.lastKey();
-            channelMessages = await message.channel.messages.fetch({ limit: 100, before: lastMessageId }).catch(err => console.log(err));
-            if(channelMessages)
-                messageCollection = messageCollection.concat(channelMessages);
-        }
-        let msgs = messageCollection.array().reverse();
-
-        if (data) {
-            //await fs.writeFile('index.txt', data).catch(err => console.log(err));
-            msgs.forEach(async msg => {
-                await fs.writeFile('index.txt', msg).catch(err => console.log(err));
-            });
-            let attachment = new MessageAttachment("./index.txt", `${message.author.tag}-tickets.txt`);
-            return message.channel.send(attachment);
-	}*/
+	try {
+		const file = await fs.writeFile("index.txt", "utf8", text);
+		let attachment = new MessageAttachment(file, `Ticket ${message.author.tag}`)
+		return message.channel.send(attachment);
+	} catch (err) {
+		return message.error(err);
+	}
 	}
 };
 module.exports = Transcript;
