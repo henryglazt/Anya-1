@@ -11,7 +11,7 @@ module.exports = class {
 	async run (message) {
 
 		const data = {};
-		if(message.author.bot){
+		if (message.author.bot && message.author.id === "287977955240706060") {
 			return;
 		}
 
