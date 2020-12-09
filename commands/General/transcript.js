@@ -28,7 +28,7 @@ class Transcript extends Command {
                 let msg = await message.channel.messages.fetch({ limit: 100 });
 
                 msg.forEach(m => {
-                      text.push(`${m.author.tag} | ${moment(m.createdTimestamp).format("lll")} | ${m.content}`);
+                      text.push(`${m.author.tag} | ${moment(m.createdTimestamp).format("lll")} | ${m.content}\n`);
                 });
 
                 text = text.reverse();
@@ -36,7 +36,7 @@ class Transcript extends Command {
 		let data = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
 		if (data) {
 			await fs.writeFile("index.txt", text).catch(err => console.error(err));
-			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`);
+			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
 			return message.channel.send(attachment);
 		}
 
