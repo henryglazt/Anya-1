@@ -41,8 +41,6 @@ class Ticket extends Command {
 
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
-		let ticket = data.memberData.ticket;
-console.log(ticket);
 		if (!status) {
 			return message.error("general/ticket:NO_STATUS");
 		}
@@ -55,11 +53,11 @@ console.log(ticket);
 
 		if (status === "close") {
 
-			if (ticket.channel !== message.channel.id) {
+			if (data.memberData.ticket.channel !== message.channel.id) {
 				return message.error("general/ticket:WRONG_CHANNEL");
 			}
 
-			if (ticket.resolved) {
+			if (data.memberData.ticket.resolved) {
 				return message.error("general/ticket:RESOLVE_TRUE");
 			}
 
@@ -96,7 +94,7 @@ console.log(ticket);
 				chToDel.delete().catch((e) => message.error(e));
 			}, 15000);
 
-			ticket = {
+			data.memberData.ticket = {
 				resolved: true,
 				author: null,
 				channel: null
@@ -112,7 +110,7 @@ console.log(ticket);
 				return message.error("general/ticket:WRONG_CHANNEL");
 			}
 
-			if (!ticket.resolved) {
+			if (!data.memberData.ticket.resolved) {
 				return message.error("general/ticket:RESOLVE_FALSE");
 			}
 
@@ -125,7 +123,7 @@ console.log(ticket);
 				]
 			}).catch((e) => message.error(e));
 
-			ticket = {
+			data.memberData.ticket = {
 				resolved: false,
 				author: message.author.id,
 				channel: channel.id
