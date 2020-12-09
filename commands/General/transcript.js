@@ -43,7 +43,8 @@ class Transcript extends Command {
 		if (data) {
 			await fs.writeFile("index.txt", text).catch(err => console.error(err));
 			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
-			return message.channel.send([attachment, att]);
+			if (att.length > 0) message.channel.send(att);
+			return message.channel.send(attachment);
 		}
 
 	}
