@@ -98,7 +98,7 @@ class Ticket extends Command {
 				resolved: true,
 				author: null,
 				channel: null
-			}
+			};
 
 			memberData.markModified("ticket");
 			await memberData.save();
@@ -113,9 +113,9 @@ class Ticket extends Command {
 			const channel = await message.guild.channels.create(reason, {
 				parent: data.guild.plugins.tickets.category,
 				permissionOverwrites: [
-					{ id: found, allow: ["VIEW_CHANNEL", "SEND_MESSAGES", "ATTACH_FILES"] }
+					{ id: message.guild.id, deny: "VIEW_CHANNEL" },
+					{ id: found, allow: ["VIEW_CHANNEL", "SEND_MESSAGES", "ATTACH_FILES"] },
 					{ id: message.author.id, allow: ["VIEW_CHANNEL", "SEND_MESSAGES", "ATTACH_FILES"] }
-					{ id: message.guild.id, deny: "VIEW_CHANNEL" }
 				]
 			}).catch((e) => message.error(e));
 
@@ -123,7 +123,7 @@ class Ticket extends Command {
 				resolved: false,
 				author: message.author.id,
 				channel: channel.id
-			}
+			};
 
 			memberData.ticket = ticket;
 			memberData.markModified("ticket");
