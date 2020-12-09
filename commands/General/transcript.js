@@ -32,9 +32,9 @@ class Transcript extends Command {
         });
         text = text.reverse();
 
-	let data = await fs.readFile("./transcript.txt", "utf8", data);
+	let data = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
 	if (data) {
-		await fs.writeFile("index.txt", text).catch((e) => console.error(e));
+		await fs.writeFile("index.txt", data).catch(err => console.error(err));
 		let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`)
 		return message.channel.send(attachment);
 	}
