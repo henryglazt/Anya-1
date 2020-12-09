@@ -17,7 +17,7 @@ class Ticket extends Command {
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
 			ownerOnly: false,
-			cooldown: 600000
+			cooldown: 20000
 		});
 	}
 
