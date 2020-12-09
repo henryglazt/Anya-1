@@ -34,8 +34,8 @@ class Transcript extends Command {
 
                 msg.forEach(m => {
 			x = m.attachments.map(a => a.proxyURL);
-			if (x.length > 0) att.push(x);
-			text.push(`${m.author.tag}:\nMessage: ${m.content}\nAttacments:n${moment(m.createdTimestamp).format("L")} - ${moment(m.createdTimestamp).format("LT")}\n\n`);
+			if (x.length > 0) att.push({ from: m.author.tag, url: x });
+			text.push(`${m.author.tag}:\n${m.content}\n${moment(m.createdTimestamp).format("L")} - ${moment(m.createdTimestamp).format("LT")}\n\n`);
                 });
 
 		att = att.join("\n");
@@ -45,7 +45,7 @@ class Transcript extends Command {
 		if (data) {
 			await fs.writeFile("index.txt", text).catch(err => console.error(err));
 			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
-			message.channel.send(attachment);
+			await message.channel.send(attachment);
 			if (att.length > 0) message.channel.send(att);
 			return;
 		}
