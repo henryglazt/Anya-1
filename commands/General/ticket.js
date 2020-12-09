@@ -42,6 +42,7 @@ class Ticket extends Command {
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
 		let ticket = data.memberData.ticket;
+console.log(ticket);
 		if (!status) {
 			return message.error("general/ticket:NO_STATUS");
 		}
