@@ -44,7 +44,7 @@ class Ticket extends Command {
 
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
-		const ticket = data.memberData.ticket;
+		let ticket = memberData.ticket;
 		if (!status) {
 			return message.error("general/ticket:NO_STATUS");
 		}
@@ -94,7 +94,7 @@ class Ticket extends Command {
 				chToDel.delete().catch((e) => message.error(e));
 			}, 15000);
 
-			memberData.ticket = {
+			ticket = {
 				resolved: true,
 				author: null,
 				channel: null
@@ -119,13 +119,12 @@ class Ticket extends Command {
 				]
 			}).catch((e) => message.error(e));
 
-			const ticket = {
+			ticket = {
 				resolved: false,
 				author: message.author.id,
 				channel: channel.id
 			};
 
-			memberData.ticket = ticket;
 			memberData.markModified("ticket");
 			await memberData.save();
 
