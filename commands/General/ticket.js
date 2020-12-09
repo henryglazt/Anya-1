@@ -44,7 +44,7 @@ class Ticket extends Command {
 
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
-		let ticket = memberData.ticket;
+		let ticket = data.memberData.ticket;
 		if (!status) {
 			return message.error("general/ticket:NO_STATUS");
 		}
@@ -100,8 +100,8 @@ class Ticket extends Command {
 				channel: null
 			};
 
-			memberData.markModified("ticket");
-			await memberData.save();
+			data.memberData.markModified("ticket");
+			await data.memberData.save();
 			return;
 
 		} else if (status === "open" && reason) {
@@ -125,8 +125,8 @@ class Ticket extends Command {
 				channel: channel.id
 			};
 
-			memberData.markModified("ticket");
-			await memberData.save();
+			data.memberData.markModified("ticket");
+			await data.memberData.save();
 
 			const openEmbed = new MessageEmbed()
 				.setColor(data.config.embed.color)
