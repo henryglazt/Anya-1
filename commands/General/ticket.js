@@ -27,9 +27,6 @@ class Ticket extends Command {
 		if (!tickets.enabled) {
 			return message.error("general/ticket:DISABLED");
 		}
-		if (tickets.channel !== message.channel.id) {
-			return message.error("general/ticket:WRONG_CHANNEL");
-		}
 		const found = await Resolvers.resolveRole({
 			message,
 			search: tickets.role
@@ -56,6 +53,10 @@ class Ticket extends Command {
 		}
 
 		if (status === "close") {
+
+			if (ticket.channel !== message.channel.id) {
+				return message.error("general/ticket:WRONG_CHANNEL");
+			}
 
 			if (ticket.resolved) {
 				return message.error("general/ticket:RESOLVE_TRUE");
@@ -105,6 +106,10 @@ class Ticket extends Command {
 			return;
 
 		} else if (status === "open" && reason) {
+
+			if (tickets.channel !== message.channel.id) {
+				return message.error("general/ticket:WRONG_CHANNEL");
+			}
 
 			if (!ticket.resolved) {
 				return message.error("general/ticket:RESOLVE_FALSE");
