@@ -22,22 +22,26 @@ class Transcript extends Command {
 
 	async run (message) {
 
-        await message.delete();
+                await message.delete();
 
-        let text = [];
-        let msg = await message.channel.messages.fetch({ limit: 100 });
+                let text = [];
+                let msg = await message.channel.messages.fetch({ limit: 100 });
 
-        msg.forEach(m => {
-           text.push(`${m.author.tag} | ${moment(m.createdTimestamp).format("lll")} | ${m.content}`)
-        });
-        text = text.reverse();
+                msg.forEach(m => {
+                      text.push(`${m.author.tag} | ${moment(m.createdTimestamp).format("lll")} | ${m.content}`);
+                });
 
-	let data = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
-	if (data) {
-		await fs.writeFile("index.txt", data).catch(err => console.error(err));
-		let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`)
-		return message.channel.send(attachment);
-	}}
+                text = text.reverse();
+
+		let data = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
+		if (data) {
+			await fs.writeFile("index.txt", data).catch(err => console.error(err));
+			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`);
+			return message.channel.send(attachment);
+		}
+
 	}
+
 };
+
 module.exports = Transcript;
