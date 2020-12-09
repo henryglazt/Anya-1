@@ -95,9 +95,9 @@ class Ticket extends Command {
 			}, 15000);
 
 			memberData.ticket = {
-				resolved = true,
-				author = null,
-				channel = null
+				resolved: true,
+				author: null,
+				channel: null
 			}
 
 			memberData.markModified("ticket");
@@ -120,9 +120,9 @@ class Ticket extends Command {
 			}).catch((e) => message.error(e));
 
 			const ticket = {
-				resolved = false,
-				author = message.author.id,
-				channel = channel.id
+				resolved: false,
+				author: message.author.id,
+				channel: channel.id
 			}
 
 			memberData.ticket = ticket;
