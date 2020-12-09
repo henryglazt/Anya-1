@@ -30,10 +30,10 @@ class Transcript extends Command {
 		moment.locale("id");
 
                 msg.forEach(m => {
-                      text.push(`${m.author.tag}:\n${m.content}\n${moment(m.createdTimestamp).format("L")}-${moment(m.createdTimestamp).format("LT")}\n\n`);
+                      	text.push(`${m.author.tag}:\n${m.content}\n${moment(m.createdTimestamp).format("L")} - ${moment(m.createdTimestamp).format("LT")}\n\n`);
                 });
 
-                text = text.reverse();
+		text = text.reverse().join(" ");
 
 		let data = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
 		if (data) {
