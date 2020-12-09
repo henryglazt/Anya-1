@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-	fs = require("fs"),
+	fs = require("fs").promises,
 		moment = require("moment"),
 			{ Collection, MessageAttachment } = require("discord.js");
 
@@ -33,7 +33,7 @@ class Transcript extends Command {
 
                 text = text.reverse();
 
-		let data = await fs.readFile('./transcript.txt', 'utf8').catch(err => console.error(err));
+		let data = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
 		if (data) {
 			await fs.writeFile("index.txt", data).catch(err => console.error(err));
 			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`);
