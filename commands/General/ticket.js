@@ -85,12 +85,10 @@ class Ticket extends Command {
 				if (att.length > 0) logsChannel.send(att);
 			}
 
-			message.success("general/ticket:CLOSE");
+			await message.success("general/ticket:CLOSE");
 
 			let chToDel = await message.guild.channels.cache.get(memberData.ticket.channel);
-			setTimeout(() => {
-				chToDel.delete().catch((e) => message.error(e));
-			}, 15000);
+			await chToDel.delete().catch((e) => message.error(e));
 
 			data.memberData.ticket = {
 				resolved: true,
