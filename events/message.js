@@ -11,7 +11,7 @@ module.exports = class {
 	async run (message) {
 
 		const data = {};
-		if (message.author.bot && message.author.id === "287977955240706060") {
+		if (message.author.bot) {
 			return;
 		}
 
@@ -83,6 +83,8 @@ module.exports = class {
 
 		const userData = await client.findOrCreateUser({ id: message.author.id });
 		data.userData = userData;
+
+		if(message.author.id === "287977955240706060") return;
 
 		if(message.guild){
 
