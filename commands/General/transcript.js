@@ -33,7 +33,7 @@ class Transcript extends Command {
 
                 text = text.reverse();
 
-		let data = await fs.readFile("./transcript.txt", "utf8").catch(err => console.error(err));
+		let data = await fs.readFile('./transcript.txt', 'utf8').catch(err => console.error(err));
 		if (data) {
 			await fs.writeFile("index.txt", data).catch(err => console.error(err));
 			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}`);
