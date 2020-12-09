@@ -24,14 +24,16 @@ class Transcript extends Command {
 
                 await message.delete();
 
-		let att = [];
 		let text = [];
+		let att = [];
+		let x;
+
 		let msg = await message.channel.messages.fetch({ limit: 100 });
 
 		moment.locale("id");
 
                 msg.forEach(m => {
-			let x = m.attachments.map(a => a.proxyURL);
+			x = m.attachments.map(a => a.proxyURL);
 			if (x.length > 0) att.push(x);
 			text.push(`${m.author.tag}:\nMessage: ${m.content}\nAttacments:n${moment(m.createdTimestamp).format("L")} - ${moment(m.createdTimestamp).format("LT")}\n\n`);
                 });
@@ -43,8 +45,9 @@ class Transcript extends Command {
 		if (data) {
 			await fs.writeFile("index.txt", text).catch(err => console.error(err));
 			let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
+			message.channel.send(attachment);
 			if (att.length > 0) message.channel.send(att);
-			return message.channel.send(attachment);
+			return;
 		}
 
 	}
