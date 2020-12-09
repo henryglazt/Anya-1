@@ -87,7 +87,7 @@ class Ticket extends Command {
 
 			await message.success("general/ticket:CLOSE");
 
-			let chToDel = await message.guild.channels.cache.get(memberData.ticket.channel);
+			let chToDel = await message.guild.channels.cache.get(data.memberData.ticket.channel);
 			await chToDel.delete().catch((e) => message.error(e));
 
 			data.memberData.ticket = {
