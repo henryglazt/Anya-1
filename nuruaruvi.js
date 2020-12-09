@@ -1,3 +1,5 @@
+"use-strict";
+
 require("./helpers/extenders");
 
 const Sentry = require("@sentry/node"),
