@@ -91,7 +91,7 @@ class Ticket extends Command {
 
 			let chToDel = await message.guild.channels.cache.get(memberData.ticket.channel);
 			setTimeout(() => {
-				chToDel.delete();
+				chToDel.delete().catch((e) => message.error(e));
 			}, 15000);
 
 			memberData.ticket = {
