@@ -27,8 +27,10 @@ class Transcript extends Command {
                 let text = [];
                 let msg = await message.channel.messages.fetch({ limit: 100 });
 
+		moment.locale("id");
+
                 msg.forEach(m => {
-                      text.push(`${m.author.tag} | ${moment(m.createdTimestamp).format("lll")} | ${m.content}\n`);
+                      text.push(`${m.author.tag}:\n${m.content}\n${moment(m.createdTimestamp).format("L")}-${moment(m.createdTimestamp).format("LT")}\n\n`);
                 });
 
                 text = text.reverse();
