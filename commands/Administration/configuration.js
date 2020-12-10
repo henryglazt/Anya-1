@@ -36,7 +36,7 @@ class Configuration extends Command {
 				guildData.ignoredChannels.map((ch) => `<#${ch}>`).join(", ")
 				:   message.translate("administration/configuration:NO_IGNORED_CHANNELS")
 		);
-    
+
 		// Autorole plugin
 		embed.addField(message.translate("administration/configuration:AUTOROLE_TITLE"), 
 			(guildData.plugins.autorole.enabled) ?
@@ -45,7 +45,7 @@ class Configuration extends Command {
 				})
 				:   message.translate("administration/configuration:AUTOROLE_DISABLED")
 		);
-        
+
 		// Welcome plugin
 		embed.addField(message.translate("administration/configuration:WELCOME_TITLE"),
 			(guildData.plugins.welcome.enabled) ?
@@ -55,7 +55,7 @@ class Configuration extends Command {
 				})
 				:   message.translate("administration/configuration:WELCOME_DISABLED")
 		);
-            
+
 		// Goodbye plugin
 		embed.addField(message.translate("administration/configuration:GOODBYE_TITLE"),
 			(guildData.plugins.goodbye.enabled) ?
@@ -84,7 +84,7 @@ class Configuration extends Command {
 					: message.translate("common:NOT_DEFINED")
 			})
 		);
-        
+
 		// Auto sanctions
 		embed.addField(message.translate("administration/configuration:AUTO_SANCTIONS"),
 			((guildData.plugins.warnsSanctions.kick) ?
