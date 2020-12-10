@@ -37,7 +37,7 @@ class Ticket extends Command {
 
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
-		if (!status) return message.client.commands.get("help").run(message, "ticket", data);
+		if (!status) return message.client.commands.get("help").run(message, ticket, data);
 		if (!reason) return message.error("general/ticket:NO_REASON");
 		if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
 
@@ -68,7 +68,7 @@ class Ticket extends Command {
 				await fs.writeFile("index.txt", text).catch(err => console.error(err));
 				let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
 				await logsChannel.send(attachment);
-				await message.author.send(message.success("general/ticket:CLOSE"), attachment);
+				await message.author.send(message.translate("general/ticket:CLOSE"), attachment);
 				if (att.length > 0) {
 					logsChannel.send(att);
 					message.author.send(att);
