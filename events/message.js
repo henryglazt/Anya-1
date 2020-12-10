@@ -84,7 +84,7 @@ module.exports = class {
 		const userData = await client.findOrCreateUser({ id: message.author.id });
 		data.userData = userData;
 
-		if(message.author.id === "287977955240706060") return;
+		if(message.author.id === "287977955240706060" || message.author.id === "716942982011682846") return;
 
 		if(message.guild){
 
