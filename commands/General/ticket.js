@@ -24,42 +24,28 @@ class Ticket extends Command {
 	async run (message, args, data) {
 
 		const tickets = data.guild.plugins.tickets;
-		if (!tickets.enabled) {
-			return message.error("general/ticket:DISABLED");
-		}
+		if (!tickets.enabled) return message.error("general/ticket:DISABLED");
+
 		const found = await Resolvers.resolveRole({
 			message,
 			search: tickets.role
 		});
-		if (!found) {
-			return message.error("general/ticket:MISSING_ROLE");
-		}
+		if (!found) return message.error("general/ticket:MISSING_ROLE");
+
 		const logsChannel = message.guild.channels.cache.get(tickets.logs);
-		if (!logsChannel) {
-			return message.error("general/ticket:MISSING_CHANNEL");
-		}
+		if (!logsChannel) return message.error("general/ticket:MISSING_CHANNEL");
 
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
-		if (!status) {
-			return message.error("general/ticket:NO_STATUS");
-		}
-		if (!reason) {
-			return message.error("general/ticket:NO_REASON");
-		}
-		if (reason.length > 20) {
-			return message.error("general/ticket:LIMIT_CHAR");
-		}
+		if (!status) return message.client.commands.get("help").run(message, "ticket", data);
+		if (!reason) return message.error("general/ticket:NO_REASON");
+		if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
 
 		if (status === "close") {
 
-			if (data.memberData.ticket.channel !== message.channel.id) {
-				return message.error("general/ticket:WRONG_CHANNEL");
-			}
-
-			if (data.memberData.ticket.resolved) {
-				return message.error("general/ticket:RESOLVE_TRUE");
-			}
+			if (data.memberData.ticket.channel !== message.channel.id) return message.error("general/ticket:CLOSE_CHANNEL", {
+				channel: `<#${data.memberData.ticket.channel}>`
+			});
 
 			let x;
 			let att = [];
@@ -82,10 +68,12 @@ class Ticket extends Command {
 				await fs.writeFile("index.txt", text).catch(err => console.error(err));
 				let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
 				await logsChannel.send(attachment);
-				if (att.length > 0) logsChannel.send(att);
+				await message.author.send(message.success("general/ticket:CLOSE"));
+				if (att.length > 0) {
+					logsChannel.send(att);
+					message.author.send(att);
+				}
 			}
-
-			await message.success("general/ticket:CLOSE");
 
 			let chToDel = await message.guild.channels.cache.get(data.memberData.ticket.channel);
 			await chToDel.delete().catch((e) => message.error(e));
@@ -102,13 +90,11 @@ class Ticket extends Command {
 
 		} else if (status === "open" && reason) {
 
-			if (tickets.channel !== message.channel.id) {
-				return message.error("general/ticket:WRONG_CHANNEL");
-			}
+			if (tickets.channel !== message.channel.id) return message.error("general/ticket:OPEN_CHANNEL", {
+				channel: `<#${tickets.channel}>`
+			});
 
-			if (!data.memberData.ticket.resolved) {
-				return message.error("general/ticket:RESOLVE_FALSE");
-			}
+			if (!data.memberData.ticket.resolved) return message.error("general/ticket:RESOLVE_FALSE");
 
 			const channel = await message.guild.channels.create(reason, {
 				parent: data.guild.plugins.tickets.category,
