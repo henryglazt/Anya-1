@@ -1,3 +1,5 @@
+"use-strict";
+
 const Command = require("../../base/Command.js"),
 	Discord = require("discord.js"),
 	math = require("mathjs");
