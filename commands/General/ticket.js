@@ -68,7 +68,7 @@ class Ticket extends Command {
 				await fs.writeFile("index.txt", text).catch(err => console.error(err));
 				let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
 				await logsChannel.send(attachment);
-				await message.author.send(message.success("general/ticket:CLOSE"));
+				await message.author.send(message.success("general/ticket:CLOSE"), attachment);
 				if (att.length > 0) {
 					logsChannel.send(att);
 					message.author.send(att);
