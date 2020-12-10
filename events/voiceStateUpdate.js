@@ -42,9 +42,10 @@ module.exports = class {
             v.session = exist.voice.sessionID;
         }
         if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
-            v.timeout2 = setTimeout(() => {
+            v.timeout2 = setTimeout(async() => {
                 let arr = [];
-                member.members.filter(m => !m.user.bot).forEach(m => arr.push({
+                let memIN = member.members.filter(m => !m.user.bot);
+                await memIN.forEach(m => arr.push({
                     name: m.user.username,
                     id: m.id,
                     sid: m.voice.sessionID
