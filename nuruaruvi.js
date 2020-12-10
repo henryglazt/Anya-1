@@ -121,7 +121,8 @@ client.manager = new Manager({
             embed2.addField(musji.leave + " " + m.guild.translate("music/stop:LEAVE"), m.guild.translate("music/stop:IDLE") + "\n" + m.guild.translate("music/stop:THANK", {
               anya: client.user.username
             }));
-        if (m.voice.channelID !== null) {
+        const target = m.guild.members.cache.get(v.id);
+        if (target.voice.channelID === player.voiceChannel) {
             channel.send("<@" + v.id + ">", embed1);
         } else {
             channel.send(embed1);
