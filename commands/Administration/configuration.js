@@ -24,8 +24,8 @@ class Configuration extends Command {
 
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }))
-			.setColor(this.client.config.embed.color)
-			.setFooter(this.client.config.embed.footer);
+			.setColor(data.config.embed.color)
+			.setFooter(data.config.embed.footer);
 
 		// Guild prefix
 		embed.addField(message.translate("administration/configuration:PREFIX_TITLE"), guildData.prefix);
@@ -60,7 +60,7 @@ class Configuration extends Command {
 		embed.addField(message.translate("administration/configuration:GOODBYE_TITLE"),
 			(guildData.plugins.goodbye.enabled) ?
 				message.translate("administration/configuration:GOODBYE_CONTENT", {
-					channel: `<#${guildData.plugins.goodbye.channelID}>`,
+					channel: `<#${guildData.plugins.goodbye.channel}>`,
 					withImage: guildData.plugins.goodbye.withImage ? message.translate("common:YES") : message.translate("common:NO")
 				})
 				:   message.translate("administration/configuration:GOODBYE_DISABLED")
@@ -113,6 +113,16 @@ class Configuration extends Command {
 			(!message.guild.autoDeleteModCommands) ?
 				message.translate("administration/configuration:AUTODELETEMOD_ENABLED")
 				:   message.translate("administration/configuration:AUTODELETEMOD_DISABLED")
+		);
+
+		// Ticket plugin
+		embed.addField(message.translate("administration/configuration:TICKET_TITLE"),
+			(guildData.plugins.tickets.enabled) ?
+				message.translate("administration/configuration:TICKET_CONTENT", {
+					channel: `<#${guildData.plugins.tickets.channel}>`,
+					logs: `<#${guildData.plugins.tickets.logs}>`
+				})
+				:   message.translate("administration/configuration:TICKET_DISABLED")
 		);
 		message.channel.send(embed);
 	}
