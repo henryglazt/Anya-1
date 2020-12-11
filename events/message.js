@@ -128,10 +128,6 @@ module.exports = class {
 				}
 			}
 
-			if(data.guild.plugins.tickets.enabled && data.guild.plugins.tickets.channel === message.channel.id){
-				await message.delete();
-			}
-
 			const afkReason = data.userData.afk;
 			if(afkReason){
 				data.userData.afk = null;
