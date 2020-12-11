@@ -128,6 +128,14 @@ module.exports = class {
 				}
 			}
 
+			if(data.guild.plugins.tickets.enabled){
+				if(message.channel.id === data.guild.plugins.tickets.channel){
+					if(!message.content.inludes([`${data.guild.prefix}ticket`, `${data.guild.prefix}tiket`]){
+						return message.delete();
+					}
+				}
+			}
+
 			const afkReason = data.userData.afk;
 			if(afkReason){
 				data.userData.afk = null;
