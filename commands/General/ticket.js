@@ -36,8 +36,9 @@ class Ticket extends Command {
 		if (!logsChannel) return message.error("general/ticket:MISSING_CHANNEL");
 
 		const status = args[0];
+		const lol = "ticket";
 		const reason = args.slice(1).join(" ");
-		if (!status) return message.client.commands.get("help").run(message, message.content.slice(2) , data);
+		if (!status) return message.client.commands.get("help").run(message, lol, data);
 		if (!reason) return message.error("general/ticket:NO_REASON");
 		if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
 
