@@ -23,6 +23,8 @@ class Ticket extends Command {
 
 	async run (message, args, data) {
 
+		await message.delete();
+
 		const tickets = data.guild.plugins.tickets;
 		if (!tickets.enabled) return message.error("general/ticket:DISABLED");
 
@@ -36,13 +38,57 @@ class Ticket extends Command {
 		if (!logsChannel) return message.error("general/ticket:MISSING_CHANNEL");
 
 		const status = args[0];
-		const lol = "ticket";
 		const reason = args.slice(1).join(" ");
-		if (!status) return message.client.commands.get("help").run(message, lol, data);
 		if (!reason) return message.error("general/ticket:NO_REASON");
 		if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
 
-		if (status === "close") {
+		if (!status) {
+
+			const cmd = this.client.commands.get("ticket");
+			const description = message.translate(`${cmd.help.category.toLowerCase()}/${cmd.help.name}:DESCRIPTION`);
+			const usage = message.translate(`${cmd.help.category.toLowerCase()}/${cmd.help.name}:USAGE`, {
+				prefix: message.guild
+					? data.guild.prefix
+					: ""
+			});
+
+			const examples = message.translate(`${cmd.help.category.toLowerCase()}/${cmd.help.name}:EXAMPLES`, {
+				prefix: message.guild
+					? data.guild.prefix
+					: ""
+			});
+
+			const groupEmbed = new MessageEmbed()
+				.setAuthor(
+					message.translate("general/help:CMD_TITLE", {
+						prefix: message.guild
+							? data.guild.prefix
+							: "",
+						cmd: cmd.help.name
+					}))
+				.addField(
+					message.translate("general/help:FIELD_DESCRIPTION"),
+					description)
+				.addField(message.translate("general/help:FIELD_USAGE"), usage)
+				.addField(
+					message.translate("general/help:FIELD_EXAMPLES"),
+					examples)
+				.addField(
+					message.translate("general/help:FIELD_ALIASES"),
+					cmd.help.aliases.length > 0
+						? cmd.help.aliases.map(a => "`" + a + "`").join("\n")
+						: message.translate("general/help:NO_ALIAS"))
+				.addField(
+					message.translate("general/help:FIELD_PERMISSIONS"),
+					cmd.conf.memberPermissions.length > 0
+						? cmd.conf.memberPermissions.map((p) => "`"+p+"`").join("\n")
+						: message.translate("general/help:NO_REQUIRED_PERMISSION"))
+				.setColor(data.config.embed.color)
+				.setFooter(data.config.embed.footer);
+
+			return message.channel.send(groupEmbed).then(m => m.delete({timeout: 10000}));
+
+		} else if (status === "close") {
 
 			if (data.memberData.ticket.channel !== message.channel.id) return message.error("general/ticket:CLOSE_CHANNEL", {
 				channel: `<#${data.memberData.ticket.channel}>`
@@ -127,7 +173,7 @@ class Ticket extends Command {
 
 			return message.success("general/ticket:OPEN", {
 				channel: channel.toString()
-			});
+			}).then(m => m.delete({timeout: 10000}));
 
 		}
 
