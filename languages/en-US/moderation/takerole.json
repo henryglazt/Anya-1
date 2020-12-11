@@ -1,5 +1,10 @@
 {
     "DESCRIPTION": "Take a role from member.",
     "USAGE": "{{prefix}}takerole (@member) [role_id/role_name/@role]",
-    "EXAMPLES": "{{prefix}}takerole @DooM™#9139 myrole"
+    "EXAMPLES": "{{prefix}}takerole @DooM™#9139 myrole",
+    "NO_ARGS": "Please specify the member and the role to be given to!",
+    "NO_MEMBER": "Member not found!",
+    "NO_ROLE": "Role not found!",
+    "HAS_ROLE": "{{member}} already have the {{role}} role",
+    "SUCCESS": "{{role}} role has been removed from {{member}}"
 }
