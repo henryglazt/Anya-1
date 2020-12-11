@@ -140,7 +140,7 @@ class Ticket extends Command {
 					.setDescription(message.translate("general/ticket:CLOSE_LOGS", {
 						author: message.author.tag,
 						reason: reason,
-						case: `#${data.guild.plugins.tickets.case}`,
+						case: `#${data.guild.ticketCase}`,
 						id: message.author.id
 					}));
 				return logsClose.send(logsCloseEmbed);
@@ -165,6 +165,8 @@ class Ticket extends Command {
 				]
 			}).catch((e) => message.error(e));
 
+			data.guild.ticketCase++;
+
 			data.memberData.ticket = {
 				resolved: false,
 				author: message.author.id,
@@ -172,7 +174,6 @@ class Ticket extends Command {
 			};
 
 			data.memberData.markModified("ticket");
-			data.guild.plugins.tickets.case++;
 			await data.memberData.save();
 			await data.guild.save();
 
@@ -195,7 +196,7 @@ class Ticket extends Command {
 					.setDescription(message.translate("general/ticket:OPEN_LOGS", {
 						author: message.author.tag,
 						reason: reason,
-						case: `#${data.guild.plugins.tickets.case}`,
+						case: `#${data.guild.ticketCase}`,
 						id: message.author.id
 					}));
 				logsOpen.send(logsOpenEmbed);
