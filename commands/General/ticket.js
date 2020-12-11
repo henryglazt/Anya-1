@@ -202,6 +202,7 @@ class Ticket extends Command {
 			}
 
 			return message.success("general/ticket:OPEN", {
+				author: message.author.toString()
 				channel: channel.toString()
 			}).then(m => {m.delete({timeout: 10000})});
 
