@@ -57,27 +57,20 @@ class Ticket extends Command {
 			});
 
 			const groupEmbed = new MessageEmbed()
-				.setAuthor(
-					message.translate("general/help:CMD_TITLE", {
-						prefix: message.guild
-							? data.guild.prefix
-							: "",
+				.setAuthor(message.translate("general/help:CMD_TITLE", {
+					prefix: message.guild
+						? data.guild.prefix
+						: "",
 						cmd: cmd.help.name
 					}))
-				.addField(
-					message.translate("general/help:FIELD_DESCRIPTION"),
-					description)
+				.addField(message.translate("general/help:FIELD_DESCRIPTION"), description)
 				.addField(message.translate("general/help:FIELD_USAGE"), usage)
-				.addField(
-					message.translate("general/help:FIELD_EXAMPLES"),
-					examples)
-				.addField(
-					message.translate("general/help:FIELD_ALIASES"),
+				.addField(message.translate("general/help:FIELD_EXAMPLES"), examples)
+				.addField(message.translate("general/help:FIELD_ALIASES"),
 					cmd.help.aliases.length > 0
 						? cmd.help.aliases.map(a => "`" + a + "`").join("\n")
 						: message.translate("general/help:NO_ALIAS"))
-				.addField(
-					message.translate("general/help:FIELD_PERMISSIONS"),
+				.addField(message.translate("general/help:FIELD_PERMISSIONS"),
 					cmd.conf.memberPermissions.length > 0
 						? cmd.conf.memberPermissions.map((p) => "`"+p+"`").join("\n")
 						: message.translate("general/help:NO_REQUIRED_PERMISSION"))
@@ -135,20 +128,21 @@ class Ticket extends Command {
 			await data.memberData.save();
 
 			if (data.guild.plugins.modlogs) {
-				const logs = message.guild.channels.cache.get(data.guild.plugins.modlogs);
-				if (!logs) return;
-				const logsEmbed = new MessageEmbed()
+				const logsClose = message.guild.channels.cache.get(data.guild.plugins.modlogs);
+				if (!logsClose) return;
+				const logsCloseEmbed = new MessageEmbed()
 					.errorColor()
 					.setFooter(data.config.embed.footer)
-					.setDescription(message.translate("general/ticket:OPEN_LOGS", {
+					.setDescription(message.translate("general/ticket:CLOSE_LOGS", {
 						author: message.author.tag,
 						reason: reason,
-						case: `#${data.guild.plugins.ticket.case}`
+						case: `#${data.guild.plugins.ticket.case}`,
+						id: message.author.id
 					}));
-				return logs.send(logsEmbed);
+				return logsClose.send(logsCloseEmbed);
 			}
 
-		} else if (status === "open" && reason) {
+		} else if (status === "open") {
 
 			if (tickets.channel !== message.channel.id) return message.error("general/ticket:OPEN_CHANNEL", {
 				channel: `<#${tickets.channel}>`
@@ -174,7 +168,9 @@ class Ticket extends Command {
 			};
 
 			data.memberData.markModified("ticket");
+			data.guild.plugins.tickets.case++;
 			await data.memberData.save();
+			await data.guild.save();
 
 			const openEmbed = new MessageEmbed()
 				.setColor(data.config.embed.color)
@@ -185,6 +181,21 @@ class Ticket extends Command {
 				}));
 
 			channel.send(openEmbed);
+
+			if (data.guild.plugins.modlogs) {
+				const logsOpen = message.guild.channels.cache.get(data.guild.plugins.modlogs);
+				if (!logsOpen) return;
+				const logsOpenEmbed = new MessageEmbed()
+					.errorColor()
+					.setFooter(data.config.embed.footer)
+					.setDescription(message.translate("general/ticket:OPEN_LOGS", {
+						author: message.author.tag,
+						reason: reason,
+						case: `#${data.guild.plugins.ticket.case}`
+						id: message.author.id
+					}));
+				logsOpen.send(logsOpenEmbed);
+			}
 
 			return message.success("general/ticket:OPEN", {
 				channel: channel.toString()
