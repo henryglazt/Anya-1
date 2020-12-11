@@ -61,9 +61,10 @@ class Setticket extends Command {
 					time: 120000 // 2 minutes
 				});
 
+			let category;
 			collector.on("collect", async msg => {
 				if (!tickets.category) {
-					const category = await Resolvers.resolveChannel({
+					category = await Resolvers.resolveChannel({
 						message,
 						search: msg.content,
 						channelType: "category"
@@ -97,7 +98,7 @@ class Setticket extends Command {
 					tickets.logs = logs.id;
 					const channel = await message.guild.channels.create("ticket-channel", {
 						parent: tickets.category,
-						permissionOverwrites: [{ allow: "VIEW_CHANNEL", id: message.guild.id }]
+						permissionOverwrites: category.permissionOverwrites
 					}).catch((e) => {
 						message.error(e);
 					});
