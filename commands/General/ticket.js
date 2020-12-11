@@ -112,7 +112,9 @@ class Ticket extends Command {
 					case: `#${data.guild.ticketCase}`,
 					id: message.author.id
 					}), attachment);
-				await message.author.send(message.translate("general/ticket:CLOSE"), attachment);
+				await message.author.send(message.translate("general/ticket:CLOSE", {
+					guild: message.guild.name
+					}), attachment);
 				if (att.length > 0) {
 					logsChannel.send(att);
 					message.author.send(att);
