@@ -51,6 +51,7 @@ class Setticket extends Command {
 				.setColor(data.config.embed.color)
 				.setFooter(data.config.embed.footer)
 				.setDescription(message.translate("administration/setticket:EMBED_DESC", {
+					guild: message.guild.name,
 					prefix: data.guild.prefix
 				}));
 
