@@ -191,7 +191,7 @@ class Ticket extends Command {
 					.setDescription(message.translate("general/ticket:OPEN_LOGS", {
 						author: message.author.tag,
 						reason: reason,
-						case: `#${data.guild.plugins.ticket.case}`
+						case: `#${data.guild.plugins.ticket.case}`,
 						id: message.author.id
 					}));
 				logsOpen.send(logsOpenEmbed);
