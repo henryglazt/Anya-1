@@ -109,7 +109,7 @@ class Ticket extends Command {
 				let attachment = new MessageAttachment("./index.txt", `Ticket ${message.author.tag}.txt`);
 				await logsChannel.send(message.translate("general/ticket:CLOSED", {
 					author: message.author.tag,
-					case: `#${data.guild.plugins.tickets.case}`,
+					case: `#${data.guild.ticketCase}`,
 					id: message.author.id
 					}), attachment);
 				await message.author.send(message.translate("general/ticket:CLOSE"), attachment);
