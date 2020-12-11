@@ -7,5 +7,5 @@
     "NO_MEMBER": "Member not found!",
     "NO_ROLE": "Role not found!",
     "HAS_ROLE": "{{member}} already have the {{role}} role",
-    "SUCCESS": "{{role}} role is added to {{member}}"
+    "SUCCESS": "{{role}} role has been added to {{member}}"
 }
