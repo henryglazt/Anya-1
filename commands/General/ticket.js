@@ -39,8 +39,6 @@ class Ticket extends Command {
 
 		const status = args[0];
 		const reason = args.slice(1).join(" ");
-		if (!reason) return message.error("general/ticket:NO_REASON");
-		if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
 
 		if (!status) {
 
@@ -94,6 +92,9 @@ class Ticket extends Command {
 				channel: `<#${data.memberData.ticket.channel}>`
 			});
 
+			if (!reason) return message.error("general/ticket:NO_REASON");
+			if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
+
 			let x;
 			let att = [];
 			let text = [];
@@ -142,6 +143,8 @@ class Ticket extends Command {
 			});
 
 			if (!data.memberData.ticket.resolved) return message.error("general/ticket:RESOLVE_FALSE");
+			if (!reason) return message.error("general/ticket:NO_REASON");
+			if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
 
 			const channel = await message.guild.channels.create(reason, {
 				parent: data.guild.plugins.tickets.category,
