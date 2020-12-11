@@ -77,7 +77,7 @@ class Ticket extends Command {
 				.setColor(data.config.embed.color)
 				.setFooter(data.config.embed.footer);
 
-			return message.channel.send(groupEmbed).then(m => m.delete({timeout: 10000}));
+			return message.channel.send(groupEmbed).then(m => {m.delete({timeout: 10000})});
 
 		} else if (status === "close") {
 
@@ -92,7 +92,7 @@ class Ticket extends Command {
 			let text = [];
 			moment.locale("id");
 
-			let msg = await message.channel.messages.fetch({ limit: 100 });
+			let msg = await message.channel.messages.fetch({ limit: 100 }).catch((e) => message.error(e));
 
 			msg.forEach(m => {
 				x = m.attachments.map(a => a.proxyURL);
@@ -199,7 +199,7 @@ class Ticket extends Command {
 
 			return message.success("general/ticket:OPEN", {
 				channel: channel.toString()
-			}).then(m => m.delete({timeout: 10000}));
+			}).then(m => {m.delete({timeout: 10000})});
 
 		}
 
