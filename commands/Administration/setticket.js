@@ -31,8 +31,7 @@ class Setticket extends Command {
 				category: null,
 				channel: null,
 				role: null,
-				logs: null,
-				case: null
+				logs: null
 			};
 			data.guild.markModified("plugins.tickets");
 			data.guild.save();
@@ -45,8 +44,7 @@ class Setticket extends Command {
 				category: null,
 				channel: null,
 				role: null,
-				logs: null,
-				case: null
+				logs: null
 			};
 
 			const embed = new MessageEmbed()
