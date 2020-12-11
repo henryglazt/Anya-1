@@ -186,7 +186,7 @@ class Ticket extends Command {
 				const logsOpen = message.guild.channels.cache.get(data.guild.plugins.modlogs);
 				if (!logsOpen) return;
 				const logsOpenEmbed = new MessageEmbed()
-					.errorColor()
+					.successColor()
 					.setFooter(data.config.embed.footer)
 					.setDescription(message.translate("general/ticket:OPEN_LOGS", {
 						author: message.author.tag,
