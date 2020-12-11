@@ -12,5 +12,7 @@
     "RESOLVE_FALSE": "You already have an open ticket here {{channel}}",
     "OPEN": "Your new ticket is opened here {{channel}}",
     "CLOSE": "This is your last ticket transcript.",
+    "OPEN_LOGS": "Ticket {{case}} opened\n\nAuthor: {{author}}\nID: {{id}}\nReason{{reason}}",
+    "CLOSE_LOGS": "Ticket {{case}} closed\n\nAuthor: {{author}}\nID: {{id}}\nReason{{reason}}",
     "EMBED_DESC": "Welcome {{author}}\n\nPlease describe the reasoning for opening this ticket, include any information you think may be relevant such as proof, other third parties and so on.\n\nUse the following command to close the ticket\n`{{prefix}}ticket close [reason]`"
 }
