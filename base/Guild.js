@@ -51,7 +51,7 @@ module.exports = mongoose.model("Guild", new Schema({
 			channel: null,
 			role: null,
 			logs: null,
-			case: 0
+			case: null
 		},
 		suggestions: false, // the channel in which the suggestions will be sent
 		modlogs: false, // the channel in which the moderation logs (mute, kick, ban, etc...) will be sent
@@ -62,6 +62,7 @@ module.exports = mongoose.model("Guild", new Schema({
 		users: [],
 		channels: []
 	}},
+	ticketCase: { type: Number, default: 0 },
 	casesCount: { type: Number, default: 0 },
 	welcomeImage: { type: Array, default: [] },
 	goodbyeImage: { type: Array, default: [] },
