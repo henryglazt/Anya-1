@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-    { MessageEmbed } = require("discord.js");
+    { MessageEmbed } = require("discord.js"),
+        Resolvers = require("../../helpers/resolvers");
 
 class Takerole extends Command {
 
