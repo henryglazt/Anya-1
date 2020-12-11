@@ -38,7 +38,7 @@ class Ticket extends Command {
 		if (!logsChannel) return message.error("general/ticket:MISSING_CHANNEL");
 
 		const status = args[0];
-		const reason = args.slice(1).join(" ");
+		let reason = args.slice(1).join(" ");
 
 		if (!status) {
 
@@ -92,8 +92,7 @@ class Ticket extends Command {
 				channel: `<#${data.memberData.ticket.channel}>`
 			});
 
-			if (!reason) return message.error("general/ticket:NO_REASON");
-			if (reason.length > 20) return message.error("general/ticket:LIMIT_CHAR");
+			if (!reason) reason = "No Reason";
 
 			let x;
 			let att = [];
@@ -134,7 +133,20 @@ class Ticket extends Command {
 
 			data.memberData.markModified("ticket");
 			await data.memberData.save();
-			return;
+
+			if (data.guild.plugins.modlogs) {
+				const logs = message.guild.channels.cache.get(data.guild.plugins.modlogs);
+				if (!logs) return;
+				const logsEmbed = new MessageEmbed()
+					.errorColor()
+					.setFooter(data.config.embed.footer)
+					.setDescription(message.translate("general/ticket:OPEN_LOGS", {
+						author: message.author.tag,
+						reason: reason,
+						case: `#${data.guild.plugins.ticket.case}`
+					}));
+				return logs.send(logsEmbed);
+			}
 
 		} else if (status === "open" && reason) {
 
