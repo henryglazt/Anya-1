@@ -45,15 +45,15 @@ class Giverole extends Command {
             if (member.roles.cache.has(role.id)) {
                 embed.errorColor()
                 embed.setDescription(emoji.error + " " + message.translate("moderation/giverole:HAS_ROLE", {
-                      member: member.user,
-                      role: role
+                      member: member.user.toString(),
+                      role: role.toString()
                 }));
                 return message.channel.send(embed)
             } else {
                 embed.successColor()
                 embed.setDescription(emoji.success + " " + message.translate("moderation/giverole:SUCCESS", {
-                      member: member.user,
-                      role: role
+                      member: member.user.toString(),
+                      role: role.toString()
                 }));
                 await member.roles.remove(role.id)
                     .then(() => message.channel.send(embed))
