@@ -51,11 +51,11 @@ class Userinfo extends Command {
 			member = await message.guild.members.fetch(user).catch(() => {});
 		}
 
-		const status = {"online": emoji.status.online + " " + mtr("common:STATUS_ONLINE"), "idle": emoji.status.idle + " " + mtr("common:STATUS_AFK"), 
-				"dnd": emoji.status.dnd + " " + mtr("common:STATUS_DND"), "offline": emoji.status.offline + " " + mtr("common:STATUS_OFFLINE")};
+		const status = {"online": `${emoji.status.online} ${mtr("common:STATUS_ONLINE")}`, "idle": `${emoji.status.idle ${mtr("common:STATUS_AFK")}`, 
+				"dnd": `${emoji.status.dnd} ${mtr("common:STATUS_DND")}`, "offline": `${emoji.status.offline} ${mtr("common:STATUS_OFFLINE")}`};
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(mtr("common:USER") + " " + mtr("common:INFO"), "https://tinyurl.com/y4xs3cje")
+			.setAuthor(`${mtr("common:USER")} ${mtr("common:INFO")}`, "https://tinyurl.com/y4xs3cje")
 			.setThumbnail(user.displayAvatarURL({ dynamic: true }))
 			.addField(`**❯ ${mtr("common:USER")}:**`, [
 			`**● ${mtr("common:USERNAME")}:** ${escapeMarkdown(user.username)}`,
@@ -82,7 +82,7 @@ class Userinfo extends Command {
 			`**● ${mtr("common:JOIN")} ${mtr("common:DATE")}:** ${message.printDate(member.joinedAt)}`,
 			`**● ${mtr("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? ('Server Owner') : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : `${mtr("common:NONE")}`}`,
 			`\u200b`
-			])
+			]);
 		}
 
 		if(user.bot && this.client.config.apiKeys.dbl && (this.client.config.apiKeys.dbl !== "")){
