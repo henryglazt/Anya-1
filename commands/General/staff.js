@@ -56,7 +56,7 @@ class Staff extends Command {
                 guild: message.guild.name
             }))
             .setDescription([
-                `${message.translate("general/staff:ADMINS")} ${admins}`,
+                `${message.translate("general/staff:ADMINS")} ${admin}`,
                 `${message.translate("general/staff:MODS")} ${mods}`
             ]);
 
