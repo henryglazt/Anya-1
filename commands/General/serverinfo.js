@@ -60,7 +60,7 @@ class Serverinfo extends Command {
         let count = 0;
         for (const [id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
 
-        let mark = `🔗 [${guild.name} Banner]`;
+        let mark = `🔗 [${guild.name}`s ${message.translate("common:BANNER")}]`;
         let vanity = guild.vanityURLCode;
         let url = "🔗 https://discord.gg/";
         let banner = guild.bannerURL({ format: "png", dynamic: true, size: 2048 });
@@ -68,8 +68,8 @@ class Serverinfo extends Command {
         if (banner !== null) banner = `${mark}(${banner})`;
 
         let partnered = {
-            true: "<:DiscordPartnerServer:744430120479096832> `YES`",
-            false: "<:notpartnered:744986300649832609> `NO`"
+            true: `<:DiscordPartnerServer:744430120479096832> \`${message.translate("common:YES")}\``,
+            false: `<:notpartnered:744986300649832609> \`${message.translate("common:NO")}\``
         };
 
         let emo = {
@@ -80,14 +80,14 @@ class Serverinfo extends Command {
         };
 
         let verified = {
-            true: "<:DiscordVerified:744430089697099847> `YES`",
-            false: "<:notverified:744986334321705100> `NO`"
+            true: `<:DiscordVerified:744430089697099847> \`${message.translate("common:YES")}\``,
+            false: `<:notverified:744986334321705100> \`${message.translate("common:NO")}\``
         };
 
         let verifLevels = {
-            NONE: "`NONE`",
-            LOW: "`LOW`",
-            MEDIUM: "`MEDIUM`",
+            NONE: `\`${message.translate("common:NONE")}\``,
+            LOW: `\`${message.translate("common:LOW")}\``,
+            MEDIUM: `\`${message.translate("common:MEDIUM")}\``,
             HIGH: "`(╯°□°）╯︵  ┻━┻`",
             VERY_HIGH: "`┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻`"
         };
