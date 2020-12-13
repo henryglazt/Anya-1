@@ -57,7 +57,7 @@ class Staff extends Command {
             }))
             .setDescription([
                 `${message.translate("general/staff:ADMINS")} ${admins}`,
-                `${message.translate("general/staff:MODS")} ${mods}
+                `${message.translate("general/staff:MODS")} ${mods}`
             ]);
 
         return message.channel.send(embed);
