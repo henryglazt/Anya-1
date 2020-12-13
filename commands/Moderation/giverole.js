@@ -50,7 +50,7 @@ class Giverole extends Command {
                 }));
                 return message.channel.send(embed)
             } else {
-                embed.succesColor()
+                embed.successColor()
                 embed.setDescription(emoji.success + " " + message.translate("moderation/giverole:SUCCESS", {
                       member: member.user,
                       role: role
