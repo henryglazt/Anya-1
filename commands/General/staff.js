@@ -40,7 +40,7 @@ class Staff extends Command {
         };
 
         if (moderators.size > 0) {
-            mods = moderators.map((a) => {
+            mods = moderators.map((m) => {
                 let ml = m.user.username;
                 if (ml.length > 25) ml = ml.substring(0, 25);
                 `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)} ${m.user.discriminator}`
