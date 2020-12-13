@@ -32,9 +32,10 @@ class Staff extends Command {
             .setAuthor(message.translate("general/staff:TITLE", {
                 guild: message.guild.name
             }))
-            .setDescription(message.translate("general/staff:ADMINS") + "\n" + administrators.size > 0 ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${a.user.tag.length < 25 ? escapeMarkdown(a.user.tag) : `${escapeMarkdown(a.user.username.substring(0, 25))} ${a.user.discriminator}`}`)
-                    .join("\n") : message.translate("general/staff:NO_ADMINS") + "\n" + message.translate("general/staff:MODS") + "\n" + moderators.size > 0 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${m.user.tag.length < 25 ? escapeMarkdown(m.user.tag) : `${escapeMarkdown(m.user.username.substring(0, 25))} ${m.user.discriminator}`}`)
-                    .join("\n") : message.translate("general/staff:NO_MODS"));
+            .setDescription([message.translate("general/staff:ADMINS") + "\n" + administrators.size > 0 ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${a.user.tag.length < 25 ? escapeMarkdown(a.user.tag) : escapeMarkdown(a.user.username.substring(0, 25)) + " " + a.user.discriminator}`)
+                    .join("\n") : message.translate("general/staff:NO_ADMINS") + "\n",
+                message.translate("general/staff:MODS") + "\n" + moderators.size > 0 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${m.user.tag.length < 25 ? escapeMarkdown(m.user.tag) : escapeMarkdown(m.user.username.substring(0, 25)) + " " + m.user.discriminator}`)
+                    .join("\n") : message.translate("general/staff:NO_MODS")]);
 
         return message.channel.send(embed);
 
