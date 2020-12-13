@@ -51,7 +51,7 @@ class Userinfo extends Command {
 			member = await message.guild.members.fetch(user).catch(() => {});
 		}
 
-		const status = {"online": `${emoji.status.online} ${mtr("common:STATUS_ONLINE")}`, "idle": `${emoji.status.idle ${mtr("common:STATUS_AFK")}`, 
+		const status = {"online": `${emoji.status.online} ${mtr("common:STATUS_ONLINE")}`, "idle": `${emoji.status.idle} ${mtr("common:STATUS_AFK")}`, 
 				"dnd": `${emoji.status.dnd} ${mtr("common:STATUS_DND")}`, "offline": `${emoji.status.offline} ${mtr("common:STATUS_OFFLINE")}`};
 
 		const embed = new Discord.MessageEmbed()
