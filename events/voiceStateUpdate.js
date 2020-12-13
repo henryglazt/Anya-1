@@ -32,32 +32,33 @@ module.exports = class {
         if (!chnl) {
             channel.send(embed);
             return player.destroy();
-        }
-        const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
-        const exist = member.members.get(v.id);
-        if (exist) {
-            clearTimeout(v.timeout2);
-        }
-        if (exist && exist.voice.sessionID !== v.session) {
-            v.session = exist.voice.sessionID;
-        }
-        if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
-            v.timeout2 = setTimeout(async() => {
-                let arr = [];
-                let memIN = member.members.filter(m => !m.user.bot);
-                await memIN.forEach(m => arr.push({
-                    name: m.user.username,
-                    id: m.id,
-                    sid: m.voice.sessionID
-                }));
-                arr.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-                v.id = arr[0].id;
-                v.session = arr[0].sid;
-            }, 60000);
-        }
-        if (!exist && member.members.filter(m => !m.user.bot).size < 1 || member.members.filter(m => !m.user.bot).size < 1) {
-            channel.send(embed);
-            return player.destroy();
+        } else {
+            const member = client.guilds.cache.get(guild).channels.cache.get(chnl);
+            const exist = member.members.get(v.id);
+            if (exist) {
+                clearTimeout(v.timeout2);
+            }
+            if (exist && exist.voice.sessionID !== v.session) {
+                v.session = exist.voice.sessionID;
+            }
+            if (!exist && member.members.filter(m => !m.user.bot).size > 0) {
+                v.timeout2 = setTimeout(async() => {
+                    let arr = [];
+                    let memIN = member.members.filter(m => !m.user.bot);
+                    await memIN.forEach(m => arr.push({
+                        name: m.user.username,
+                        id: m.id,
+                        sid: m.voice.sessionID
+                    }));
+                    arr.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+                    v.id = arr[0].id;
+                    v.session = arr[0].sid;
+                }, 60000);
+            }
+            if (!exist && member.members.filter(m => !m.user.bot).size < 1 || member.members.filter(m => !m.user.bot).size < 1) {
+                channel.send(embed);
+                return player.destroy();
+            }
         }
     }
 };
