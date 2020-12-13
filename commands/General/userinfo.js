@@ -45,26 +45,25 @@ class Userinfo extends Command {
 			return message.error("general/userinfo:INVALID_USER");
 		}
 
-		const mtr = message.translate;
 		const emoji = this.client.customEmojis;
 		let member = null;
 		if(message.guild){
 			member = await message.guild.members.fetch(user).catch(() => {});
 		}
 
-		const status = {"online": `${emoji.status.online} Online`, "idle": `${emoji.status.idle} Idle`, 
-				"dnd": `${emoji.status.dnd} DND`, "offline": `${emoji.status.offline} Offline`};
+		const status = {"online": `${emoji.status.online} ${message.translate("common:STATUS_ONLINE")}`, "idle": `${emoji.status.idle} ${message.translate("common:STATUS_IDLE")}`, 
+				"dnd": `${emoji.status.dnd} ${message.translate("common:STATUS_DND")}`, "offline": `${emoji.status.offline} ${message.translate("common:STATUS_OFFLINE")}`};
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(`${mtr("common:USER")} ${mtr("common:INFO")}`, "https://tinyurl.com/y4xs3cje")
+			.setAuthor(`${message.translate("common:USER")} ${message.translate("common:INFO")}`, "https://tinyurl.com/y4xs3cje")
 			.setThumbnail(user.displayAvatarURL({ dynamic: true }))
-			.addField(`**❯ ${mtr("common:USER")}:**`, [
-			`**● ${mtr("common:USERNAME")}:** ${escapeMarkdown(user.username)}`,
-			`**● ${mtr("common:DISCRIMINATOR")}:** \`#${user.discriminator}\``,
-			`**● ${mtr("common:ID")}:** \`${user.id}\``,
-			`**● ${mtr("common:STATUS")}:** ${status[user.presence.status]}`,
-			`**● ${mtr("common:AVATAR")}:** 🔗 [${user.username}\`s ${mtr("common:AVATAR")}](${user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 })})`,
-			`**● ${mtr("common:CREATION")} ${mtr("common:DATE")}:** ${message.printDate(user.createdAt)}`,
+			.addField(`**❯ ${message.translate("common:USER")}:**`, [
+			`**● ${message.translate("common:USERNAME")}:** ${escapeMarkdown(user.username)}`,
+			`**● ${message.translate("common:DISCRIMINATOR")}:** \`#${user.discriminator}\``,
+			`**● ${message.translate("common:ID")}:** \`${user.id}\``,
+			`**● ${message.translate("common:STATUS")}:** ${status[user.presence.status]}`,
+			`**● ${message.translate("common:AVATAR")}:** 🔗 [${user.username}\`s ${message.translate("common:AVATAR")}](${user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 })})`,
+			`**● ${message.translate("common:CREATION")} ${message.translate("common:DATE")}:** ${message.printDate(user.createdAt)}`,
 			`\u200b`
 			])
 			.setColor(data.config.embed.color)
@@ -76,12 +75,12 @@ class Userinfo extends Command {
 		.map(role => role.toString())
 		.slice(0, -1);
 			embed.addField(`**❯ ${mtr("common:MEMBER")}:**`, [
-			`**● ${mtr("common:NICKNAME")}:** ${member.nickname ? member.nickname : `${mtr("general/userinfo:NO_NICKNAME")}`}`,
-			`**● ${mtr("common:HIGHEST")} ${mtr("common:ROLE")}:** ${roles.length ? roles[0] : `${mtr("common:NONE")}`}`,
-			`**● ${mtr("common:HEX")} ${mtr("common:COLOR")}:** \`${member.displayHexColor}\``,
-			`**● ${mtr("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? `${mtr("general/userinfo:TOO_MANY")}` : `${mtr("common:NONE")}`}`,
-			`**● ${mtr("common:JOIN")} ${mtr("common:DATE")}:** ${message.printDate(member.joinedAt)}`,
-			`**● ${mtr("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${mtr("common:OWNER")}` : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : `${mtr("common:NONE")}`}`,
+			`**● ${message.translate("common:NICKNAME")}:** ${member.nickname ? member.nickname : `${mtr("general/userinfo:NO_NICKNAME")}`}`,
+			`**● ${message.translate("common:HIGHEST")} ${message.translate("common:ROLE")}:** ${roles.length ? roles[0] : `${mtr("common:NONE")}`}`,
+			`**● ${message.translate("common:HEX")} ${message.translate("common:COLOR")}:** \`${member.displayHexColor}\``,
+			`**● ${message.translate("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? `${mtr("general/userinfo:TOO_MANY")}` : `${mtr("common:NONE")}`}`,
+			`**● ${message.translate("common:JOIN")} ${message.translate("common:DATE")}:** ${message.printDate(member.joinedAt)}`,
+			`**● ${message.translate("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${mtr("common:OWNER")}` : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : `${mtr("common:NONE")}`}`,
 			`\u200b`
 			]);
 		}
