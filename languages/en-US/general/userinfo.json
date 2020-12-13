@@ -3,9 +3,5 @@
     "USAGE": "{{prefix}}userinfo (@user/userID)",
     "EXAMPLES": "{{prefix}}userinfo\n{{prefix}}userinfo @DooM™#9139\n{{prefix}}userinfo 339612673811415041",
     "INVALID_USER": "No user on Discord has the `{{search}}` ID!",
-    "NO_GAME": "Not playing",
-    "NO_ROLE": "No role",
-    "NO_NICKNAME": "`No nickname`",
-    "MORE_ROLES": "and {{count}} others roles",
     "BOT_STATS": "**{{votes}}** votes ([top.gg](https://top.gg))\n**{{servers}}** servers\n**{{shards}}** shards\nUsing **{{lib}}**"
 }
