@@ -45,6 +45,14 @@ class Staff extends Command {
             embed.addField(message.translate("general/staff:MODS"), moderators.size > 10 && moderators.size <= 20 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(10, 20).join("\n"));
         }
 
+        if (administrators.size > 20 && administrators.size <= 30) {
+            embed.addField(message.translate("general/staff:ADMINS"), administrators.size > 20 && administrators.size <= 30 ? administrators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(20, 30).join("\n"));
+        }
+
+        if (moderators.size > 20 && moderators.size <= 30) {
+            embed.addField(message.translate("general/staff:MODS"), moderators.size > 20 && moderators.size <= 30 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(20, 30).join("\n"));
+        }
+
         return message.channel.send(embed);
 
     }
