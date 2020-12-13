@@ -35,7 +35,7 @@ class Staff extends Command {
             administrators.forEach((a) => {
                 al = a.user.username;
                 if (al.length > 20) al = al.substring(0, 20);
-                admin.push(`${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}${a.user.discriminator}\n`);
+                admin.push(`${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`);
             });
         } else {
             admin = message.translate("general/staff:NO_ADMINS");
@@ -45,7 +45,7 @@ class Staff extends Command {
             moderators.forEach((m) => {
                 ml = m.user.username;
                 if (ml.length > 20) ml = ml.substring(0, 20);
-                mod.push(`${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}${m.user.discriminator}\n`);
+                mod.push(`${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}#${m.user.discriminator}\n`);
             });
         } else {
             mod = message.translate("general/staff:NO_MODS");
