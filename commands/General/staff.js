@@ -32,26 +32,10 @@ class Staff extends Command {
             .setAuthor(message.translate("general/staff:TITLE", {
                 guild: message.guild.name
             }))
-            .addField(message.translate("general/staff:ADMINS"), administrators.size <= 10 && administrators.size !== 0 ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}`)
+            .addField(message.translate("general/staff:ADMINS"), administrators.size > 0 ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${a.user.tag.length < 25 ? escapeMarkdown(a.user.tag) : `${escapeMarkdown(a.user.username.substring(0, 25))} ${a.user.discriminator}`}`)
                     .join("\n") : message.translate("general/staff:NO_ADMINS"))
-            .addField(message.translate("general/staff:MODS"), moderators.size <= 10 && moderators.size !== 0 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(0, 10)
+            .addField(message.translate("general/staff:MODS"), moderators.size > 0 ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${m.user.tag.length < 25 ? escapeMarkdown(m.user.tag) : `${escapeMarkdown(m.user.username.substring(0, 25))} ${m.user.discriminator}`}`)
                     .join("\n") : message.translate("general/staff:NO_MODS"));
-
-        if (administrators.size > 10 && administrators.size <= 20) {
-            embed.addField(message.translate("general/staff:ADMINS"), administrators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(10, 20).join("\n"));
-        }
-
-        if (moderators.size > 10 && moderators.size <= 20) {
-            embed.addField(message.translate("general/staff:MODS"), moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(10, 20).join("\n"));
-        }
-
-        if (administrators.size > 20 && administrators.size <= 30) {
-            embed.addField(message.translate("general/staff:ADMINS"), administrators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(20, 30).join("\n"));
-        }
-
-        if (moderators.size > 20 && moderators.size <= 30) {
-            embed.addField(message.translate("general/staff:MODS"), moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).slice(20, 30).join("\n"));
-        }
 
         return message.channel.send(embed);
 
