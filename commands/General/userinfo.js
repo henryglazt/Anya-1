@@ -75,7 +75,7 @@ class Userinfo extends Command {
 		.map(role => role.toString())
 		.slice(0, -1);
 			embed.addField(`**❯ ${message.translate("common:MEMBER")}:**`, [
-			`**● ${message.translate("common:NICKNAME")}:** ${member.nickname ? member.nickname : `${message.translate("general/userinfo:NO_NICKNAME")}`}`,
+			`**● ${message.translate("common:NICKNAME")}:** ${member.nickname ? `${escapeMarkdown(member.nickname)}` : `${message.translate("general/userinfo:NO_NICKNAME")}`}`,
 			`**● ${message.translate("common:HIGHEST")} ${message.translate("common:ROLE")}:** ${roles.length ? roles[0] : `${message.translate("common:NONE")}`}`,
 			`**● ${message.translate("common:HEX")} ${message.translate("common:COLOR")}:** \`${member.displayHexColor}\``,
 			`**● ${message.translate("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? `${message.translate("general/userinfo:TOO_MANY")}` : `${message.translate("common:NONE")}`}`,
