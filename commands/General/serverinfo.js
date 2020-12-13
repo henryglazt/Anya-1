@@ -49,6 +49,7 @@ class Serverinfo extends Command {
 
     const feature = guild.features;
 
+    let count = 0;
     let totalOnline;
     let totalIdle;
     let totalDND;
@@ -61,11 +62,9 @@ class Serverinfo extends Command {
         totalDND = fetchedMembers.filter(m => m.presence.status === "dnd").size;
         totalOffline = fetchedMembers.filter(m => m.presence.status === "offline").size;
         voiceChannels = guild.channels.cache.filter(c => c.type === "voice");
+        for (const [id, voiceChannel] of voiceChannels)
+            count += voiceChannel.members.size;
     });
-
-    let count = 0;
-    for (const [id, voiceChannel] of voiceChannels)
-        count += voiceChannel.members.size;
 
     let mark = `🔗 [${guild.name} Banner]`;
     let vanity = guild.vanityURLCode;
