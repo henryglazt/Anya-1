@@ -60,7 +60,7 @@ class Serverinfo extends Command {
         let count = 0;
         for (const [id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
 
-        let mark = `🔗 [${guild.name}`s ${message.translate("common:BANNER")}]`;
+        let mark = `🔗 [${guild.name}\`s ${message.translate("common:BANNER")}]`;
         let vanity = guild.vanityURLCode;
         let url = "🔗 https://discord.gg/";
         let banner = guild.bannerURL({ format: "png", dynamic: true, size: 2048 });
