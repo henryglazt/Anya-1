@@ -75,12 +75,12 @@ class Userinfo extends Command {
 		.map(role => role.toString())
 		.slice(0, -1);
 			embed.addField`"**❯ mtr("common:MEMBER"):**`, [
-			`**● ${mtr("common:NICKNAME")}:** ${member.nickname ? member.nickname : mtr("general/userinfo:NO_NICKNAME")}`,
+			`**● ${mtr("common:NICKNAME")}:** ${member.nickname ? member.nickname : `${mtr("general/userinfo:NO_NICKNAME")}}`,
 			`**● ${mtr("common:HIGHEST")} ${mtr("common:ROLE")}:** ${roles.length ? roles[0] : `${mtr("common:NONE")}`}`,
 			`**● ${mtr("common:HEX")} ${mtr("common:COLOR")}:** \`${member.displayHexColor}\``,
 			`**● ${mtr("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? `${mtr("general/userinfo:TOO_MANY")}` : `${mtr("common:NONE")}`}`,
 			`**● ${mtr("common:JOIN")} ${mtr("common:DATE")}:** ${message.printDate(member.joinedAt)}`,
-			`**● ${mtr("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? ('Server Owner') : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : `${mtr("common:NONE")}`}`,
+			`**● ${mtr("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${mtr("common:OWNER")}` : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : `${mtr("common:NONE")}`}`,
 			`\u200b`
 			]);
 		}
