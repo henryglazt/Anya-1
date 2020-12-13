@@ -74,7 +74,7 @@ class Userinfo extends Command {
 		.sort((a, b) => b.position - a.position)
 		.map(role => role.toString())
 		.slice(0, -1);
-		console.log(roles.slice(0, 14);
+		console.log(roles.slice(0, 14));
 			embed.addField(`**❯ ${message.translate("common:MEMBER")}:**`, [
 			`**● ${message.translate("common:NICKNAME")}:** ${member.nickname ? `${escapeMarkdown(member.nickname)}` : `\`${message.translate("common:NONE")}\``}`,
 			`**● ${message.translate("common:HIGHEST")} ${message.translate("common:ROLE")}:** ${roles.length ? roles[0] : `\`${message.translate("common:NONE")}\``}`,
