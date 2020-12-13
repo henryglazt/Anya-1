@@ -75,12 +75,12 @@ class Userinfo extends Command {
 		.map(role => role.toString())
 		.slice(0, -1);
 			embed.addField(`**❯ ${mtr("common:MEMBER")}:**`, [
-			`**● ${message.translate("common:NICKNAME")}:** ${member.nickname ? member.nickname : `${mtr("general/userinfo:NO_NICKNAME")}`}`,
-			`**● ${message.translate("common:HIGHEST")} ${message.translate("common:ROLE")}:** ${roles.length ? roles[0] : `${mtr("common:NONE")}`}`,
+			`**● ${message.translate("common:NICKNAME")}:** ${member.nickname ? member.nickname : `${message.translate("general/userinfo:NO_NICKNAME")}`}`,
+			`**● ${message.translate("common:HIGHEST")} ${message.translate("common:ROLE")}:** ${roles.length ? roles[0] : `${message.translate("common:NONE")}`}`,
 			`**● ${message.translate("common:HEX")} ${message.translate("common:COLOR")}:** \`${member.displayHexColor}\``,
-			`**● ${message.translate("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? `${mtr("general/userinfo:TOO_MANY")}` : `${mtr("common:NONE")}`}`,
+			`**● ${message.translate("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(', ') : roles.length > 15 ? `${message.translate("general/userinfo:TOO_MANY")}` : `${message.translate("common:NONE")}`}`,
 			`**● ${message.translate("common:JOIN")} ${message.translate("common:DATE")}:** ${message.printDate(member.joinedAt)}`,
-			`**● ${message.translate("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${mtr("common:OWNER")}` : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : `${mtr("common:NONE")}`}`,
+			`**● ${message.translate("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${message.translate("common:OWNER")}` : member.hasPermission('ADMINISTRATOR') ? ('Server Admin') : `${message.translate("common:NONE")}`}`,
 			`\u200b`
 			]);
 		}
