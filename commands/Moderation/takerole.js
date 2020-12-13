@@ -55,7 +55,7 @@ class Takerole extends Command {
                       member: member.user,
                       role: role
                 }));
-                await member.roles.remove(role.id):
+                await member.roles.remove(role.id)
                     .then(() => message.channel.send(embed))
                     .catch(err => message.error(err));
                 return;
