@@ -74,7 +74,7 @@ class Userinfo extends Command {
 		.sort((a, b) => b.position - a.position)
 		.map(role => role.toString())
 		.slice(0, -1);
-			embed.addField`"**❯ mtr("common:MEMBER"):**`, [
+			embed.addField(`**❯ ${mtr("common:MEMBER")}:**`, [
 			`**● ${mtr("common:NICKNAME")}:** ${member.nickname ? member.nickname : `${mtr("general/userinfo:NO_NICKNAME")}}`,
 			`**● ${mtr("common:HIGHEST")} ${mtr("common:ROLE")}:** ${roles.length ? roles[0] : `${mtr("common:NONE")}`}`,
 			`**● ${mtr("common:HEX")} ${mtr("common:COLOR")}:** \`${member.displayHexColor}\``,
