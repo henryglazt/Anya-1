@@ -34,7 +34,7 @@ class Staff extends Command {
         if (administrators.size > 0) {
             administrators.forEach((a) => {
                 al = a.user.username;
-                if (al.length > 25) al = al.substring(0, 25);
+                if (al.length > 20) al = al.substring(0, 20);
                 admin.push(`${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}${a.user.discriminator}\n`);
             });
         } else {
@@ -44,7 +44,7 @@ class Staff extends Command {
         if (moderators.size > 0) {
             moderators.forEach((m) => {
                 ml = m.user.username;
-                if (ml.length > 25) ml = ml.substring(0, 25);
+                if (ml.length > 20) ml = ml.substring(0, 20);
                 mod.push(`${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}${m.user.discriminator}\n`);
             });
         } else {
@@ -57,10 +57,7 @@ class Staff extends Command {
             .setAuthor(message.translate("general/staff:TITLE", {
                 guild: message.guild.name
             }))
-            .setDescription([
-                `${message.translate("general/staff:ADMINS")}\n${admin}`,
-                `${message.translate("general/staff:MODS")}\n${mod}`
-            ]);
+            .setDescription(`${message.translate("general/staff:ADMINS")}\n${admin}\n${message.translate("general/staff:MODS")}\n${mod}`);
 
         return message.channel.send(embed);
 
