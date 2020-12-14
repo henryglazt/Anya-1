@@ -1,19 +1,11 @@
-"use-strict";
-
 require("./helpers/extenders");
 
-const Sentry = require("@sentry/node"),
-    util = require("util"),
+const util = require("util"),
     fs = require("fs"),
     readdir = util.promisify(fs.readdir),
     mongoose = require("mongoose");
 
 const config = require("./config");
-if (config.apiKeys.sentryDSN) {
-    Sentry.init({
-        dsn: config.apiKeys.sentryDSN
-    });
-}
 
 const NuruAruvi = require("./base/NuruAruvi"),
     client = new NuruAruvi();
