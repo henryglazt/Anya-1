@@ -23,44 +23,50 @@ class Staff extends Command {
 
         const guild = await message.guild.fetch();
 
-        const administrators = await guild.members.cache.filter((m) => m.hasPermission("ADMINISTRATOR") && !m.user.bot);
-        const moderators = await guild.members.cache.filter((m) => !administrators.has(m.id) && m.hasPermission("MANAGE_MESSAGES") && !m.user.bot);
+        if (guild.id === "773707418482769982") {
 
-        let admin = [];
-        let mod = [];
-        let al;
-        let ml;
+            const administrators = await guild.members.cache.filter((m) => m.hasPermission("ADMINISTRATOR") && !m.user.bot);
+            const moderators = await guild.members.cache.filter((m) => !administrators.has(m.id) && m.hasPermission("MANAGE_MESSAGES") && !m.user.bot);
+
+            let admin;
+            let mod;
+            let al;
+            let ml;
 
         if (administrators.size > 0) {
-            administrators.forEach((a) => {
+            administrators.map((a) => {
                 al = a.user.username;
                 if (al.length > 20) al = al.substring(0, 20);
-                admin.push(`${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`);
+                admin = `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`;
             });
         } else {
             admin = message.translate("general/staff:NO_ADMINS");
         };
 
         if (moderators.size > 0) {
-            moderators.forEach((m) => {
+            moderators.map((m) => {
                 ml = m.user.username;
                 if (ml.length > 20) ml = ml.substring(0, 20);
-                mod.push(`${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}#${m.user.discriminator}\n`);
+                mod = `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}#${m.user.discriminator}\n`;
             });
         } else {
             mod = message.translate("general/staff:NO_MODS");
         };
 
-        const embed = new MessageEmbed()
+        const embedAdmin = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
             .setAuthor(message.translate("general/staff:TITLE", {
                 guild: message.guild.name
             }))
-            .setDescription(`${message.translate("general/staff:ADMINS")}\n${admin}\n`);//${message.translate("general/staff:MODS")}\n${mod}`);
+            .setDescription(`${message.translate("general/staff:ADMINS")}\n${admin}\n`);
+
+
+
+//${message.translate("general/staff:MODS")}\n${mod}`);
 
         return message.channel.send(embed);
-
+        }
     }
 
 }
