@@ -130,7 +130,7 @@ module.exports = class {
 
 			if(data.guild.plugins.tickets.enabled){
 				if(message.channel.id === data.guild.plugins.tickets.channel){
-					if(!message.author.hasPermission("ADMINISTRATOR") && !message.content.startsWith(`${data.guild.prefix}ticket` || `${data.guild.prefix}tiket`)){
+					if(!message.member.hasPermission("ADMINISTRATOR") && !message.content.startsWith(`${data.guild.prefix}ticket` || `${data.guild.prefix}tiket`)){
 						return message.delete();
 					}
 				}
