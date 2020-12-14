@@ -57,7 +57,7 @@ class Staff extends Command {
             .setAuthor(message.translate("general/staff:TITLE", {
                 guild: message.guild.name
             }))
-            .setDescription(`${message.translate("general/staff:ADMINS")}\n${admin}\n${message.translate("general/staff:MODS")}\n${mod}`);
+            .setDescription(`${message.translate("general/staff:ADMINS")}\n${admin}\n`);//${message.translate("general/staff:MODS")}\n${mod}`);
 
         return message.channel.send(embed);
 
