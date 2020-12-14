@@ -55,7 +55,7 @@ class Giverole extends Command {
                       member: member.user.toString(),
                       role: role.toString()
                 }));
-                await member.roles.remove(role.id)
+                await member.roles.add(role.id)
                     .then(() => message.channel.send(embed))
                     .catch(err => message.error(err));
                 return;
