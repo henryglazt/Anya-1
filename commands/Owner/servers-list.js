@@ -59,7 +59,7 @@ class ServersList extends Command {
                 
 				// if there is no guild to display, delete the message
 				if(i0 < 0){
-					return;
+					return reaction.users.remove(message.author.id);
 				}
                 
 				description = `${message.translate("common:SERVERS")}: ${this.client.guilds.cache.size}\n\n`+
@@ -86,7 +86,7 @@ class ServersList extends Command {
 
 				// if there is no guild to display, delete the message
 				if(i1 > this.client.guilds.cache.size + 10){
-					return;
+					return reaction.users.remove(message.author.id);
 				}
 
 				description = `${message.translate("common:SERVERS")}: ${this.client.guilds.cache.size}\n\n`+
