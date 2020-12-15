@@ -1,6 +1,7 @@
 const Command = require("../../base/Command.js"),
     Discord = require("discord.js"),
-        Resolvers = require("../../helpers/resolvers");
+        Resolvers = require("../../helpers/resolvers"),
+            { escapeMarkdown } = require("../../helpers/functions");
 
 class Inrole extends Command {
 
@@ -45,7 +46,7 @@ class Inrole extends Command {
         const inRole = role.members.array();
         const array = [];
         inRole.forEach((member) => {
-            array.push(member.user.tag);
+            array.push(escapeMarkdown(member.user.tag));
         });
         if (!array.length) return message.error("general/inrole:NO_MEMBERS");
         const embed = new Discord.MessageEmbed()
@@ -79,10 +80,7 @@ class Inrole extends Command {
 
                 // if there is no member to display, delete the message
                 if (i0 < 0) {
-                    return msg.delete();
-                }
-                if (!i0 || !i1) {
-                    return msg.delete();
+                    return;
                 }
 
                 // Update the embed with new informations
@@ -104,10 +102,7 @@ class Inrole extends Command {
 
                 // if there is no member to display, delete the message
                 if (i1 > array.length + 10) {
-                    return msg.delete();
-                }
-                if (!i0 || !i1) {
-                    return msg.delete();
+                    return;
                 }
 
                 // Update the embed with new informations
