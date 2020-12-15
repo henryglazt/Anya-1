@@ -43,7 +43,6 @@
     "jsdom": "^16.4.0",
     "lyrics-finder": "^21.4.0",
     "markdown-table": "^2.0.0",
-    "mathjs": "^8.0.0",
     "md5": "^2.3.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
