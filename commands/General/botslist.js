@@ -1,5 +1,6 @@
 const Command = require("../../base/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+        { escapeMarkdown } = require("../../helpers/functions");
 
 class BotsList extends Command {
 
@@ -9,9 +10,9 @@ class BotsList extends Command {
             dirname: __dirname,
             enabled: true,
             guildOnly: true,
-            aliases: ["blist"],
+            aliases: [ "blist" ],
             memberPermissions: [],
-            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+            botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
             ownerOnly: false,
             cooldown: 5000
@@ -27,7 +28,7 @@ class BotsList extends Command {
         const bots = message.guild.members.cache.filter(member => member.user.bot);
         const botsname = bots.array();
 
-        let description = botsname.map((b, i) => `**${i + 1}.** ${b.user.username}#${b.user.discriminator}`)
+        let description = botsname.map((b, i) => `**${i + 1}.** ${escapeMarkdown(b.user.username)}#${b.user.discriminator}`)
             .slice(0, 10)
             .join("\n");
 
@@ -57,10 +58,7 @@ class BotsList extends Command {
 
                 // if there is no guild to display, delete the message
                 if (i0 < 0) {
-                    return msg.delete();
-                }
-                if (!i0 || !i1) {
-                    return msg.delete();
+                    return;
                 }
 
                 description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}#${b.user.discriminator}`)
@@ -85,10 +83,7 @@ class BotsList extends Command {
 
                 // if there is no guild to display, delete the message
                 if (i1 > bots.size + 10) {
-                    return msg.delete();
-                }
-                if (!i0 || !i1) {
-                    return msg.delete();
+                    return;
                 }
 
                 description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}#${b.user.discriminator}`)
