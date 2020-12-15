@@ -80,7 +80,7 @@ class Inrole extends Command {
 
                 // if there is no member to display, delete the message
                 if (i0 < 0) {
-                    return;
+                    return reaction.users.remove(message.author.id);
                 }
 
                 // Update the embed with new informations
@@ -102,7 +102,7 @@ class Inrole extends Command {
 
                 // if there is no member to display, delete the message
                 if (i1 > array.length + 10) {
-                    return;
+                    return reaction.users.remove(message.author.id);
                 }
 
                 // Update the embed with new informations
