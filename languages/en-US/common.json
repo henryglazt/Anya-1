@@ -39,7 +39,7 @@
     "VERIFIED": "Verified",
     "GENERAL": "General",
     "STATISTICS": "Statistics",
-    "VERIFICATION_LEVEL": "Verification Level",
+    "VER_LVL": "Verification Level",
     "ECF": "Explicit Content Filter",
     "MIVC": "Members in Voice Channels",
     "ADMINISTRATOR": "Administrator",
