@@ -10,9 +10,9 @@ class Translate extends Command {
 		super(client, {
 			name: "translate",
 			dirname: __dirname,
-			enabled: false,
+			enabled: true,
 			guildOnly: false,
-			aliases: [ "traduction", "translation", "trad" ],
+			aliases: [ "translation", "terjemah" ],
 			memberPermissions: [],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
