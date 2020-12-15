@@ -127,9 +127,9 @@ class Serverinfo extends Command {
                 `**● ${message.translate("common:VER_LVL")}:** ${verifLevels[guild.verificationLevel]}`,
                 `**● ${message.translate("common:ECF")}:** \`${guild.explicitContentFilter}\``,
                 `**● ${message.translate("common:BOOSTERS")}:** ${this.client.customEmojis.boost.boost} ${guild.premiumSubscriptionCount}`,
-                `**● ${message.translate("common:TIER")}:** ${this.client.customEmojis.boost[guild.premiumTier]} Tier ${guild.premiumTier}`,
-                `**● ${message.translate("common:BANNER")}:** ${banner ? banner : "`None `"}`,
-                `**● ${message.translate("common:VAN_URL")}:** ${vanity ? vanity : "`None `"}`,
+                `**● ${message.translate("common:TIER")}:** ${this.client.customEmojis.boost[guild.premiumTier]} ${message.translate("common:TIER")} ${guild.premiumTier}`,
+                `**● ${message.translate("common:BANNER")}:** ${banner ? banner : `\`${message.translate("common:NONE")}\``}`,
+                `**● ${message.translate("common:VAN_URL")}:** ${vanity ? vanity : `\`${message.translate("common:NONE")}\``}`,
                 `**● ${message.translate("common:PARTNERED")} | ${message.translate("common:VERIFIED")}:** ${partnered[guild.partnered]} | ${verified[guild.verified]}`,
                 `**● ${message.translate("common:CREATION")} ${message.translate("common:DATE")}:** ${message.printDate(guild.createdAt)}`,
                 `\u200b`
@@ -144,12 +144,12 @@ class Serverinfo extends Command {
                 `**● ${message.translate("common:BOTS")}:** ${guild.members.cache.filter(member => member.user.bot).size}`,
                 `**● ${message.translate("common:TEXT")} ${message.translate("common:CHANNELS")}:** ${guild.channels.cache.filter(channel => channel.type === "text").size}`,
                 `**● ${message.translate("common:VOICE")} ${message.translate("common:CHANNELS")}:** ${guild.channels.cache.filter(channel => channel.type === "voice").size}`,
-                `**● ${message.translate("common:MIVC")}:** <a:giphy_3:744676992141623399> ${count}`,
-                `**● ${message.translate("common:MEMBER")} ${message.translate("common:PRESENCES")}:**\n> <:online:741196747748933682> ${totalOnline}\n> <:idle:741197218861678644> ${totalIdle}\n> <:dnd:741196524238667846> ${totalDND}\n> <:offline:741197268123648020> ${totalOffline}`,
+                `**● ${message.translate("common:MIVC")}:** ${this.client.customEmojis.vc} ${count}`,
+                `**● ${message.translate("common:MEMBER")} ${message.translate("common:PRESENCES")}:**\n> ${this.client.customEmojis.status.online} ${totalOnline}\n> ${this.client.customEmojis.status.idle} ${totalIdle}\n> ${this.client.customEmojis.status.dnd} ${totalDND}\n> ${this.client.customEmojis.status.offline} ${totalOffline}`,
                 `\u200b`
             ])
             .addField(`**❯ ${message.translate("common:FEATURES")}:**`, [
-                `\`${feature.length ? feature.map(ft => features[ft]).join(", ") : "None"}\``,
+                `\`${feature.length ? feature.map(ft => features[ft]).join(", ") : message.translate("common:NONE")}\``,
                 `\u200b`
             ]);
 
