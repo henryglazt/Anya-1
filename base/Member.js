@@ -34,7 +34,8 @@ module.exports = mongoose.model("Member", new mongoose.Schema({
 	ticket: { type: Object, default: { // The member ticket infos
 		resolved: true,
 		author: null,
-		channel: null
+		channel: null,
+		case: null
 	}},
     
 }));
