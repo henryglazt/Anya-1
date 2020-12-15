@@ -31,9 +31,7 @@ module.exports = {
 	},
 	apiKeys: {
 		// DBL: https://discordbots.org/api/docs#mybots
-		dbl: "",
-		// SENTRY: https://sentry.io (this is not required and not recommended)
-		sentryDSN: ""
+		dbl: ""
 	},
 	spotify: {
 		id: "fd30a9e7da5b4fda8a2332a198ddbe5a",
@@ -56,6 +54,18 @@ module.exports = {
 				"en-us",
 				"en_us",
 				"en_US"
+			]
+		},
+		{
+			name: "id-ID",
+			nativeName: "bahasa Indonesia",
+			defaultMomentFormat: "Do MMMM YYYY",
+			moment: "id",
+			default: false,
+			aliases: [
+				"Indonesian",
+				"id",
+				"id_id"
 			]
 		}
 	]
