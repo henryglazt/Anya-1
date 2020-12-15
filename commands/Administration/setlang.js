@@ -6,7 +6,7 @@ class Setlang extends Command {
 		super(client, {
 			name: "setlang",
 			dirname: __dirname,
-			enabled: false,
+			enabled: true,
 			guildOnly: true,
 			aliases: [],
 			memberPermissions: [ "MANAGE_GUILD" ],
