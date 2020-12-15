@@ -85,7 +85,7 @@ class Ticket extends Command {
 				channel: `<#${data.memberData.ticket.channel}>`
 			});
 
-			if (!reason) reason = "No Reason";
+			if (!reason) reason = message.translate("common:NONE");
 
 			let x;
 			let att = [];
@@ -127,7 +127,8 @@ class Ticket extends Command {
 			data.memberData.ticket = {
 				resolved: true,
 				author: null,
-				channel: null
+				channel: null,
+				case: null
 			};
 
 			data.memberData.markModified("ticket");
@@ -172,7 +173,8 @@ class Ticket extends Command {
 			data.memberData.ticket = {
 				resolved: false,
 				author: message.author.id,
-				channel: channel.id
+				channel: channel.id,
+				case: data.memberData.ticketCase
 			};
 
 			data.memberData.markModified("ticket");
