@@ -58,7 +58,7 @@ class BotsList extends Command {
 
                 // if there is no guild to display, delete the message
                 if (i0 < 0) {
-                    return;
+                    return reaction.users.remove(message.author.id);
                 }
 
                 description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}#${b.user.discriminator}`)
@@ -83,7 +83,7 @@ class BotsList extends Command {
 
                 // if there is no guild to display, delete the message
                 if (i1 > bots.size + 10) {
-                    return;
+                    return reaction.users.remove(message.author.id);
                 }
 
                 description = botsname.map((b, i) => `**${i + 1}** - ${b.user.username}#${b.user.discriminator}`)
