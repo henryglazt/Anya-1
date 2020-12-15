@@ -20,7 +20,6 @@
   "homepage": "",
   "dependencies": {
     "@k3rn31p4nic/google-translate-api": "github:k3rn31p4nic/google-translate-api",
-    "@sentry/node": "^5.23.0",
     "amethyste-api": "github:Androz2091/amethyste-api",
     "ascii-table": "0.0.9",
     "btoa": "^1.2.1",
