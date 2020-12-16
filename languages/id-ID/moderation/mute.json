@@ -1,11 +1,11 @@
 {
-    "DESCRIPTION": "Prevents a member from sending messages and connecting to a voice chat room for a defined period of time!",
-    "USAGE": "{{prefix}}mute [@member] [time]",
-    "EXAMPLES": "{{prefix}}mute @DooM™#9139 Spam",
-    "MISSING_MEMBER": "Please specify a valid member to mute!",
-    "MUTED_DM": "Hello {{username}},\nYou've just been muted on **{{server}}** by **{{moderator}}** for **{{time}}** because of **{{reason}}**!",
-    "MUTED": "**{{username}}** is now muted for **{{time}}** because of **{{reason}}**!",
-    "CASE": "Mute | Case #{{count}}",
-    "ALREADY_MUTED": "{{user}} is already muted for **{{time}}** with reason **{{reason}}**!",
-    "NO_MUTED_ROLE": "<a:GS_Loading:759107625039167611> Theres no mute role named **Anya Mute**, creating a new one..."
+    "DESCRIPTION": "Mencegah member untuk mengirim pesan dan terhubung ke ruang obrolan suara untuk jangka waktu tertentu!",
+    "USAGE": "{{prefix}}mute [@member] [waktu]",
+    "EXAMPLES": "{{prefix}}mute @DooM™1998 Spam",
+    "MISSING_MEMBER": "Mohon tentukan member yang valid untuk dimute!",
+    "MUTED_DM": "Halo {{username}},\nKamu baru saja dimute di **{{server}}** oleh **{{moderator}}** selama **{{time}}** karena **{{reason}}**!",
+    "MUTED": "**{{username}}** sekarang dimute selama **{{time}}** karena **{{reason}}**!",
+    "CASE": "Mute | Kasus #{{count}}"
+    "ALREADY_MUTED": "{{user}} telah dimute selama **{{time}}** dengan alasan **{{reason}}**!",
+    "NO_MUTED_ROLE": "Tidak ada role yang bernama **MUTED**, Membuat yang baru..."
 }
