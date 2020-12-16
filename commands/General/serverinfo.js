@@ -84,6 +84,12 @@ class Serverinfo extends Command {
             false: `<:notverified:744986334321705100> \`${message.translate("common:NO")}\``
         };
 
+        let ecf = {
+            DISABLED: `\`${message.translate("common:ECF_NONE")}\``,
+            MEMBERS_WITHOUT_ROLES: `\`${message.translate("common:ECF_ROLE")}\``,
+            ALL_MEMBERS: `\`${message.translate("common:ECF_ALL")}\``
+        };
+
         let verifLevels = {
             NONE: `\`${message.translate("common:NONE")}\``,
             LOW: `\`${message.translate("common:LOW")}\``,
@@ -125,7 +131,7 @@ class Serverinfo extends Command {
                 `**● ${message.translate("common:OWNER")}:** ${guild.owner}`,
                 `**● ${message.translate("common:REGION")}:** ${region[guild.region]}`,
                 `**● ${message.translate("common:VER_LVL")}:** ${verifLevels[guild.verificationLevel]}`,
-                `**● ${message.translate("common:ECF")}:** \`${guild.explicitContentFilter}\``,
+                `**● ${message.translate("common:ECF")}:** \`${ecf[guild.explicitContentFilter]}\``,
                 `**● ${message.translate("common:BOOSTERS")}:** ${this.client.customEmojis.boost.boost} ${guild.premiumSubscriptionCount}`,
                 `**● ${message.translate("common:TIER")}:** ${this.client.customEmojis.boost[guild.premiumTier]} ${message.translate("common:TIER")} ${guild.premiumTier}`,
                 `**● ${message.translate("common:BANNER")}:** ${banner ? banner : `\`${message.translate("common:NONE")}\``}`,
