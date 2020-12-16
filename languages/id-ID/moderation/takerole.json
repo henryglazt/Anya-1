@@ -1,10 +1,10 @@
 {
-    "DESCRIPTION": "Take a role from member.",
-    "USAGE": "{{prefix}}takerole (@member) [role_id/role_name/@role]",
-    "EXAMPLES": "{{prefix}}takerole @DooM™#9139 myrole",
-    "NO_ARGS": "Please specify the member and the role to be given to!",
-    "NO_MEMBER": "Member not found!",
-    "NO_ROLE": "Role not found!",
-    "HAS_ROLE": "{{member}} already have the {{role}} role",
-    "SUCCESS": "{{role}} role has been removed from {{member}}"
+    "DESCRIPTION": "Ambil role dari member.",
+    "USAGE": "{{prefix}}takerole (@member) [id_role/nama_role/@role]",
+    "EXAMPLES": "{{prefix}}takerole @DooM™#1998 roleku",
+    "NO_ARGS": "Mohon tentukan member dan role yang akan diambil darinya!",
+    "NO_MEMBER": "Member tidak ditemukan!",
+    "NO_ROLE": "Role tidak ditemukan!",
+    "HAS_ROLE": "{{member}} tidak memiliki role {{role}}",
+    "SUCCESS": "Role {{role}} telah diambil dari {{member}}"
 }
