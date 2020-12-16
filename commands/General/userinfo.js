@@ -80,7 +80,7 @@ class Userinfo extends Command {
 			`**● ${message.translate("common:HEX_COLOR")}:** \`${member.displayHexColor}\``,
 			`**● ${message.translate("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(", ") : roles.length > 15 ? `${roles.slice(0, 14).join(", ")} \`${message.translate("common:AND_MORE")}\`` : `\`${message.translate("common:NONE")}\``}`,
 			`**● ${message.translate("common:JOIN_DATE")}:** ${message.printDate(member.joinedAt)}`,
-			`**● ${message.translate("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${message.translate("common:SERVER")} ${message.translate("common:OWNER")}` : member.hasPermission('ADMINISTRATOR') ? `${message.translate("common:SERVER")} ${message.translate("common:ADMINISTRATOR")}` : `\`${message.translate("common:NONE")}\``}`,
+			`**● ${message.translate("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${message.translate("common:SERVER_OWNER")}` : member.hasPermission('ADMINISTRATOR') ? `${message.translate("common:SERVER_ADMIN")}` : `\`${message.translate("common:NONE")}\``}`,
 			`\u200b`
 			]);
 		}
