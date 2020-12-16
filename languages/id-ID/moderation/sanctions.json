@@ -1,7 +1,7 @@
 {
-    "DESCRIPTION": "Displays the list of infractions committed by a member!",
+    "DESCRIPTION": "Menampilkan daftar pelanggaran yang dilakukan oleh member!",
     "USAGE": "{{prefix}}sanctions [@member]",
-    "EXAMPLES": "{{prefix}}sanctions @DooM™#9139",
-    "MISSING_MEMBER": "You must specify a member!",
-    "NO_SANCTION": "**{{username}}** did not receive any sanctions."
+    "EXAMPLES": "{{prefix}}sanctions @DooM™#1998",
+    "MISSING_MEMBER": "Kamu harus menentukan member!",
+    "NO_SANCTION": "**{{username}}** tidak menerima sanksi apapun."
 }
