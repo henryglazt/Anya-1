@@ -18,7 +18,7 @@ const Spotify = require("erela.js-spotify"),
     clientID = config.spotify.id,
     clientSecret = config.spotify.secret;
 
-/*require("./helpers/player");
+require("./helpers/player");
 const nodes = require("./helpers/nodes");
 const musji = client.customEmojis.music;
 client.manager = new Manager({
@@ -127,7 +127,7 @@ client.manager = new Manager({
         }, 180000);
     });
 
-    client.on("raw", d => client.manager.updateVoiceState(d));*/
+    client.on("raw", d => client.manager.updateVoiceState(d));
 
     const init = async() => {
 
