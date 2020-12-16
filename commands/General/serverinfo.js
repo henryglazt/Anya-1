@@ -131,21 +131,21 @@ class Serverinfo extends Command {
                 `**● ${message.translate("common:BANNER")}:** ${banner ? banner : `\`${message.translate("common:NONE")}\``}`,
                 `**● ${message.translate("common:VAN_URL")}:** ${vanity ? vanity : `\`${message.translate("common:NONE")}\``}`,
                 `**● ${message.translate("common:PARTNERED")} | ${message.translate("common:VERIFIED")}:** ${partnered[guild.partnered]} | ${verified[guild.verified]}`,
-                `**● ${message.translate("common:CREATION")} ${message.translate("common:DATE")}:** ${message.printDate(guild.createdAt)}`,
+                `**● ${message.translate("common:CREATION_DATE")}:** ${message.printDate(guild.createdAt)}`,
                 `\u200b`
             ])
-            .addField(`**❯ ${message.translate("common:STATISTICS")}:**`, [
-                `**● ${message.translate("common:ROLE")} ${message.translate("common:COUNT")}:** ${roles.length}`,
-                `**● ${message.translate("common:EMOJI")} ${message.translate("common:COUNT")}:** ${guild.emojis.cache.size}`,
-                `**● ${message.translate("common:REGULAR")} ${message.translate("common:EMOJI")} ${message.translate("common:COUNT")}:** ${guild.emojis.cache.filter(emoji => !emoji.animated).size}`,
-                `**● ${message.translate("common:ANIMATED")} ${message.translate("common:EMOJI")} ${message.translate("common:COUNT")}:** ${guild.emojis.cache.filter(emoji => emoji.animated).size}`,
-                `**● ${message.translate("common:MEMBER")} ${message.translate("common:COUNT")}:** ${guild.memberCount}`,
+            .addField(`**❯ ${message.translate("common:STATS")}:**`, [
+                `**● ${message.translate("common:ROLE_COUNT")}:** ${roles.length}`,
+                `**● ${message.translate("common:EMOJI_COUNT")}:** ${guild.emojis.cache.size}`,
+                `**● ${message.translate("common:REGULAR_EMOJI_COUNT")}:** ${guild.emojis.cache.filter(emoji => !emoji.animated).size}`,
+                `**● ${message.translate("common:ANIMATED_EMOJI_COUNT")}:** ${guild.emojis.cache.filter(emoji => emoji.animated).size}`,
+                `**● ${message.translate("common:MEMBER_COUNT")}:** ${guild.memberCount}`,
                 `**● ${message.translate("common:HUMANS")}:** ${guild.members.cache.filter(member => !member.user.bot).size}`,
                 `**● ${message.translate("common:BOTS")}:** ${guild.members.cache.filter(member => member.user.bot).size}`,
-                `**● ${message.translate("common:TEXT")} ${message.translate("common:CHANNELS")}:** ${guild.channels.cache.filter(channel => channel.type === "text").size}`,
-                `**● ${message.translate("common:VOICE")} ${message.translate("common:CHANNELS")}:** ${guild.channels.cache.filter(channel => channel.type === "voice").size}`,
+                `**● ${message.translate("common:TEXT_CH")}:** ${guild.channels.cache.filter(channel => channel.type === "text").size}`,
+                `**● ${message.translate("common:VOICE_CH")}:** ${guild.channels.cache.filter(channel => channel.type === "voice").size}`,
                 `**● ${message.translate("common:MIVC")}:** ${this.client.customEmojis.vc} ${count}`,
-                `**● ${message.translate("common:MEMBER")} ${message.translate("common:PRESENCES")}:**\n> ${this.client.customEmojis.status.online} ${totalOnline}\n> ${this.client.customEmojis.status.idle} ${totalIdle}\n> ${this.client.customEmojis.status.dnd} ${totalDND}\n> ${this.client.customEmojis.status.offline} ${totalOffline}`,
+                `**● ${message.translate("common:MEMBER_PRESENCES")}:**\n> ${this.client.customEmojis.status.online} ${totalOnline}\n> ${this.client.customEmojis.status.idle} ${totalIdle}\n> ${this.client.customEmojis.status.dnd} ${totalDND}\n> ${this.client.customEmojis.status.offline} ${totalOffline}`,
                 `\u200b`
             ])
             .addField(`**❯ ${message.translate("common:FEATURES")}:**`, [
