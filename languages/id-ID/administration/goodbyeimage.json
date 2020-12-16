@@ -1,9 +1,9 @@
 {
-    "DESCRIPTION": "Set a custom goodbye image.",
-    "USAGE": "{{prefix}}goodbyeimage [image_url]",
+    "DESCRIPTION": "Tambahkan gambar goodbye buatan.",
+    "USAGE": "{{prefix}}goodbyeimage [url_gambar]",
     "EXAMPLES": "{{prefix}}goodbyeimage https://cdn.discordapp.com/myimage.png",
-    "MAX": "You can only set 1 custom goodbye image!",
-    "RESET": "Goodbye image have been reset to default!",
-    "NO_ARGS": "Please provide a valid image url/link!",
-    "SUCCESS": "Goodbye image have been set to `{{image}}`\n\nType `??goodbyeimage reset` to reset it to default."
+    "MAX": "Kamu hanya dapat menambahkan 1 gambar goobye buatan!",
+    "RESET": "Gambar goodbye telah di atur ulang ke default!",
+    "NO_ARGS": "Mohon berikan url/tautan gambar yang valid!",
+    "SUCCESS": "Gambar goodbye telah di atur ke `{{image}}`\n\nKetik `??goodbyeimage reset` untuk mengatur ulang ke default."
 }
