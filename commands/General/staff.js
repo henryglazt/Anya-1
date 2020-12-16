@@ -62,7 +62,7 @@ class Staff extends Command {
 
 //${message.translate("general/staff:MODS")}\n${mod}`);
 
-        return message.channel.send(embed);
+        return message.channel.send(embedAdmin);
         }
     }
 
