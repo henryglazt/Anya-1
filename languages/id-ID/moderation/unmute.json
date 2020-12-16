@@ -2,7 +2,7 @@
     "DESCRIPTION": "Unmute member yang disebut!",
     "USAGE": "{{prefix}}unmute [@member]",
     "EXAMPLES": "{{prefix}}unmute @DooM™1998",
-    "MISSING_MEMBER": "Harap tentukan member yang ingin kamu unmute!",
+    "MISSING_MEMBER": "Mohon tentukan member yang ingin kamu unmute!",
     "NOT_MUTED": "**{{username}}** tidak dimute di server ini!",
     "SUCCESS": "**{{username}}** baru saja di unmute!",
     "SUCCESS_CASE": "{{user}} (`{{usertag}}`) baru saja di unmute! (kasus mute: #{{count}})"
