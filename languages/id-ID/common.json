@@ -50,6 +50,8 @@
     "MIVC": "Member di Channel Suara",
     "ADMINISTRATOR": "Administrator",
     "MODERATOR": "Moderator",
+    "SERVER_OWNER": "Server Owner",
+    "SERVER_ADMIN": "Server Admin",
     "USERNAME": "Nama Pengguna",
     "DISCRIMINATOR": "Diskriminator",
     "STATS": "Statistik",
