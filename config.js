@@ -1,5 +1,5 @@
 module.exports = {
-	token: "",
+	token: "NzcxNDAzMzcwMTMyMTQ0MTcw.X5rnXw.Om_cA04pAfbUgimk1IWHl_DWgEY",
 	supportURL: "https://discord.gg/gangsebelah",
 	support: {
 		id: "773707418482769982", // The ID of the support server

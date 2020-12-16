@@ -1,0 +1,11 @@
+{
+    "DESCRIPTION": "Stop the music",
+    "USAGE": "{{prefix}}stop",
+    "EXAMPLES": "{{prefix}}stop",
+    "VOTE_CONTENT": "React with ⏹️ to stop the music! {{requiredCount}} more votes are required.",
+    "SUCCESS": "Music stopped! Leaving... Bye...",
+    "LEAVE": "Leaving... Bye...",
+    "ALONE": "I was left alone.",
+    "IDLE": "I've been idle for 3 minutes.",
+    "THANK": "Thank you for using **{{anya}}**!"
+}

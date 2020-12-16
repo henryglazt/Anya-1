@@ -1,0 +1,5 @@
+{
+    "DESCRIPTION": "Rewind current song position",
+    "USAGE": "{{prefix}}rewind [time]",
+    "EXAMPLES": "{{prefix}}rewind 7m"
+}

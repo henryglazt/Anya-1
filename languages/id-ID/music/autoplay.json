@@ -1,0 +1,7 @@
+{
+    "DESCRIPTION": "Toggle the autoplay mode!",
+    "USAGE": "{{prefix}}autoplay",
+    "EXAMPLES": "{{prefix}}autoplay",
+    "ON": "<:toggleOn:755319218475368548> Autoplay: **On**",
+    "OFF": "<:toggleOff:755319233201831949> Autoplay: **Off**"
+}

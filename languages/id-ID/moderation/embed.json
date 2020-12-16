@@ -1,0 +1,6 @@
+{
+    "DESCRIPTION": "Create a message embed with your text.",
+    "USAGE": "{{prefix}}embed [text]",
+    "EXAMPLES": "{{prefix}}embed my cool embed!\n{{prefix}}embed https://cdn.discordapp.com/someimage.png",
+    "NO_ARGS": "Please enter your text!"
+}

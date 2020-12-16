@@ -1,0 +1,5 @@
+{
+    "DESCRIPTION": "Change your voice channel bitrate",
+    "USAGE": "{{prefix}}vcbitrate [number]",
+    "EXAMPLES": "{{prefix}}vcbitrate 92"
+}

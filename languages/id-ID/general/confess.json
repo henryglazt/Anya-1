@@ -1,0 +1,12 @@
+{
+    "DESCRIPTION": "Send your conffesion to the defined channel in Gang Sebelah!",
+    "USAGE": "{{prefix}}confess [message]",
+    "EXAMPLES": "{{prefix}}confess i ate my dog",
+    "DM_ONLY": "This command is DM only for a privacy reason!",
+    "MISSING_CHANNEL": "No confession channel defined!",
+    "MISSING_CONTENT": "Please enter a confession!",
+    "TITLE": "Confession",
+    "ANON": "Anonymous",
+    "PROMPT": "Would you like to add your username in it?\nAnswer by sending `yes` or `no`!",
+    "SUCCESS": "Your confession has been sent to {{channel}}!"
+}

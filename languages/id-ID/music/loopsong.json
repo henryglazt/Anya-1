@@ -1,0 +1,7 @@
+{
+    "DESCRIPTION": "Loops the current playing song.",
+    "USAGE": "{{prefix}}loopsong",
+    "EXAMPLES": "{{prefix}}loopsong",
+    "SUCCESS": "Loop song enabled.",
+    "OFF": "Loop disabled."
+}

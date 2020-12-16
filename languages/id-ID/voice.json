@@ -1,0 +1,7 @@
+{
+    "SUCCESS": "Done!",
+    "ERROR": "You're not in a voice channel.",
+    "EBIT": "Please provide a valid bitrate number between 8 and 384!",
+    "ENUM": "Please provide a valid limit number between 1 and 99 to limit your voice channel or 0 to unlimit!",
+    "ENAME": "Please provide a new channel name!"
+}

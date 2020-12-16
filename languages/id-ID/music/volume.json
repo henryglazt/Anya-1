@@ -1,0 +1,8 @@
+{
+    "DESCRIPTION": "Turn it up or down!",
+    "USAGE": "{{prefix}}volume [number]",
+    "EXAMPLES": "{{prefix}}volume 70",
+    "SUCCESS": "Volume set to: **{{volume}}%**",
+    "VALUE": "Please enter a new volume value **between 1 and 100!**",
+    "SET": "Current volume: **{{volume}}%**"
+}

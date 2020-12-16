@@ -1,0 +1,9 @@
+{
+    "DESCRIPTION": "Seek the current song",
+    "USAGE": "{{prefix}}seek [time]",
+    "EXAMPLES": "{{prefix}}seek 2m",
+    "NO_ARGS": "Please enter time in this format!\n\n```css\n1s, 1m, 1h, 1d, 1w, 1month, 1y```",
+    "BEYOND": "Cannot seek beyond length of song!\nPlease enter time in this format!\n\n```css\n1s, 1m, 1h, 1d, 1w, 1month, 1y```",
+    "SEEKABLE": "This song is unseekable!",
+    "SUCCESS": "Set position to `{{pos}}/{{dur}}`"
+}

@@ -1,0 +1,10 @@
+{
+    "DESCRIPTION": "Shows list of members in a role.",
+    "USAGE": "{{prefix}}inrole [role_id/role_name/role_mention]",
+    "EXAMPLES": "{{prefix}}inrole myrole",
+    "ROLE": "{{roleName}} role",
+    "MEMBERS": "Members: {{members}}",
+    "NO_ARGS": "Please provide the role!",
+    "NOT_FOUND": "I couldn't find that role!",
+    "NO_MEMBERS": "No members with that role!"
+}
