@@ -55,7 +55,7 @@ class Userinfo extends Command {
 				"dnd": `${emoji.status.dnd} ${message.translate("common:STATUS_DND")}`, "offline": `${emoji.status.offline} ${message.translate("common:STATUS_OFFLINE")}`};
 
 		const embed = new Discord.MessageEmbed()
-			.setAuthor(`${message.translate("general/userinfo:USERINFO")}`, "https://tinyurl.com/y4xs3cje")
+			.setAuthor(`${message.translate("common:USER_INFO")}`, "https://tinyurl.com/y4xs3cje")
 			.setThumbnail(user.displayAvatarURL({ dynamic: true }))
 			.addField(`**❯ ${message.translate("common:USER")}:**`, [
 			`**● ${message.translate("common:USERNAME")}:** ${escapeMarkdown(user.username)}`,
@@ -63,7 +63,7 @@ class Userinfo extends Command {
 			`**● ${message.translate("common:ID")}:** \`${user.id}\``,
 			`**● ${message.translate("common:STATUS")}:** ${status[user.presence.status]}`,
 			`**● ${message.translate("common:AVATAR")}:** 🔗 [${user.username}\`s ${message.translate("common:AVATAR")}](${user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 })})`,
-			`**● ${message.translate("general/userinfo:CREATIONDATE")}:** ${message.printDate(user.createdAt)}`,
+			`**● ${message.translate("common:CREATION_DATE")}:** ${message.printDate(user.createdAt)}`,
 			`\u200b`
 			])
 			.setColor(data.config.embed.color)
@@ -76,10 +76,10 @@ class Userinfo extends Command {
 		.slice(0, -1);
 			embed.addField(`**❯ ${message.translate("common:MEMBER")}:**`, [
 			`**● ${message.translate("common:NICKNAME")}:** ${member.nickname ? `${escapeMarkdown(member.nickname)}` : `\`${message.translate("common:NONE")}\``}`,
-			`**● ${message.translate("general/userinfo:HIGHESTROLE")}:** ${roles.length ? roles[0] : `\`${message.translate("common:NONE")}\``}`,
-			`**● ${message.translate("general/userinfo:HEXCOLOR")}:** \`${member.displayHexColor}\``,
+			`**● ${message.translate("common:HIGHEST_ROLE")}:** ${roles.length ? roles[0] : `\`${message.translate("common:NONE")}\``}`,
+			`**● ${message.translate("common:HEX_COLOR")}:** \`${member.displayHexColor}\``,
 			`**● ${message.translate("common:ROLES")} [${roles.length}]:** ${roles.length < 16 && roles.length !== 0 ? roles.join(", ") : roles.length > 15 ? `${roles.slice(0, 14).join(", ")} \`${message.translate("common:AND_MORE")}\`` : `\`${message.translate("common:NONE")}\``}`,
-			`**● ${message.translate("general/userinfo:JOINDATE")}:** ${message.printDate(member.joinedAt)}`,
+			`**● ${message.translate("common:JOIN_DATE")}:** ${message.printDate(member.joinedAt)}`,
 			`**● ${message.translate("common:ACKNOWLEDGEMENTS")}:** ${member.guild.owner.id === member.user.id ? `${message.translate("common:SERVER")} ${message.translate("common:OWNER")}` : member.hasPermission('ADMINISTRATOR') ? `${message.translate("common:SERVER")} ${message.translate("common:ADMINISTRATOR")}` : `\`${message.translate("common:NONE")}\``}`,
 			`\u200b`
 			]);
