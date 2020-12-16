@@ -1,7 +1,7 @@
 {
-    "DESCRIPTION": "Set the suggestions channel!",
+    "DESCRIPTION": "Atur channel saran!",
     "USAGE": "{{prefix}}setsuggests (#channel)",
     "EXAMPLES": "{{prefix}}setsuggests #suggestions\n{{prefix}}setsuggests",
-    "SUCCESS_ENABLED": "Suggestions will be sent in **{{channel}}**!",
-    "SUCCESS_DISABLED": "Suggestions channel deleted!"
+    "SUCCESS_ENABLED": "Saran akan dikirimkan ke **{{channel}}**!",
+    "SUCCESS_DISABLED": "Channel saran dihapus!"
 }
