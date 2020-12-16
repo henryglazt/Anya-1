@@ -2,7 +2,7 @@
     "DESCRIPTION": "Ban member yang disebutkan!",
     "USAGE": "{{prefix}}ban [@user] (alasan)",
     "EXAMPLES": "{{prefix}}ban @DooM™#1998 Spam",
-    "MISSING_MEMBER": "Harap tentukan anggota yang valid untuk di ban!",
+    "MISSING_MEMBER": "Mohon tentukan member yang valid untuk di ban!",
     "YOURSELF": "Kamu tidak dapat memberi sanksi pada dirimu sendiri!",
     "SUPERIOR": "Kamu tidak dapat memberikan atau perbarui sanksi member yang hirarkinya lebih tinggi atau sama dengamu!",
     "ALREADY_BANNED": "**{{username}}** sudah di ban!",
