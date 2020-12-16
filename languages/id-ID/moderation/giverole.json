@@ -1,11 +1,11 @@
 
 {
-    "DESCRIPTION": "Give a role to member.",
-    "USAGE": "{{prefix}}giverole (@member) [role_id/role_name/@role]",
-    "EXAMPLES": "{{prefix}}giverole @DooM™#9139 myrole",
+    "DESCRIPTION": "Berikan role kepada member.",
+    "USAGE": "{{prefix}}giverole (@member) [id_role/nama_role/@role]",
+    "EXAMPLES": "{{prefix}}giverole @DooM™#1998 roleku",
     "NO_ARGS": "Please specify the member and the role to be given to!",
-    "NO_MEMBER": "Member not found!",
-    "NO_ROLE": "Role not found!",
-    "HAS_ROLE": "{{member}} already have the {{role}} role",
-    "SUCCESS": "{{role}} role has been added to {{member}}"
+    "NO_MEMBER": "Member tidak ditemukan!",
+    "NO_ROLE": "Role tidak ditemukan!",
+    "HAS_ROLE": "{{member}} telah mempunyai role {{role}}",
+    "SUCCESS": "Role {{role}} telah diberikan kepada {{member}}"
 }
