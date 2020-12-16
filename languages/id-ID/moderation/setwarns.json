@@ -2,7 +2,7 @@
     "DESCRIPTION": "Tentukan sanksi yang akan didapat member setelah sejumlah peringatan!",
     "USAGE": "{{prefix}}setwarns [kick/ban] [number/reset]",
     "EXAMPLES": "{{prefix}}setwarns kick 10\n{{prefix}}setwarns ban 10\n{{prefix}}setwarns ban reset",
-    "MISSING_TYPE": "Harap tentukan sanksi antara `kick` dan `ban`",
+    "MISSING_TYPE": "Mohon tentukan sanksi antara `kick` dan `ban`",
     "SUCCESS_KICK": "** `{{count}}` peringatan akan mengakibatkan kick!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
     "SUCCESS_BAN": "** `{{count}}` peringatan akan mengakibatkan ban!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
     "SUCCESS_KICK_RESET": "**Anggota tidak dapat lagi dikick secara otomatis!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
