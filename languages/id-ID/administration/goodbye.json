@@ -2,6 +2,7 @@
     "DESCRIPTION": "Alihkan pesan selamat tinggal!",
     "USAGE": "{{prefix}}goodbye",
     "EXAMPLES": "{{prefix}}goodbye",
+    "MISSING_STATUS": "You must specify an action between `edit` and `off`",
     "DEFAULT_MESSAGE": "Selamat tinggal {user}! Kita sekarang {membercount} tanpa dirimu... :'(",
     "TEST_SUCCESS": "Tes dijalankan!",
     "FORM_1": "**Di saluran mana pesan selamat tinggal akan dikirimkan?**\n\n:arrow_right_hook: *Jawab dengan menyebut saluran!*",
