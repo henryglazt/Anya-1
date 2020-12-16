@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "Change your voice channel user limit",
-    "USAGE": "{{prefix}}vclimit [number]",
+    "DESCRIPTION": "Ganti batas pengguna di channel suaramu",
+    "USAGE": "{{prefix}}vclimit [nomor]",
     "EXAMPLES": "{{prefix}}vclimit 3"
 }
