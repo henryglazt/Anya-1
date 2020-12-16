@@ -29,13 +29,13 @@ class Staff extends Command {
             const moderators = await guild.members.cache.filter((m) => !administrators.has(m.id) && m.hasPermission("MANAGE_MESSAGES") && !m.user.bot);
             let al;
             let ml;
-            let admin = [];
-            let mod = [];
+            let admin;
+            let mod;
             if (administrators.size > 0) {
-                administrators.forEach((a) => {
+                administrators.map((a) => {
                     al = a.user.username;
                     if (al.length > 25) al = al.substring(0, 25);
-                admin.push = `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`;
+                admin = `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`;
             });
         } else {
             admin = message.translate("general/staff:NO_ADMINS");
