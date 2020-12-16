@@ -2,7 +2,7 @@
     "DESCRIPTION": "Unban pengguna dari server!",
     "USAGE": "{{prefix}}unban [userID/user#0000]",
     "EXAMPLES": "{{prefix}}unban 422820341791064085\n{{prefix}}unban Doom™#1998",
-    "MISSING_ID": "Harap tentukan ID member yang ingin kamu unban!",
+    "MISSING_ID": "Mohon tentukan ID member yang ingin kamu unban!",
     "NOT_BANNED": "**{{username}}** tidak diban!",
     "UNBANNED": "**{{username}}** baru saja di unban dari **{{server}}**!"
 }
