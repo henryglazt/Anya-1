@@ -36,7 +36,7 @@ class Stats extends Command {
 			`**● ${message.translate("common:USERS")}:** ${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`,
 			`**● Node.js:** \`v${process.versions.node}\``,
 			`**● Discord.js:** \`v${Discord.version}\``,
-			`**● ${message.translate("common:CREATION")} ${message.translate("common:DATE")}:** ${message.printDate(this.client.user.createdAt)}`,
+			`**● ${message.translate("general/stats:CREATIONDATE")}:** ${message.printDate(this.client.user.createdAt)}`,
  			`\u200b`
 			])
     
@@ -48,8 +48,8 @@ class Stats extends Command {
   				`> **${message.translate("common:MODEL")}:** \`${core.model}\``,
   				`> **${message.translate("common:SPEED")}:** \`${core.speed}MHz\``,
   				`**● ${message.translate("common:MEMORY")}:**`,
-  				`> **${message.translate("common:HEAP")} ${message.translate("common:TOTAL")}:** \`${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)} MB\``,
-  				`> **${message.translate("common:HEAP:")} ${message.translate("common:USED")}:** \`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\``,
+  				`> **${message.translate("common:HEAPTOTAL")}:** \`${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)} MB\``,
+  				`> **${message.translate("common:HEAPUSED")}: ${message.translate("common:USED")}:** \`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\``,
 				`\u200b`
 				])
 
