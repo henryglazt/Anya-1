@@ -1,7 +1,7 @@
 {
-    "DESCRIPTION": "Clear a member sanctions!",
+    "DESCRIPTION": "Bersihkan sanksi anggota!",
     "USAGE": "{{prefix}}clear-sanctions [@member]",
-    "EXAMPLES": "{{prefix}}clear-sanctions @DooM™#9139",
-    "MISSING_MEMBER": "Please mention the member you wish to remove the sanctions from!",
-    "SUCCESS": "**{{username}}**'s sanctions were deleted!"
+    "EXAMPLES": "{{prefix}}clear-sanctions @DooM™#1998",
+    "MISSING_MEMBER": "Mohon sebutkan member yang ingin kamu hapus sanksinya!",
+    "SUCCESS": "Sanksi **{{username}}** telah dihapus!"
 }
