@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
     Discord = require("discord.js"),
-    ms = require("ms");
+        ms = require("ms");
 
 class Mute extends Command {
 
@@ -66,7 +66,7 @@ class Mute extends Command {
         roles = await member.roles.cache.filter((r) => r.managed !== true).map((r) => r.id)
         muted = await message.guild.roles.cache.find((r) => r.name.toLowerCase() === "muted")
         if (!muted) {
-            message.sendT("moderation/mute:NO_MUTE_ROLE").then(m => {m.delete({timeout: 3000})});
+            message.channel.send(`${this.client.customEmojis.loading} ${message.translate("moderation/mute:NO_MUTE_ROLE")}`).then(m => {m.delete({timeout: 3000})});
             muted = await message.guild.roles.create({
                 data: {
                     name: "MUTED"
