@@ -5,7 +5,7 @@
     "MISSING_MEMBER": "Mohon tentukan member yang valid untuk dimute!",
     "MUTED_DM": "Halo {{username}},\nKamu baru saja dimute di **{{server}}** oleh **{{moderator}}** selama **{{time}}** karena **{{reason}}**!",
     "MUTED": "**{{username}}** sekarang dimute selama **{{time}}** karena **{{reason}}**!",
-    "CASE": "Mute | Kasus #{{count}}"
+    "CASE": "Mute | Kasus #{{count}}",
     "ALREADY_MUTED": "{{user}} telah dimute selama **{{time}}** dengan alasan **{{reason}}**!",
     "NO_MUTED_ROLE": "Tidak ada role yang bernama **MUTED**, Membuat yang baru..."
 }
