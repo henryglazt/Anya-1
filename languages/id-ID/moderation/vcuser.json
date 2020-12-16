@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "Shows how many members in a voice channel in this server.",
+    "DESCRIPTION": "Menunjukan jumlah member di server ini yang berada di channel suara.",
     "USAGE": "{{prefix}}vcuser",
     "EXAMPLES": "{{prefix}}vcuser"
 }
