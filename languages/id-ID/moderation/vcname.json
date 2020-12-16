@@ -1,5 +1,5 @@
 {
-    "DESCRIPTION": "Change your voice channel name",
-    "USAGE": "{{prefix}}vcname [name]",
+    "DESCRIPTION": "Ganti nama channel suaramu",
+    "USAGE": "{{prefix}}vcname [nama]",
     "EXAMPLES": "{{prefix}}vcname DooM"
 }
