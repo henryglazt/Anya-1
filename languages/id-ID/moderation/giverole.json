@@ -1,4 +1,3 @@
-
 {
     "DESCRIPTION": "Berikan role kepada member.",
     "USAGE": "{{prefix}}giverole (@member) [id_role/nama_role/@role]",
