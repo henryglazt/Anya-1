@@ -27,17 +27,15 @@ class Staff extends Command {
 
             const administrators = await guild.members.cache.filter((m) => m.hasPermission("ADMINISTRATOR") && !m.user.bot);
             const moderators = await guild.members.cache.filter((m) => !administrators.has(m.id) && m.hasPermission("MANAGE_MESSAGES") && !m.user.bot);
-
-            let admin;
-            let mod;
             let al;
             let ml;
-
-        if (administrators.size > 0) {
-            administrators.map((a) => {
-                al = a.user.username;
-                if (al.length > 20) al = al.substring(0, 20);
-                admin = `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`;
+            let admin = [];
+            let mod = [];
+            if (administrators.size > 0) {
+                administrators.forEach((a) => {
+                    al = a.user.username;
+                    if (al.length > 25) al = al.substring(0, 25);
+                admin.push = `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`;
             });
         } else {
             admin = message.translate("general/staff:NO_ADMINS");
@@ -59,8 +57,7 @@ class Staff extends Command {
             .setAuthor(message.translate("general/staff:TITLE", {
                 guild: message.guild.name
             }))
-            .setDescription(`${message.translate("general/staff:ADMINS")}\n${admin}\n`);
-
+            .setDescription(`${message.translate("general/staff:ADMINS")}\n${admin.join("\n")}`);
 
 
 //${message.translate("general/staff:MODS")}\n${mod}`);
