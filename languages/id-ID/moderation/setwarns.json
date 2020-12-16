@@ -5,8 +5,8 @@
     "MISSING_TYPE": "Mohon tentukan sanksi antara `kick` dan `ban`",
     "SUCCESS_KICK": "** `{{count}}` peringatan akan mengakibatkan kick!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
     "SUCCESS_BAN": "** `{{count}}` peringatan akan mengakibatkan ban!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
-    "SUCCESS_KICK_RESET": "**Anggota tidak dapat lagi dikick secara otomatis!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
-    "SUCCESS_BAN_RESET": "**Anggota tidak lagi dapat diban secara otomatis!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
+    "SUCCESS_KICK_RESET": "**Member tidak dapat lagi dikick secara otomatis!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
+    "SUCCESS_BAN_RESET": "**Member tidak lagi dapat diban secara otomatis!**\n\n:arrow_right_hook: *Kirim `{{prefix}}configuration` untuk melihat konfigurasi yang telah diperbarui!*",
     "AUTO_BAN": "**{{username}}** secara otomatis diban karena mereka mencapai lebih dari **{{count}}** peringatan!",
     "AUTO_KICK": "**{{username}}** secara otomatis dikick karena mereka mencapai lebih dari **{{count}}** peringatan!"
 }
