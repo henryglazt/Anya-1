@@ -1,5 +1,5 @@
 module.exports = {
-	token: "NzcxNDAzMzcwMTMyMTQ0MTcw.X5rnXw.Om_cA04pAfbUgimk1IWHl_DWgEY",
+	token: "",
 	supportURL: "https://discord.gg/gangsebelah",
 	support: {
 		id: "773707418482769982", // The ID of the support server
@@ -58,7 +58,7 @@ module.exports = {
 		},
 		{
 			name: "id-ID",
-			nativeName: "bahasa Indonesia",
+			nativeName: "Bahasa Indonesia",
 			defaultMomentFormat: "Do MMMM YYYY",
 			moment: "id",
 			default: false,
