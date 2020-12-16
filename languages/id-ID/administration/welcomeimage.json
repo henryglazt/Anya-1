@@ -1,9 +1,9 @@
 {
-    "DESCRIPTION": "Set a custom welcome image.",
-    "USAGE": "{{prefix}}welcomeimage [image_url]",
+    "DESCRIPTION": "Atur gambar welcome buatan.",
+    "USAGE": "{{prefix}}welcomeimage [url_gambar]",
     "EXAMPLES": "{{prefix}}welcomeimage https://cdn.discordapp.com/myimage.png",
-    "MAX": "You can only set 3 custom welcome image!",
-    "RESET": "Welcome image have been reset to default!",
-    "NO_ARGS": "Please provide a valid image url/link!",
-    "SUCCESS": "Welcome image have been set to `{{image}}`\n\nType `??welcomeimage reset` to reset it to default."
+    "MAX": "Kamu hanya bisa menambahkan 3 gambar welcome buatan!",
+    "RESET": "Gambar welcome telah di atur ulang k default!",
+    "NO_ARGS": "Mohon berikan url/tautan gambar yang valid!",
+    "SUCCESS": "Gambar welcome telah di atur ke `{{image}}`\n\nKetik `??welcomeimage reset` untuk mengatur ulang ke default."
 }
