@@ -117,7 +117,7 @@ class Serverinfo extends Command {
         const embed = new MessageEmbed()
             .setColor(data.config.embed.color)
             .setFooter(data.config.embed.footer)
-            .setAuthor(`${message.translate("common:SERVER")} ${message.translate("common:INFO")}`, "https://tinyurl.com/y4xs3cje")
+            .setAuthor(`${message.translate("common:SERVER_INFO")}`, "https://tinyurl.com/y4xs3cje")
             .setThumbnail(guild.iconURL({dynamic: true}))
             .addField(`**❯ ${message.translate("common:GENERAL")}:**`, [
                 `**● ${message.translate("common:NAME")}:** ${guild.name}`,
