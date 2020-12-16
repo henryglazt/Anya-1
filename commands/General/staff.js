@@ -23,47 +23,65 @@ class Staff extends Command {
 
         const guild = await message.guild.fetch();
 
-        if (guild.id === "773707418482769982") {
+        const administrators = await guild.members.cache.filter((m) => m.hasPermission("ADMINISTRATOR") && !m.user.bot);
+        const moderators = await guild.members.cache.filter((m) => !administrators.has(m.id) && m.hasPermission("MANAGE_MESSAGES") && !m.user.bot);
 
-            const administrators = await guild.members.cache.filter((m) => m.hasPermission("ADMINISTRATOR") && !m.user.bot);
-            const moderators = await guild.members.cache.filter((m) => !administrators.has(m.id) && m.hasPermission("MANAGE_MESSAGES") && !m.user.bot);
-            let al;
-            let ml;
-            let admin;
-            let mod;
-            if (administrators.size > 0) {
-                administrators.map((a) => {
-                    al = a.user.username;
-                    if (al.length > 25) al = al.substring(0, 25);
-                admin = `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(al)}#${a.user.discriminator}\n`;
-            });
+        let a;
+        let m;
+
+        if (administrators.size > 0) {
+                a = administrators.map((a) => {
+                    `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}\n`;
+                });
         } else {
-            admin = message.translate("general/staff:NO_ADMINS");
+                a = message.translate("general/staff:NO_ADMINS");
         };
 
         if (moderators.size > 0) {
-            moderators.map((m) => {
-                ml = m.user.username;
-                if (ml.length > 20) ml = ml.substring(0, 20);
-                mod = `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}#${m.user.discriminator}\n`;
-            });
+                m = moderators.map((m) => {
+                    `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}#${m.user.discriminator}\n`;
+                });
         } else {
-            mod = message.translate("general/staff:NO_MODS");
+                m = message.translate("general/staff:NO_MODS");
         };
 
-        const embedAdmin = new MessageEmbed()
-            .setColor(data.config.embed.color)
-            .setFooter(data.config.embed.footer)
-            .setAuthor(message.translate("general/staff:TITLE", {
-                guild: message.guild.name
-            }))
-            .setDescription(message.translate("general/staff:ADMINS") + "\n" + admin.join("\n"));
+        if (guild.id === "773707418482769982") {
 
+            const embedA = new MessageEmbed()
+                .setColor(data.config.embed.color)
+                .setFooter(data.config.embed.footer)
+                .setAuthor(message.translate("general/staff:TITLE", {
+                    guild: message.guild.name
+                }))
+                .setDescription(`${message.translate("general/staff:ADMINS")}\n${a}`);
 
-//${message.translate("general/staff:MODS")}\n${mod}`);
+            const embedM = new MessageEmbed()
+                .setColor(data.config.embed.color)
+                .setFooter(data.config.embed.footer)
+                .setAuthor(message.translate("general/staff:TITLE", {
+                    guild: message.guild.name
+                }))
+                .setDescription(`${message.translate("general/staff:MODSS")}\n${m}`);
 
-        return message.channel.send(embedAdmin);
+            return message.channel.send(embedA), message.channel.send(embedM);
+
+        } else {
+
+            const embed = new MessageEmbed()
+                .setColor(data.config.embed.color)
+                .setFooter(data.config.embed.footer)
+                .setAuthor(message.translate("general/staff:TITLE", {
+                    guild: message.guild.name
+                }))
+                .setDescription([
+                    `${message.translate("general/staff:ADMINS")}`, `${a}`,
+                    `${message.translate("general/staff:MODS")}`, `${m}`
+                ]);
+
+            return message.channel.send(embed);
+
         }
+
     }
 
 }
