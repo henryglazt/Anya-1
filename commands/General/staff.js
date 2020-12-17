@@ -30,20 +30,16 @@ class Staff extends Command {
         let ml;
 
         if (administrators.size > 0) {
-                al = administrators.map((a) => {
-                    `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}\n`;
-                });
+                al = administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}\n`);
         } else {
                 al = message.translate("general/staff:NO_ADMINS");
-        };
+        }
 
         if (moderators.size > 0) {
-                ml = moderators.map((m) => {
-                    `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}\n`;
-                });
+                ml = moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}\n`);
         } else {
                 ml = message.translate("general/staff:NO_MODS");
-        };
+        }
 
         if (guild.id === "773707418482769982") {
 
