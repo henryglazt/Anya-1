@@ -35,7 +35,7 @@ class Staff extends Command {
                     guild: message.guild.name
                 }))
                 .setDescription(`${message.translate("general/staff:ADMINS")}\n${administrators.size > 0 
-                                   ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}\n`)
+                                   ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}`).join("\n")
                                    : message.translate("general/staff:NO_ADMINS")}`);
 
             const embedM = new MessageEmbed()
@@ -45,7 +45,7 @@ class Staff extends Command {
                     guild: message.guild.name
                 }))
                 .setDescription(`${message.translate("general/staff:MODS")}\n${moderators.size > 0 
-                                   ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}\n`)
+                                   ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).join("\n")
                                    : message.translate("general/staff:NO_MODS")}`);
 
             return message.channel.send(embedA), message.channel.send(embedM);
@@ -60,10 +60,10 @@ class Staff extends Command {
                 }))
                 .setDescription([
                     `${message.translate("general/staff:ADMINS")}`, `${administrators.size > 0 
-                                   ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}\n`)
+                                   ? administrators.map((a) => `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}`).join("\n")
                                    : message.translate("general/staff:NO_ADMINS")}`,
                     `${message.translate("general/staff:MODS")}`, `${moderators.size > 0 
-                                   ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}\n`)
+                                   ? moderators.map((m) => `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}`).join("\n")
                                    : message.translate("general/staff:NO_MODS")}`
                 ]);
 
