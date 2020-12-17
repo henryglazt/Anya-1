@@ -26,23 +26,23 @@ class Staff extends Command {
         const administrators = await guild.members.cache.filter((m) => m.hasPermission("ADMINISTRATOR") && !m.user.bot);
         const moderators = await guild.members.cache.filter((m) => !administrators.has(m.id) && m.hasPermission("MANAGE_MESSAGES") && !m.user.bot);
 
-        let a;
-        let m;
+        let al;
+        let ml;
 
         if (administrators.size > 0) {
-                a = administrators.map((a) => {
+                al = administrators.map((a) => {
                     `${this.client.customEmojis.status[a.presence.status]} | ${escapeMarkdown(a.user.tag)}\n`;
                 });
         } else {
-                a = message.translate("general/staff:NO_ADMINS");
+                al = message.translate("general/staff:NO_ADMINS");
         };
 
         if (moderators.size > 0) {
-                m = moderators.map((m) => {
-                    `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(ml)}#${m.user.discriminator}\n`;
+                ml = moderators.map((m) => {
+                    `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)\n`;
                 });
         } else {
-                m = message.translate("general/staff:NO_MODS");
+                ml = message.translate("general/staff:NO_MODS");
         };
 
         if (guild.id === "773707418482769982") {
@@ -53,7 +53,7 @@ class Staff extends Command {
                 .setAuthor(message.translate("general/staff:TITLE", {
                     guild: message.guild.name
                 }))
-                .setDescription(`${message.translate("general/staff:ADMINS")}\n${a}`);
+                .setDescription(`${message.translate("general/staff:ADMINS")}\n${al}`);
 
             const embedM = new MessageEmbed()
                 .setColor(data.config.embed.color)
@@ -61,7 +61,7 @@ class Staff extends Command {
                 .setAuthor(message.translate("general/staff:TITLE", {
                     guild: message.guild.name
                 }))
-                .setDescription(`${message.translate("general/staff:MODSS")}\n${m}`);
+                .setDescription(`${message.translate("general/staff:MODSS")}\n${ml}`);
 
             return message.channel.send(embedA), message.channel.send(embedM);
 
@@ -74,8 +74,8 @@ class Staff extends Command {
                     guild: message.guild.name
                 }))
                 .setDescription([
-                    `${message.translate("general/staff:ADMINS")}`, `${a}`,
-                    `${message.translate("general/staff:MODS")}`, `${m}`
+                    `${message.translate("general/staff:ADMINS")}`, `${al}`,
+                    `${message.translate("general/staff:MODS")}`, `${ml}`
                 ]);
 
             return message.channel.send(embed);
