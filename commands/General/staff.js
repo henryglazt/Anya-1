@@ -39,7 +39,7 @@ class Staff extends Command {
 
         if (moderators.size > 0) {
                 ml = moderators.map((m) => {
-                    `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)\n`;
+                    `${this.client.customEmojis.status[m.presence.status]} | ${escapeMarkdown(m.user.tag)}\n`;
                 });
         } else {
                 ml = message.translate("general/staff:NO_MODS");
