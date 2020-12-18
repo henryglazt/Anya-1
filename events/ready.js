@@ -106,12 +106,16 @@ module.exports = class {
         });
 
         let guild = client.guilds.cache.get("773707418482769982");
-        let channel = guild.channels.cache.get("773712559530311723");
+        let channel1 = guild.channels.cache.get("773712559530311723");
+	let channel2 = guild.channels.cache.get("784190009250545664");
 
         var job = new CronJob(
             "0 0 * * * *",
             function () {
-                channel.send(`= GANG SEBELAH MUSIC BOTS COMMANDS =\n\n${array.join("\n")}`, {
+                channel1.send(`= GANG SEBELAH MUSIC BOTS COMMANDS =\n\n${array.join("\n")}`, {
+                    code: "yaml"
+                });
+		channel2.send(`= GANG SEBELAH MUSIC BOTS COMMANDS =\n\n${array.join("\n")}`, {
                     code: "yaml"
                 });
             },
