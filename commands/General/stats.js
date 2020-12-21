@@ -55,7 +55,8 @@ class Stats extends Command {
 
 			.addField(this.client.customEmojis.link+" "+message.translate("general/stats:LINKS_TITLE"), message.translate("misc:STATS_FOOTER", {
 			inviteLink: await this.client.generateInvite({permissions: "ADMINISTRATOR"}),
-			supportLink: this.client.config.supportURL
+			supportLink: this.client.config.supportURL,
+			donateLink: this.client.config.others.donate
 		}));
 		message.channel.send(statsEmbed);
 	}
