@@ -9,7 +9,7 @@ class Invite extends Command {
 			dirname: __dirname,
 			enabled: true,
 			guildOnly: false,
-			aliases: [ "i", "add", "vote" ],
+			aliases: [ "i", "add", "vote", "donate" ],
 			memberPermissions: [],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			nsfw: false,
