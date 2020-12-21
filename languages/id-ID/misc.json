@@ -8,7 +8,7 @@
     "INVALID_TIME": "Kamu harus memasukkan waktu yang valid! Unit yang tersedia: `s`, `m`, `h` or `d`",
     "INVALID_NUMBER": "Mohon sebutkan nomor yang valid!",
     "INVALID_NUMBER_RANGE": "Mohon sebutkan nomor yang valid diantara **{{min}}** and **{{max}}**!",
-    "STATS_FOOTER": "[Undang]({{inviteLink}}) ● [Server]({{supportLink}})",
+    "STATS_FOOTER": "[Invite Me!]({{inviteLink}}) ● [Support Server]({{supportLink}}) ● [Donate]({{donateLink}})",
     "BOT_USER": "Pengguna ini adalah bot!",
     "NO_REASON_PROVIDED": "Tidak ada alasan yang diberikan",
     "NO_USER_FOUND_ID": "Tidak ada pengguna di Discord yang memiliki ID `{{id}}`!",
