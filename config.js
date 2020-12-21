@@ -1,97 +1,71 @@
-{
-  "name": "NuruAruvi",
-  "version": "29.12.19",
-  "description": "A very complete Discord bot (more than 70 commands) that uses the Discordjs API!",
-  "main": "nuruaruvi.js",
-  "scripts": {
-    "start": "node .",
-    "lint": "eslint . --ext .js",
-    "testcfg": "node scripts/verify-config.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "author": "DooM™",
-  "license": "ISC",
-  "bugs": {
-    "url": ""
-  },
-  "homepage": "",
-  "dependencies": {
-    "@k3rn31p4nic/google-translate-api": "github:k3rn31p4nic/google-translate-api",
-    "amethyste-api": "github:Androz2091/amethyste-api",
-    "ascii-table": "0.0.9",
-    "btoa": "^1.2.1",
-    "canvas": "^2.6.1",
-    "chalk": "^4.1.0",
-    "colors-generator": "^0.3.4",
-    "cron": "^1.8.2",
-    "dblapi.js": "^2.4.1",
-    "discord-canvas": "^1.3.2",
-    "discord-giveaways": "^4.3.0",
-    "discord.js": "^12.5.0",
-    "discord.js-collector": "^1.8.2",
-    "ejs": "^3.1.5",
-    "erela.js": "^2.3.1",
-    "erela.js-spotify": "^1.2.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "figlet": "^1.5.0",
-    "i18next": "^19.8.3",
-    "i18next-node-fs-backend": "^2.1.3",
-    "jsdom": "^16.4.0",
-    "lyrics-finder": "^21.4.0",
-    "markdown-table": "^2.0.0",
-    "md5": "^2.3.0",
-    "moment": "^2.29.1",
-    "moment-duration-format": "^2.3.2",
-    "mongoose": "^5.11.8",
-    "ms": "^2.1.3",
-    "os": "^0.1.1",
-    "reaction-role": "^2.1.6"
-  },
-  "engines": {
-    "node": "^12.x"
-  },
-  "devDependencies": {
-    "eslint": "^7.5.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "commonjs": true,
-      "es6": true,
-      "node": true
-    },
-    "extends": "eslint:recommended",
-    "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-      "ecmaVersion": 2020
-    },
-    "rules": {
-      "prefer-const": [
-        "error"
-      ],
-      "indent": [
-        "error",
-        "tab"
-      ],
-      "quotes": [
-        "error",
-        "double"
-      ],
-      "semi": [
-        "error",
-        "always"
-      ],
-      "linebreak-style": 0,
-      "require-atomic-updates": 0
-    }
-  },
-  "eslintIgnore": [
-    "dashboard/public"
-  ]
-}
+module.exports = {
+	token: "",
+	supportURL: "https://discord.gg/gangsebelah",
+	support: {
+		id: "773707418482769982", // The ID of the support server
+		logs: "773774472150646785", // And the ID of the logs channel of your server (new servers for example)
+	},
+	dashboard: {
+		enabled: false, // whether the dashboard is enabled or not
+		secret: "xxxxxx", // Your discord client secret
+		baseURL: "https://localhost", // The base URl of the dashboard
+		logs: "773774472150646785", // The channel ID of logs
+		port: 8080, // Dashboard port
+		expressSessionPassword: "xxxxxx", // Express session password (it can be what you want)
+		failureURL: "" // url on which users will be redirected if they click the cancel button (discord authentication)
+	},
+	mongoDB: "mongodb+srv://anyageraldine:laililham@cluster0.efdfb.mongodb.net/anya?retryWrites=true&w=majority", // The URl of the mongodb database
+	prefix: "??",
+	embed: {
+		color: "#f1c40f", // The default color for the embeds
+		footer: "Anya Geraldine ~ Gang Sebelah © 2020" // And the default footer for the embeds
+	},
+	owner: {
+		id: "339612673811415041", // The ID of the bot's owner
+		name: "DooM™#1998" // And the name of the bot's owner
+	},
+	votes: {
+		port: 5000, // The port for the server
+		password: "", // The webhook auth that you have defined on discordbots.org
+		channel: "" // The ID of the channel that in you want the votes logs
+	},
+	apiKeys: {
+		dbl: ""
+	},
+	spotify: {
+		id: "fd30a9e7da5b4fda8a2332a198ddbe5a",
+		secret: "a017be619f154704882e2738b5c9f2df"
+	},
+	others: {
+		github: "",
+		donate: "https://saweria.co/DooM"
+	},
+	languages: [
+		{
+			name: "en-US",
+			nativeName: "English",
+			moment: "en",
+			defaultMomentFormat: "MMMM Do YYYY",
+			default: true,
+			aliases: [
+				"English",
+				"en",
+				"en-us",
+				"en_us",
+				"en_US"
+			]
+		},
+		{
+			name: "id-ID",
+			nativeName: "Bahasa Indonesia",
+			defaultMomentFormat: "Do MMMM YYYY",
+			moment: "id",
+			default: false,
+			aliases: [
+				"Indonesian",
+				"id",
+				"id_id"
+			]
+		}
+	]
+};
