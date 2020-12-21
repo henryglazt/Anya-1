@@ -124,16 +124,6 @@ class Ticket extends Command {
 			let chToDel = await message.guild.channels.cache.get(data.memberData.ticket.channel);
 			await chToDel.delete().catch((e) => message.error(e));
 
-			data.memberData.ticket = {
-				resolved: true,
-				author: null,
-				channel: null,
-				case: null
-			};
-
-			data.memberData.markModified("ticket");
-			await data.memberData.save();
-
 			if (data.guild.plugins.modlogs) {
 				const logsClose = message.guild.channels.cache.get(data.guild.plugins.modlogs);
 				if (!logsClose) return;
@@ -143,11 +133,22 @@ class Ticket extends Command {
 					.setDescription(message.translate("general/ticket:CLOSE_LOGS", {
 						author: message.author.tag,
 						reason: reason,
-						case: `#${data.guild.ticketCase}`,
+						case: `#${data.memberData.ticketCase}`,
 						id: message.author.id
 					}));
-				return logsClose.send(logsCloseEmbed);
+				await logsClose.send(logsCloseEmbed);
 			}
+			
+			data.memberData.ticket = {
+				resolved: true,
+				author: null,
+				channel: null,
+				case: null
+			};
+
+			data.memberData.markModified("ticket");
+			await data.memberData.save();
+			return;
 
 		} else if (status === "open") {
 
@@ -174,7 +175,7 @@ class Ticket extends Command {
 				resolved: false,
 				author: message.author.id,
 				channel: channel.id,
-				case: data.memberData.ticketCase
+				case: data.guild.ticketCase
 			};
 
 			data.memberData.markModified("ticket");
