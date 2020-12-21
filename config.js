@@ -30,7 +30,6 @@ module.exports = {
 		channel: "" // The ID of the channel that in you want the votes logs
 	},
 	apiKeys: {
-		// DBL: https://discordbots.org/api/docs#mybots
 		dbl: ""
 	},
 	spotify: {
@@ -38,8 +37,8 @@ module.exports = {
 		secret: "a017be619f154704882e2738b5c9f2df"
 	},
 	others: {
-		github: "", // Founder's github account
-		donate: "" // Donate link
+		github: "",
+		donate: "https://saweria.co/DooM"
 	},
 	languages: [
 		{
