@@ -6,5 +6,5 @@
     "MISSING_REASON": "Mohon berikan alasannya!",
     "WARNED_DM": "Halo {{username}},\nKamu baru saja diperingatkan di **{{server}}** oleh **{{moderator}}** karena **{{reason}}**!",
     "WARNED": "**{{username}}** baru saja diperingatkan di pesan pribadi karena **{{reason}}**!",
-    "CASE": "Warn | Kasus #{{caseNumber}}"
+    "CASE": "Warn | Kasus #{{count}}"
 }
