@@ -21,6 +21,7 @@ class Invite extends Command {
 		const inviteLink = this.client.config.inviteURL || `https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=8`;
 		const voteURL = this.client.config.voteURL || `https://discordbots.org/bot/${this.client.user.id}/vote`;
 		const supportURL = this.client.config.supportURL || await this.client.functions.supportLink(this.client);
+		const donateURL = this.client.config.others.donate;
 		if(args[0] && args[0] === "copy"){
 			return message.channel.send(inviteLink);
 		}
@@ -30,6 +31,7 @@ class Invite extends Command {
 			.addField(message.translate("general/invite:ADD"), inviteLink)
 			.addField(message.translate("general/invite:VOTE"), voteURL)
 			.addField(message.translate("general/invite:SUPPORT"), supportURL)
+			.addField(message.translate("general/invite:DONATE"), donateURL)
 			.setColor(data.config.embed.color)
 			.setFooter(data.config.embed.footer);
 		message.channel.send(embed);
