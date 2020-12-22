@@ -171,6 +171,7 @@ module.exports = class {
 			if(message.guild){
 				const customCommand = data.guild.customCommands.find((c) => c.name === command);
 				if(customCommand){
+					await message.delete();
 					message.channel.send(customCommand.answer);
 				}
 				return;
