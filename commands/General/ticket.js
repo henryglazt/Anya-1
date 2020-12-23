@@ -133,7 +133,7 @@ class Ticket extends Command {
 					.setDescription(message.translate("general/ticket:CLOSE_LOGS", {
 						author: message.author.tag,
 						reason: reason,
-						case: `#${data.memberData.ticketCase}`,
+						case: `#${data.memberData.ticket.case}`,
 						id: message.author.id
 					}));
 				await logsClose.send(logsCloseEmbed);
